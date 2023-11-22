@@ -2,6 +2,7 @@ package star.odyssey.command;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import java.io.FileReader;
 import java.util.HashSet;
 import java.util.List;
@@ -18,7 +19,8 @@ public class CommandParser {
     private void loadUnnecessaryWords() {
         try {
             Gson gson = new Gson();
-            List<String> words = gson.fromJson(new FileReader("./data/unnecessaryWords.json"), new TypeToken<List<String>>(){}.getType());
+            List<String> words = gson.fromJson(new FileReader("./data/unnecessaryWords.json"), new TypeToken<List<String>>() {
+            }.getType());
             unnecessaryWords.addAll(words);
         } catch (Exception e) {
             e.printStackTrace();

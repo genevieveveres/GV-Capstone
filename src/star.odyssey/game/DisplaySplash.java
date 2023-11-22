@@ -1,6 +1,7 @@
 package star.odyssey.game;
 
-import java.io.*;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class DisplaySplash {
     // Displays text input in red
@@ -10,6 +11,7 @@ public class DisplaySplash {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+
     public static String makeRed(String txt) {
         return "\u001B[31m" + txt + "\u001B[0m";
     }
@@ -35,8 +37,7 @@ public class DisplaySplash {
                     System.out.print((char) i);
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             // Handle exceptions (e.g., file not found, JSON parsing error)
             e.printStackTrace();
         }

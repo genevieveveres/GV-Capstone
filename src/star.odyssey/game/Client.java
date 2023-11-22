@@ -1,7 +1,6 @@
 package star.odyssey.game;
 
 import com.apps.util.Prompter;
-import star.odyssey.game.Game;
 
 import java.io.IOException;
 import java.util.Scanner;
