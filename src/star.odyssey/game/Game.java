@@ -15,6 +15,7 @@ public class Game {
     }
 
     public void start() {
+        System.out.println("Game Starts here");
         // Start the game loop, set `isRunning` to true
     }
 
