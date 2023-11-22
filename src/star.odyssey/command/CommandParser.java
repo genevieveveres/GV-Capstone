@@ -1,12 +1,29 @@
 package star.odyssey.command;
 
-import java.util.Arrays;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.FileReader;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class CommandParser {
+    private final Set<String> unnecessaryWords;
 
-    private final Set<String> unnecessaryWords = new HashSet<>(Arrays.asList("the", "of", "a", "an"));
+    public CommandParser() {
+        unnecessaryWords = new HashSet<>();
+        loadUnnecessaryWords();
+    }
+
+    private void loadUnnecessaryWords() {
+        try {
+            Gson gson = new Gson();
+            List<String> words = gson.fromJson(new FileReader("./data/unnecessaryWords.json"), new TypeToken<List<String>>(){}.getType());
+            unnecessaryWords.addAll(words);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public ParsedCommand parseCommand(String input) {
         // Split input into words and filter out unnecessary words

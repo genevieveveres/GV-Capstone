@@ -1,15 +1,14 @@
 package star.odyssey.command;
 
 public class CommandManager {
-    private CommandReader reader;
-    private CommandParser parser;
-    private CommandIdentifier identifier;
-    private CommandExecutor executor;
-    private CommandConfig config;
+    private final CommandReader reader;
+    private final CommandParser parser;
+    private final CommandIdentifier identifier;
+    private final CommandExecutor executor;
+    private final CommandConfig config;
 
     public CommandManager() {
-        this.config = new CommandConfig("commands.json");
-        // Initialize the command processing components
+        this.config = new CommandConfig("./data/commands.json");
         reader = new CommandReader();
         parser = new CommandParser();
         identifier = new CommandIdentifier(config);
@@ -20,8 +19,10 @@ public class CommandManager {
         while (true) {
             // Read command input from the user
             String input = reader.readCommand();
+
             // Parse the input to extract verb and noun
             ParsedCommand parsedCommand = parser.parseCommand(input);
+
             // Identify the command from the verb
             String command = identifier.identifyCommand(parsedCommand.getVerb());
 
