@@ -1,16 +1,18 @@
-package star.odyssey;
+package star.odyssey.game;
 
 import com.apps.util.Prompter;
 import star.odyssey.game.Game;
 
+import java.io.IOException;
 import java.util.Scanner;
 
-public class Controller {
+public class Client {
 
     Prompter prompter = new Prompter(new Scanner(System.in));
 
-    public void execute() {
-        System.out.println("Welcome to Odyssey!");
+    public void execute() throws IOException {
+        String file = "./data/splashScreen.txt";
+        DisplaySplash.displaySplash(file);
 
         int option;
         do {
@@ -37,6 +39,6 @@ public class Controller {
                     System.out.println("Invalid option. Please try again.");
                     break;
             }
-        } while (option < 1 || option > 2);
+        } while (option < 1 || option > 3);
     }
 }
