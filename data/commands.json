@@ -1,0 +1,15 @@
+{
+  "move": ["go", "walk", "run", "travel"],
+  "pick": ["grab", "take", "collect"],
+  "talk": ["speak", "chat", "converse", "communicate"],
+  "attack": ["hit", "fight", "strike"],
+  "defend": ["block", "parry", "shield"],
+  "use": ["utilize", "employ", "operate"],
+  "look": ["view", "inspect", "examine", "see"],
+  "inventory": ["items", "bag", "gear", "belongings"],
+  "equip": ["wear", "wield", "use"],
+  "drop": ["discard", "abandon", "leave"],
+  "save": ["store", "record", "preserve"],
+  "load": ["retrieve", "resume", "recover"],
+  "quit": ["exit", "leave", "stop", "end"]
+}

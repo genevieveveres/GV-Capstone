@@ -1,7 +1,7 @@
 package star.odyssey.command;
 
 public class CommandIdentifier {
-    private CommandConfig config;
+    private final CommandConfig config;
 
     public CommandIdentifier(CommandConfig config) {
         this.config = config;
@@ -10,7 +10,13 @@ public class CommandIdentifier {
 
     public String identifyCommand(String commandWord) {
         if (commandWord == null) return null;
-        // Iterate through command keys to find a matching command or synonym
+
+        // Directly check if the command word is a key
+        if (config.getCommands().containsKey(commandWord.toLowerCase())) {
+            return commandWord.toLowerCase();
+        }
+
+        // Iterate through command keys to find a matching synonym
         for (String key : config.getCommands().keySet()) {
             for (String synonym : config.getSynonyms(key)) {
                 if (synonym.equalsIgnoreCase(commandWord)) {
@@ -19,7 +25,9 @@ public class CommandIdentifier {
                 }
             }
         }
+
         // Return null if no matching command is found
         return null;
     }
+
 }

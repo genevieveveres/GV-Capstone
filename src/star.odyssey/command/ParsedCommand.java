@@ -1,8 +1,8 @@
 package star.odyssey.command;
 
 public class ParsedCommand {
-    private String verb;
-    private String noun;
+    private final String verb;
+    private final String noun;
 
     public ParsedCommand(String verb, String noun) {
         // Initialize with the verb and noun extracted from the input
