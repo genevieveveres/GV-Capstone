@@ -34,10 +34,4 @@ public class CommandManager {
             }
         }
     }
-
-    public static void main(String[] args) {
-        // This is temporary and just for testing the command prompt
-        CommandManager commandManager = new CommandManager();
-        commandManager.processCommands();
-    }
 }
