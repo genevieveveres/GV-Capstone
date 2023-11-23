@@ -24,7 +24,6 @@ public class Game {
 
     public void start() {
         // Start the game loop, set `isRunning` to true
-        System.out.println("Game has started.");
         isRunning = true;
         mainGameLoop();
     }
@@ -40,7 +39,6 @@ public class Game {
     public void stop() {
         // Stop the game loop, perform cleanup if necessary
         isRunning = false;
-        System.out.println("Game has been stopped.");
     }
 
     // Additional methods if necessary...

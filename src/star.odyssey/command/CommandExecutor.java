@@ -8,8 +8,9 @@ public class CommandExecutor {
 
     public CommandExecutor() {
         commandMap = new HashMap<>();
-        // Initialize other commands as needed
         commandMap.put("help", new HelpCommand(commandMap));
+        commandMap.put("quit", new QuitCommand());
+        // Initialize other commands as needed
     }
 
     public void executeCommand(String commandKey, String noun) {

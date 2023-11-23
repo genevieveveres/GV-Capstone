@@ -25,8 +25,7 @@
     "communicate",
     "discuss",
     "dialogue",
-    "interact",
-    "engage"
+    "interact"
   ],
   "attack": [
     "hit",
@@ -45,8 +44,7 @@
     "activate",
     "handle",
     "wield",
-    "manipulate",
-    "employ"
+    "manipulate"
   ],
   "look": [
     "view",
@@ -60,7 +58,6 @@
   ],
   "equip": [
     "wear",
-    "wield",
     "don",
     "outfit",
     "arm",
@@ -70,8 +67,6 @@
   ],
   "drop": [
     "discard",
-    "abandon",
-    "leave",
     "shed",
     "ditch",
     "dispose",
@@ -84,7 +79,6 @@
     "preserve",
     "archive",
     "backup",
-    "secure",
     "stash",
     "log"
   ],
@@ -100,11 +94,11 @@
   ],
   "quit": [
     "exit",
-    "leave",
     "stop",
     "end",
     "terminate",
     "conclude",
+    "leave",
     "cease",
     "abandon"
   ],
