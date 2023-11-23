@@ -1,9 +1,23 @@
 package star.odyssey.command;
 
-public class CommandExecutor {
+import java.util.HashMap;
+import java.util.Map;
 
-    public void executeCommand(String command, String noun) {
-        // Implement the logic to execute the identified command with its arguments
-        // For example, handle different commands like "move", "pick", "talk", etc.
+public class CommandExecutor {
+    private final Map<String, Command> commandMap; // Stores command instances against their keys.
+
+    public CommandExecutor() {
+        commandMap = new HashMap<>();
+        // Initialize other commands as needed
+        commandMap.put("help", new HelpCommand(commandMap));
+    }
+
+    public void executeCommand(String commandKey, String noun) {
+        Command command = commandMap.get(commandKey); // Retrieve the command object by key.
+        if (command != null) {
+            command.execute(noun); // Execute the command if found.
+        } else {
+            System.out.println("Command not recognized.");
+        }
     }
 }

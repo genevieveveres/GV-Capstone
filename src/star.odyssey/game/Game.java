@@ -11,24 +11,36 @@ public class Game {
     private CommandManager commandManager;
 
     public Game() {
+        initializeGameState();
+    }
+
+    private void initializeGameState() {
         // Initialize game components like player, game map, and command manager
+        this.player = new Player();
+        this.gameMap = new GameMap();
+        this.commandManager = new CommandManager();
+        this.isRunning = false;
     }
 
     public void start() {
-        System.out.println("Game Starts here");
         // Start the game loop, set `isRunning` to true
+        System.out.println("Game has started.");
+        isRunning = true;
+        mainGameLoop();
+    }
+
+    private void mainGameLoop() {
+        // Main loop for game execution; process commands and update game state
+        while (isRunning) {
+            commandManager.processCommands();
+            // Add additional game loop logic here (e.g., checking game state, handling events)
+        }
     }
 
     public void stop() {
         // Stop the game loop, perform cleanup if necessary
-    }
-
-    private void initializeGameState() {
-        // Initialize game state, set up initial conditions or load saved state
-    }
-
-    public void mainGameLoop() {
-        // Main loop for game execution; process commands and update game state
+        isRunning = false;
+        System.out.println("Game has been stopped.");
     }
 
     // Additional methods if necessary...

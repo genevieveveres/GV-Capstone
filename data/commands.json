@@ -3,70 +3,115 @@
     "go",
     "walk",
     "run",
-    "travel"
+    "travel",
+    "advance",
+    "proceed",
+    "navigate"
   ],
-  "pick": [
+  "get": [
     "grab",
+    "pick",
     "take",
-    "collect"
+    "collect",
+    "acquire",
+    "obtain",
+    "snatch",
+    "secure"
   ],
   "talk": [
     "speak",
     "chat",
     "converse",
-    "communicate"
+    "communicate",
+    "discuss",
+    "dialogue",
+    "interact",
+    "engage"
   ],
   "attack": [
     "hit",
     "fight",
-    "strike"
-  ],
-  "defend": [
-    "block",
-    "parry",
-    "shield"
+    "strike",
+    "assault",
+    "bash",
+    "combat",
+    "clash",
+    "engage"
   ],
   "use": [
     "utilize",
     "employ",
-    "operate"
+    "operate",
+    "activate",
+    "handle",
+    "wield",
+    "manipulate",
+    "employ"
   ],
   "look": [
     "view",
+    "search",
     "inspect",
     "examine",
-    "see"
-  ],
-  "inventory": [
-    "items",
-    "bag",
-    "gear",
-    "belongings"
+    "see",
+    "observe",
+    "scan",
+    "survey"
   ],
   "equip": [
     "wear",
     "wield",
-    "use"
+    "don",
+    "outfit",
+    "arm",
+    "adorn",
+    "suit up",
+    "prepare"
   ],
   "drop": [
     "discard",
     "abandon",
-    "leave"
+    "leave",
+    "shed",
+    "ditch",
+    "dispose",
+    "jettison",
+    "unload"
   ],
   "save": [
     "store",
     "record",
-    "preserve"
+    "preserve",
+    "archive",
+    "backup",
+    "secure",
+    "stash",
+    "log"
   ],
   "load": [
     "retrieve",
     "resume",
-    "recover"
+    "recover",
+    "reload",
+    "access",
+    "fetch",
+    "reclaim",
+    "restore"
   ],
   "quit": [
     "exit",
     "leave",
     "stop",
-    "end"
+    "end",
+    "terminate",
+    "conclude",
+    "cease",
+    "abandon"
+  ],
+  "help": [
+    "assist",
+    "support",
+    "aid",
+    "info"
   ]
 }
