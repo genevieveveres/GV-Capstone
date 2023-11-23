@@ -18,7 +18,7 @@ public class CommandExecutor {
         if (command != null) {
             command.execute(noun); // Execute the command if found.
         } else {
-            System.out.println("Command not recognized.");
+            System.out.println("Looks like that command hit a black hole\nTry 'help' to find your way back on the starry path");
         }
     }
 }
