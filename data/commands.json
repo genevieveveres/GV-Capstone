@@ -1,15 +1,117 @@
 {
-  "move": ["go", "walk", "run", "travel"],
-  "pick": ["grab", "take", "collect"],
-  "talk": ["speak", "chat", "converse", "communicate"],
-  "attack": ["hit", "fight", "strike"],
-  "defend": ["block", "parry", "shield"],
-  "use": ["utilize", "employ", "operate"],
-  "look": ["view", "inspect", "examine", "see"],
-  "inventory": ["items", "bag", "gear", "belongings"],
-  "equip": ["wear", "wield", "use"],
-  "drop": ["discard", "abandon", "leave"],
-  "save": ["store", "record", "preserve"],
-  "load": ["retrieve", "resume", "recover"],
-  "quit": ["exit", "leave", "stop", "end"]
+  "move": [
+    "go",
+    "walk",
+    "run",
+    "travel",
+    "advance",
+    "proceed",
+    "navigate"
+  ],
+  "get": [
+    "grab",
+    "pick",
+    "take",
+    "collect",
+    "acquire",
+    "obtain",
+    "snatch",
+    "secure"
+  ],
+  "talk": [
+    "speak",
+    "chat",
+    "converse",
+    "communicate",
+    "discuss",
+    "dialogue",
+    "interact",
+    "engage"
+  ],
+  "attack": [
+    "hit",
+    "fight",
+    "strike",
+    "assault",
+    "bash",
+    "combat",
+    "clash",
+    "engage"
+  ],
+  "use": [
+    "utilize",
+    "employ",
+    "operate",
+    "activate",
+    "handle",
+    "wield",
+    "manipulate",
+    "employ"
+  ],
+  "look": [
+    "view",
+    "search",
+    "inspect",
+    "examine",
+    "see",
+    "observe",
+    "scan",
+    "survey"
+  ],
+  "equip": [
+    "wear",
+    "wield",
+    "don",
+    "outfit",
+    "arm",
+    "adorn",
+    "suit up",
+    "prepare"
+  ],
+  "drop": [
+    "discard",
+    "abandon",
+    "leave",
+    "shed",
+    "ditch",
+    "dispose",
+    "jettison",
+    "unload"
+  ],
+  "save": [
+    "store",
+    "record",
+    "preserve",
+    "archive",
+    "backup",
+    "secure",
+    "stash",
+    "log"
+  ],
+  "load": [
+    "retrieve",
+    "resume",
+    "recover",
+    "reload",
+    "access",
+    "fetch",
+    "reclaim",
+    "restore"
+  ],
+  "quit": [
+    "exit",
+    "leave",
+    "stop",
+    "end",
+    "terminate",
+    "conclude",
+    "cease",
+    "abandon"
+  ],
+  "help": [
+    "assist",
+    "support",
+    "aid",
+    "info"
+  ]
 }
