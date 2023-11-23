@@ -30,7 +30,7 @@ public class CommandManager {
                 // Execute the command if identified
                 executor.executeCommand(command, parsedCommand.getNoun());
             } else {
-                System.out.println("Command not recognized.");
+                System.out.println("Uh oh, your command got tangled in the gravity-defying trees\nType 'help' for a navigation chart from the Luminara command center");
             }
         }
     }
