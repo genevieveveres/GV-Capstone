@@ -9,6 +9,10 @@ public class Inventory {
         // Initialize inventory with an empty list of items
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
     public void addItem(Item item) {
         // Add an item to the inventory
     }
