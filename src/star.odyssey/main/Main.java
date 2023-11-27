@@ -1,6 +1,7 @@
 package star.odyssey.main;
 
 import star.odyssey.game.Client;
+import star.odyssey.location.GameMap;
 
 import java.io.IOException;
 
