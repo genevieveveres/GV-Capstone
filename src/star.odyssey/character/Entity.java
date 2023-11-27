@@ -1,32 +1,35 @@
 package star.odyssey.character;
 
 import star.odyssey.command.Describable;
-import star.odyssey.inventory.Inventory;
+import star.odyssey.inventory.Item;
 import star.odyssey.location.Location;
 
+import java.util.List;
+
 public abstract class Entity implements Describable {
+    protected String index;
     protected String name;
     protected int health;
     protected int strength;
     protected int defense;
     protected String detailedDescription;
     protected Location location;
-    protected Inventory inventory;
+    protected List<Item> inventory;
     protected boolean isAlive;
 
     public Entity() {
-        this.inventory = new Inventory();
-        this.isAlive = true;
     }
 
-    public Entity(String name, int health, int strength, int defense, Location location) {
+    public Entity(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive) {
+        this.index = index;
         this.name = name;
         this.health = health;
         this.strength = strength;
         this.defense = defense;
+        this.detailedDescription = detailedDescription;
         this.location = location;
-        this.inventory = new Inventory();
-        this.isAlive = true;
+        this.inventory = inventory;
+        this.isAlive = isAlive;
     }
 
     public abstract void move();
@@ -36,6 +39,9 @@ public abstract class Entity implements Describable {
     public abstract void defend();
 
     // Getters and setters
+    public String getIndex() {
+        return index;
+    }
 
     public String getName() {
         return name;

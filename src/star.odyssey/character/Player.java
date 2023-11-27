@@ -4,14 +4,16 @@ import star.odyssey.inventory.Item;
 import star.odyssey.inventory.Weapon;
 import star.odyssey.location.Location;
 
+import java.util.List;
+
 public class Player extends Entity {
 
     public Player() {
         super();
     }
 
-    public Player(String name, int health, int strength, int defense, Location location) {
-        super(name, health, strength, defense, location);
+    public Player(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive) {
+        super(index, name, health, strength, defense, detailedDescription, location, inventory, isAlive);
     }
 
     public void move() {

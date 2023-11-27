@@ -6,7 +6,7 @@ import star.odyssey.ui.DisplaySplash;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Client {
+public class  Client {
 
     Prompter prompter = new Prompter(new Scanner(System.in)); // Utility for user prompts.
 

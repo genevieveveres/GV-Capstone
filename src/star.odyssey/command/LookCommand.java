@@ -1,6 +1,6 @@
 package star.odyssey.command;
 
-import star.odyssey.character.Entity;
+import star.odyssey.character.NPC;
 import star.odyssey.character.Player;
 import star.odyssey.inventory.Item;
 import star.odyssey.location.Location;
@@ -31,9 +31,9 @@ public class LookCommand implements Command {
         }
 
         // Search for a matching character in the current location
-        for (Entity entity : currentLocation.getEntities()) {
-            if (entity.getName().equalsIgnoreCase(noun)) {
-                return entity;
+        for (NPC npc : currentLocation.getNPCs()) {
+            if (npc.getName().equalsIgnoreCase(noun)) {
+                return npc;
             }
         }
 
