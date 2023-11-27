@@ -2,6 +2,8 @@ package star.odyssey.game;
 
 import com.apps.util.Prompter;
 import star.odyssey.ui.DisplaySplash;
+import star.odyssey.ui.DisplayBackstory;
+import star.odyssey.ui.DisplayGameInfo;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -11,8 +13,7 @@ public class  Client {
     Prompter prompter = new Prompter(new Scanner(System.in)); // Utility for user prompts.
 
     public void execute() throws IOException {
-        String file = "./data/splashScreen.txt";
-        DisplaySplash.displaySplash(file); // Displaying the splash screen at startup.
+        DisplaySplash.displaySplash(); // Displaying the splash screen at startup.
 
         int option;
         do {
@@ -25,6 +26,8 @@ public class  Client {
             switch (option) {
                 case 1:
                     Game game = new Game();
+                    DisplayBackstory.displayBackstory();
+                    DisplayGameInfo.displayGameInfo();
                     game.start(); // Starting a new game.
                     break;
                 case 2:

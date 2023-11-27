@@ -8,8 +8,9 @@ import static star.odyssey.ui.ConsoleDisplayUtils.*;
 public class DisplaySplash {
 
     // Display splash screen
-    public static void displaySplash(String file) throws IOException {
+    public static void displaySplash() throws IOException {
         clearScreen();
+        String file = "./data/splashScreen.txt";
         try {
             FileReader fileReader = new FileReader(file);
 
@@ -33,6 +34,6 @@ public class DisplaySplash {
 
     public static void main(String[] args) throws IOException {
         String file = "./data/splashScreen.txt";
-        displaySplash(file);
+        displaySplash();
     }
 }
