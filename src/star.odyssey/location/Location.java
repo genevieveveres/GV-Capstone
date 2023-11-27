@@ -1,24 +1,25 @@
-// Location.java
 package star.odyssey.location;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import star.odyssey.inventory.Inventory;
+import star.odyssey.character.Entity;
+import star.odyssey.command.Describable;
+import star.odyssey.inventory.Item;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Location {
+public class Location implements Describable {
     private String index;
     private String name;
     private String description;
     private String detailedDescription;
     private Map<String, Location> connections;
-    private List<Inventory> inventory;
-    private List<Character> entities;
+    private List<Item> inventory;
+    private List<Entity> entities;
 
     public Location(String index, String name, String description, String detailedDescription, JsonObject connections, JsonArray entities, JsonArray inventory) {
         this.index = index;
@@ -46,6 +47,7 @@ public class Location {
         return description;
     }
 
+    @Override
     public String getDetailedDescription() {
         return detailedDescription;
     }
@@ -54,11 +56,11 @@ public class Location {
         return connections;
     }
 
-    public List<Inventory> getInventory() {
+    public List<Item> getInventory() {
         return inventory;
     }
 
-    public List<Character> getEntities() {
+    public List<Entity> getEntities() {
         return entities;
     }
 
@@ -71,15 +73,15 @@ public class Location {
         // Add directional connections to other locations
     }
 
-    public void addEntity(Character entity) {
+    public void addEntity(Entity entity) {
         if (!this.entities.contains(entity)) {
             this.entities.add(entity);
         }
     }
 
-    public void addInventory(Inventory inventory) {
-        if (!this.inventory.contains(inventory)) {
-            this.inventory.add(inventory);
+    public void addInventory(Item item) {
+        if (!this.inventory.contains(item)) {
+            this.inventory.add(item);
         }
     }
 

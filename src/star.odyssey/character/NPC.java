@@ -2,7 +2,7 @@ package star.odyssey.character;
 
 import star.odyssey.location.Location;
 
-public class NPC extends Character {
+public class NPC extends Entity {
     private boolean hostile;
     private String[] dialogueOptions;
     private String questDetails;

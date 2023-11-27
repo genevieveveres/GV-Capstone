@@ -1,8 +1,11 @@
 package star.odyssey.inventory;
 
-public class Item {
+import star.odyssey.command.Describable;
+
+public class Item implements Describable {
     private String name;
     private String description;
+    private String detailedDescription;
     private boolean usable;
     private boolean active;
     private boolean hidden;
@@ -23,6 +26,17 @@ public class Item {
 
     public void examine() {
         // Logic for examining the item (e.g., display description)
+    }
+
+    // Getters and setters
+
+    @Override
+    public String getDetailedDescription() {
+        return detailedDescription;
+    }
+
+    public String getName() {
+        return name;
     }
 
     // Additional methods if necessary...

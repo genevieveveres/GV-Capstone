@@ -19,7 +19,7 @@ public class Game {
         // Initialize game components like player, game map, and command manager
         this.player = new Player();
         this.gameMap = new GameMap("data/locations.json");
-        this.commandManager = new CommandManager();
+        this.commandManager = new CommandManager(this.player);
         this.isRunning = false;
 
         // Set the starting location to "ship_entry"

@@ -4,7 +4,7 @@ import star.odyssey.inventory.Item;
 import star.odyssey.inventory.Weapon;
 import star.odyssey.location.Location;
 
-public class Player extends Character {
+public class Player extends Entity {
 
     public Player() {
         super();
