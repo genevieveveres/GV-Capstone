@@ -2,14 +2,15 @@ package star.odyssey.command;
 
 import star.odyssey.character.NPC;
 import star.odyssey.character.Player;
+import star.odyssey.game.GameState;
 import star.odyssey.inventory.Item;
 import star.odyssey.location.Location;
 
 public class LookCommand implements Command {
     private final Player player;
 
-    public LookCommand(Player player) {
-        this.player = player;
+    public LookCommand(GameState gameState) {
+        this.player = gameState.getPlayer();
     }
 
     @Override

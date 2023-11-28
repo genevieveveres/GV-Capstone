@@ -56,5 +56,9 @@ public abstract class Entity implements Describable {
         return location;
     }
 
+    public List<Item> getInventory() {
+        return inventory;
+    }
+
     // Additional methods if necessary...
 }

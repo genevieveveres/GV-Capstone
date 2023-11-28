@@ -1,9 +1,10 @@
 package star.odyssey.inventory;
 
-import com.google.gson.JsonObject;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,9 +22,11 @@ public class ItemManager {
             JsonObject jsonObject = JsonParser.parseReader(reader).getAsJsonObject();
             JsonArray itemsArray = jsonObject.getAsJsonArray("items");
 
-            for (JsonElement itemElement : itemsArray) {
-                Item item = createItem(itemElement.getAsJsonObject());
-                items.put(item.getIndex(), item);
+            if (itemsArray != null) {
+                for (JsonElement itemElement : itemsArray) {
+                    Item item = createItem(itemElement.getAsJsonObject());
+                    items.put(item.getIndex(), item);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,6 +48,10 @@ public class ItemManager {
 
     public Item getItem(String index) {
         return items.get(index);
+    }
+
+    public Map<String, Item> getAllItems() {
+        return new HashMap<>(items);
     }
 
     // Additional methods as needed...

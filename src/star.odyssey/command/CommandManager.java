@@ -1,6 +1,6 @@
 package star.odyssey.command;
 
-import star.odyssey.character.Player;
+import star.odyssey.game.GameState;
 
 public class CommandManager {
     private final CommandReader reader;
@@ -9,12 +9,12 @@ public class CommandManager {
     private final CommandExecutor executor;
     private final CommandConfig config;
 
-    public CommandManager(Player player) {
+    public CommandManager(GameState gameState) {
         this.config = new CommandConfig("./data/commands.json");
         reader = new CommandReader();
         parser = new CommandParser();
         identifier = new CommandIdentifier(config);
-        executor = new CommandExecutor(player);
+        executor = new CommandExecutor(gameState);
     }
 
     public void processCommands() {

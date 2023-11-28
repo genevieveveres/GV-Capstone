@@ -1,14 +1,14 @@
 package star.odyssey.game;
 
 import com.apps.util.Prompter;
-import star.odyssey.ui.DisplaySplash;
 import star.odyssey.ui.DisplayBackstory;
 import star.odyssey.ui.DisplayGameInfo;
+import star.odyssey.ui.DisplaySplash;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-public class  Client {
+public class Client {
 
     Prompter prompter = new Prompter(new Scanner(System.in)); // Utility for user prompts.
 
@@ -25,10 +25,10 @@ public class  Client {
             option = Integer.parseInt(prompter.prompt("\nMake a selection (1-3): ", "[123]", "\nInvalid choice. Please select 1,2 or 3."));
             switch (option) {
                 case 1:
-                    Game game = new Game();
+                    GameManager gameManager = new GameManager();
                     DisplayBackstory.displayBackstory();
                     DisplayGameInfo.displayGameInfo();
-                    game.start(); // Starting a new game.
+                    gameManager.startGame(); // Starting a new game.
                     break;
                 case 2:
                     System.out.println("Load Game");

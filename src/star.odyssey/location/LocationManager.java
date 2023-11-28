@@ -5,25 +5,20 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import star.odyssey.character.NPC;
-import star.odyssey.character.NPCManager;
 import star.odyssey.inventory.Item;
-import star.odyssey.inventory.ItemManager;
 
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LocationManager {
     private final Map<String, Location> locations;
-    private final ItemManager itemManager;
-    private final NPCManager npcManager;
+    private final Map<String, List<String>> locationItemsMap;
+    private final Map<String, List<String>> locationNPCsMap;
 
-    public LocationManager(String jsonFilePath, ItemManager itemManager, NPCManager npcManager) {
-        this.itemManager = itemManager;
-        this.npcManager = npcManager;
+    public LocationManager(String jsonFilePath) {
         locations = new HashMap<>();
+        locationItemsMap = new HashMap<>();
+        locationNPCsMap = new HashMap<>();
         loadLocationsFromJson(jsonFilePath);
     }
 
@@ -35,10 +30,10 @@ public class LocationManager {
             for (JsonElement locationElement : locationsArray) {
                 Location location = createLocation(locationElement.getAsJsonObject());
                 locations.put(location.getIndex(), location);
-            }
 
-            for (JsonElement locationElement : locationsArray) {
-                establishConnections(locationElement.getAsJsonObject());
+                JsonObject locationObj = locationElement.getAsJsonObject();
+                locationItemsMap.put(location.getIndex(), parseIndexes(locationObj, "items"));
+                locationNPCsMap.put(location.getIndex(), parseIndexes(locationObj, "npcs"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -51,51 +46,61 @@ public class LocationManager {
         String description = locationObject.get("description").getAsString();
         String detailedDescription = locationObject.get("detailed_description").getAsString();
 
-        List<NPC> npcsList = parseNPCs(locationObject.getAsJsonArray("entities"));
-        List<Item> inventoryList = parseInventory(locationObject.getAsJsonArray("inventory"));
+        // Initialize with empty lists for NPCs and items
+        List<NPC> npcsList = new ArrayList<>();
+        List<Item> inventoryList = new ArrayList<>();
 
         return new Location(index, name, description, detailedDescription, npcsList, inventoryList);
     }
 
-    private List<NPC> parseNPCs(JsonArray npcsArray) {
-        List<NPC> npcsList = new ArrayList<>();
-        for (JsonElement element : npcsArray) {
-            String npcIndex = element.getAsString();
-            NPC npc = npcManager.getNPC(npcIndex);
-            if (npc != null) {
-                npcsList.add(npc);
-            }
+    private List<String> parseIndexes(JsonArray indexesArray) {
+        List<String> indexes = new ArrayList<>();
+        for (JsonElement element : indexesArray) {
+            indexes.add(element.getAsString());
         }
-        return npcsList;
+        return indexes;
     }
 
-    private List<Item> parseInventory(JsonArray inventoryArray) {
-        List<Item> inventoryList = new ArrayList<>();
-        for (JsonElement element : inventoryArray) {
-            String itemIndex = element.getAsString();
-            Item item = itemManager.getItem(itemIndex);
-            if (item != null) {
-                inventoryList.add(item);
+    private List<String> parseIndexes(JsonObject jsonObject, String key) {
+        if (jsonObject.has(key) && jsonObject.get(key).isJsonArray()) {
+            JsonArray indexesArray = jsonObject.getAsJsonArray(key);
+            List<String> indexes = new ArrayList<>();
+            for (JsonElement element : indexesArray) {
+                indexes.add(element.getAsString());
             }
+            return indexes;
         }
-        return inventoryList;
+        return Collections.emptyList();
     }
 
-    private void establishConnections(JsonObject locationObject) {
-        String index = locationObject.get("index").getAsString();
-        Location location = locations.get(index);
-        JsonObject connectionsObject = locationObject.getAsJsonObject("connections");
+    public void addNPCToLocation(String locationIndex, NPC npc) {
+        Location location = locations.get(locationIndex);
+        if (location != null) {
+            location.addNPC(npc);
+        }
+    }
 
-        for (Map.Entry<String, JsonElement> entry : connectionsObject.entrySet()) {
-            String direction = entry.getKey();
-            String connectedLocationIndex = entry.getValue().getAsString();
-            Location connectedLocation = locations.get(connectedLocationIndex);
-            location.addConnection(direction, connectedLocation);
+    public void addItemToLocation(String locationIndex, Item item) {
+        Location location = locations.get(locationIndex);
+        if (location != null) {
+            location.addInventory(item);
         }
     }
 
     public Location getLocation(String index) {
         return locations.get(index);
+    }
+
+    public List<String> getLocationItemIndexes(String locationIndex) {
+        return locationItemsMap.getOrDefault(locationIndex, Collections.emptyList());
+    }
+
+    public List<String> getLocationNPCIndexes(String locationIndex) {
+        return locationNPCsMap.getOrDefault(locationIndex, Collections.emptyList());
+    }
+
+    public Map<String, Location> getLocations() {
+        return new HashMap<>(locations);
     }
 
     // Additional methods as needed...
