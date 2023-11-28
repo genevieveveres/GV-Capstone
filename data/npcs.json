@@ -1,0 +1,34 @@
+{
+  "npcs": [
+    {
+      "index": "lum_speaker",
+      "name": "Luminara Speaker",
+      "health": 100,
+      "strength": 10,
+      "defense": 100,
+      "detailed_description": "The Luminara Speaker is a regal figure in the heart of Luminara City, adorned in luminescent robes that mirror the city's vibrant hues. Standing atop a raised platform, the Speaker emanates an aura of wisdom and authority, symbolizing a connection to the cosmic energies that flow through the advanced alien civilization. A tall, elegant headdress adorned with luminescent jewels frames their face, accentuating an air of regality.",
+      "location": "city_center",
+      "inventory": [],
+      "isAlive": true,
+      "hostile": false,
+      "dialogueOptions": [],
+      "questDetails": "",
+      "hidden": false
+    },
+    {
+      "index": "guardian",
+      "name": "Ancient Guardian",
+      "detailed_description": "The Guardian of the Starstone is a colossal entity, ancient and wise, positioned in the heart of the Whispering Valleys. Its form is a convergence of ethereal energies, resembling a towering silhouette with luminescent patterns that dance across its surface. The Guardian exudes a sense of both formidable strength and serene guardianship over the mystical Starstone.",
+      "health": 50,
+      "strength": 20,
+      "defense": 20,
+      "location": "valley",
+      "inventory": [],
+      "isAlive": true,
+      "hostile": false,
+      "dialogueOptions": [],
+      "questDetails": "",
+      "hidden": true
+    }
+  ]
+}
