@@ -1,12 +1,16 @@
 package star.odyssey.command;
 
+import star.odyssey.game.Game;
+
 import java.util.Scanner;
 
 public class QuitCommand implements Command {
     private final Scanner scanner;
+    private final Game game;
 
-    public QuitCommand() {
+    public QuitCommand(Game game) {
         scanner = new Scanner(System.in);
+        this.game = game;
     }
 
     @Override
@@ -15,16 +19,13 @@ public class QuitCommand implements Command {
         String response = scanner.nextLine().trim().toLowerCase();
 
         if ("yes".equals(response)) {
-            System.out.println("Rocketing back to normalcy! Remember, Earth has no glowing trees or melody mountains");
-            System.exit(0);
+            game.stop();
+            return "Rocketing back to normalcy! Remember, Earth has no glowing trees or melody mountains";
         } else if ("no".equals(response)) {
-            System.out.println("That’s the spirit! Who needs Earth when you’ve got an alien world to explore?");
+            return "That’s the spirit! Who needs Earth when you’ve got an alien world to explore?";
         } else {
             System.out.println("Oops! Even the Luminara need clear signals");
-            return execute(noun); // Adjusted to return the result of the recursive call
+            return execute(noun);
         }
-
-        return response;
     }
-
 }

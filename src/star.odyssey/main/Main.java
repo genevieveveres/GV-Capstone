@@ -8,6 +8,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
         Client controller = new Client(); // Creating the game client.
-        controller.execute(); // Starting the client execution.
+        controller.execute();
+        // Starting the client execution.
     }
 }
