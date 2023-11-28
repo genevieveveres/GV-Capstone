@@ -19,8 +19,8 @@ public class GameManager {
 
     public GameManager() {
         // Initialize managers independently
-        // itemManager = new ItemManager("./data/items.json");
-        // npcManager = new NPCManager("./data/npcs.json");
+        itemManager = new ItemManager("./data/items.json");
+        npcManager = new NPCManager("./data/npcs.json");
         locationManager = new LocationManager("./data/locations.json");
 
         // Load and retrieve the starting location
@@ -42,7 +42,7 @@ public class GameManager {
         game = new Game(gameState);
 
         // Associate entities
-        // associateEntities();
+        associateEntities();
     }
 
     private void associateEntities() {

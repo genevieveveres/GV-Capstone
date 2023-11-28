@@ -11,10 +11,16 @@ public class HelpCommand implements Command {
     }
 
     @Override
-    public void execute(String noun) {
-        System.out.println("Available Commands:");
+    public String execute(String noun) {
+        StringBuilder result = new StringBuilder("Available Commands:\n");
         for (String commandKey : commandMap.keySet()) {
-            System.out.println("- " + commandKey); // Iterating and displaying each available command.
+            result.append("- ").append(commandKey).append("\n"); // Appending each available command.
         }
+
+        String resultString = result.toString().trim(); // Trim to remove trailing newline
+        System.out.println(resultString);
+
+        return resultString;
     }
+
 }

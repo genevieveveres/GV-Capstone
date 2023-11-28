@@ -6,8 +6,6 @@ import star.odyssey.game.GameState;
 import star.odyssey.inventory.Item;
 import star.odyssey.location.Location;
 
-import org.apache.commons.text.WordUtils;
-
 public class LookCommand implements Command {
     private final Player player;
 
@@ -16,12 +14,12 @@ public class LookCommand implements Command {
     }
 
     @Override
-    public void execute(String noun) {
+    public String execute(String noun) {
         Describable target = findTarget(noun);
         if (target != null) {
-            System.out.println(WordUtils.wrap(target.getDetailedDescription(), 100));
+            return target.getDetailedDescription();
         } else {
-            System.out.println("You don't see anything special.");
+            return "You don't see anything special.";
         }
     }
 

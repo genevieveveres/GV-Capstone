@@ -30,6 +30,10 @@ class ConsoleDisplayUtils {
         return "\u001B[34m" + txt + "\u001B[0m";
     }
 
+    public static String backgroundGreen(String txt) {
+        return "\u001B[34m" + txt + "\u001B[0m";
+    }
+
     // Centers text on console
     public static String centerText(int width, String text) {
         int textLength = text.length();

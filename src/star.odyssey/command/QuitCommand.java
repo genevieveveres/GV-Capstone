@@ -10,7 +10,7 @@ public class QuitCommand implements Command {
     }
 
     @Override
-    public void execute(String noun) {
+    public String execute(String noun) {
         System.out.print("Thinking of warping back to reality? (yes/no)\n>");
         String response = scanner.nextLine().trim().toLowerCase();
 
@@ -21,7 +21,10 @@ public class QuitCommand implements Command {
             System.out.println("That’s the spirit! Who needs Earth when you’ve got an alien world to explore?");
         } else {
             System.out.println("Oops! Even the Luminara need clear signals");
-            execute(noun);
+            return execute(noun); // Adjusted to return the result of the recursive call
         }
+
+        return response;
     }
+
 }
