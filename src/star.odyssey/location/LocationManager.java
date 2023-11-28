@@ -35,8 +35,29 @@ public class LocationManager {
                 locationItemsMap.put(location.getIndex(), parseIndexes(locationObj, "items"));
                 locationNPCsMap.put(location.getIndex(), parseIndexes(locationObj, "npcs"));
             }
+
+            // Establish connections after all locations are loaded
+            establishConnections(locationsArray);
+
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void establishConnections(JsonArray locationsArray) {
+        for (JsonElement locationElement : locationsArray) {
+            JsonObject locationObj = locationElement.getAsJsonObject();
+            String index = locationObj.get("index").getAsString();
+            Location currentLocation = locations.get(index);
+
+            JsonObject connectionsObj = locationObj.getAsJsonObject("connections");
+            for (String direction : connectionsObj.keySet()) {
+                String connectedLocationIndex = connectionsObj.get(direction).getAsString();
+                Location connectedLocation = locations.get(connectedLocationIndex);
+                if (connectedLocation != null) {
+                    currentLocation.addConnection(direction, connectedLocation);
+                }
+            }
         }
     }
 
