@@ -56,6 +56,10 @@ public abstract class Entity implements Describable {
         return location;
     }
 
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     public List<Item> getInventory() {
         return inventory;
     }

@@ -13,6 +13,7 @@ public class CommandExecutor {
         commandMap.put("help", new HelpCommand(commandMap));
         commandMap.put("quit", new QuitCommand());
         commandMap.put("look", new LookCommand(gameState));
+        commandMap.put("move", new MoveCommand(gameState));
         // Initialize other commands as needed
     }
 
