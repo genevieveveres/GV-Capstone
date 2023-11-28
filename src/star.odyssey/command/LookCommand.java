@@ -14,12 +14,12 @@ public class LookCommand implements Command {
     }
 
     @Override
-    public void execute(String noun) {
+    public String execute(String noun) {
         Describable target = findTarget(noun);
         if (target != null) {
-            System.out.println(target.getDetailedDescription());
+            return target.getDetailedDescription();
         } else {
-            System.out.println("You don't see anything special.");
+            return "You don't see anything special.";
         }
     }
 
