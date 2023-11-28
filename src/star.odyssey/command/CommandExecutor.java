@@ -1,15 +1,18 @@
 package star.odyssey.command;
 
+import star.odyssey.game.GameState;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class CommandExecutor {
     private final Map<String, Command> commandMap; // Stores command instances against their keys.
 
-    public CommandExecutor() {
+    public CommandExecutor(GameState gameState) {
         commandMap = new HashMap<>();
         commandMap.put("help", new HelpCommand(commandMap));
         commandMap.put("quit", new QuitCommand());
+        commandMap.put("look", new LookCommand(gameState));
         // Initialize other commands as needed
     }
 

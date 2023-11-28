@@ -2,8 +2,8 @@ package star.odyssey.ui;
 
 import java.io.FileReader;
 
-import static star.odyssey.ui.ConsoleDisplayUtils.*;
-import static star.odyssey.ui.ConsoleDisplayUtils.makeBlue;
+import static star.odyssey.ui.ConsoleDisplayUtils.clearScreen;
+import static star.odyssey.ui.ConsoleDisplayUtils.pauseDisplay;
 
 public class DisplayBackstory {
 
@@ -14,7 +14,7 @@ public class DisplayBackstory {
             FileReader fileReader = new FileReader(file);
             int i;
             while ((i = fileReader.read()) != -1) {
-                    System.out.print((char) i);
+                System.out.print((char) i);
             }
             pauseDisplay();
             clearScreen();

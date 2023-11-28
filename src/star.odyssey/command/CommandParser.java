@@ -20,7 +20,8 @@ public class CommandParser {
         try {
             Gson gson = new Gson();
             // Reading unnecessary words from a JSON file.
-            List<String> words = gson.fromJson(new FileReader("./data/unnecessaryWords.json"), new TypeToken<List<String>>() {}.getType());
+            List<String> words = gson.fromJson(new FileReader("./data/unnecessaryWords.json"), new TypeToken<List<String>>() {
+            }.getType());
             unnecessaryWords.addAll(words);
         } catch (Exception e) {
             e.printStackTrace();

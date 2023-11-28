@@ -2,12 +2,9 @@ package star.odyssey.command;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import java.io.FileReader;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class CommandConfig {
     private Map<String, List<String>> commands;
@@ -16,7 +13,8 @@ public class CommandConfig {
         try {
             Gson gson = new Gson();
             // Read commands and their synonyms from JSON configuration file
-            commands = gson.fromJson(new FileReader(configFile), new TypeToken<Map<String, List<String>>>(){}.getType());
+            commands = gson.fromJson(new FileReader(configFile), new TypeToken<Map<String, List<String>>>() {
+            }.getType());
             validateSynonyms();
         } catch (Exception e) {
             e.printStackTrace();

@@ -2,7 +2,8 @@ package star.odyssey.ui;
 
 import java.io.FileReader;
 
-import static star.odyssey.ui.ConsoleDisplayUtils.*;
+import static star.odyssey.ui.ConsoleDisplayUtils.clearScreen;
+import static star.odyssey.ui.ConsoleDisplayUtils.pauseDisplay;
 
 public class DisplayGameInfo {
 

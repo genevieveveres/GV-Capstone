@@ -1,19 +1,20 @@
 package star.odyssey.character;
 
+import star.odyssey.inventory.Item;
 import star.odyssey.location.Location;
 
-public class NPC extends Character {
+import java.util.List;
+
+public class NPC extends Entity {
     private boolean hostile;
-    private String[] dialogueOptions;
+    private List<String> dialogueOptions;
     private String questDetails;
 
-    public NPC() {
-        super();
-    }
-
-    public NPC(String name, int health, int strength, int defense, Location location, boolean hostile) {
-        super(name, health, strength, defense, location);
+    public NPC(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive, boolean hostile, List<String> dialogueOptions, String questDetails) {
+        super(index, name, health, strength, defense, detailedDescription, location, inventory, isAlive);
         this.hostile = hostile;
+        this.dialogueOptions = dialogueOptions;
+        this.questDetails = questDetails;
     }
 
     public void move() {

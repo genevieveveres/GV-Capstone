@@ -1,5 +1,7 @@
 package star.odyssey.command;
 
+import star.odyssey.game.GameState;
+
 public class CommandManager {
     private final CommandReader reader;
     private final CommandParser parser;
@@ -7,12 +9,12 @@ public class CommandManager {
     private final CommandExecutor executor;
     private final CommandConfig config;
 
-    public CommandManager() {
+    public CommandManager(GameState gameState) {
         this.config = new CommandConfig("./data/commands.json");
         reader = new CommandReader();
         parser = new CommandParser();
         identifier = new CommandIdentifier(config);
-        executor = new CommandExecutor();
+        executor = new CommandExecutor(gameState);
     }
 
     public void processCommands() {

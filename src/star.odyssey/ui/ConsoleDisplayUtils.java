@@ -1,6 +1,7 @@
 package star.odyssey.ui;
 
 import java.util.Scanner;
+
 class ConsoleDisplayUtils {
 
     // clears screen
@@ -17,7 +18,7 @@ class ConsoleDisplayUtils {
             // Handle exceptions (e.g., file not found, JSON parsing error)
             e.printStackTrace();
         }
-}
+    }
 
     // Displays text input in red
     public static String makeRed(String txt) {

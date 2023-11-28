@@ -1,28 +1,44 @@
 package star.odyssey.inventory;
 
-public class Item {
+import star.odyssey.command.Describable;
+
+public class Item implements Describable {
+    private String index;
     private String name;
     private String description;
+    private String detailedDescription;
     private boolean usable;
     private boolean active;
     private boolean hidden;
     private boolean movable;
 
-    public Item(String name, String description) {
+    public Item(String index, String name, String description, String detailedDescription, boolean usable, boolean active, boolean hidden, boolean movable) {
+        this.index = index;
         this.name = name;
         this.description = description;
-        this.usable = false;  // Items are usable by default
-        this.active = true;   // Items are active by default
-        this.movable = true;  // Items are movable by default
-
+        this.detailedDescription = detailedDescription;
+        this.usable = usable;
+        this.active = active;
+        this.hidden = hidden;
+        this.movable = movable;
     }
 
     public void use() {
         // Define how the item is used (e.g., consume potion, read scroll)
     }
 
-    public void examine() {
-        // Logic for examining the item (e.g., display description)
+    // Getters and setters
+    public String getIndex() {
+        return index;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getDetailedDescription() {
+        return detailedDescription;
     }
 
     // Additional methods if necessary...
