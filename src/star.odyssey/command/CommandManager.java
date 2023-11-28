@@ -8,6 +8,7 @@ public class CommandManager {
     private final CommandIdentifier identifier;
     private final CommandExecutor executor;
     private final CommandConfig config;
+    private String lastCommandResult;
 
     public CommandManager(GameState gameState) {
         this.config = new CommandConfig("./data/commands.json");
@@ -15,10 +16,14 @@ public class CommandManager {
         parser = new CommandParser();
         identifier = new CommandIdentifier(config);
         executor = new CommandExecutor(gameState);
+        lastCommandResult = "";
     }
 
     public void processCommands() {
-        while (true) {
+        boolean isGameRunning = true;
+        // set a counter
+        int counter = 0;
+        while (isGameRunning) {
             // Read command input from the user
             String input = reader.readCommand();
 
@@ -29,11 +34,15 @@ public class CommandManager {
             String command = identifier.identifyCommand(parsedCommand.getVerb());
 
             if (command != null) {
-                // Execute the command if identified
-                executor.executeCommand(command, parsedCommand.getNoun());
+                isGameRunning = false;
+                lastCommandResult = executor.executeCommand(command, parsedCommand.getNoun());
             } else {
                 System.out.println("Uh oh, your command got tangled in the gravity-defying trees\nType 'help' for a navigation chart from the Luminara command center");
             }
         }
+    }
+
+    public String getLastCommandResult() {
+        return lastCommandResult;
     }
 }
