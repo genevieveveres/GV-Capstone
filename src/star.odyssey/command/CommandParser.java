@@ -29,22 +29,25 @@ public class CommandParser {
     }
 
     public ParsedCommand parseCommand(String input) {
-        // Splits input into words, excluding unnecessary ones, and creates a ParsedCommand.
         String[] words = input.trim().toLowerCase().split("\\s+");
+        StringBuilder nounBuilder = new StringBuilder();
         String verb = null;
-        String noun = null;
 
         for (String word : words) {
             if (!unnecessaryWords.contains(word)) {
                 if (verb == null) {
                     verb = word; // First significant word is the verb.
                 } else {
-                    noun = word; // Second significant word is the noun.
-                    break;
+                    // Append subsequent significant words to nounBuilder.
+                    if (nounBuilder.length() > 0) {
+                        nounBuilder.append(" ");
+                    }
+                    nounBuilder.append(word);
                 }
             }
         }
 
+        String noun = nounBuilder.toString();
         return new ParsedCommand(verb, noun);
     }
 }
