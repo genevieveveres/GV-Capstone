@@ -1,5 +1,8 @@
 package star.odyssey.ui;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import java.io.FileReader;
 
 import static star.odyssey.ui.ConsoleDisplayUtils.clearScreen;
@@ -8,14 +11,19 @@ import static star.odyssey.ui.ConsoleDisplayUtils.pauseDisplay;
 public class DisplayGameInfo {
 
     public static void displayGameInfo() {
-        String file = "./data/gameInfo.txt";
+        String file = "./data/gameText.json";
         clearScreen();
         try {
-            FileReader fileReader = new FileReader(file);
-            int i;
-            while ((i = fileReader.read()) != -1) {
-                System.out.print((char) i);
-            }
+            FileReader reader = new FileReader(file);
+
+            JsonParser jsonParser = new JsonParser();
+            JsonObject jsonObject = jsonParser.parse(reader).getAsJsonObject();
+
+            String backstory = jsonObject.get("gameinfo").getAsString();
+
+            System.out.println(backstory);
+
+            reader.close();
             pauseDisplay();
             clearScreen();
         } catch (Exception e) {
