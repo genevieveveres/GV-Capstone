@@ -1,6 +1,6 @@
 package star.odyssey.command;
 
-import star.odyssey.game.GameState;
+import star.odyssey.game.Game;
 
 import static star.odyssey.ui.ConsoleDisplayUtils.makeCyan;
 
@@ -12,19 +12,17 @@ public class CommandManager {
     private final CommandConfig config;
     private String lastCommandResult;
 
-    public CommandManager(GameState gameState) {
+    public CommandManager(Game game) {
         this.config = new CommandConfig("./data/commands.json");
         reader = new CommandReader();
         parser = new CommandParser();
         identifier = new CommandIdentifier(config);
-        executor = new CommandExecutor(gameState);
+        executor = new CommandExecutor(game);
         lastCommandResult = "";
     }
 
     public void processCommands() {
         boolean isGameRunning = true;
-        // set a counter
-        int counter = 0;
         while (isGameRunning) {
             // Read command input from the user
             String input = reader.readCommand();

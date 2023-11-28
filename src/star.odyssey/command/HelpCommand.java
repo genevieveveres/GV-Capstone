@@ -17,10 +17,6 @@ public class HelpCommand implements Command {
             result.append("- ").append(commandKey).append("\n"); // Appending each available command.
         }
 
-        String resultString = result.toString().trim(); // Trim to remove trailing newline
-        System.out.println(resultString);
-
-        return resultString;
+        return result.toString().trim();
     }
-
 }

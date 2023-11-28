@@ -7,14 +7,13 @@ public class Game {
     private final GameState gameState;
     private boolean isRunning;
     private final CommandManager commandManager;
-    private DisplayUI displayUI;
+    private final DisplayUI displayUI;
 
     public Game(GameState gameState) {
         this.gameState = gameState;
         this.isRunning = false;
-        this.commandManager = new CommandManager(gameState);
+        this.commandManager = new CommandManager(this);
         this.displayUI = new DisplayUI(gameState);
-        // Additional initialization as needed
     }
 
     public void start() {
@@ -27,13 +26,11 @@ public class Game {
             // Main loop for game execution; process commands and update game state
             displayUI.displayMainUI();
             String lastCommandResult = commandManager.getLastCommandResult();
-            // display lastCommandResult
+            // Display the last command result
             System.out.println(lastCommandResult);
 
             // Process commands in a separate thread
-            Thread commandThread = new Thread(() -> {
-                commandManager.processCommands();
-            });
+            Thread commandThread = new Thread(commandManager::processCommands);
 
             // Start the command processing thread
             commandThread.start();
@@ -44,13 +41,18 @@ public class Game {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            // Additional game loop logic here (e.g., updating game state, checking for game over conditions)
+
+            // Check if the game should continue after processing the command
+            if (!isRunning) {
+                // Display the goodbye message before breaking
+                System.out.println(commandManager.getLastCommandResult());
+                break;
+            }
         }
     }
 
     public void stop() {
         isRunning = false;
-        // Perform any necessary cleanup or finalization here
     }
 
     public GameState getGameState() {
