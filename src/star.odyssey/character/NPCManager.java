@@ -56,9 +56,10 @@ public class NPCManager {
         boolean hostile = npcObject.get("hostile").getAsBoolean();
         List<String> dialogueOptions = parseDialogueOptions(npcObject.getAsJsonArray("dialogueOptions"));
         String questDetails = npcObject.get("questDetails").getAsString();
+        boolean hidden = npcObject.get("hidden").getAsBoolean();
 
         // Initialize NPC without location and inventory
-        return new NPC(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive, hostile, dialogueOptions, questDetails);
+        return new NPC(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive, hostile, dialogueOptions, questDetails, hidden);
     }
 
     private List<String> parseDialogueOptions(JsonArray dialogueOptionsArray) {

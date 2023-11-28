@@ -35,7 +35,7 @@
         "south": "ship_engine"
       },
       "npcs": [],
-      "items": []
+      "items": ["miningLaser"]
     },
     {
       "index": "ship_quarters",

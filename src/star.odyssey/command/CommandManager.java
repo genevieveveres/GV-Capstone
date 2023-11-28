@@ -2,6 +2,8 @@ package star.odyssey.command;
 
 import star.odyssey.game.GameState;
 
+import static star.odyssey.ui.ConsoleDisplayUtils.makeCyan;
+
 public class CommandManager {
     private final CommandReader reader;
     private final CommandParser parser;
@@ -43,6 +45,6 @@ public class CommandManager {
     }
 
     public String getLastCommandResult() {
-        return lastCommandResult;
+        return makeCyan(lastCommandResult);
     }
 }

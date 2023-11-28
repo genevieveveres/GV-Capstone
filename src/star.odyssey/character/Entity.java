@@ -47,6 +47,10 @@ public abstract class Entity implements Describable {
         return name;
     }
 
+    public int getHealth() {
+        return health;
+    }
+
     @Override
     public String getDetailedDescription() {
         return detailedDescription;

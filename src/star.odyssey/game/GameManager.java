@@ -19,8 +19,8 @@ public class GameManager {
 
     public GameManager() {
         // Initialize managers independently
-        // itemManager = new ItemManager("./data/items.json");
-        // npcManager = new NPCManager("./data/npcs.json");
+        itemManager = new ItemManager("./data/items.json");
+        npcManager = new NPCManager("./data/npcs.json");
         locationManager = new LocationManager("./data/locations.json");
 
         // Load and retrieve the starting location
@@ -33,7 +33,7 @@ public class GameManager {
         }
 
         // Create a Player instance with the starting location
-        Player player = new Player("playerIndex", "PlayerName", 100, 10, 5, "A brave explorer", startingLocation, new ArrayList<>(), true);
+        Player player = new Player("alex", "Alex", 100, 10, 5, "A brave explorer", startingLocation, new ArrayList<>(), true);
 
         // Create the GameState
         gameState = new GameState(player, npcManager, itemManager, locationManager);
@@ -42,7 +42,7 @@ public class GameManager {
         game = new Game(gameState);
 
         // Associate entities
-        // associateEntities();
+        associateEntities();
     }
 
     private void associateEntities() {
