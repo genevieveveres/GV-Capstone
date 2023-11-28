@@ -33,7 +33,7 @@ public class GameManager {
         }
 
         // Create a Player instance with the starting location
-        Player player = new Player("playerIndex", "PlayerName", 100, 10, 5, "A brave explorer", startingLocation, new ArrayList<>(), true);
+        Player player = new Player("alex", "Alex", 100, 10, 5, "A brave explorer", startingLocation, new ArrayList<>(), true);
 
         // Create the GameState
         gameState = new GameState(player, npcManager, itemManager, locationManager);

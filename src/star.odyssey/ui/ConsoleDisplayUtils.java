@@ -1,8 +1,10 @@
 package star.odyssey.ui;
 
+import org.apache.commons.text.WordUtils;
+
 import java.util.Scanner;
 
-class ConsoleDisplayUtils {
+public class ConsoleDisplayUtils {
 
     // clears screen
     public static void clearScreen() {
@@ -30,8 +32,20 @@ class ConsoleDisplayUtils {
         return "\u001B[34m" + txt + "\u001B[0m";
     }
 
-    public static String backgroundGreen(String txt) {
-        return "\u001B[34m" + txt + "\u001B[0m";
+    public static String makeCyan(String txt) {
+        return "\u001B[36m" + txt + "\u001B[0m";
+    }
+
+    public static String makeBackgroundGreen(String txt) {
+        return "\033[42m" + txt + "\033[0m";
+    }
+
+    public static String wrapText(String txt) {
+        return WordUtils.wrap(txt, 100);
+    }
+
+    public static void printDivider() {
+        System.out.println(makeRed("==================================================================================================="));
     }
 
     // Centers text on console

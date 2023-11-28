@@ -1,21 +1,19 @@
 package star.odyssey.game;
 
 import star.odyssey.command.CommandManager;
-import star.odyssey.ui.HeaderDisplay;
-
-import java.util.concurrent.atomic.AtomicBoolean;
+import star.odyssey.ui.DisplayUI;
 
 public class Game {
     private final GameState gameState;
     private boolean isRunning;
     private final CommandManager commandManager;
-    private HeaderDisplay headerDisplay;
+    private DisplayUI displayUI;
 
     public Game(GameState gameState) {
         this.gameState = gameState;
         this.isRunning = false;
         this.commandManager = new CommandManager(gameState);
-        this.headerDisplay = new HeaderDisplay(gameState);
+        this.displayUI = new DisplayUI(gameState);
         // Additional initialization as needed
     }
 
@@ -27,7 +25,7 @@ public class Game {
     private void mainGameLoop() {
         while (isRunning) {
             // Main loop for game execution; process commands and update game state
-            headerDisplay.displayHeader();
+            displayUI.displayMainUI();
             String lastCommandResult = commandManager.getLastCommandResult();
             // display lastCommandResult
             System.out.println(lastCommandResult);

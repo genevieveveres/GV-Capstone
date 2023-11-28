@@ -6,6 +6,8 @@ import star.odyssey.game.GameState;
 import star.odyssey.inventory.Item;
 import star.odyssey.location.Location;
 
+import static star.odyssey.ui.ConsoleDisplayUtils.wrapText;
+
 public class LookCommand implements Command {
     private final Player player;
 
@@ -17,7 +19,7 @@ public class LookCommand implements Command {
     public String execute(String noun) {
         Describable target = findTarget(noun);
         if (target != null) {
-            return target.getDetailedDescription();
+            return wrapText(target.getDetailedDescription());
         } else {
             return "You don't see anything special.";
         }
