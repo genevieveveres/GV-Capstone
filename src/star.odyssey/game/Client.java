@@ -19,10 +19,11 @@ public class Client {
         do {
             System.out.println("\nPlease select an option:");
             System.out.println("1. New Game");
-            System.out.println("2. Load Game");
-            System.out.println("3. Exit");
+            System.out.println("2. Load Game <Future feature in next release>");
+            System.out.println("3. Display Backstory and Basic Game Information");
+            System.out.println("4. Exit");
             // User selection for game options.
-            option = Integer.parseInt(prompter.prompt("\nMake a selection (1-3): ", "[123]", "\nInvalid choice. Please select 1,2 or 3."));
+            option = Integer.parseInt(prompter.prompt("\nMake a selection (1-4): ", "[1234]", "\nInvalid choice. Please select 1,2,3 or 4."));
             switch (option) {
                 case 1:
                     GameManager gameManager = new GameManager();
@@ -34,6 +35,11 @@ public class Client {
                     System.out.println("Load Game");
                     break;
                 case 3:
+                    DisplayBackstory.displayBackstory();
+                    DisplayGameInfo.displayGameInfo();
+                    option = 0;
+                    continue;
+                case 4:
                     System.out.println("Exiting..."); // Exiting the application.
                     System.exit(0);
                     break;
@@ -41,6 +47,6 @@ public class Client {
                     System.out.println("Invalid option. Please try again.");
                     break;
             }
-        } while (option < 1 || option > 3);
+        } while (option < 1 || option > 4);
     }
 }
