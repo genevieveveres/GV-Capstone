@@ -42,7 +42,10 @@
       "isAlive": true,
       "hostile": false,
       "dialogueOptions": [
-        "Blah blah blah, blah blah"
+        "Blah blah blah, blah blah",
+        "a",
+        "b",
+        "c"
       ],
       "questDetails": "",
       "hidden": true

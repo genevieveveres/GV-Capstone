@@ -36,6 +36,10 @@ public class Item implements Describable {
         return name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public String getDetailedDescription() {
         return detailedDescription;
