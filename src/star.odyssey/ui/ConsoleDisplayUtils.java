@@ -71,7 +71,6 @@ public class ConsoleDisplayUtils {
     }
 
 
-
     // Centers text on console
     public static String centerText(int width, String text) {
         int textLength = text.length();
