@@ -28,9 +28,22 @@ public class Player extends Entity {
         // Player-specific defense implementation (e.g., block, dodge)
     }
 
-    public void pickUpItem(Item item) {
-        // Logic for the player to pick up items
+    public String getItem(Item item) {
+        if (!item.isMovable()) {
+            return item.getName() + " is stubbornly rooted like a space rock. It's not going anywhere.";
+        }
+        if (item.isHidden()) {
+            return item.getName() + " must be cloaked in invisibility! It's beyond your grasp.";
+        }
+        if (!item.isActive()) {
+            return item.getName() + " appears dormant, like a hibernating alien. Maybe try again when it's awake?.";
+        }
+
+        this.inventory.add(item);
+        this.location.removeItem(item);
+        return item.getName() + " has been successfully teleported to your inventory";
     }
+
 
     public void useItem(Item item) {
         // Implement usage of items from the inventory

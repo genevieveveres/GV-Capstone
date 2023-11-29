@@ -15,20 +15,19 @@ public class Location implements Describable {
     private String detailedDescription;
     private Map<String, Location> connections;
     private List<NPC> npcs;
-    private List<Item> inventory;
+    private List<Item> items;
 
-    public Location(String index, String name, String description, String detailedDescription, List<NPC> npcs, List<Item> inventory) {
+    public Location(String index, String name, String description, String detailedDescription, List<NPC> npcs, List<Item> items) {
         this.index = index;
         this.name = name;
         this.description = description;
         this.detailedDescription = detailedDescription;
         this.connections = new HashMap<>();
         this.npcs = npcs;
-        this.inventory = inventory;
+        this.items = items;
     }
 
     // Getters and Setters
-
     public String getIndex() {
         return index;
     }
@@ -54,10 +53,11 @@ public class Location implements Describable {
         return npcs;
     }
 
-    public List<Item> getInventory() {
-        return inventory;
+    public List<Item> getItems() {
+        return items;
     }
 
+    // Action methods
     public void addConnection(String direction, Location location) {
         this.connections.put(direction, location);
     }
@@ -69,9 +69,22 @@ public class Location implements Describable {
     }
 
     public void addInventory(Item item) {
-        if (!this.inventory.contains(item)) {
-            this.inventory.add(item);
+        if (!this.items.contains(item)) {
+            this.items.add(item);
         }
+    }
+
+    public Item getItem(String itemName) {
+        for (Item item : this.items) {
+            if (item.getName().equalsIgnoreCase(itemName)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public void removeItem(Item item) {
+        this.items.remove(item);
     }
 
     // Additional methods if necessary...

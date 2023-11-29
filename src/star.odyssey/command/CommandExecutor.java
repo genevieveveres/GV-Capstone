@@ -14,6 +14,7 @@ public class CommandExecutor {
         commandMap.put("quit", new QuitCommand(game));
         commandMap.put("look", new LookCommand(game.getGameState()));
         commandMap.put("move", new MoveCommand(game.getGameState()));
+        commandMap.put("get", new GetCommand(game.getGameState()));
         // Initialize other commands as needed
     }
 

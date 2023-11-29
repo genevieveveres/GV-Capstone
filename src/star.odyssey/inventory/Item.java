@@ -41,5 +41,21 @@ public class Item implements Describable {
         return detailedDescription;
     }
 
+    public boolean isUsable() {
+        return usable;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public boolean isMovable() {
+        return movable;
+    }
+
     // Additional methods if necessary...
 }
