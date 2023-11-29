@@ -21,26 +21,37 @@ public class DisplayUI {
 
     public void displayPlayerInfo() {
         // Display player info
-        printDivider();
-        System.out.println("Name: " + player.getName() + ", Health: " + player.getHealth());
-        printDivider();
+        printDivider("Player Info");
+        System.out.println(makeMagenta("Name: ") + player.getName() + ", " + makeMagenta("Health: ") + player.getHealth());
+        // Display player inventory
+        System.out.println(makeMagenta("Inventory:"));
+        player.getInventory().forEach(item -> {
+            System.out.println(item.getName());
+        });
     }
 
     public void displayLocationInfo() {
         // Display player location
+        printDivider("Location Info");
         Location currentLocation = player.getLocation();
-        System.out.println("Current Location: " + currentLocation.getName());
-        printDivider();
-        System.out.println(wrapText(currentLocation.getDescription()));
-        printDivider();
-        System.out.println("Connections:");
+        System.out.println(makeMagenta("Current Location: ") + currentLocation.getName());
+        // Display location description
+        System.out.println(wrapText(makeMagenta("Description: ")
+                + currentLocation.getDescription()));
+        // Display location connections
+        System.out.println(makeMagenta("Connections:"));
         currentLocation.getConnections().entrySet().forEach(location -> {
             System.out.println(location.getKey() + " - " + location.getValue().getName());
         });
-        printDivider();
-        System.out.println("Items:");
+        // Display location items
+        System.out.println(makeMagenta("Items:"));
         currentLocation.getItems().forEach(item -> {
             System.out.println(item.getName());
+        });
+        // Display location NPCs
+        System.out.println(makeMagenta("NPCs:"));
+        currentLocation.getNPCs().forEach(npc -> {
+            System.out.println(npc.getName());
         });
         printDivider();
     }
