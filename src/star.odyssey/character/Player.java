@@ -44,6 +44,17 @@ public class Player extends Entity {
         return item.getName() + " has been successfully teleported to your inventory";
     }
 
+    public String dropItem(String itemName) {
+        for (Item item : inventory) {
+            if (item.getName().equalsIgnoreCase(itemName)) {
+                inventory.remove(item);
+                location.addInventory(item);
+                return "You dropped " + itemName + ". It's now contemplating its life choices on the ground.";
+            }
+        }
+        return "The art of letting go is profound, but it helps if you actually have " + itemName + " first.";
+    }
+
 
     public void useItem(Item item) {
         // Implement usage of items from the inventory
