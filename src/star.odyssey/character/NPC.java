@@ -4,6 +4,7 @@ import star.odyssey.inventory.Item;
 import star.odyssey.location.Location;
 
 import java.util.List;
+import java.util.Random;
 
 public class NPC extends Entity {
     private boolean hostile;
@@ -35,7 +36,8 @@ public class NPC extends Entity {
         if (dialogueOptions.isEmpty()) {
             return getName() + " looks at you, then at a distant point in space, and opts for silence.";
         }
-        return dialogueOptions.get(0);
+        Random rand = new Random();
+        return dialogueOptions.get(rand.nextInt(dialogueOptions.size()));
     }
 
     public void giveQuest() {
