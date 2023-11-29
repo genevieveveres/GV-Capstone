@@ -29,6 +29,21 @@
       "dialogueOptions": [],
       "questDetails": "",
       "hidden": true
+    },
+    {
+      "index": "generic",
+      "name": "Generic Name NPC",
+      "detailed_description": "I am just a generic NPC for testing purposes. I know I will be killed when testing is done.",
+      "health": 50,
+      "strength": 20,
+      "defense": 20,
+      "location": "ship_storeroom",
+      "inventory": [],
+      "isAlive": true,
+      "hostile": false,
+      "dialogueOptions": ["Blah blah blah, blah blah"],
+      "questDetails": "",
+      "hidden": true
     }
   ]
 }

@@ -34,7 +34,7 @@
       "connections": {
         "south": "ship_engine"
       },
-      "npcs": [],
+      "npcs": ["generic"],
       "items": [
         "miningLaser"
       ]
@@ -109,7 +109,8 @@
       "description": "The entrance to the Luminara city unfolds as a grand portal, an architectural marvel blending organic and luminous elements. Towering crystalline arches mark the threshold, guiding visitors into a cityscape bathed in the soft glow of bioluminescence. It radiates an inviting aura, promising a harmonious convergence of nature and advanced technology.",
       "detailed_description": "The entrance to the Luminara city is a testament to the sophisticated synergy of nature and technology. Massive crystalline arches, resembling colossal organic structures, form an awe-inspiring portal that marks the threshold between the outside world and the illuminated metropolis within. Each arch is adorned with intricate patterns, reminiscent of bioluminescent flora, creating a seamless integration of the city with the surrounding alien landscape.\\nAs visitors approach, the arches emit a gentle, pulsating glow, casting a cascade of vibrant hues upon the path that leads into the heart of the city. The air carries a subtle fragrance, a blend of natural essences and the faint hum of advanced machinery. The transition from the exterior to the cityscape feels like crossing a threshold into a realm where nature and innovation coexist in perfect harmony.",
       "connections": {
-        "north": "forest"
+        "north": "forest",
+        "south": "city_center"
       },
       "npcs": [],
       "items": []
@@ -130,18 +131,8 @@
       "name": "Glass Desert",
       "description": "A vast, glass-like desert stretches endlessly under the alien sun, its surface reflecting a surreal illusion of the sky above. The landscape, seemingly frozen in time, creates an otherworldly and disorienting experience.",
       "detailed_description": "The glass-like desert unfolds as a seemingly infinite canvas of translucent sand, smooth and reflective like a giant mirror to the heavens. Beneath the alien sun, the surface becomes a surreal palette, mirroring the ever-changing colors of the sky. As one walks across this expansive terrain, the illusionary effect intensifies, creating a disorienting experience as if the ground and the sky converge into a seamless continuum.\\nThe glass-like sand, when examined closely, reveals intricate patterns and swirls, reminiscent of delicate brushstrokes frozen in time. It's as if the desert itself is an ancient work of art, carefully crafted by the passage of time and the elements. The reflective surface adds a sense of mystery, making it challenging to distinguish between the real and the illusory.",
-      "connections": {},
-      "npcs": [],
-      "items": []
-    },
-    {
-      "index": "forest",
-      "name": "Bioluminescent Forest",
-      "description": "The alien forest is a living tapestry of bioluminescent wonders, where towering trees adorned with radiant leaves create a surreal sanctuary. Soft, ambient light bathes the forest floor, revealing an intricate network of flora and fauna. The air is infused with the sweet fragrance of alien blossoms, making this enchanted woodland a captivating and mysterious realm.",
-      "detailed_description": "Entering the alien forest is like stepping into a mesmerizing dreamscape where bioluminescent wonders come to life. Towering trees, adorned with radiant leaves that pulse with soft light, stretch toward the alien sky, creating a surreal sanctuary that seems to defy the boundaries between day and night. The forest is alive with a symphony of soft sounds—rustling leaves, distant calls of alien creatures, and the gentle hum of unseen energy.\\n",
       "connections": {
-        "west": "crash_site",
-        "south": "mountains"
+        "north": "crash_site"
       },
       "npcs": [],
       "items": []
@@ -181,10 +172,10 @@
         "north": "cave"
       },
       "npcs": [
-        "Ancient Stone Guardian"
+        "guardian"
       ],
       "items": [
-        "Starstone"
+        "starstone"
       ]
     }
   ]
