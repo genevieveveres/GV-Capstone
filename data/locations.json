@@ -51,7 +51,8 @@
       },
       "npcs": [],
       "items": [
-        "journal"
+        "journal",
+        "elixir"
       ]
     },
     {
@@ -64,7 +65,7 @@
       },
       "npcs": [],
       "items": [
-        "scanners"
+        "ship_scanner"
       ]
     },
     {

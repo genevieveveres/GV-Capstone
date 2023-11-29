@@ -49,6 +49,21 @@
       ],
       "questDetails": "",
       "hidden": true
+    },
+    {
+      "index": "sandshifter",
+      "name": "Sandshifter",
+      "detailed_description": "The Sandshifter is a formidable creature that prowls the shifting dunes, its presence a testament to adaptation in the harsh environment. The creature's body is covered in a textured, sandstone-like skin, featuring intricate patterns that mimic the desert's dunes.",
+      "health": 50,
+      "strength": 20,
+      "defense": 20,
+      "location": "ship_storeroom",
+      "inventory": [],
+      "isAlive": true,
+      "hostile": true,
+      "dialogueOptions": ["I am going to destroy you when we implement battle."],
+      "questDetails": "",
+      "hidden": true
     }
   ]
 }
