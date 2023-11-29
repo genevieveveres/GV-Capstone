@@ -35,6 +35,39 @@
       "damage": 10,
       "range": 10,
       "durability": 10
+    },
+    {
+      "index": "ship_scanner",
+      "type": "item",
+      "name": "Ship's Scanners",
+      "description": "The ship's scanners are a marvel of advanced technology, seamlessly blending precision with adaptability to navigate the complexities of the alien world.",
+      "detailed_description": "Nestled within the control room, these scanners are a vital tool for your exploration, offering a comprehensive understanding of the surrounding environment. The primary scanner interface manifests as a holographic display, suspended in the air before your control station. The display is a multi-dimensional canvas, capable of rendering detailed maps, energy signatures, and environmental analyses.",
+      "usable": true,
+      "active": true,
+      "hidden": false,
+      "movable": false
+    },
+    {
+      "index": "journal",
+      "type": "item",
+      "name": "Journal",
+      "description": "The journal is a compact, weathered book, its pages filled with handwritten entries and sketches.",
+      "detailed_description": "Your journal is a tangible chronicle of the interstellar odyssey, a repository of thoughts, observations, and reflections that capture the essence of the alien world. It documents the diverse landscapes, encounters, and experiences since you arrived on this planet.",
+      "usable": true,
+      "active": true,
+      "hidden": false,
+      "movable": false
+    },
+    {
+      "index": "elixir",
+      "type": "item",
+      "name": "Tranquility Healing Elixir",
+      "description": "The elixir glows with a subtle light.",
+      "detailed_description": "The healing elixir, crafted by the Luminara Trader, eliminates a subtle glow and warmth. It will restore you, body and mind.",
+      "usable": true,
+      "active": true,
+      "hidden": false,
+      "movable": true
     }
   ]
 }
