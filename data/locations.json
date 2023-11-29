@@ -34,7 +34,9 @@
       "connections": {
         "south": "ship_engine"
       },
-      "npcs": ["generic"],
+      "npcs": [
+        "generic"
+      ],
       "items": [
         "miningLaser"
       ]

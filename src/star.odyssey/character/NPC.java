@@ -31,8 +31,11 @@ public class NPC extends Entity {
         // Defensive behavior for NPC during combat
     }
 
-    public void talk() {
-        // Interaction logic for NPC dialogues
+    public String talk() {
+        if (dialogueOptions.isEmpty()) {
+            return getName() + " looks at you, then at a distant point in space, and opts for silence.";
+        }
+        return dialogueOptions.get(0);
     }
 
     public void giveQuest() {
