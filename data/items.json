@@ -2,6 +2,7 @@
   "items": [
     {
       "index": "starstone",
+      "type": "item",
       "name": "Starstone",
       "description": "The Starstone is a radiant mineral. Its surface shimmers with a luminosity that mirrors the celestial energies of the alien world. A rare and ancient gem, the Starstone possesses an ethereal beauty that captivates all who behold it.",
       "detailed_description": "The Starstone's significance transcends its aesthetic brilliance; it is a key to the interstellar journey. Within its core lies the potential to power spacecraft engines and traverse the vastness of the cosmos. As one gazes upon the Starstone, there's a profound sense of connection to the mysteries of the alien world, an acknowledgment of the celestial forces that converge within this radiant mineral. Maybe someone knows what other mysterious powers it may have.",
@@ -12,6 +13,7 @@
     },
     {
       "index": "ore",
+      "type": "item",
       "name": "mountain ore",
       "description": "The ore found within the mineral-rich mountains is a marvel of extraterrestrial composition. Its raw form, extracted from the heart of the alien peaks, reveals a metallic substance that defies earthly expectations. The ore is a fusion of crystalline structures and resilient alloys, reflecting the unique geological processes of the alien world.",
       "detailed_description": "In the context of crafting and repair, the ore proves to be a versatile resource. Its malleability allows for shaping into specialized panels, providing structural reinforcement for the damaged spacecraft. When integrated into the hull, the ore not only repairs but enhances the vessel, creating a symbiotic relationship between human engineering and the resilient essence of the alien landscape. The ore stands as a beacon of adaptability, a bridge between the known and the unknown in the interstellar odyssey.",
@@ -22,13 +24,17 @@
     },
     {
       "index": "miningLaser",
+      "type": "weapon",
       "name": "mining laser",
       "description": "Compact and versatile, the laser emits a focused beam of intense energy.",
       "detailed_description": "The exterior of the mining laser is sleek and ergonomic, featuring a control panel with intuitive interfaces for adjusting energy levels and beam precision. The device is crafted from advanced materials, allowing for ease of use during resource extraction. A soft hum emanates from the laser when activated, a testament to the potent energy harnessed within.",
       "usable": true,
       "active": true,
       "hidden": false,
-      "movable": true
+      "movable": true,
+      "damage": 10,
+      "range": 10,
+      "durability": 10
     }
   ]
 }
