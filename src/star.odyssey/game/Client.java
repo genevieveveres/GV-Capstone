@@ -4,6 +4,7 @@ import com.apps.util.Prompter;
 import star.odyssey.ui.DisplayBackstory;
 import star.odyssey.ui.DisplayGameInfo;
 import star.odyssey.ui.DisplaySplash;
+import static star.odyssey.ui.ConsoleDisplayUtils.*;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -23,7 +24,7 @@ public class Client {
             System.out.println("3. Display Backstory and Basic Game Information");
             System.out.println("4. Exit");
             // User selection for game options.
-            option = Integer.parseInt(prompter.prompt("\nMake a selection (1-4): ", "[1234]", "\nInvalid choice. Please select 1,2,3 or 4."));
+            option = Integer.parseInt(prompter.prompt("\nMake a selection (1-4): ", "[1234]", makeRed("\nInvalid choice. Please select 1,2,3 or 4.")));
             switch (option) {
                 case 1:
                     GameManager gameManager = new GameManager();
@@ -44,7 +45,7 @@ public class Client {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.out.println( makeRed("Invalid option. Please try again."));
                     break;
             }
         } while (option < 1 || option > 4);
