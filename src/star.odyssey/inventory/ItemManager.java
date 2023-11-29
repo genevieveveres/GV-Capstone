@@ -28,8 +28,7 @@ public class ItemManager {
                     if (type.equals("item")) {
                         Item item = createItem(itemElement.getAsJsonObject());
                         items.put(item.getIndex(), item);
-                    }
-                    else if (type.equals("weapon")) {
+                    } else if (type.equals("weapon")) {
                         Weapon weapon = createWeapon(itemElement.getAsJsonObject());
                         items.put(weapon.getIndex(), weapon);
                     }
