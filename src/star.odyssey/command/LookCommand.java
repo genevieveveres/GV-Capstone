@@ -41,7 +41,7 @@ public class LookCommand implements Command {
         }
 
         // Search for a matching item in the current location
-        for (Item item : currentLocation.getInventory()) {
+        for (Item item : currentLocation.getItems()) {
             if (item.getName().equalsIgnoreCase(noun)) {
                 return item;
             }

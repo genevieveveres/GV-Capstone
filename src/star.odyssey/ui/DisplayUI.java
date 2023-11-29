@@ -39,7 +39,7 @@ public class DisplayUI {
         });
         printDivider();
         System.out.println("Items:");
-        currentLocation.getInventory().forEach(item -> {
+        currentLocation.getItems().forEach(item -> {
             System.out.println(item.getName());
         });
         printDivider();

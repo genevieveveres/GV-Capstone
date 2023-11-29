@@ -1,10 +1,9 @@
 package star.odyssey.ui;
 
-import java.io.FileReader;
-
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import java.io.FileReader;
 
 import static star.odyssey.ui.ConsoleDisplayUtils.clearScreen;
 import static star.odyssey.ui.ConsoleDisplayUtils.pauseDisplay;
