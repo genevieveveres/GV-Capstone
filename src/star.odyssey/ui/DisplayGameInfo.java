@@ -8,9 +8,9 @@ import static star.odyssey.ui.ConsoleDisplayUtils.pauseDisplay;
 public class DisplayGameInfo {
 
     public static void displayGameInfo() {
-        String file = "./data/gameText.json";
+        String gameTxtFilePath = "./data/gameText.json";
         clearScreen();
-        String gameInfo = GameUtil.jsonToString(file, "gameinfo");
+        String gameInfo = GameUtil.jsonToString(gameTxtFilePath, "gameinfo");
         System.out.println(gameInfo);
         pauseDisplay();
         clearScreen();

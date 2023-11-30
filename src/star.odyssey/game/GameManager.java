@@ -8,6 +8,7 @@ import star.odyssey.location.Location;
 import star.odyssey.location.LocationManager;
 
 import java.util.List;
+import java.util.Map;
 
 public class GameManager {
     private final Game game;
@@ -15,6 +16,8 @@ public class GameManager {
     private final ItemManager itemManager;
     private final EntityManager entityManager;
     private final LocationManager locationManager;
+    String gameTxtFilePath = "./data/gameText.json";
+    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "game_mgr");
 
     public GameManager() {
         // Initialize managers independently
@@ -45,7 +48,7 @@ public class GameManager {
 
     private void validatePlayer(Player player) {
         if (player == null) {
-            throw new IllegalStateException("Player not found in game data");
+            throw new IllegalStateException(txtMap.get("player_null"));
         }
     }
 
@@ -55,7 +58,7 @@ public class GameManager {
         if (startingLocation != null) {
             player.setLocation(startingLocation);
         } else {
-            throw new IllegalStateException("Starting location not found in game data");
+            throw new IllegalStateException(txtMap.get("location_null"));
         }
     }
 

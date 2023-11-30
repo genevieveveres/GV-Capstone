@@ -3,9 +3,14 @@ package star.odyssey.command;
 import star.odyssey.character.NPC;
 import star.odyssey.character.Player;
 import star.odyssey.game.GameState;
+import star.odyssey.game.GameUtil;
+
+import java.util.Map;
 
 public class TalkCommand implements Command {
     private final GameState gameState;
+    String gameTxtFilePath = "./data/gameText.json";
+    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "talk_cmd");
 
     public TalkCommand(GameState gameState) {
         this.gameState = gameState;
@@ -14,7 +19,7 @@ public class TalkCommand implements Command {
     @Override
     public String execute(String npcName) {
         if (npcName == null || npcName.trim().isEmpty()) {
-            return "Talking to the void? It's a good listener but not much of a talker. Try naming someone!";
+            return txtMap.get("talk_null");
         }
 
         Player player = gameState.getPlayer();
@@ -23,7 +28,7 @@ public class TalkCommand implements Command {
         if (npc != null && player.getLocation().getNPCs().contains(npc)) {
             return npc.talk();
         } else {
-            return "Seems " + npcName + " is off on their own adventure. Or just really good at hide and seek.";
+            return npcName + txtMap.get("talk_unknown");
         }
     }
 }

@@ -10,8 +10,8 @@ import java.util.Map;
 
 public class Player extends Entity {
 
-    String file = "./data/gameText.json";
-    private Map<String, String> txtMap = GameUtil.jsonToStringMap(file, "player_cmd_txt");
+    String gameTxtFilePath = "./data/gameText.json";
+    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "player_cmd_txt");
 
     public Player() {
         super();
