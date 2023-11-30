@@ -73,6 +73,16 @@
     "jettison",
     "unload"
   ],
+  "heal": [
+    "cure",
+    "restore",
+    "revive",
+    "rejuvenate",
+    "mend",
+    "recuperate",
+    "treat",
+    "repair"
+  ],
   "save": [
     "store",
     "record",
@@ -89,8 +99,7 @@
     "reload",
     "access",
     "fetch",
-    "reclaim",
-    "restore"
+    "reclaim"
   ],
   "quit": [
     "exit",
