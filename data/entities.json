@@ -53,10 +53,6 @@
       "isAlive": true,
       "hostile": false,
       "dialogueOptions": [
-        "Blah blah blah, blah blah",
-        "a",
-        "b",
-        "c"
       ],
       "questDetails": "",
       "hidden": true
@@ -73,7 +69,8 @@
       "isAlive": true,
       "hostile": true,
       "dialogueOptions": [
-        "I am going to destroy you when we implement battle."
+        "I am going to destroy you when we implement battle.",
+        "I really don't like it here. I want to be in the desert"
       ],
       "questDetails": "",
       "hidden": true

@@ -1,12 +1,17 @@
 package star.odyssey.character;
 
+import star.odyssey.game.GameUtil;
 import star.odyssey.inventory.Item;
 import star.odyssey.inventory.Weapon;
 import star.odyssey.location.Location;
 
 import java.util.List;
+import java.util.Map;
 
 public class Player extends Entity {
+
+    String file = "./data/gameText.json";
+    private Map<String, String> txtMap = GameUtil.jsonToStringMap(file, "player_cmd_txt");
 
     public Player() {
         super();
@@ -30,18 +35,18 @@ public class Player extends Entity {
 
     public String getItem(Item item) {
         if (!item.isMovable()) {
-            return item.getName() + " is stubbornly rooted like a space rock. It's not going anywhere.";
+            return item.getName() + txtMap.get("item_unmovable");
         }
         if (item.isHidden()) {
-            return item.getName() + " must be cloaked in invisibility! It's beyond your grasp.";
+            return item.getName() + txtMap.get("item_hidden");
         }
         if (!item.isActive()) {
-            return item.getName() + " appears dormant, like a hibernating alien. Maybe try again when it's awake?.";
+            return item.getName() + txtMap.get("item_inactive");
         }
 
         this.inventory.add(item);
         this.location.removeItem(item);
-        return item.getName() + " has been successfully teleported to your inventory";
+        return item.getName() + txtMap.get("item_get");
     }
 
     public String dropItem(String itemName) {
@@ -49,10 +54,10 @@ public class Player extends Entity {
             if (item.getName().equalsIgnoreCase(itemName)) {
                 inventory.remove(item);
                 location.addInventory(item);
-                return "You dropped " + itemName + ". It's now contemplating its life choices on the ground.";
+                return itemName + txtMap.get("item_drop");
             }
         }
-        return "The art of letting go is profound, but it helps if you actually have " + itemName + " first.";
+        return txtMap.get("item_drop_fail") + itemName;
     }
 
 

@@ -1,9 +1,11 @@
 package star.odyssey.character;
 
+import star.odyssey.game.GameUtil;
 import star.odyssey.inventory.Item;
 import star.odyssey.location.Location;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class NPC extends Entity {
@@ -11,6 +13,10 @@ public class NPC extends Entity {
     private List<String> dialogueOptions;
     private String questDetails;
     private boolean hidden;
+
+    String file = "./data/gameText.json";
+    private Map<String, String> txtMap = GameUtil.jsonToStringMap(file, "npc_cmd_txt");
+
 
     public NPC() {
         super();
@@ -38,7 +44,7 @@ public class NPC extends Entity {
 
     public String talk() {
         if (dialogueOptions.isEmpty()) {
-            return getName() + " looks at you, then at a distant point in space, and opts for silence.";
+            return getName() + txtMap.get("ignored");
         }
         Random rand = new Random();
         return dialogueOptions.get(rand.nextInt(dialogueOptions.size()));
