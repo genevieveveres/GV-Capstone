@@ -2,12 +2,15 @@ package star.odyssey.command;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import star.odyssey.game.GameUtil;
 
 import java.io.FileReader;
 import java.util.*;
 
 public class CommandConfig {
     private Map<String, List<String>> commands;
+    String gameTxtFilePath = "./data/gameText.json";
+    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "cmd_config");
 
     public CommandConfig(String configFile) {
         try {
@@ -34,7 +37,7 @@ public class CommandConfig {
         }
 
         if (!repeatedSynonyms.isEmpty()) {
-            System.err.println("Warning: Repeated synonyms found: " + repeatedSynonyms);
+            System.err.println(txtMap.get("synonym_error") + repeatedSynonyms);
         }
     }
 

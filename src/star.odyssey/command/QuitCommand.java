@@ -1,12 +1,16 @@
 package star.odyssey.command;
 
 import star.odyssey.game.Game;
+import star.odyssey.game.GameUtil;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class QuitCommand implements Command {
     private final Scanner scanner;
     private final Game game;
+    String gameTxtFilePath = "./data/gameText.json";
+    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "quit_cmd");
 
     public QuitCommand(Game game) {
         scanner = new Scanner(System.in);
@@ -15,16 +19,16 @@ public class QuitCommand implements Command {
 
     @Override
     public String execute(String noun) {
-        System.out.print("Thinking of warping back to reality? (yes/no)\n>");
+        System.out.print(txtMap.get("quit_question"));
         String response = scanner.nextLine().trim().toLowerCase();
 
         if ("yes".equals(response)) {
             game.stop();
-            return "Rocketing back to normalcy! Remember, Earth has no glowing trees or melody mountains";
+            return txtMap.get("quit_confirm");
         } else if ("no".equals(response)) {
-            return "That’s the spirit! Who needs Earth when you’ve got an alien world to explore?";
+            return txtMap.get("quit_deny");
         } else {
-            System.out.println("Oops! Even the Luminara need clear signals");
+            System.out.println(txtMap.get("quit_fail"));
             return execute(noun);
         }
     }

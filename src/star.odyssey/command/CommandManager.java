@@ -1,6 +1,9 @@
 package star.odyssey.command;
 
 import star.odyssey.game.Game;
+import star.odyssey.game.GameUtil;
+
+import java.util.Map;
 
 import static star.odyssey.ui.ConsoleDisplayUtils.makeCyan;
 
@@ -11,6 +14,8 @@ public class CommandManager {
     private final CommandExecutor executor;
     private final CommandConfig config;
     private String lastCommandResult;
+    String gameTxtFilePath = "./data/gameText.json";
+    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "cmd_config");
 
     public CommandManager(Game game) {
         this.config = new CommandConfig("./data/commands.json");

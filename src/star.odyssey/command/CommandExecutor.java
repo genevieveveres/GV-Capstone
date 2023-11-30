@@ -1,12 +1,15 @@
 package star.odyssey.command;
 
 import star.odyssey.game.Game;
+import star.odyssey.game.GameUtil;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CommandExecutor {
     private final Map<String, Command> commandMap; // Stores command instances against their keys.
+    String gameTxtFilePath = "./data/gameText.json";
+    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "cmd_config");
 
     public CommandExecutor(Game game) {
         commandMap = new HashMap<>();
@@ -25,7 +28,7 @@ public class CommandExecutor {
         if (command != null) {
             return command.execute(noun); // Execute the command if found.
         } else {
-            return "Looks like that command hit a black hole\nTry 'help' to find your way back on the starry path";
+            return txtMap.get("cmd_failure");
         }
     }
 }

@@ -14,8 +14,8 @@ public class NPC extends Entity {
     private String questDetails;
     private boolean hidden;
 
-    String file = "./data/gameText.json";
-    private Map<String, String> txtMap = GameUtil.jsonToStringMap(file, "npc_cmd_txt");
+    String gameTxtFilePath = "./data/gameText.json";
+    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "npc_cmd_txt");
 
 
     public NPC() {

@@ -8,9 +8,9 @@ import static star.odyssey.ui.ConsoleDisplayUtils.wrapText;
 
 public class DisplayBackstory {
     public static void displayBackstory() {
-        String file = "./data/gameText.json";
+        String gameTxtFilePath = "./data/gameText.json";
         clearScreen();
-        String backstory = GameUtil.jsonToString(file, "backstory");
+        String backstory = GameUtil.jsonToString(gameTxtFilePath, "backstory");
         System.out.println(wrapText(backstory));
         pauseDisplay();
         clearScreen();

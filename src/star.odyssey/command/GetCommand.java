@@ -2,10 +2,15 @@ package star.odyssey.command;
 
 import star.odyssey.character.Player;
 import star.odyssey.game.GameState;
+import star.odyssey.game.GameUtil;
 import star.odyssey.inventory.Item;
+
+import java.util.Map;
 
 public class GetCommand implements Command {
     private final GameState gameState;
+    String gameTxtFilePath = "./data/gameText.json";
+    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "get_cmd");
 
     public GetCommand(GameState gameState) {
         this.gameState = gameState;
@@ -15,14 +20,14 @@ public class GetCommand implements Command {
     public String execute(String itemName) {
 
         if (itemName == null || itemName.trim().isEmpty()) {
-            return "It seems like you're trying to get something, but what exactly?";
+            return txtMap.get("item_unknown");
         }
 
         Player player = gameState.getPlayer();
         Item item = player.getLocation().getItem(itemName);
 
         if (item == null) {
-            return "In an alternate universe, '" + itemName + "' might exist here. Sadly, not in this one.";
+            return itemName + txtMap.get("item_null");
         }
 
         return player.getItem(item);

@@ -9,9 +9,9 @@ public class DisplaySplash {
     // Display splash screen
     public static void displaySplash() {
         clearScreen();
-        String file = "./data/gameText.json";
+        String gameTxtFilePath = "./data/gameText.json";
 
-        String splashscreen = GameUtil.jsonToString(file, "splashscreen");
+        String splashscreen = GameUtil.jsonToString(gameTxtFilePath, "splashscreen");
         for (char c : splashscreen.toCharArray()) {
             if (c == '█') {
                 System.out.print(makeRed(String.valueOf(c)));

@@ -26,9 +26,9 @@ public class MainMenu {
 
     private Map<String, String> readMainMenuFromJson() {
         Map<String, String> optionsMap;
-        String file = "./data/gameText.json";
+        String gameTxtFilePath = "./data/gameText.json";
 
-        optionsMap = GameUtil.jsonToStringMap(file, "main_menu");
+        optionsMap = GameUtil.jsonToStringMap(gameTxtFilePath, "main_menu");
 
         return optionsMap;
     }
