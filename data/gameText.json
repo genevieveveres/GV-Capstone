@@ -13,14 +13,14 @@
     "invalid": "Invalid choice. Please select from the above options (1, 2, 3, ...)"
   },
   "npc_cmd_txt": {
-	  "ignored": " looks at you, then at a distant point in space, and opts for silence."
+    "ignored": " looks at you, then at a distant point in space, and opts for silence."
   },
   "player_cmd_txt": {
-	  "item_unmovable": " is stubbornly rooted like a space rock. It's not going anywhere.",
-	  "item_hidden": " must be cloaked in invisibility! It's beyond your grasp.",
-	  "item_inactive": " appears dormant, like a hibernating alien. Maybe try again when it's awake?.",
-	  "item_get": " has been successfully teleported to your inventory",
-	  "item_drop": " has been dropped. It's now contemplating its life choices on the ground.",
-	  "item_drop_fail": "The art of letting go is profound, but first it helps if you actually had "
+    "item_unmovable": " is stubbornly rooted like a space rock. It's not going anywhere.",
+    "item_hidden": " must be cloaked in invisibility! It's beyond your grasp.",
+    "item_inactive": " appears dormant, like a hibernating alien. Maybe try again when it's awake?.",
+    "item_get": " has been successfully teleported to your inventory",
+    "item_drop": " has been dropped. It's now contemplating its life choices on the ground.",
+    "item_drop_fail": "The art of letting go is profound, but first it helps if you actually had "
   }
 }

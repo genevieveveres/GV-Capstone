@@ -38,6 +38,10 @@ public abstract class Entity implements Describable {
 
     public abstract void defend();
 
+    public void heal() {
+        this.health += 10;
+    }
+
     // Getters and setters
     public String getIndex() {
         return index;

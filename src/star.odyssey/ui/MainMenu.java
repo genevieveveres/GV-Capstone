@@ -4,12 +4,13 @@ import com.apps.util.Prompter;
 import star.odyssey.game.GameManager;
 import star.odyssey.game.GameUtil;
 
-import static star.odyssey.ui.ConsoleDisplayUtils.*;
+import java.util.Map;
+import java.util.Scanner;
+
+import static star.odyssey.ui.ConsoleDisplayUtils.makeRed;
 import static star.odyssey.ui.DisplayBackstory.displayBackstory;
 import static star.odyssey.ui.DisplayGameInfo.displayGameInfo;
 import static star.odyssey.ui.DisplaySplash.displaySplash;
-
-import java.util.*;
 
 public class MainMenu {
 
@@ -54,8 +55,7 @@ public class MainMenu {
             try {
                 String promtString = "\n" + optionsMap.get("prompt") + optionCount + optionsMap.get("promptend");
                 userOption = Integer.parseInt(prompter.prompt(promtString));
-            }
-            catch (Exception ignored) {
+            } catch (Exception ignored) {
             }
             switch (userOption) {
                 case 1:
@@ -78,7 +78,7 @@ public class MainMenu {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println( makeRed(optionsMap.get("invalid")));
+                    System.out.println(makeRed(optionsMap.get("invalid")));
                     break;
             }
         } while (!validOption);
