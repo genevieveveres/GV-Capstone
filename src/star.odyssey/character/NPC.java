@@ -12,6 +12,10 @@ public class NPC extends Entity {
     private String questDetails;
     private boolean hidden;
 
+    public NPC() {
+        super();
+    }
+
     public NPC(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive, boolean hostile, List<String> dialogueOptions, String questDetails, boolean hidden) {
         super(index, name, health, strength, defense, detailedDescription, location, inventory, isAlive);
         this.hostile = hostile;

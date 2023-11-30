@@ -1,4 +1,15 @@
 {
+  "player": {
+    "index": "player",
+    "name": "Player",
+    "health": 100,
+    "strength": 10,
+    "defense": 100,
+    "detailed_description": "Player description",
+    "location": "ship_storeroom",
+    "inventory": [],
+    "isAlive": true
+  },
   "npcs": [
     {
       "index": "lum_speaker",
@@ -61,7 +72,9 @@
       "inventory": [],
       "isAlive": true,
       "hostile": true,
-      "dialogueOptions": ["I am going to destroy you when we implement battle."],
+      "dialogueOptions": [
+        "I am going to destroy you when we implement battle."
+      ],
       "questDetails": "",
       "hidden": true
     }
