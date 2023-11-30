@@ -3,9 +3,14 @@ package star.odyssey.command;
 import star.odyssey.character.NPC;
 import star.odyssey.character.Player;
 import star.odyssey.game.GameState;
+import star.odyssey.game.GameUtil;
+
+import java.util.Map;
 
 public class HealCommand implements Command {
     private final GameState gameState;
+    String gameTxtFilePath = "./data/gameText.json";
+    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "heal_cmd");
 
     public HealCommand(GameState gameState) {
         this.gameState = gameState;
@@ -16,15 +21,15 @@ public class HealCommand implements Command {
         Player player = gameState.getPlayer();
         if (entityName.equalsIgnoreCase(player.getName())) {
             player.heal();
-            return "You whip out your emergency healing kit. Good as new!";
+            return txtMap.get("heal_yourself");
         }
 
         NPC npc = gameState.getEntityManager().getNPC(entityName);
         if (npc != null && player.getLocation().getNPCs().contains(npc)) {
             npc.heal();
-            return "As the healing energy flows into " + npc.getName() + ", they chuckle, 'I haven't felt this good since I discovered space-coffee!'";
+            return txtMap.get("heal_npc_beginning") + npc.getName() + txtMap.get("heal_npc_end");
         } else {
-            return "Your attempt to remote-heal " + entityName + " fails. If only your powers extended beyond this location.";
+            return txtMap.get("heal_null_beginning") + entityName + txtMap.get("heal_null_end");
         }
     }
 }
