@@ -1,19 +1,19 @@
 package star.odyssey.game;
 
-import star.odyssey.character.NPCManager;
+import star.odyssey.character.EntityManager;
 import star.odyssey.character.Player;
 import star.odyssey.inventory.ItemManager;
 import star.odyssey.location.LocationManager;
 
 public class GameState {
     private final Player player;
-    private final NPCManager npcManager;
+    private final EntityManager entityManager;
     private final ItemManager itemManager;
     private final LocationManager locationManager;
 
-    public GameState(Player player, NPCManager npcManager, ItemManager itemManager, LocationManager locationManager) {
+    public GameState(Player player, EntityManager entityManager, ItemManager itemManager, LocationManager locationManager) {
         this.player = player;
-        this.npcManager = npcManager;
+        this.entityManager = entityManager;
         this.itemManager = itemManager;
         this.locationManager = locationManager;
     }
@@ -24,8 +24,8 @@ public class GameState {
         return player;
     }
 
-    public NPCManager getNpcManager() {
-        return npcManager;
+    public EntityManager getEntityManager() {
+        return entityManager;
     }
 
     public ItemManager getItemManager() {

@@ -18,7 +18,7 @@ public class TalkCommand implements Command {
         }
 
         Player player = gameState.getPlayer();
-        NPC npc = gameState.getNpcManager().getNPC(npcName);
+        NPC npc = gameState.getEntityManager().getNPC(npcName);
 
         if (npc != null && player.getLocation().getNPCs().contains(npc)) {
             return npc.talk();

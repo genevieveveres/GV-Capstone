@@ -9,23 +9,44 @@ import star.odyssey.inventory.Item;
 import java.io.FileReader;
 import java.util.*;
 
-public class NPCManager {
+public class EntityManager {
+    private Player player;
+    private String playerLocationIndex;
+    private final List<String> playerItemIndexes;
     private final Map<String, NPC> npcs;
     private final Map<String, String> npcLocationMap; // Map of NPC index to Location index
     private final Map<String, List<String>> npcItemsMap; // Map of NPC index to list of Item indexes
 
-    public NPCManager(String jsonFilePath) {
+    public EntityManager(String jsonFilePath) {
         npcs = new HashMap<>();
+        playerLocationIndex = "";
+        playerItemIndexes = new ArrayList<>();
         npcLocationMap = new HashMap<>();
         npcItemsMap = new HashMap<>();
-        loadNPCsFromJson(jsonFilePath);
+        loadEntitiesFromJson(jsonFilePath);
     }
 
-    private void loadNPCsFromJson(String jsonFilePath) {
+    private void loadEntitiesFromJson(String jsonFilePath) {
         try (FileReader reader = new FileReader(jsonFilePath)) {
             JsonObject jsonObject = JsonParser.parseReader(reader).getAsJsonObject();
-            JsonArray npcsArray = jsonObject.getAsJsonArray("npcs");
 
+            // Load player data
+            JsonObject playerObject = jsonObject.getAsJsonObject("player");
+            if (playerObject != null) {
+                this.player = createPlayer(playerObject);
+
+                // Extract and store player's location index
+                playerLocationIndex = playerObject.get("location").getAsString();
+
+                // Extract and store player's inventory
+                JsonArray inventoryArray = playerObject.getAsJsonArray("inventory");
+                for (JsonElement item : inventoryArray) {
+                    playerItemIndexes.add(item.getAsString());
+                }
+            }
+
+            // Load NPC data
+            JsonArray npcsArray = jsonObject.getAsJsonArray("npcs");
             if (npcsArray != null) {
                 for (JsonElement npcElement : npcsArray) {
                     NPC npc = createNPC(npcElement.getAsJsonObject());
@@ -44,22 +65,34 @@ public class NPCManager {
         }
     }
 
+    private Entity createEntity(JsonObject entityObject, boolean isNPC) {
+        String index = entityObject.get("index").getAsString();
+        String name = entityObject.get("name").getAsString();
+        int health = entityObject.get("health").getAsInt();
+        int strength = entityObject.get("strength").getAsInt();
+        int defense = entityObject.get("defense").getAsInt();
+        String detailedDescription = entityObject.get("detailed_description").getAsString();
+        boolean isAlive = entityObject.get("isAlive").getAsBoolean();
+
+        // Specific to NPC
+        boolean hostile = isNPC && entityObject.get("hostile").getAsBoolean();
+        List<String> dialogueOptions = isNPC ? parseDialogueOptions(entityObject.getAsJsonArray("dialogueOptions")) : null;
+        String questDetails = isNPC ? entityObject.get("questDetails").getAsString() : null;
+        boolean hidden = isNPC && entityObject.get("hidden").getAsBoolean();
+
+        if (isNPC) {
+            return new NPC(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive, hostile, dialogueOptions, questDetails, hidden);
+        } else {
+            return new Player(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive);
+        }
+    }
+
+    private Player createPlayer(JsonObject playerObject) {
+        return (Player) createEntity(playerObject, false);
+    }
+
     private NPC createNPC(JsonObject npcObject) {
-        String index = npcObject.get("index").getAsString();
-        String name = npcObject.get("name").getAsString();
-        int health = npcObject.get("health").getAsInt();
-        int strength = npcObject.get("strength").getAsInt();
-        int defense = npcObject.get("defense").getAsInt();
-        String detailedDescription = npcObject.get("detailed_description").getAsString();
-
-        boolean isAlive = npcObject.get("isAlive").getAsBoolean();
-        boolean hostile = npcObject.get("hostile").getAsBoolean();
-        List<String> dialogueOptions = parseDialogueOptions(npcObject.getAsJsonArray("dialogueOptions"));
-        String questDetails = npcObject.get("questDetails").getAsString();
-        boolean hidden = npcObject.get("hidden").getAsBoolean();
-
-        // Initialize NPC without location and inventory
-        return new NPC(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive, hostile, dialogueOptions, questDetails, hidden);
+        return (NPC) createEntity(npcObject, true);
     }
 
     private List<String> parseDialogueOptions(JsonArray dialogueOptionsArray) {
@@ -85,12 +118,24 @@ public class NPCManager {
         }
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
     public NPC getNPC(String index) {
         return npcs.get(index);
     }
 
     public Map<String, NPC> getAllNPCs() {
         return new HashMap<>(npcs);
+    }
+
+    public String getPlayerLocationIndex() {
+        return playerLocationIndex;
+    }
+
+    public List<String> getPlayerItemIndexes() {
+        return playerItemIndexes;
     }
 
     public String getNPCsLocationIndex(String npcIndex) {
