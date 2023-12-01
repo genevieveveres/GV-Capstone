@@ -3,6 +3,7 @@ package star.odyssey.ui;
 import com.apps.util.Prompter;
 import star.odyssey.game.GameManager;
 import star.odyssey.game.GameUtil;
+import star.odyssey.sound.BackgroundAudioPlayer;
 
 import java.util.Map;
 import java.util.Scanner;
@@ -35,6 +36,8 @@ public class MainMenu {
     }
 
     public void execute() {
+        BackgroundAudioPlayer backgroundAudioPlayer = new BackgroundAudioPlayer("data/audio/ambient_game_start.wav");
+        backgroundAudioPlayer.loop();
         displaySplash(); // Displaying the splash screen at startup.
         Map<String, String> optionsMap = readMainMenuFromJson();
 
@@ -62,11 +65,13 @@ public class MainMenu {
                     GameManager gameManager = new GameManager();
                     displayBackstory();
                     displayGameInfo();
+                    backgroundAudioPlayer.stop();
                     gameManager.startGame(); // Starting a new game.
                     validOption = true;
                     break;
                 case 2:
                     System.out.println("Load Game");
+                    backgroundAudioPlayer.stop();
                     validOption = true;
                     break;
                 case 3:

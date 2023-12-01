@@ -23,8 +23,9 @@ public class Location implements Describable, SerializableRPGObject {
     private Map<String, Location> connections;
     private List<NPC> npcs;
     private List<Item> items;
+    private String soundFilePath;
 
-    public Location(String index, String name, String description, String detailedDescription, List<NPC> npcs, List<Item> items) {
+    public Location(String index, String name, String description, String detailedDescription, List<NPC> npcs, List<Item> items, String soundFilePath) {
         this.index = index;
         this.name = name;
         this.description = description;
@@ -32,6 +33,7 @@ public class Location implements Describable, SerializableRPGObject {
         this.connections = new HashMap<>();
         this.npcs = npcs;
         this.items = items;
+        this.soundFilePath = soundFilePath;
     }
 
     // Getters and Setters
@@ -62,6 +64,10 @@ public class Location implements Describable, SerializableRPGObject {
 
     public List<Item> getItems() {
         return items;
+    }
+
+    public String getSoundFilePath() {
+        return soundFilePath;
     }
 
     // Action methods
