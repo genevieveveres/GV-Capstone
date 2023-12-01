@@ -3,11 +3,14 @@ package star.odyssey.command;
 import star.odyssey.game.GameState;
 import star.odyssey.game.GameUtil;
 import star.odyssey.location.Location;
+import star.odyssey.sound.BackgroundAudioPlayer;
 
 import java.util.Map;
 
 public class MoveCommand implements Command {
     private final GameState gameState;
+    private BackgroundAudioPlayer backgroundAudioPlayer;
+
     String gameTxtFilePath = "./data/gameText.json";
     private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "move_cmd");
 
