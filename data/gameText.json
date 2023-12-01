@@ -10,7 +10,7 @@
     "4": "Exit",
     "prompt": "Make a selection (1-",
     "promptend": ") >> ",
-    "invalid": "Invalid choice. Please select from the above options (1, 2, 3, ...)"
+    "invalid": "\nInvalid choice. Please select from the above options (1, 2, 3, ...)\n"
   },
   "npc_cmd_txt": {
     "ignored": " looks at you, then at a distant point in space, and opts for silence."

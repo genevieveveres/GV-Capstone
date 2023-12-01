@@ -40,6 +40,16 @@ public class ConsoleDisplayUtils {
         return "\u001B[95m" + txt + "\u001B[0m";
     }
 
+    //make green
+    public static String makeGreen(String txt) {
+        return "\u001B[32m" + txt + "\u001B[0m";
+    }
+
+    //make brown
+    public static String makeBrown(String txt) {
+        return "\u001B[33m" + txt + "\u001B[0m";
+    }
+
     public static String makeBackgroundGreen(String txt) {
         return "\033[42m" + txt + "\033[0m";
     }
