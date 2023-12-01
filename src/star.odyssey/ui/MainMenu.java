@@ -8,7 +8,6 @@ import star.odyssey.sound.BackgroundAudioPlayer;
 import java.util.Map;
 import java.util.Scanner;
 
-import static star.odyssey.ui.ConsoleDisplayUtils.clearScreen;
 import static star.odyssey.ui.ConsoleDisplayUtils.makeRed;
 import static star.odyssey.ui.DisplayBackstory.displayBackstory;
 import static star.odyssey.ui.DisplayGameInfo.displayGameInfo;

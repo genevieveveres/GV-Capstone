@@ -1,7 +1,9 @@
 package star.odyssey.command;
 
 import star.odyssey.map.GameMap;
-import static star.odyssey.ui.ConsoleDisplayUtils.*;
+
+import static star.odyssey.ui.ConsoleDisplayUtils.clearScreen;
+import static star.odyssey.ui.ConsoleDisplayUtils.pauseDisplay;
 
 public class MapCommand implements Command {
     private final GameMap gameMap;

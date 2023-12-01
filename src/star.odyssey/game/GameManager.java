@@ -79,6 +79,7 @@ public class GameManager {
                 Location location = locationManager.getLocation(locationIndex);
                 if (location != null) {
                     location.addNPC(npc);
+                    npc.setLocation(location);
                 }
             }
         });

@@ -29,7 +29,7 @@ public class Game {
             if (backgroundAudioPlayer != null) {
                 backgroundAudioPlayer.stop();
             }
-            backgroundAudioPlayer= new BackgroundAudioPlayer(soundFilePath);
+            backgroundAudioPlayer = new BackgroundAudioPlayer(soundFilePath);
             backgroundAudioPlayer.loop();
             // Main loop for game execution; process commands and update game state
             displayUI.displayMainUI();

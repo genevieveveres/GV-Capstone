@@ -72,7 +72,7 @@ public class LocationManager {
         List<NPC> npcsList = new ArrayList<>();
         List<Item> inventoryList = new ArrayList<>();
 
-        return new Location(index, name, description, detailedDescription, npcsList, inventoryList,soundFilePath);
+        return new Location(index, name, description, detailedDescription, npcsList, inventoryList, soundFilePath);
     }
 
     private List<String> parseIndexes(JsonArray indexesArray) {

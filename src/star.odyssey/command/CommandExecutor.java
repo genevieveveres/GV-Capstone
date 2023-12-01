@@ -21,6 +21,7 @@ public class CommandExecutor {
         commandMap.put("drop", new DropCommand(game.getGameState()));
         commandMap.put("talk", new TalkCommand(game.getGameState()));
         commandMap.put("heal", new HealCommand(game.getGameState()));
+        commandMap.put("save", new SaveCommand(game.getGameState()));
         commandMap.put("map", new MapCommand());
         // Initialize other commands as needed
     }
