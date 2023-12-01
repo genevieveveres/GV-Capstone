@@ -2,7 +2,9 @@ package star.odyssey.character;
 
 import star.odyssey.game.GameUtil;
 import star.odyssey.inventory.Item;
+import star.odyssey.inventory.ItemManager;
 import star.odyssey.location.Location;
+import star.odyssey.location.LocationManager;
 
 import java.util.List;
 import java.util.Map;
@@ -56,6 +58,17 @@ public class NPC extends Entity {
 
     public void dropLoot() {
         // Define loot dropping behavior upon NPC defeat
+    }
+
+    // Serialize and Deserialize
+    @Override
+    public String serialize() {
+        return null;
+    }
+
+    @Override
+    public void deserialize(String serializedData, ItemManager itemManager, LocationManager locationManager, EntityManager entityManager) {
+
     }
 
     // Additional methods if necessary...
