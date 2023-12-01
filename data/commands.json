@@ -116,5 +116,9 @@
     "support",
     "aid",
     "info"
+  ],
+  "map": [
+    "layout",
+    "world"
   ]
 }
