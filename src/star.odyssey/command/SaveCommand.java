@@ -3,6 +3,8 @@ package star.odyssey.command;
 import star.odyssey.game.GameSave;
 import star.odyssey.game.GameState;
 
+import java.io.IOException;
+
 public class SaveCommand implements Command {
 
     private final GameState gameState;
@@ -16,7 +18,7 @@ public class SaveCommand implements Command {
         try {
             GameSave.saveGame(gameState);
             return "Game saved successfully!";
-        } catch (Exception e) {
+        } catch (IOException e) {
             return "Error saving game: " + e.getMessage();
         }
     }
