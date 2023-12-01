@@ -82,6 +82,7 @@ public class Player extends Entity {
         Gson gson = new Gson();
         JsonObject jsonObject = new JsonObject();
 
+        jsonObject.addProperty("index", this.index);
         jsonObject.addProperty("health", this.health);
         jsonObject.addProperty("strength", this.strength);
         jsonObject.addProperty("defense", this.defense);
@@ -101,6 +102,7 @@ public class Player extends Entity {
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(serializedData, JsonObject.class);
 
+        this.setIndex(jsonObject.get("index").getAsString());
         this.setHealth(jsonObject.get("health").getAsInt());
         this.setStrength(jsonObject.get("strength").getAsInt());
         this.setDefense(jsonObject.get("defense").getAsInt());

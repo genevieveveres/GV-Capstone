@@ -1,14 +1,19 @@
 package star.odyssey.character;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import star.odyssey.game.GameUtil;
 import star.odyssey.inventory.Item;
 import star.odyssey.inventory.ItemManager;
 import star.odyssey.location.Location;
 import star.odyssey.location.LocationManager;
 
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class NPC extends Entity {
     private boolean hostile;
@@ -63,12 +68,66 @@ public class NPC extends Entity {
     // Serialize and Deserialize
     @Override
     public String serialize() {
-        return null;
+        Gson gson = new Gson();
+        JsonObject jsonObject = new JsonObject();
+
+        jsonObject.addProperty("index", this.index);
+        jsonObject.addProperty("health", this.health);
+        jsonObject.addProperty("strength", this.strength);
+        jsonObject.addProperty("defense", this.defense);
+        jsonObject.addProperty("isAlive", this.isAlive);
+        jsonObject.addProperty("locationIndex", this.location.getIndex());
+        jsonObject.addProperty("hostile", this.hostile);
+        jsonObject.addProperty("hidden", this.hidden);
+
+        // Serialize inventory as a list of item indices
+        List<String> inventoryIndices = this.inventory.stream()
+                .map(Item::getIndex)
+                .collect(Collectors.toList());
+        jsonObject.add("inventoryIndices", gson.toJsonTree(inventoryIndices));
+
+        return jsonObject.toString();
     }
 
     @Override
     public void deserialize(String serializedData, ItemManager itemManager, LocationManager locationManager, EntityManager entityManager) {
+        Gson gson = new Gson();
+        JsonObject jsonObject = gson.fromJson(serializedData, JsonObject.class);
 
+        this.setIndex(jsonObject.get("index").getAsString());
+        this.setHealth(jsonObject.get("health").getAsInt());
+        this.setStrength(jsonObject.get("strength").getAsInt());
+        this.setDefense(jsonObject.get("defense").getAsInt());
+        this.setAlive(jsonObject.get("isAlive").getAsBoolean());
+        this.setHostile(jsonObject.get("hostile").getAsBoolean());
+        this.setHidden(jsonObject.get("hidden").getAsBoolean());
+
+        String locationIndex = jsonObject.get("locationIndex").getAsString();
+        this.setLocation(locationManager.getLocation(locationIndex));
+
+        Type type = new TypeToken<List<String>>() {
+        }.getType();
+        List<String> itemIndices = gson.fromJson(jsonObject.get("inventoryIndices"), type);
+        this.setInventory(itemIndices.stream()
+                .map(itemManager::getItem)
+                .collect(Collectors.toList()));
+    }
+
+    // Getters and setters
+    public boolean isHostile() {
+        return hostile;
+    }
+
+    public void setHostile(boolean hostile) {
+        this.hostile = hostile;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
     }
 
     // Additional methods if necessary...

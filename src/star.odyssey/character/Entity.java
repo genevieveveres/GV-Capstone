@@ -1,13 +1,13 @@
 package star.odyssey.character;
 
 import star.odyssey.command.Describable;
-import star.odyssey.game.SerializableEntity;
+import star.odyssey.game.SerializableRPGObject;
 import star.odyssey.inventory.Item;
 import star.odyssey.location.Location;
 
 import java.util.List;
 
-public abstract class Entity implements Describable, SerializableEntity {
+public abstract class Entity implements Describable, SerializableRPGObject {
     protected String index;
     protected String name;
     protected int health;
