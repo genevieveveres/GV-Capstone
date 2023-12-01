@@ -24,8 +24,14 @@ public class ItemManager {
 
             if (itemsArray != null) {
                 for (JsonElement itemElement : itemsArray) {
-                    Item item = createItem(itemElement.getAsJsonObject());
-                    items.put(item.getIndex(), item);
+                    String type = itemElement.getAsJsonObject().get("type").getAsString();
+                    if (type.equals("item")) {
+                        Item item = createItem(itemElement.getAsJsonObject());
+                        items.put(item.getIndex(), item);
+                    } else if (type.equals("weapon")) {
+                        Weapon weapon = createWeapon(itemElement.getAsJsonObject());
+                        items.put(weapon.getIndex(), weapon);
+                    }
                 }
             }
         } catch (Exception e) {
@@ -33,7 +39,7 @@ public class ItemManager {
         }
     }
 
-    private Item createItem(JsonObject itemObject) {
+    private Item createBaseItem(JsonObject itemObject) {
         String index = itemObject.get("index").getAsString();
         String name = itemObject.get("name").getAsString();
         String description = itemObject.get("description").getAsString();
@@ -44,6 +50,19 @@ public class ItemManager {
         boolean movable = itemObject.get("movable").getAsBoolean();
 
         return new Item(index, name, description, detailedDescription, usable, active, hidden, movable);
+    }
+
+    private Item createItem(JsonObject itemObject) {
+        return createBaseItem(itemObject);
+    }
+
+    private Weapon createWeapon(JsonObject itemObject) {
+        Item baseItem = createBaseItem(itemObject);
+        int damage = itemObject.get("damage").getAsInt();
+        int range = itemObject.get("range").getAsInt();
+        int durability = itemObject.get("durability").getAsInt();
+
+        return new Weapon(baseItem.getIndex(), baseItem.getName(), baseItem.getDescription(), baseItem.getDetailedDescription(), baseItem.isUsable(), baseItem.isActive(), baseItem.isHidden(), baseItem.isMovable(), damage, range, durability);
     }
 
     public Item getItem(String index) {

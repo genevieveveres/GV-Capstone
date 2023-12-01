@@ -3,13 +3,18 @@ package star.odyssey.command;
 import star.odyssey.character.NPC;
 import star.odyssey.character.Player;
 import star.odyssey.game.GameState;
+import star.odyssey.game.GameUtil;
 import star.odyssey.inventory.Item;
 import star.odyssey.location.Location;
+
+import java.util.Map;
 
 import static star.odyssey.ui.ConsoleDisplayUtils.wrapText;
 
 public class LookCommand implements Command {
     private final Player player;
+    String gameTxtFilePath = "./data/gameText.json";
+    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "look_cmd");
 
     public LookCommand(GameState gameState) {
         this.player = gameState.getPlayer();
@@ -21,7 +26,7 @@ public class LookCommand implements Command {
         if (target != null) {
             return wrapText(target.getDetailedDescription());
         } else {
-            return "You don't see anything special.";
+            return txtMap.get("target_null");
         }
     }
 
@@ -41,7 +46,7 @@ public class LookCommand implements Command {
         }
 
         // Search for a matching item in the current location
-        for (Item item : currentLocation.getInventory()) {
+        for (Item item : currentLocation.getItems()) {
             if (item.getName().equalsIgnoreCase(noun)) {
                 return item;
             }

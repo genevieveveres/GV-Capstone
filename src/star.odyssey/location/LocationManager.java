@@ -66,12 +66,13 @@ public class LocationManager {
         String name = locationObject.get("name").getAsString();
         String description = locationObject.get("description").getAsString();
         String detailedDescription = locationObject.get("detailed_description").getAsString();
+        String soundFilePath = locationObject.get("soundFilePath").getAsString();
 
         // Initialize with empty lists for NPCs and items
         List<NPC> npcsList = new ArrayList<>();
         List<Item> inventoryList = new ArrayList<>();
 
-        return new Location(index, name, description, detailedDescription, npcsList, inventoryList);
+        return new Location(index, name, description, detailedDescription, npcsList, inventoryList, soundFilePath);
     }
 
     private List<String> parseIndexes(JsonArray indexesArray) {

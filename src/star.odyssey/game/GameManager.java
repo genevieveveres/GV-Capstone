@@ -1,71 +1,93 @@
 package star.odyssey.game;
 
-import star.odyssey.character.NPCManager;
+import star.odyssey.character.EntityManager;
 import star.odyssey.character.Player;
 import star.odyssey.inventory.Item;
 import star.odyssey.inventory.ItemManager;
 import star.odyssey.location.Location;
 import star.odyssey.location.LocationManager;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class GameManager {
     private final Game game;
     private final GameState gameState;
-    private ItemManager itemManager;
-    private NPCManager npcManager;
+    private final ItemManager itemManager;
+    private final EntityManager entityManager;
     private final LocationManager locationManager;
+    String gameTxtFilePath = "./data/gameText.json";
+    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "game_mgr");
 
     public GameManager() {
         // Initialize managers independently
         itemManager = new ItemManager("./data/items.json");
-        npcManager = new NPCManager("./data/npcs.json");
+        entityManager = new EntityManager("./data/entities.json");
         locationManager = new LocationManager("./data/locations.json");
 
-        // Load and retrieve the starting location
-        String startingLocationId = "ship_storeroom";
-        Location startingLocation = locationManager.getLocation(startingLocationId);
+        Player player = entityManager.getPlayer();
+        validatePlayer(player);
 
-        // Ensure the starting location is not null
-        if (startingLocation == null) {
-            throw new IllegalStateException("Starting location not found in game data");
-        }
-
-        // Create a Player instance with the starting location
-        Player player = new Player("alex", "Alex", 100, 10, 5, "A brave explorer", startingLocation, new ArrayList<>(), true);
+        // Associate entities
+        associateEntities(player);
 
         // Create the GameState
-        gameState = new GameState(player, npcManager, itemManager, locationManager);
+        gameState = new GameState(player, entityManager, itemManager, locationManager);
 
         // Create the game instance
         game = new Game(gameState);
-
-        // Associate entities
-        associateEntities();
     }
 
-    private void associateEntities() {
+    private void associateEntities(Player player) {
+        associatePlayerWithLocation(player);
+        associatePlayerWithItems(player);
         associateNPCsWithLocations();
         associateItemsWithNPCs();
         associateItemsWithLocations();
     }
 
+    private void validatePlayer(Player player) {
+        if (player == null) {
+            throw new IllegalStateException(txtMap.get("player_null"));
+        }
+    }
+
+    private void associatePlayerWithLocation(Player player) {
+        String locationIndex = entityManager.getPlayerLocationIndex();
+        Location startingLocation = locationManager.getLocation(locationIndex);
+        if (startingLocation != null) {
+            player.setLocation(startingLocation);
+        } else {
+            throw new IllegalStateException(txtMap.get("location_null"));
+        }
+    }
+
+    private void associatePlayerWithItems(Player player) {
+        List<String> itemIndexes = entityManager.getPlayerItemIndexes();
+        for (String itemIndex : itemIndexes) {
+            Item item = itemManager.getItem(itemIndex);
+            if (item != null) {
+                player.getInventory().add(item);
+            }
+        }
+    }
+
     private void associateNPCsWithLocations() {
-        npcManager.getAllNPCs().values().forEach(npc -> {
-            String locationIndex = npcManager.getNPCsLocationIndex(npc.getIndex());
+        entityManager.getAllNPCs().values().forEach(npc -> {
+            String locationIndex = entityManager.getNPCsLocationIndex(npc.getIndex());
             if (locationIndex != null) {
                 Location location = locationManager.getLocation(locationIndex);
                 if (location != null) {
                     location.addNPC(npc);
+                    npc.setLocation(location);
                 }
             }
         });
     }
 
     private void associateItemsWithNPCs() {
-        npcManager.getAllNPCs().values().forEach(npc -> {
-            List<String> itemIndexes = npcManager.getNPCsItemIndexes(npc.getIndex());
+        entityManager.getAllNPCs().values().forEach(npc -> {
+            List<String> itemIndexes = entityManager.getNPCsItemIndexes(npc.getIndex());
             itemIndexes.forEach(itemIndex -> {
                 Item item = itemManager.getItem(itemIndex);
                 if (item != null) {

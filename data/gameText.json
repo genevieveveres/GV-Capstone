@@ -1,5 +1,71 @@
 {
-  "backstory": "In the not-so-distant future on Earth, you are a skilled astrophysicist fueled by an insatiable\ncuriosity about the cosmos. You passion for exploration led you to work on a groundbreaking\ninterstellar mission named Project Odyssey, aimed at discovering habitable exoplanets and potential\nextraterrestrial life.\n\nDriven by a desire to transcend the boundaries of our solar system, you volunteered to be part of\nthe maiden voyage of the interstellar spacecraft. The mission was ambitious, fueled by a collective\nyearning to uncover the mysteries of the universe and find a new home for humanity. The crew, besides\nyou, consists entirely of advanced AI entities, each specializing in a specific aspect of the mission.\n\nAs the spacecraft ventured into the vastness of space, unforeseen challenges emerged. A cosmic anomaly,\npreviously unknown to Earth's scientists, disrupted the ship's navigation systems, sending it off\ncourse and into an uncharted region of the galaxy. The crew, resilient and resourceful, faced the\ndaunting task of navigating through this cosmic labyrinth.\n\nThe odyssey took an unexpected turn when the spacecraft encountered a gravitational anomaly near an\nalien world. Desperate attempts to correct the trajectory led to a critical malfunction, causing the\nship to crash-land on the enigmatic planet. The impact was severe, damaging vital systems and leaving\nyou stranded in the midst of an alien landscape, far from the intended destination.\n\nNow, marooned on the unfamiliar planet, your odyssey has transformed into a tale of survival,\nexploration, and connection with an alien civilization. The challenges and discoveries that unfold in\nthe wake of the crash become a pivotal chapter in your journey—a journey that began with a dream of\nexploring the cosmos and now unfolds amidst the mysteries and wonders of an uncharted celestial realm.",
+  "backstory": "In the not-so-distant future on Earth, you are a skilled astrophysicist fueled by an insatiable curiosity about the cosmos. You passion for exploration led you to work on a groundbreaking interstellar mission named Project Odyssey, aimed at discovering habitable exoplanets and potential extraterrestrial life. \nDriven by a desire to transcend the boundaries of our solar system, you volunteered to be part of the maiden voyage of the interstellar spacecraft. The mission was ambitious, fueled by a collective yearning to uncover the mysteries of the universe and find a new home for humanity. The crew, besides you, consists entirely of advanced AI entities, each specializing in a specific aspect of the mission.  As the spacecraft ventured into the vastness of space, unforeseen challenges emerged. A cosmic anomaly, previously unknown to Earth's scientists, disrupted the ship's navigation systems, sending it off course and into an uncharted region of the galaxy. The crew, resilient and resourceful, faced the daunting task of navigating through this cosmic labyrinth.  The odyssey took an unexpected turn when the spacecraft encountered a gravitational anomaly near an alien world. Desperate attempts to correct the trajectory led to a critical malfunction, causing the ship to crash-land on the enigmatic planet. The impact was severe, damaging vital systems and leaving you stranded in the midst of an alien landscape, far from the intended destination. \nNow, marooned on the unfamiliar planet, your odyssey has transformed into a tale of survival, exploration, and connection with an alien civilization. The challenges and discoveries that unfold in the wake of the crash become a pivotal chapter in your journey—a journey that began with a dream of exploring the cosmos and now unfolds amidst the mysteries and wonders of an uncharted celestial realm.",
   "gameinfo": "As you embark upon your mission to explore this world and repair your ship.\nHere are some basic commands:\n\nNavigation:\n    Use cardinal directions to explore. (e.g., \"Go North\")\n    Type \"Look\" to observe your surroundings.\n    Type \"Search\"\n\nInteraction:\n    To examine items or creatures, use \"Examine\"\n    Collect items with \"Take\" or \"Get\"\n    Engage in dialogue with creatures using \"Talk\"\n\nCommands:\n    For a list of available commands, type \"Help\" at any time.\n    Experiment with different commands to interact with the environment.",
-  "splashscreen": "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n░░██████╗████████╗░█████╗░██████╗░░░░░░█████╗░██████╗░██╗░░░██╗░██████╗░██████╗███████╗██╗░░░██╗░░░░░\n░██╔════╝╚══██╔══╝██╔══██╗██╔══██╗░░░░██╔══██╗██╔══██╗╚██╗░██╔╝██╔════╝██╔════╝██╔════╝╚██╗░██╔╝██╗░░\n░╚█████╗░░░░██║░░░███████║██████╔╝░░░░██║░░██║██║░░██║░╚████╔╝░╚█████╗░╚█████╗░█████╗░░░╚████╔╝░╚═╝░░\n░░╚═══██╗░░░██║░░░██╔══██║██╔══██╗░░░░██║░░██║██║░░██║░░╚██╔╝░░░╚═══██╗░╚═══██╗██╔══╝░░░░╚██╔╝░░░░░░░\n░██████╔╝░░░██║░░░██║░░██║██║░░██║░░░░╚█████╔╝██████╔╝░░░██║░░░██████╔╝██████╔╝███████╗░░░██║░░░██╗░░\n░╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝░░░░░╚════╝░╚═════╝░░░░╚═╝░░░╚═════╝░╚═════╝░╚══════╝░░░╚═╝░░░╚═╝░░\n░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n░██╗░░░░░░█████╗░███╗░░██╗███████╗░░░░░██████╗██╗░░░██╗██████╗░██╗░░░██╗██╗██╗░░░██╗░█████╗░██████╗░░\n░██║░░░░░██╔══██╗████╗░██║██╔════╝░░░░██╔════╝██║░░░██║██╔══██╗██║░░░██║██║██║░░░██║██╔══██╗██╔══██╗░\n░██║░░░░░██║░░██║██╔██╗██║█████╗░░░░░░╚█████╗░██║░░░██║██████╔╝╚██╗░██╔╝██║╚██╗░██╔╝██║░░██║██████╔╝░\n░██║░░░░░██║░░██║██║╚████║██╔══╝░░░░░░░╚═══██╗██║░░░██║██╔══██╗░╚████╔╝░██║░╚████╔╝░██║░░██║██╔══██╗░\n░███████╗╚█████╔╝██║░╚███║███████╗░░░░██████╔╝╚██████╔╝██║░░██║░░╚██╔╝░░██║░░╚██╔╝░░╚█████╔╝██║░░██║░\n░╚══════╝░╚════╝░╚═╝░░╚══╝╚══════╝░░░░╚═════╝░░╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝░\n░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░"
+  "splashscreen": "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n░░██████╗████████╗░█████╗░██████╗░░░░░░█████╗░██████╗░██╗░░░██╗░██████╗░██████╗███████╗██╗░░░██╗░░░░░\n░██╔════╝╚══██╔══╝██╔══██╗██╔══██╗░░░░██╔══██╗██╔══██╗╚██╗░██╔╝██╔════╝██╔════╝██╔════╝╚██╗░██╔╝██╗░░\n░╚█████╗░░░░██║░░░███████║██████╔╝░░░░██║░░██║██║░░██║░╚████╔╝░╚█████╗░╚█████╗░█████╗░░░╚████╔╝░╚═╝░░\n░░╚═══██╗░░░██║░░░██╔══██║██╔══██╗░░░░██║░░██║██║░░██║░░╚██╔╝░░░╚═══██╗░╚═══██╗██╔══╝░░░░╚██╔╝░░░░░░░\n░██████╔╝░░░██║░░░██║░░██║██║░░██║░░░░╚█████╔╝██████╔╝░░░██║░░░██████╔╝██████╔╝███████╗░░░██║░░░██╗░░\n░╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝░░░░░╚════╝░╚═════╝░░░░╚═╝░░░╚═════╝░╚═════╝░╚══════╝░░░╚═╝░░░╚═╝░░\n░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n░██╗░░░░░░█████╗░███╗░░██╗███████╗░░░░░██████╗██╗░░░██╗██████╗░██╗░░░██╗██╗██╗░░░██╗░█████╗░██████╗░░\n░██║░░░░░██╔══██╗████╗░██║██╔════╝░░░░██╔════╝██║░░░██║██╔══██╗██║░░░██║██║██║░░░██║██╔══██╗██╔══██╗░\n░██║░░░░░██║░░██║██╔██╗██║█████╗░░░░░░╚█████╗░██║░░░██║██████╔╝╚██╗░██╔╝██║╚██╗░██╔╝██║░░██║██████╔╝░\n░██║░░░░░██║░░██║██║╚████║██╔══╝░░░░░░░╚═══██╗██║░░░██║██╔══██╗░╚████╔╝░██║░╚████╔╝░██║░░██║██╔══██╗░\n░███████╗╚█████╔╝██║░╚███║███████╗░░░░██████╔╝╚██████╔╝██║░░██║░░╚██╔╝░░██║░░╚██╔╝░░╚█████╔╝██║░░██║░\n░╚══════╝░╚════╝░╚═╝░░╚══╝╚══════╝░░░░╚═════╝░░╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝░\n░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░",
+  "main_menu": {
+    "heading": "Please select an option:",
+    "1": "New Game",
+    "2": "Load Game <Future feature in next release>",
+    "3": "Display Backstory and Basic Game Information",
+    "4": "Exit",
+    "prompt": "Make a selection (1-",
+    "promptend": ") >> ",
+    "invalid": "\nInvalid choice. Please select from the above options (1, 2, 3, ...)\n"
+  },
+  "npc_cmd_txt": {
+    "ignored": " looks at you, then at a distant point in space, and opts for silence."
+  },
+  "player_cmd_txt": {
+    "item_unmovable": " is stubbornly rooted like a space rock. It's not going anywhere.",
+    "item_hidden": " must be cloaked in invisibility! It's beyond your grasp.",
+    "item_inactive": " appears dormant, like a hibernating alien. Maybe try again when it's awake?.",
+    "item_get": " has been successfully teleported to your inventory",
+    "item_drop": " has been dropped. It's now contemplating its life choices on the ground.",
+    "item_drop_fail": "The art of letting go is profound, but first it helps if you actually had "
+  },
+  "cmd_config": {
+    "synonym_error": "Warning: Repeated synonyms found: "
+  },
+  "cmd_executor": {
+    "cmd_failure": "Looks like that command hit a black hole\nTry 'help' to find your way back on the starry path"
+  },
+  "drop_cmd": {
+    "drop_fail": "You whisper 'drop' into the void, but it seems the void needs a little more info to comply."
+  },
+  "get_cmd": {
+    "item_unknown": "It seems like you're trying to get something, but what exactly?",
+    "item_null": " might exist in an alternate universe. Sadly, not in this one."
+  },
+  "help_cmd": {
+    "builderStart": "Available Commands:\n"
+  },
+  "look_cmd": {
+    "target_null": "You don't see anything special."
+  },
+  "save_cmd": {
+    "save_successful": "Game saved successfully",
+    "save_failed": "Error: Failed to save the game due to "
+  },
+  "move_cmd": {
+    "direction_null": "You need to specify a direction to go.",
+    "direction_unknown": "You can't go that way.",
+    "move_success": "You moved to "
+  },
+  "heal_cmd": {
+    "heal_yourself": "You whip out your emergency healing kit. Good as new!",
+    "heal_npc_beginning": "As the healing energy flows into ",
+    "heal_npc_end": ", they chuckle, 'I haven't felt this good since I discovered space-coffee!'",
+    "heal_null_beginning": "Your attempt to remote-heal ",
+    "heal_null_end": " fails. If only your powers extended beyond this location."
+  },
+  "quit_cmd": {
+    "quit_question": "Thinking of warping back to reality? (yes/no)\n>",
+    "quit_confirm": "Rocketing back to normalcy! Remember, Earth has no glowing trees or melody mountains",
+    "quit_deny": "That’s the spirit! Who needs Earth when you’ve got an alien world to explore?",
+    "quit_fail": "Oops! Even the Luminara need clear signals"
+  },
+  "talk_cmd": {
+    "talk_null": "Talking to the void? It's a good listener but not much of a talker. Try naming someone!",
+    "talk_unknown": ", seems to be off on their own adventure. Or just really good at hide and seek."
+  }
 }

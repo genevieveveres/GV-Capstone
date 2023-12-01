@@ -1,12 +1,13 @@
 package star.odyssey.character;
 
 import star.odyssey.command.Describable;
+import star.odyssey.game.SerializableRPGObject;
 import star.odyssey.inventory.Item;
 import star.odyssey.location.Location;
 
 import java.util.List;
 
-public abstract class Entity implements Describable {
+public abstract class Entity implements Describable, SerializableRPGObject {
     protected String index;
     protected String name;
     protected int health;
@@ -38,7 +39,51 @@ public abstract class Entity implements Describable {
 
     public abstract void defend();
 
+    public void heal() {
+        this.health += 10;
+    }
+
     // Getters and setters
+    public void setIndex(String index) {
+        this.index = index;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    public void setInventory(List<Item> inventory) {
+        this.inventory = inventory;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
     public String getIndex() {
         return index;
     }

@@ -1,8 +1,13 @@
 package star.odyssey.inventory;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import star.odyssey.character.EntityManager;
 import star.odyssey.command.Describable;
+import star.odyssey.game.SerializableRPGObject;
+import star.odyssey.location.LocationManager;
 
-public class Item implements Describable {
+public class Item implements Describable, SerializableRPGObject {
     private String index;
     private String name;
     private String description;
@@ -36,9 +41,53 @@ public class Item implements Describable {
         return name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public String getDetailedDescription() {
         return detailedDescription;
+    }
+
+    public boolean isUsable() {
+        return usable;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public boolean isMovable() {
+        return movable;
+    }
+
+    // Serialize and Deserialize
+    @Override
+    public String serialize() {
+        Gson gson = new Gson();
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("index", index);
+        jsonObject.addProperty("usable", usable);
+        jsonObject.addProperty("active", active);
+        jsonObject.addProperty("hidden", hidden);
+        jsonObject.addProperty("movable", movable);
+        return gson.toJson(jsonObject);
+    }
+
+    @Override
+    public void deserialize(String serializedData, ItemManager itemManager, LocationManager locationManager, EntityManager entityManager) {
+        Gson gson = new Gson();
+        JsonObject jsonObject = gson.fromJson(serializedData, JsonObject.class);
+        this.index = jsonObject.get("index").getAsString();
+        this.usable = jsonObject.get("usable").getAsBoolean();
+        this.active = jsonObject.get("active").getAsBoolean();
+        this.hidden = jsonObject.get("hidden").getAsBoolean();
+        this.movable = jsonObject.get("movable").getAsBoolean();
     }
 
     // Additional methods if necessary...

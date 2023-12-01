@@ -36,6 +36,20 @@ public class ConsoleDisplayUtils {
         return "\u001B[36m" + txt + "\u001B[0m";
     }
 
+    public static String makeMagenta(String txt) {
+        return "\u001B[95m" + txt + "\u001B[0m";
+    }
+
+    //make green
+    public static String makeGreen(String txt) {
+        return "\u001B[32m" + txt + "\u001B[0m";
+    }
+
+    //make brown
+    public static String makeBrown(String txt) {
+        return "\u001B[33m" + txt + "\u001B[0m";
+    }
+
     public static String makeBackgroundGreen(String txt) {
         return "\033[42m" + txt + "\033[0m";
     }
@@ -45,8 +59,27 @@ public class ConsoleDisplayUtils {
     }
 
     public static void printDivider() {
-        System.out.println(makeRed("==================================================================================================="));
+        printDivider(100, "");
     }
+
+    public static void printDivider(String title) {
+        printDivider(100, title);
+    }
+
+    public static void printDivider(int totalLength, String title) {
+        int remainingEquals = Math.max(0, totalLength - title.length());
+
+        System.out.println(makeRed("==" + makeCyan(title) + makeRed(repeatCharacter('=', remainingEquals))));
+    }
+
+    private static String repeatCharacter(char character, int count) {
+        StringBuilder result = new StringBuilder(count);
+        for (int i = 0; i < count; i++) {
+            result.append(character);
+        }
+        return result.toString();
+    }
+
 
     // Centers text on console
     public static String centerText(int width, String text) {

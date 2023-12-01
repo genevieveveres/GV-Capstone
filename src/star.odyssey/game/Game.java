@@ -1,6 +1,7 @@
 package star.odyssey.game;
 
 import star.odyssey.command.CommandManager;
+import star.odyssey.sound.BackgroundAudioPlayer;
 import star.odyssey.ui.DisplayUI;
 
 public class Game {
@@ -8,6 +9,7 @@ public class Game {
     private boolean isRunning;
     private final CommandManager commandManager;
     private final DisplayUI displayUI;
+    private BackgroundAudioPlayer backgroundAudioPlayer = null;
 
     public Game(GameState gameState) {
         this.gameState = gameState;
@@ -23,6 +25,12 @@ public class Game {
 
     private void mainGameLoop() {
         while (isRunning) {
+            String soundFilePath = getGameState().getPlayer().getLocation().getSoundFilePath();
+            if (backgroundAudioPlayer != null) {
+                backgroundAudioPlayer.stop();
+            }
+            backgroundAudioPlayer = new BackgroundAudioPlayer(soundFilePath);
+            backgroundAudioPlayer.loop();
             // Main loop for game execution; process commands and update game state
             displayUI.displayMainUI();
             String lastCommandResult = commandManager.getLastCommandResult();
