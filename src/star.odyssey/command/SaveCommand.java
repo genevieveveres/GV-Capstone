@@ -2,12 +2,15 @@ package star.odyssey.command;
 
 import star.odyssey.game.GameSave;
 import star.odyssey.game.GameState;
+import star.odyssey.game.GameUtil;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class SaveCommand implements Command {
-
     private final GameState gameState;
+    String gameTxtFilePath = "./data/gameText.json";
+    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "save_cmd");
 
     public SaveCommand(GameState gameState) {
         this.gameState = gameState;
@@ -17,9 +20,9 @@ public class SaveCommand implements Command {
     public String execute(String noun) {
         try {
             GameSave.saveGame(gameState);
-            return "Game saved successfully!";
+            return txtMap.get("save_successful");
         } catch (IOException e) {
-            return "Error saving game: " + e.getMessage();
+            return txtMap.get("save_failed") + e.getMessage();
         }
     }
 }

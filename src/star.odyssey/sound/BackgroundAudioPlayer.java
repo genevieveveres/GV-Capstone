@@ -24,6 +24,7 @@ public class BackgroundAudioPlayer {
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
     }
+
     public void stop() {
         if (clip != null && clip.isRunning()) {
             clip.stop();
