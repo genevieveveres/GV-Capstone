@@ -22,12 +22,14 @@ public class MoveCommand implements Command {
         }
 
         Location currentLocation = gameState.getPlayer().getLocation();
+        gameState.getLocationManager().setVisitedLocations(currentLocation.getIndex());
         Location nextLocation = currentLocation.getConnections().get(direction);
 
         if (nextLocation == null) {
             return txtMap.get("direction_unknown");
         } else {
             gameState.getPlayer().setLocation(nextLocation);
+            gameState.getLocationManager().setVisitedLocations(nextLocation.getIndex());
             return txtMap.get("move_success") + nextLocation.getName();
         }
     }
