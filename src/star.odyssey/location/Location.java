@@ -1,14 +1,21 @@
 package star.odyssey.location;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import star.odyssey.character.EntityManager;
 import star.odyssey.character.NPC;
 import star.odyssey.command.Describable;
+import star.odyssey.game.SerializableRPGObject;
 import star.odyssey.inventory.Item;
+import star.odyssey.inventory.ItemManager;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Location implements Describable {
+public class Location implements Describable, SerializableRPGObject {
     private String index;
     private String name;
     private String description;
@@ -16,8 +23,9 @@ public class Location implements Describable {
     private Map<String, Location> connections;
     private List<NPC> npcs;
     private List<Item> items;
+    private String soundFilePath;
 
-    public Location(String index, String name, String description, String detailedDescription, List<NPC> npcs, List<Item> items) {
+    public Location(String index, String name, String description, String detailedDescription, List<NPC> npcs, List<Item> items, String soundFilePath) {
         this.index = index;
         this.name = name;
         this.description = description;
@@ -25,6 +33,7 @@ public class Location implements Describable {
         this.connections = new HashMap<>();
         this.npcs = npcs;
         this.items = items;
+        this.soundFilePath = soundFilePath;
     }
 
     // Getters and Setters
@@ -57,6 +66,10 @@ public class Location implements Describable {
         return items;
     }
 
+    public String getSoundFilePath() {
+        return soundFilePath;
+    }
+
     // Action methods
     public void addConnection(String direction, Location location) {
         this.connections.put(direction, location);
@@ -85,6 +98,63 @@ public class Location implements Describable {
 
     public void removeItem(Item item) {
         this.items.remove(item);
+    }
+
+    // Serialize and Deserialize
+    @Override
+    public String serialize() {
+        Gson gson = new Gson();
+        JsonObject jsonObject = new JsonObject();
+
+        // Serialize the index
+        jsonObject.addProperty("index", this.index);
+
+        // Serialize NPC indices
+        JsonArray npcIndices = new JsonArray();
+        for (NPC npc : npcs) {
+            npcIndices.add(npc.getIndex());
+        }
+        jsonObject.add("npcIndices", npcIndices);
+
+        // Serialize Item indices
+        JsonArray itemIndices = new JsonArray();
+        for (Item item : items) {
+            itemIndices.add(item.getIndex());
+        }
+        jsonObject.add("itemIndices", itemIndices);
+
+        return gson.toJson(jsonObject);
+    }
+
+    @Override
+    public void deserialize(String serializedData, ItemManager itemManager, LocationManager locationManager, EntityManager entityManager) {
+        Gson gson = new Gson();
+        JsonObject jsonObject = gson.fromJson(serializedData, JsonObject.class);
+
+        // Set index
+        this.index = jsonObject.get("index").getAsString();
+
+        // Deserialize NPCs
+        JsonArray npcIndices = jsonObject.getAsJsonArray("npcIndices");
+        this.npcs.clear();
+        for (JsonElement element : npcIndices) {
+            String npcIndex = element.getAsString();
+            NPC npc = entityManager.getNPC(npcIndex);
+            if (npc != null) {
+                this.npcs.add(npc);
+            }
+        }
+
+        // Deserialize Items
+        JsonArray itemIndices = jsonObject.getAsJsonArray("itemIndices");
+        this.items.clear();
+        for (JsonElement element : itemIndices) {
+            String itemIndex = element.getAsString();
+            Item item = itemManager.getItem(itemIndex);
+            if (item != null) {
+                this.items.add(item);
+            }
+        }
     }
 
     // Additional methods if necessary...

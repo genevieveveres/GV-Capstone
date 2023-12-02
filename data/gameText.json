@@ -42,6 +42,10 @@
   "look_cmd": {
     "target_null": "You don't see anything special."
   },
+  "save_cmd": {
+    "save_successful": "Game saved successfully",
+    "save_failed": "Error: Failed to save the game due to "
+  },
   "move_cmd": {
     "direction_null": "You need to specify a direction to go.",
     "direction_unknown": "You can't go that way.",
