@@ -2,6 +2,7 @@ package star.odyssey.game;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import star.odyssey.character.EntityManager;
 import star.odyssey.character.NPC;
@@ -25,7 +26,6 @@ public class GameState implements SerializableRPGObject {
     }
 
     // Getters and setters
-
     public Player getPlayer() {
         return player;
     }
@@ -49,7 +49,7 @@ public class GameState implements SerializableRPGObject {
         JsonObject gameStateJson = new JsonObject();
 
         // Serialize Player
-        gameStateJson.addProperty("player", player.serialize());
+        gameStateJson.add("player", gson.fromJson(player.serialize(), JsonObject.class));
 
         // Serialize NPCs
         JsonArray npcsJson = new JsonArray();
@@ -78,7 +78,53 @@ public class GameState implements SerializableRPGObject {
 
     @Override
     public void deserialize(String serializedData, ItemManager itemManager, LocationManager locationManager, EntityManager entityManager) {
+        Gson gson = new Gson();
+        JsonObject gameStateJson = gson.fromJson(serializedData, JsonObject.class);
 
+        // Deserialize Player
+        if (gameStateJson.has("player")) {
+            JsonObject playerJson = gameStateJson.getAsJsonObject("player");
+            this.player.deserialize(playerJson.toString(), itemManager, locationManager, entityManager);
+        }
+
+        // Deserialize NPCs
+        if (gameStateJson.has("npcs")) {
+            JsonArray npcsJson = gameStateJson.getAsJsonArray("npcs");
+            for (JsonElement npcElement : npcsJson) {
+                JsonObject npcJson = npcElement.getAsJsonObject();
+                String npcIndex = npcJson.get("index").getAsString();
+                NPC npc = entityManager.getNPC(npcIndex);
+                if (npc != null) {
+                    npc.deserialize(npcJson.toString(), itemManager, locationManager, entityManager);
+                }
+            }
+        }
+
+        // Deserialize Locations
+        if (gameStateJson.has("locations")) {
+            JsonArray locationsJson = gameStateJson.getAsJsonArray("locations");
+            for (JsonElement locationElement : locationsJson) {
+                JsonObject locationJson = locationElement.getAsJsonObject();
+                String locationIndex = locationJson.get("index").getAsString();
+                Location location = locationManager.getLocation(locationIndex);
+                if (location != null) {
+                    location.deserialize(locationJson.toString(), itemManager, locationManager, entityManager);
+                }
+            }
+        }
+
+        // Deserialize Items
+        if (gameStateJson.has("items")) {
+            JsonArray itemsJson = gameStateJson.getAsJsonArray("items");
+            for (JsonElement itemElement : itemsJson) {
+                JsonObject itemJson = itemElement.getAsJsonObject();
+                String itemIndex = itemJson.get("index").getAsString();
+                Item item = itemManager.getItem(itemIndex);
+                if (item != null) {
+                    item.deserialize(itemJson.toString(), itemManager, locationManager, entityManager);
+                }
+            }
+        }
     }
 
 

@@ -60,9 +60,9 @@ public class MainMenu {
                 userOption = Integer.parseInt(prompter.prompt(promtString));
             } catch (Exception ignored) {
             }
+            GameManager gameManager = new GameManager();
             switch (userOption) {
                 case 1:
-                    GameManager gameManager = new GameManager();
                     displayBackstory();
                     displayGameInfo();
                     backgroundAudioPlayer.stop();
@@ -70,8 +70,10 @@ public class MainMenu {
                     validOption = true;
                     break;
                 case 2:
-                    System.out.println("Load Game");
+                    displayBackstory();
+                    displayGameInfo();
                     backgroundAudioPlayer.stop();
+                    gameManager.loadSavedGame(); // Loading a previously saved game.
                     validOption = true;
                     break;
                 case 3:

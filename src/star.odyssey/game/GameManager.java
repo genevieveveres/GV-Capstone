@@ -11,31 +11,39 @@ import java.util.List;
 import java.util.Map;
 
 public class GameManager {
-    private final Game game;
-    private final GameState gameState;
+    private Game game;
+    private GameState gameState;
     private final ItemManager itemManager;
     private final EntityManager entityManager;
     private final LocationManager locationManager;
-    String gameTxtFilePath = "./data/gameText.json";
-    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "game_mgr");
+    private final String gameTxtFilePath = "./data/gameText.json";
+    private final Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "game_mgr");
 
     public GameManager() {
-        // Initialize managers independently
-        itemManager = new ItemManager("./data/items.json");
-        entityManager = new EntityManager("./data/entities.json");
-        locationManager = new LocationManager("./data/locations.json");
+        this.itemManager = new ItemManager("./data/items.json");
+        this.entityManager = new EntityManager("./data/entities.json");
+        this.locationManager = new LocationManager("./data/locations.json");
 
+        initializeNewGame();
+    }
+
+    private void initializeNewGame() {
         Player player = entityManager.getPlayer();
         validatePlayer(player);
-
-        // Associate entities
         associateEntities(player);
-
-        // Create the GameState
         gameState = new GameState(player, entityManager, itemManager, locationManager);
-
-        // Create the game instance
         game = new Game(gameState);
+    }
+
+    public void loadSavedGame() {
+        LoadGame loadGame = new LoadGame(gameState);
+        loadGame.load();
+        game = new Game(gameState);
+        startGame();
+    }
+
+    public void startGame() {
+        game.start();
     }
 
     private void associateEntities(Player player) {
@@ -107,10 +115,6 @@ public class GameManager {
                 }
             });
         });
-    }
-
-    public void startGame() {
-        game.start();
     }
 
     // Additional methods as needed...

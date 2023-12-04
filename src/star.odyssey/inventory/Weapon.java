@@ -43,13 +43,17 @@ public class Weapon extends Item {
 
     @Override
     public void deserialize(String serializedData, ItemManager itemManager, LocationManager locationManager, EntityManager entityManager) {
-        super.deserialize(serializedData, itemManager, locationManager, entityManager);
+        super.deserialize(serializedData, itemManager, locationManager, entityManager); // Deserialize base Item properties
+
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(serializedData, JsonObject.class);
+
+        // Update specific fields for Weapon
         this.damage = jsonObject.get("damage").getAsInt();
         this.range = jsonObject.get("range").getAsInt();
         this.durability = jsonObject.get("durability").getAsInt();
     }
+
 
     // Additional methods if necessary...
 }

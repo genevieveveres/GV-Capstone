@@ -102,23 +102,25 @@ public class Player extends Entity {
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(serializedData, JsonObject.class);
 
-        this.setIndex(jsonObject.get("index").getAsString());
+        // Updating basic attributes
         this.setHealth(jsonObject.get("health").getAsInt());
         this.setStrength(jsonObject.get("strength").getAsInt());
         this.setDefense(jsonObject.get("defense").getAsInt());
         this.setAlive(jsonObject.get("isAlive").getAsBoolean());
 
+        // Updating the player's location
         String locationIndex = jsonObject.get("locationIndex").getAsString();
         Location location = locationManager.getLocation(locationIndex);
         this.setLocation(location);
 
+        // Updating the player's inventory
         Type type = new TypeToken<List<String>>() {
         }.getType();
         List<String> itemIndices = gson.fromJson(jsonObject.get("inventoryIndices"), type);
-        List<Item> inventory = itemIndices.stream()
+        List<Item> updatedInventory = itemIndices.stream()
                 .map(itemManager::getItem)
                 .collect(Collectors.toList());
-        this.setInventory(inventory);
+        this.setInventory(updatedInventory);
     }
 
     // Additional methods if necessary...

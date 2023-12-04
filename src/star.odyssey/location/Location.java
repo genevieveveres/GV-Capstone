@@ -24,6 +24,7 @@ public class Location implements Describable, SerializableRPGObject {
     private List<NPC> npcs;
     private List<Item> items;
     private String soundFilePath;
+    private boolean visited;
 
     public Location(String index, String name, String description, String detailedDescription, List<NPC> npcs, List<Item> items, String soundFilePath) {
         this.index = index;
@@ -36,7 +37,27 @@ public class Location implements Describable, SerializableRPGObject {
         this.soundFilePath = soundFilePath;
     }
 
+    public Location(String index, String name, String description, String detailedDescription, Map<String, Location> connections, List<NPC> npcs, List<Item> items, String soundFilePath, boolean visited) {
+        this.index = index;
+        this.name = name;
+        this.description = description;
+        this.detailedDescription = detailedDescription;
+        this.connections = connections;
+        this.npcs = npcs;
+        this.items = items;
+        this.soundFilePath = soundFilePath;
+        this.visited = visited;
+    }
+
     // Getters and Setters
+    public boolean isVisited() {
+        return visited;
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
     public String getIndex() {
         return index;
     }
@@ -109,6 +130,9 @@ public class Location implements Describable, SerializableRPGObject {
         // Serialize the index
         jsonObject.addProperty("index", this.index);
 
+        // Serialize visited status
+        jsonObject.addProperty("visited", this.visited);
+
         // Serialize NPC indices
         JsonArray npcIndices = new JsonArray();
         for (NPC npc : npcs) {
@@ -131,8 +155,8 @@ public class Location implements Describable, SerializableRPGObject {
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(serializedData, JsonObject.class);
 
-        // Set index
-        this.index = jsonObject.get("index").getAsString();
+        // Update basic location properties
+        this.visited = jsonObject.get("visited").getAsBoolean();
 
         // Deserialize NPCs
         JsonArray npcIndices = jsonObject.getAsJsonArray("npcIndices");
@@ -142,6 +166,8 @@ public class Location implements Describable, SerializableRPGObject {
             NPC npc = entityManager.getNPC(npcIndex);
             if (npc != null) {
                 this.npcs.add(npc);
+                // Set NPC's location to this location
+                npc.setLocation(this);
             }
         }
 
@@ -156,6 +182,7 @@ public class Location implements Describable, SerializableRPGObject {
             }
         }
     }
+
 
     // Additional methods if necessary...
 }

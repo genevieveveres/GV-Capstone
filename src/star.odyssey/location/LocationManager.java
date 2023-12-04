@@ -5,7 +5,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import star.odyssey.character.NPC;
-import star.odyssey.character.Player;
 import star.odyssey.inventory.Item;
 
 import java.io.FileReader;
