@@ -2,9 +2,7 @@ package star.odyssey.command;
 
 import star.odyssey.game.GameState;
 import star.odyssey.map.GameMap;
-
-import static star.odyssey.ui.ConsoleDisplayUtils.clearScreen;
-import static star.odyssey.ui.ConsoleDisplayUtils.pauseDisplay;
+import static star.odyssey.ui.ConsoleDisplayUtils.*;
 
 public class MapCommand implements Command {
     private final GameMap gameMap;
@@ -20,7 +18,7 @@ public class MapCommand implements Command {
         gameState.getLocationManager().setVisitedLocations(gameState.getPlayer().getLocation().getIndex());
         clearScreen();
         System.out.println();
-        System.out.println(gameMap.drawGameMap(gameState.getLocationManager().getVisitedLocations()));
+        System.out.println(gameMap.drawGameMap(gameState.getLocationManager().getVisitedLocations(), gameState.getPlayer().getLocation().getIndex() ));
         pauseDisplay();
         return noun;
     }
