@@ -61,7 +61,9 @@ public class GameState implements SerializableRPGObject {
         // Serialize Locations
         JsonArray locationsJson = new JsonArray();
         for (Location location : locationManager.getLocations().values()) {
-            locationsJson.add(gson.fromJson(location.serialize(), JsonObject.class));
+            JsonObject locationJson = gson.fromJson(location.serialize(), JsonObject.class);
+            locationJson.addProperty("visited", locationManager.getVisitedLocations().contains(location.getIndex()));
+            locationsJson.add(locationJson);
         }
         gameStateJson.add("locations", locationsJson);
 
@@ -78,6 +80,11 @@ public class GameState implements SerializableRPGObject {
 
     @Override
     public void deserialize(String serializedData, ItemManager itemManager, LocationManager locationManager, EntityManager entityManager) {
+
+        JsonObject gameStateJson = new JsonObject();
+
+        // Methods
+
 
     }
 

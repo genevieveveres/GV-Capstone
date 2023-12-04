@@ -1,9 +1,7 @@
 package star.odyssey.map;
 
 import java.util.*;
-
-import static star.odyssey.ui.ConsoleDisplayUtils.makeBrown;
-import static star.odyssey.ui.ConsoleDisplayUtils.makeGreen;
+import static star.odyssey.ui.ConsoleDisplayUtils.*;
 
 
 public class GameMap {
@@ -11,7 +9,7 @@ public class GameMap {
     private static Map<String, Integer> roomValues = new HashMap<>();
     private static List<Map.Entry<String, Integer>> sortedRooms;
 
-    public static String drawGameMap(List<String> visitedLocations) {
+    public static String drawGameMap(List<String> visitedLocations, String playerLocationIndex) {
         // Create a list of entries and sort them based on values
         LocationProcessor locationProcessor = new LocationProcessor();
         roomValues = locationProcessor.processLocations();
@@ -38,7 +36,7 @@ public class GameMap {
         // Print rows for each level
         for (int level : levels) {
             int numRows = (int) sortedRooms.stream().filter(entry -> entry.getValue().toString().startsWith(Integer.toString(level))).count();
-            printRows(numRows, Integer.toString(level));
+            printRows(numRows, Integer.toString(level), playerLocationIndex);
             System.out.println();
         }
 
@@ -63,7 +61,7 @@ public class GameMap {
 
     }
 
-    private static void printRows(int numRows, String level) {
+    private static void printRows(int numRows, String level, String playerLocationIndex) {
         LocationProcessor locationProcessor = new LocationProcessor();
         for (Map.Entry<String, Integer> entry : sortedRooms) {
             if (entry.getValue().toString().startsWith(level)) {
@@ -92,6 +90,13 @@ public class GameMap {
         for (Map.Entry<String, Integer> entry : sortedRooms) {
             String west;
             String east;
+            String playerPin;
+            if (entry.getKey().equalsIgnoreCase(playerLocationIndex)) {
+                playerPin = "\uD83D\uDC64";
+            }
+            else {
+                playerPin = "";
+            }
             if (entry.getValue().toString().startsWith(level)) {
                 if (entry.getKey().startsWith("blank_room")) {
                     System.out.print("                               ");
@@ -106,7 +111,7 @@ public class GameMap {
                     } else {
                         east = "║";
                     }
-                    printCentered(locationProcessor.getRoomNameByIndex(entry.getKey()), 28, west, east);
+                    printCentered(locationProcessor.getRoomNameByIndex(entry.getKey()) + playerPin, 28, west, east);
                 }
             }
         }
@@ -145,7 +150,7 @@ public class GameMap {
         if (text.length() % 2 != 0) {
             extraSpace = " ";
         }
-        System.out.print(makeBrown(west) + " ".repeat(padding) + makeGreen(text) + " ".repeat(padding) + extraSpace + makeBrown(east));
+        System.out.print( makeBrown(west) + " ".repeat(padding) + makeGreen(text)  + " ".repeat(padding) + extraSpace + makeBrown(east));
     }
 
     private static int getMaxRoomNumber(String level) {
