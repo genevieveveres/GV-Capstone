@@ -26,6 +26,7 @@ public class GameState implements SerializableRPGObject {
     }
 
     // Getters and setters
+
     public Player getPlayer() {
         return player;
     }
