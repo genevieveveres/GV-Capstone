@@ -32,10 +32,6 @@ public class Player extends Entity {
         // Implement player-specific movement (e.g., based on player input)
     }
 
-    public void attack() {
-        // Player-specific attack implementation (e.g., combat mechanics)
-    }
-
     public void defend() {
         // Player-specific defense implementation (e.g., block, dodge)
     }

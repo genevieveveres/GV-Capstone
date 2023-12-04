@@ -37,18 +37,6 @@ public class NPC extends Entity {
         this.hidden = hidden;
     }
 
-    public void move() {
-        // NPC-specific movement behavior (e.g., patrol, follow player)
-    }
-
-    public void attack() {
-        // Logic for NPC to attack, if hostile
-    }
-
-    public void defend() {
-        // Defensive behavior for NPC during combat
-    }
-
     public String talk() {
         if (dialogueOptions.isEmpty()) {
             return getName() + txtMap.get("ignored");

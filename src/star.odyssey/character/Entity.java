@@ -33,11 +33,26 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         this.isAlive = isAlive;
     }
 
-    public abstract void move();
+    public String attack(Entity target) {
+        int damage = calculateDamage(target.getDefense());
+        String result = target.takeDamage(damage);
+        return this.getName() + " attacked " + target.getName() + " for " + damage + " damage. " + result;
+    }
 
-    public abstract void attack();
+    private int calculateDamage(int targetDefense) {
+        int damage = this.strength - targetDefense;
+        return Math.max(damage, 0);
+    }
 
-    public abstract void defend();
+    public String takeDamage(int damage) {
+        this.health -= damage;
+        if (this.health <= 0) {
+            this.health = 0;
+            isAlive = false;
+            return this.getName() + " has been defeated.";
+        }
+        return "";
+    }
 
     public void heal() {
         this.health += 10;
