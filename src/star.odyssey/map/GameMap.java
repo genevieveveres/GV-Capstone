@@ -11,10 +11,14 @@ public class GameMap {
     private static Map<String, Integer> roomValues = new HashMap<>();
     private static List<Map.Entry<String, Integer>> sortedRooms;
 
-    public static String drawGameMap() {
+    public static String drawGameMap(List<String> visitedLocations) {
         // Create a list of entries and sort them based on values
         LocationProcessor locationProcessor = new LocationProcessor();
         roomValues = locationProcessor.processLocations();
+
+        // keep only the values that are present in the visitedLocations list
+        roomValues.entrySet().removeIf(entry -> !visitedLocations.contains(entry.getKey()));
+
         sortedRooms = new ArrayList<>(roomValues.entrySet());
         sortedRooms.sort(Map.Entry.comparingByValue());
 

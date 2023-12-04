@@ -22,7 +22,7 @@ public class CommandExecutor {
         commandMap.put("talk", new TalkCommand(game.getGameState()));
         commandMap.put("heal", new HealCommand(game.getGameState()));
         commandMap.put("save", new SaveCommand(game.getGameState()));
-        commandMap.put("map", new MapCommand());
+        commandMap.put("map", new MapCommand(game.getGameState()));
         // Initialize other commands as needed
     }
 
