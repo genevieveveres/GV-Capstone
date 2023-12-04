@@ -36,7 +36,7 @@ public class MainMenu {
     }
 
     public void execute() {
-        String settingsFilePath = "./data/gameSettings.json";
+        String settingsFilePath = "./data/userSettings.json";
         BackgroundAudioPlayer backgroundAudioPlayer = new BackgroundAudioPlayer("data/audio/ambient_game_start.wav");
         backgroundAudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "initial_volume"));
         backgroundAudioPlayer.loop();

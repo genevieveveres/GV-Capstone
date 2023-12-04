@@ -10,7 +10,7 @@ public class Game {
     private final CommandManager commandManager;
     private final DisplayUI displayUI;
     private BackgroundAudioPlayer backgroundAudioPlayer = null;
-    String settingsFilePath = "./data/gameSettings.json";
+    String settingsFilePath = "./data/userSettings.json";
 
     public Game(GameState gameState) {
         this.gameState = gameState;
