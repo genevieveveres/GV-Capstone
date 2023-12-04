@@ -68,6 +68,48 @@
       "active": true,
       "hidden": false,
       "movable": true
+    },
+    {
+      "index": "plasma_rifle",
+      "type": "weapon",
+      "name": "Plasma Rifle",
+      "description": "A high-powered rifle that fires bursts of plasma energy.",
+      "detailed_description": "This weapon utilizes a concentrated plasma core to unleash devastating energy blasts. The sleek design allows for quick maneuverability, while the advanced targeting system ensures precision in chaotic combat situations.",
+      "usable": true,
+      "active": true,
+      "hidden": false,
+      "movable": true,
+      "damage": 15,
+      "range": 20,
+      "durability": 20
+    },
+    {
+      "index": "gravity_gun",
+      "type": "weapon",
+      "name": "Gravity Gun",
+      "description": "An experimental weapon that manipulates gravitational forces.",
+      "detailed_description": "The Gravity Gun can lift and propel objects with tremendous force, making it a versatile tool both in and out of combat. Its ability to alter gravitational fields in a localized area presents unique strategic opportunities.",
+      "usable": true,
+      "active": true,
+      "hidden": false,
+      "movable": true,
+      "damage": 8,
+      "range": 5,
+      "durability": 25
+    },
+    {
+      "index": "neutron_blaster",
+      "type": "weapon",
+      "name": "Neutron Blaster",
+      "description": "A handheld blaster that emits high-energy neutron beams.",
+      "detailed_description": "The Neutron Blaster is small but incredibly powerful. It's capable of delivering rapid-fire neutron beams that can penetrate most alien armors. Designed for close-range combat, it's a favorite among scouts and explorers.",
+      "usable": true,
+      "active": true,
+      "hidden": false,
+      "movable": true,
+      "damage": 12,
+      "range": 15,
+      "durability": 18
     }
   ]
 }
