@@ -65,6 +65,7 @@ public class GameManager {
         Location startingLocation = locationManager.getLocation(locationIndex);
         if (startingLocation != null) {
             player.setLocation(startingLocation);
+            player.getLocation().setVisited(true);
         } else {
             throw new IllegalStateException(txtMap.get("location_null"));
         }

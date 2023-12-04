@@ -1,8 +1,14 @@
 package star.odyssey.command;
 
 import star.odyssey.game.GameState;
+import star.odyssey.location.Location;
 import star.odyssey.map.GameMap;
-import static star.odyssey.ui.ConsoleDisplayUtils.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static star.odyssey.ui.ConsoleDisplayUtils.clearScreen;
+import static star.odyssey.ui.ConsoleDisplayUtils.pauseDisplay;
 
 public class MapCommand implements Command {
     private final GameMap gameMap;
@@ -15,11 +21,15 @@ public class MapCommand implements Command {
 
     @Override
     public String execute(String noun) {
-        gameState.getLocationManager().setVisitedLocations(gameState.getPlayer().getLocation().getIndex());
         clearScreen();
         System.out.println();
-        System.out.println(gameMap.drawGameMap(gameState.getLocationManager().getVisitedLocations(), gameState.getPlayer().getLocation().getIndex() ));
+        List<String> visitedLocations = gameState.getLocationManager().getLocations().values().stream()
+                .filter(Location::isVisited)
+                .map(Location::getIndex)
+                .collect(Collectors.toList());
+        System.out.println(gameMap.drawGameMap(visitedLocations, gameState.getPlayer().getLocation().getIndex()));
         pauseDisplay();
         return noun;
     }
+
 }

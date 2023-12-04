@@ -14,7 +14,6 @@ public class LocationManager {
     private final Map<String, Location> locations;
     private final Map<String, List<String>> locationItemsMap;
     private final Map<String, List<String>> locationNPCsMap;
-    private final Set<String> visitedLocations = new HashSet<>();
 
     public LocationManager(String jsonFilePath) {
         locations = new HashMap<>();
@@ -108,16 +107,6 @@ public class LocationManager {
         if (location != null) {
             location.addInventory(item);
         }
-    }
-
-    // Add locations player visited to a list
-    public void setVisitedLocations(String locationIndex) {
-        visitedLocations.add(locationIndex);
-    }
-
-    // Get locations player visited from the list
-    public List<String> getVisitedLocations() {
-        return new ArrayList<>(visitedLocations);
     }
 
     public Location getLocation(String index) {
