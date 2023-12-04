@@ -59,13 +59,33 @@
     "heal_null_end": " fails. If only your powers extended beyond this location."
   },
   "quit_cmd": {
-    "quit_question": "Thinking of warping back to reality? (yes/no)\n>",
+    "quit_question": "Thinking of warping back to reality? > ",
     "quit_confirm": "Rocketing back to normalcy! Remember, Earth has no glowing trees or melody mountains",
     "quit_deny": "That’s the spirit! Who needs Earth when you’ve got an alien world to explore?",
     "quit_fail": "Oops! Even the Luminara need clear signals"
   },
+  "quit_options": {
+    "1": "yes",
+    "2": "no"
+  },
   "talk_cmd": {
     "talk_null": "Talking to the void? It's a good listener but not much of a talker. Try naming someone!",
     "talk_unknown": ", seems to be off on their own adventure. Or just really good at hide and seek."
+  },
+  "sound_cmd": {
+    "sound_null": "To adjust sound, please type \"sound\" then one of the following options: ",
+    "sound_unknown": " seems to be an invalid option. To adjust sound, please choose from the following options: ",
+    "sound_off": "The sound is now off.",
+    "sound_on": "The sound is now on.",
+    "sound_low": "The sound is now low.",
+    "sound_medium": "The sound is now medium.",
+    "sound_high": "The sound is now high."
+  },
+  "sound_options": {
+    "1": "off",
+    "2": "on",
+    "3": "low",
+    "4": "medium",
+    "5": "high"
   }
 }

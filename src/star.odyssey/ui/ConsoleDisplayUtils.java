@@ -110,8 +110,4 @@ public class ConsoleDisplayUtils {
             }
         }
     }
-
-    public static void main(String[] args) {
-        System.out.println(centerText(20, "text"));
-    }
 }

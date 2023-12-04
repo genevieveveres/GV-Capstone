@@ -10,6 +10,7 @@ public class Game {
     private final CommandManager commandManager;
     private final DisplayUI displayUI;
     private BackgroundAudioPlayer backgroundAudioPlayer = null;
+    String settingsFilePath = "./data/gameSettings.json";
 
     public Game(GameState gameState) {
         this.gameState = gameState;
@@ -30,6 +31,7 @@ public class Game {
                 backgroundAudioPlayer.stop();
             }
             backgroundAudioPlayer = new BackgroundAudioPlayer(soundFilePath);
+            backgroundAudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "current_volume"));
             backgroundAudioPlayer.loop();
             // Main loop for game execution; process commands and update game state
             displayUI.displayMainUI();

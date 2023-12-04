@@ -120,5 +120,9 @@
   "map": [
     "layout",
     "world"
+  ],
+  "sound": [
+    "volume",
+    "music"
   ]
 }

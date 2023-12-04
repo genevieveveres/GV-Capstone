@@ -17,7 +17,7 @@ public class MainMenu {
 
     static Prompter prompter = new Prompter(new Scanner(System.in)); // Utility for user prompts.
 
-    public static boolean isInteger(String s) {
+    public boolean isInteger(String s) {
         for (int i = 0; i < s.length(); i++) {
             if (!Character.isDigit(s.charAt(i))) {
                 return false;
@@ -36,7 +36,9 @@ public class MainMenu {
     }
 
     public void execute() {
+        String settingsFilePath = "./data/gameSettings.json";
         BackgroundAudioPlayer backgroundAudioPlayer = new BackgroundAudioPlayer("data/audio/ambient_game_start.wav");
+        backgroundAudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "initial_volume"));
         backgroundAudioPlayer.loop();
         displaySplash(); // Displaying the splash screen at startup.
         Map<String, String> optionsMap = readMainMenuFromJson();
@@ -77,7 +79,7 @@ public class MainMenu {
                     validOption = true;
                     break;
                 case 3:
-                    displayBackstory();
+                    DisplayBackstory.displayBackstory();
                     displayGameInfo();
                     continue;
                 case 4:
