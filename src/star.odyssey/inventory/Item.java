@@ -83,12 +83,14 @@ public class Item implements Describable, SerializableRPGObject {
     public void deserialize(String serializedData, ItemManager itemManager, LocationManager locationManager, EntityManager entityManager) {
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(serializedData, JsonObject.class);
-        this.index = jsonObject.get("index").getAsString();
+
+        // Update fields from the serialized data
         this.usable = jsonObject.get("usable").getAsBoolean();
         this.active = jsonObject.get("active").getAsBoolean();
         this.hidden = jsonObject.get("hidden").getAsBoolean();
         this.movable = jsonObject.get("movable").getAsBoolean();
     }
+
 
     // Additional methods if necessary...
 }
