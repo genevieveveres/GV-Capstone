@@ -2,8 +2,6 @@ package star.odyssey.ui;
 
 import org.apache.commons.text.WordUtils;
 
-import java.util.Scanner;
-
 public class ConsoleDisplayUtils {
 
     // clears screen
@@ -101,8 +99,16 @@ public class ConsoleDisplayUtils {
         String message = makeRed("Press \"ENTER\" to continue...");
         System.out.println("\n");
         System.out.println(centerText(100, message));
-        Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();
+
+        if (System.console() != null) {
+            System.console().readPassword();
+        } else {
+            try {
+                System.in.read();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static void main(String[] args) {
