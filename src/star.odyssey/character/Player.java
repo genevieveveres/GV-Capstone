@@ -1,14 +1,21 @@
 package star.odyssey.character;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+import star.odyssey.game.Game;
 import star.odyssey.game.GameUtil;
 import star.odyssey.inventory.Item;
 import star.odyssey.inventory.Weapon;
 import star.odyssey.location.Location;
+import star.odyssey.location.LocationManager;
+import star.odyssey.ui.ConsoleDisplayUtils;
+import star.odyssey.ui.MainMenu;
 
 import java.util.List;
 import java.util.Map;
 
-import static star.odyssey.ui.ConsoleDisplayUtils.wrapText;
+import static star.odyssey.ui.ConsoleDisplayUtils.*;
 
 public class Player extends Entity {
 
@@ -62,6 +69,15 @@ public class Player extends Entity {
         }
         if (item.getUseLocation() != null && !item.getUseLocation().equals(this.getLocation().getIndex())) {
             return item.getName() + txtMap.get("use_not_location");
+        }
+        if (item.getIndex().equals("starstone")) {
+            clearScreen();
+            System.out.println(wrapText(GameUtil.jsonToString(gameTxtFilePath, "win_repair_engine")));
+            pauseDisplay();
+            Game.stop();
+            clearScreen();
+            MainMenu.execute();
+            return null;
         }
 
         return wrapText(item.getUseText());

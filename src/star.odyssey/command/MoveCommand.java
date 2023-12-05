@@ -33,19 +33,8 @@ public class MoveCommand implements Command {
         Location currentLocation = player.getLocation();
         Location nextLocation = currentLocation.getConnections().get(direction);
 
-        boolean nextIsEngine = nextLocation.getIndex().equals("ship_engine");
-        boolean hasStarstone = player.getInventory().contains(gameState.getItemManager().getItem("starstone"));
-
         if (nextLocation == null) {
             return moveTxtMap.get("direction_unknown");
-        } else if (nextIsEngine && hasStarstone) {
-            clearScreen();
-            System.out.println(wrapText(GameUtil.jsonToString(gameTxtFilePath, "win_repair_engine")));
-            pauseDisplay();
-            Game.stop();
-            clearScreen();
-            MainMenu.execute();
-            return null;
         } else {
             player.setLocation(nextLocation);
             player.getLocation().setVisited(true);
