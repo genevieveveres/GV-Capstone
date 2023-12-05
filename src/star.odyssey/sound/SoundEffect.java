@@ -1,7 +1,8 @@
 package star.odyssey.sound;
 
-import java.io.*;
 import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
 
 public enum SoundEffect {
     MINING_LASER("data/audio/use_mining_laser.wav"),

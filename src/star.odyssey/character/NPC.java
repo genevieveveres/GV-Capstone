@@ -38,6 +38,14 @@ public class NPC extends Entity {
         return dialogueOptions.get(rand.nextInt(dialogueOptions.size()));
     }
 
+    public void removeFromLocation() {
+        if (this.location != null) {
+            this.location.removeNPC(this);
+            this.setLocation(null);
+        }
+    }
+
+
     public void dropItems() {
         // Define item dropping behavior upon NPC defeat
     }
