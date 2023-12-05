@@ -4,8 +4,6 @@ import star.odyssey.game.GameUtil;
 import star.odyssey.inventory.Item;
 import star.odyssey.inventory.Weapon;
 import star.odyssey.location.Location;
-import star.odyssey.location.LocationManager;
-import star.odyssey.ui.ConsoleDisplayUtils;
 
 import java.util.List;
 import java.util.Map;

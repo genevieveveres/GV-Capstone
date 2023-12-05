@@ -27,6 +27,7 @@ public class DisplayUI {
     public void displayPlayerInfo() {
         // Display player info
         printDivider("Player Info");
+        //System.out.println(makeMagenta("\uD83D\uDC64 Name: ") + player.getName() + ", " + makeMagenta("\u2764\uFE0F Health: ") + player.getHealth() + ", " + player.getEquippedWeapon().getName());
         System.out.println(makeMagenta("\uD83D\uDC64 Name: ") + player.getName() + ", " + makeMagenta("\u2764\uFE0F Health: ") + player.getHealth());
 
         // Display player inventory

@@ -5,7 +5,6 @@ import star.odyssey.game.GameState;
 import star.odyssey.game.GameUtil;
 import star.odyssey.inventory.Item;
 
-import java.util.List;
 import java.util.Map;
 
 public class UseCommand implements Command {
