@@ -42,7 +42,8 @@
         "generic"
       ],
       "items": [
-        "mining_laser"
+        "miningLaser",
+        "gravityHammer"
       ],
       "soundFilePath": "data/audio/ambient_spaceship_engine.wav"
     },

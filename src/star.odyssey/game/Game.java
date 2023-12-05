@@ -2,7 +2,6 @@ package star.odyssey.game;
 
 import star.odyssey.command.CommandManager;
 import star.odyssey.sound.BackgroundAudioPlayer;
-import star.odyssey.sound.SoundEffect;
 import star.odyssey.ui.DisplayUI;
 
 public class Game {
@@ -70,6 +69,4 @@ public class Game {
     public GameState getGameState() {
         return gameState;
     }
-
-    // Additional methods as needed...
 }

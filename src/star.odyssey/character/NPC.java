@@ -73,32 +73,8 @@ public class NPC extends Entity {
 
 
     // Getters and setters
-    public boolean isHostile() {
-        return hostile;
-    }
-
     public void setHostile(boolean hostile) {
         this.hostile = hostile;
-    }
-
-    public List<String> getDialogueOptions() {
-        return dialogueOptions;
-    }
-
-    public void setDialogueOptions(List<String> dialogueOptions) {
-        this.dialogueOptions = dialogueOptions;
-    }
-
-    public String getQuestDetails() {
-        return questDetails;
-    }
-
-    public void setQuestDetails(String questDetails) {
-        this.questDetails = questDetails;
-    }
-
-    public boolean isHidden() {
-        return hidden;
     }
 
     public void setHidden(boolean hidden) {
