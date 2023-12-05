@@ -1,6 +1,5 @@
 package star.odyssey.command;
 
-import star.odyssey.character.Entity;
 import star.odyssey.character.Player;
 import star.odyssey.game.GameState;
 import star.odyssey.inventory.Weapon;

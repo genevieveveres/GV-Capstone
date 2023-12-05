@@ -33,7 +33,7 @@ public class MoveCommand implements Command {
         Location currentLocation = player.getLocation();
         Location nextLocation = currentLocation.getConnections().get(direction);
 
-        boolean nextIsEngine =  nextLocation.getIndex().equals("ship_engine");
+        boolean nextIsEngine = nextLocation.getIndex().equals("ship_engine");
         boolean hasStarstone = player.getInventory().contains(gameState.getItemManager().getItem("starstone"));
 
         if (nextLocation == null) {
