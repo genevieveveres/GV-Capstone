@@ -24,6 +24,8 @@ public class CommandExecutor {
         commandMap.put("save", new SaveCommand(game.getGameState()));
         commandMap.put("map", new MapCommand(game.getGameState()));
         commandMap.put("sound", new SoundCommand());
+        commandMap.put("attack", new AttackCommand(game.getGameState()));
+        commandMap.put("equip", new EquipCommand(game.getGameState()));
         commandMap.put("use", new UseCommand(game.getGameState()));
         // Initialize other commands as needed
     }

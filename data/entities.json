@@ -3,12 +3,13 @@
     "index": "player",
     "name": "Player",
     "health": 100,
-    "strength": 10,
+    "strength": 30,
     "defense": 100,
     "detailed_description": "Player description",
     "location": "ship_storeroom",
     "inventory": [],
-    "isAlive": true
+    "isAlive": true,
+    "equippedWeapon": ""
   },
   "npcs": [
     {
