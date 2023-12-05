@@ -4,7 +4,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import star.odyssey.inventory.Item;
 
 import java.io.FileReader;
 import java.util.*;
@@ -13,16 +12,20 @@ public class EntityManager {
     private Player player;
     private String playerLocationIndex;
     private final List<String> playerItemIndexes;
+    private final String playerEquippedWeaponIndex;
     private final Map<String, NPC> npcs;
-    private final Map<String, String> npcLocationMap; // Map of NPC index to Location index
-    private final Map<String, List<String>> npcItemsMap; // Map of NPC index to list of Item indexes
+    private final Map<String, String> npcLocationMap;
+    private final Map<String, List<String>> npcItemsMap;
+    private final Map<String, String> npcEquippedWeaponMap;
 
     public EntityManager(String jsonFilePath) {
         npcs = new HashMap<>();
         playerLocationIndex = "";
         playerItemIndexes = new ArrayList<>();
+        playerEquippedWeaponIndex = "";
         npcLocationMap = new HashMap<>();
         npcItemsMap = new HashMap<>();
+        npcEquippedWeaponMap = new HashMap<>();
         loadEntitiesFromJson(jsonFilePath);
     }
 
@@ -81,9 +84,9 @@ public class EntityManager {
         boolean hidden = isNPC && entityObject.get("hidden").getAsBoolean();
 
         if (isNPC) {
-            return new NPC(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive, hostile, dialogueOptions, questDetails, hidden);
+            return new NPC(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive, null, hostile, dialogueOptions, questDetails, hidden);
         } else {
-            return new Player(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive);
+            return new Player(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive, null);
         }
     }
 
@@ -111,23 +114,13 @@ public class EntityManager {
         return itemIndexes;
     }
 
-    public void addItemToNPC(String npcIndex, Item item) {
-        NPC npc = npcs.get(npcIndex);
-        if (npc != null) {
-            npc.getInventory().add(item);
-        }
-    }
-
+    // Getters and setters
     public Player getPlayer() {
         return player;
     }
 
-    public NPC getNPC(String index) {
-        return npcs.get(index);
-    }
-
-    public Map<String, NPC> getAllNPCs() {
-        return new HashMap<>(npcs);
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public String getPlayerLocationIndex() {
@@ -136,6 +129,22 @@ public class EntityManager {
 
     public List<String> getPlayerItemIndexes() {
         return playerItemIndexes;
+    }
+
+    public String getPlayerEquippedWeaponIndex() {
+        return playerEquippedWeaponIndex;
+    }
+
+    public Map<String, String> getNpcEquippedWeaponMap() {
+        return npcEquippedWeaponMap;
+    }
+
+    public NPC getNPC(String index) {
+        return npcs.get(index);
+    }
+
+    public Map<String, NPC> getAllNPCs() {
+        return new HashMap<>(npcs);
     }
 
     public String getNPCsLocationIndex(String npcIndex) {

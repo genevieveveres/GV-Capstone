@@ -1,15 +1,11 @@
 package star.odyssey.command;
 
 import star.odyssey.character.Entity;
-import star.odyssey.game.Game;
 import star.odyssey.game.GameState;
 import star.odyssey.game.GameUtil;
 import star.odyssey.location.Location;
-import star.odyssey.ui.MainMenu;
 
 import java.util.Map;
-
-import static star.odyssey.ui.ConsoleDisplayUtils.*;
 
 public class MoveCommand implements Command {
     private final GameState gameState;

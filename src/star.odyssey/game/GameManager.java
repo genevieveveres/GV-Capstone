@@ -1,9 +1,9 @@
 package star.odyssey.game;
 
 import star.odyssey.character.EntityManager;
-import star.odyssey.character.Player;
 import star.odyssey.inventory.Item;
 import star.odyssey.inventory.ItemManager;
+import star.odyssey.inventory.Weapon;
 import star.odyssey.location.Location;
 import star.odyssey.location.LocationManager;
 
@@ -28,10 +28,9 @@ public class GameManager {
     }
 
     private void initializeNewGame() {
-        Player player = entityManager.getPlayer();
-        validatePlayer(player);
-        associateEntities(player);
-        gameState = new GameState(player, entityManager, itemManager, locationManager);
+        validatePlayer();
+        associateEntities();
+        gameState = new GameState(entityManager, itemManager, locationManager);
         game = new Game(gameState);
     }
 
@@ -46,37 +45,39 @@ public class GameManager {
         game.start();
     }
 
-    private void associateEntities(Player player) {
-        associatePlayerWithLocation(player);
-        associatePlayerWithItems(player);
+    private void associateEntities() {
+        associatePlayerWithLocation();
+        associatePlayerWithItems();
         associateNPCsWithLocations();
         associateItemsWithNPCs();
         associateItemsWithLocations();
+        associatePlayerWithEquippedWeapon();
+        associateNPCsWithEquippedWeapons();
     }
 
-    private void validatePlayer(Player player) {
-        if (player == null) {
+    private void validatePlayer() {
+        if (entityManager.getPlayer() == null) {
             throw new IllegalStateException(txtMap.get("player_null"));
         }
     }
 
-    private void associatePlayerWithLocation(Player player) {
+    private void associatePlayerWithLocation() {
         String locationIndex = entityManager.getPlayerLocationIndex();
         Location startingLocation = locationManager.getLocation(locationIndex);
         if (startingLocation != null) {
-            player.setLocation(startingLocation);
-            player.getLocation().setVisited(true);
+            entityManager.getPlayer().setLocation(startingLocation);
+            entityManager.getPlayer().getLocation().setVisited(true);
         } else {
             throw new IllegalStateException(txtMap.get("location_null"));
         }
     }
 
-    private void associatePlayerWithItems(Player player) {
+    private void associatePlayerWithItems() {
         List<String> itemIndexes = entityManager.getPlayerItemIndexes();
         for (String itemIndex : itemIndexes) {
             Item item = itemManager.getItem(itemIndex);
             if (item != null) {
-                player.getInventory().add(item);
+                entityManager.getPlayer().getInventory().add(item);
             }
         }
     }
@@ -118,5 +119,25 @@ public class GameManager {
         });
     }
 
-    // Additional methods as needed...
+    private void associatePlayerWithEquippedWeapon() {
+        String weaponIndex = entityManager.getPlayerEquippedWeaponIndex();
+        if (!weaponIndex.isEmpty()) {
+            Item weapon = itemManager.getItem(weaponIndex);
+            if (weapon != null && entityManager.getPlayer().getInventory().contains(weapon)) {
+                entityManager.getPlayer().setEquippedWeapon((Weapon) weapon);
+            }
+        }
+    }
+
+    private void associateNPCsWithEquippedWeapons() {
+        entityManager.getAllNPCs().forEach((npcIndex, npc) -> {
+            String weaponIndex = entityManager.getNpcEquippedWeaponMap().get(npcIndex);
+            if (weaponIndex != null) {
+                Item weapon = itemManager.getItem(weaponIndex);
+                if (weapon != null && npc.getInventory().contains(weapon)) {
+                    npc.setEquippedWeapon((Weapon) weapon);
+                }
+            }
+        });
+    }
 }
