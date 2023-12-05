@@ -9,11 +9,14 @@ import star.odyssey.inventory.ItemManager;
 import star.odyssey.inventory.Weapon;
 import star.odyssey.location.Location;
 import star.odyssey.location.LocationManager;
+import star.odyssey.ui.ConsoleDisplayUtils;
 
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static star.odyssey.ui.ConsoleDisplayUtils.wrapText;
 
 public class Player extends Entity {
 
@@ -68,8 +71,24 @@ public class Player extends Entity {
     }
 
 
-    public void useItem(Item item) {
-        // Implement usage of items from the inventory
+    public String useItem(Item item) {
+        if (!item.isUsable()) {
+            return item.getName() + txtMap.get("use_not_usable");
+        }
+        if (item.isMovable() && !this.getInventory().contains(item)) {
+            return item.getName() + txtMap.get("use_moveable_needs_pickedup");
+        }
+        if (item.isHidden()) {
+            return item.getName() + txtMap.get("item_hidden");
+        }
+        if (!item.isActive()) {
+            return item.getName() + txtMap.get("item_inactive");
+        }
+        if (item.getUseLocation() != null && !item.getUseLocation().equals(this.getLocation().getIndex())) {
+            return item.getName() + txtMap.get("use_not_location");
+        }
+
+        return wrapText(item.getUseText());
     }
 
     public void equipWeapon(Weapon weapon) {

@@ -16,8 +16,10 @@ public class Item implements Describable, SerializableRPGObject {
     private boolean active;
     private boolean hidden;
     private boolean movable;
+    private String useText;
+    private String useLocation;
 
-    public Item(String index, String name, String description, String detailedDescription, boolean usable, boolean active, boolean hidden, boolean movable) {
+    public Item(String index, String name, String description, String detailedDescription, boolean usable, boolean active, boolean hidden, boolean movable, String useText, String useLocation) {
         this.index = index;
         this.name = name;
         this.description = description;
@@ -26,6 +28,8 @@ public class Item implements Describable, SerializableRPGObject {
         this.active = active;
         this.hidden = hidden;
         this.movable = movable;
+        this.useText = useText;
+        this.useLocation = useLocation;
     }
 
     public void use() {
@@ -64,6 +68,14 @@ public class Item implements Describable, SerializableRPGObject {
 
     public boolean isMovable() {
         return movable;
+    }
+
+    public String getUseText() {
+        return useText;
+    }
+
+    public String getUseLocation() {
+        return useLocation;
     }
 
     // Serialize and Deserialize

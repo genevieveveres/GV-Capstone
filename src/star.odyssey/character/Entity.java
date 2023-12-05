@@ -113,5 +113,15 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         return inventory;
     }
 
+    public Item getInventoryItem(String itemName) {
+        Item entityItem = null;
+        List<Item> playerInventory = this.getInventory();
+        for (Item item:playerInventory) {
+            if (item.getName().equals(itemName)) {
+                entityItem = item;
+            }
+        }
+        return entityItem;
+    }
     // Additional methods if necessary...
 }
