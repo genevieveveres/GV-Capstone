@@ -22,7 +22,10 @@
     "item_inactive": " appears dormant, like a hibernating alien. Maybe try again when it's awake?.",
     "item_get": " has been successfully teleported to your inventory",
     "item_drop": " has been dropped. It's now contemplating its life choices on the ground.",
-    "item_drop_fail": "The art of letting go is profound, but first it helps if you actually had "
+    "item_drop_fail": "The art of letting go is profound, but first it helps if you actually had ",
+    "use_moveable_needs_pickedup": " must be in your inventory to be used.",
+    "use_not_location": " does seem like it has a use. Maybe you should be somewhere else.",
+    "use_not_usable": " has no actual use. It's just here to give you stuff to do."
   },
   "cmd_config": {
     "synonym_error": "Warning: Repeated synonyms found: "
@@ -64,6 +67,10 @@
     "quit_confirm": "Rocketing back to normalcy! Remember, Earth has no glowing trees or melody mountains",
     "quit_deny": "That’s the spirit! Who needs Earth when you’ve got an alien world to explore?",
     "quit_fail": "Oops! Even the Luminara need clear signals"
+  },
+  "use_cmd": {
+    "item_unknown": "It seems like you're trying to use something, but what exactly?",
+    "item_null": " might exist in an alternate universe. Sadly, not in this one."
   },
   "quit_options": {
     "1": "yes",
