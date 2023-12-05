@@ -132,9 +132,13 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         this.setInventory(updatedInventory);
 
         // Updating the entity's weapon
-        String weaponIndex = jsonObject.get("weaponIndex").getAsString();
-        Weapon weapon = (Weapon) itemManager.getItem(weaponIndex);
-        this.setEquippedWeapon(weapon);
+        if (jsonObject.has("weaponIndex") && !jsonObject.get("weaponIndex").isJsonNull()) {
+            String weaponIndex = jsonObject.get("weaponIndex").getAsString();
+            Weapon weapon = (Weapon) itemManager.getItem(weaponIndex);
+            this.setEquippedWeapon(weapon);
+        } else {
+            this.setEquippedWeapon(new Weapon());
+        }
     }
 
     // Getters and setters
