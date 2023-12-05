@@ -25,12 +25,9 @@ public abstract class Entity implements Describable, SerializableRPGObject {
     protected Location location;
     protected List<Item> inventory;
     protected boolean isAlive;
-    protected Weapon weapon;
+    protected Weapon equippedWeapon;
 
-    public Entity() {
-    }
-
-    public Entity(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive) {
+    public Entity(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive, Weapon equippedWeapon) {
         this.index = index;
         this.name = name;
         this.health = health;
@@ -40,19 +37,7 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         this.location = location;
         this.inventory = inventory;
         this.isAlive = isAlive;
-    }
-
-    public Entity(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive, Weapon weapon) {
-        this.index = index;
-        this.name = name;
-        this.health = health;
-        this.strength = strength;
-        this.defense = defense;
-        this.detailedDescription = detailedDescription;
-        this.location = location;
-        this.inventory = inventory;
-        this.isAlive = isAlive;
-        this.weapon = weapon;
+        this.equippedWeapon = equippedWeapon;
     }
 
     public String attack(Entity target) {
@@ -81,7 +66,7 @@ public abstract class Entity implements Describable, SerializableRPGObject {
             return "Weapon is not in inventory.";
         }
 
-        this.weapon = weapon;
+        this.equippedWeapon = weapon;
         return this.name + " has equipped " + weapon.getName() + ".";
     }
 
@@ -108,6 +93,9 @@ public abstract class Entity implements Describable, SerializableRPGObject {
                 .collect(Collectors.toList());
         jsonObject.add("inventoryIndices", gson.toJsonTree(inventoryIndices));
 
+        // Serialize weapon index
+        jsonObject.addProperty("weaponIndex", this.equippedWeapon.getIndex());
+
         return jsonObject.toString();
     }
 
@@ -122,12 +110,12 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         this.setDefense(jsonObject.get("defense").getAsInt());
         this.setAlive(jsonObject.get("isAlive").getAsBoolean());
 
-        // Updating the player's location
+        // Updating the entity's location
         String locationIndex = jsonObject.get("locationIndex").getAsString();
         Location location = locationManager.getLocation(locationIndex);
         this.setLocation(location);
 
-        // Updating the player's inventory
+        // Updating the entity's inventory
         Type type = new TypeToken<List<String>>() {
         }.getType();
         List<String> itemIndices = gson.fromJson(jsonObject.get("inventoryIndices"), type);
@@ -135,6 +123,11 @@ public abstract class Entity implements Describable, SerializableRPGObject {
                 .map(itemManager::getItem)
                 .collect(Collectors.toList());
         this.setInventory(updatedInventory);
+
+        // Updaing the entity's weapon
+        String weaponIndex = jsonObject.get("weaponIndex").getAsString();
+        Weapon weapon = (Weapon) itemManager.getItem(weaponIndex);
+        this.setEquippedWeapon(weapon);
     }
 
     // Getters and setters
@@ -211,12 +204,12 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         isAlive = alive;
     }
 
-    public Weapon getWeapon() {
-        return weapon;
+    public Weapon getEquippedWeapon() {
+        return equippedWeapon;
     }
 
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
+    public void setEquippedWeapon(Weapon equippedWeapon) {
+        this.equippedWeapon = equippedWeapon;
     }
 
     // Additional methods if necessary...

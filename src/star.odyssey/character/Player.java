@@ -13,12 +13,8 @@ public class Player extends Entity {
     String gameTxtFilePath = "./data/gameText.json";
     private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "player_cmd_txt");
 
-    public Player() {
-        super();
-    }
-
-    public Player(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive) {
-        super(index, name, health, strength, defense, detailedDescription, location, inventory, isAlive);
+    public Player(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive, Weapon equippedWeapon) {
+        super(index, name, health, strength, defense, detailedDescription, location, inventory, isAlive, equippedWeapon);
     }
 
     public String getItem(Item item) {

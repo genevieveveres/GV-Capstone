@@ -13,22 +13,19 @@ import star.odyssey.location.Location;
 import star.odyssey.location.LocationManager;
 
 public class GameState implements SerializableRPGObject {
-    private final Player player;
     private final EntityManager entityManager;
     private final ItemManager itemManager;
     private final LocationManager locationManager;
 
-    public GameState(Player player, EntityManager entityManager, ItemManager itemManager, LocationManager locationManager) {
-        this.player = player;
+    public GameState(EntityManager entityManager, ItemManager itemManager, LocationManager locationManager) {
         this.entityManager = entityManager;
         this.itemManager = itemManager;
         this.locationManager = locationManager;
     }
 
     // Getters and setters
-
     public Player getPlayer() {
-        return player;
+        return getEntityManager().getPlayer();
     }
 
     public EntityManager getEntityManager() {
@@ -50,7 +47,7 @@ public class GameState implements SerializableRPGObject {
         JsonObject gameStateJson = new JsonObject();
 
         // Serialize Player
-        gameStateJson.add("player", gson.fromJson(player.serialize(), JsonObject.class));
+        gameStateJson.add("player", gson.fromJson(getPlayer().serialize(), JsonObject.class));
 
         // Serialize NPCs
         JsonArray npcsJson = new JsonArray();
@@ -85,7 +82,7 @@ public class GameState implements SerializableRPGObject {
         // Deserialize Player
         if (gameStateJson.has("player")) {
             JsonObject playerJson = gameStateJson.getAsJsonObject("player");
-            this.player.deserialize(playerJson.toString(), itemManager, locationManager, entityManager);
+            this.getPlayer().deserialize(playerJson.toString(), itemManager, locationManager, entityManager);
         }
 
         // Deserialize NPCs

@@ -8,7 +8,8 @@
     "detailed_description": "Player description",
     "location": "ship_storeroom",
     "inventory": [],
-    "isAlive": true
+    "isAlive": true,
+    "equippedWeapon": ""
   },
   "npcs": [
     {

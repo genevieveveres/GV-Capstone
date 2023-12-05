@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import star.odyssey.game.GameUtil;
 import star.odyssey.inventory.Item;
 import star.odyssey.inventory.ItemManager;
+import star.odyssey.inventory.Weapon;
 import star.odyssey.location.Location;
 import star.odyssey.location.LocationManager;
 
@@ -21,13 +22,8 @@ public class NPC extends Entity {
     String gameTxtFilePath = "./data/gameText.json";
     private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "npc_cmd_txt");
 
-
-    public NPC() {
-        super();
-    }
-
-    public NPC(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive, boolean hostile, List<String> dialogueOptions, String questDetails, boolean hidden) {
-        super(index, name, health, strength, defense, detailedDescription, location, inventory, isAlive);
+    public NPC(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive, Weapon equippedWeapon, boolean hostile, List<String> dialogueOptions, String questDetails, boolean hidden) {
+        super(index, name, health, strength, defense, detailedDescription, location, inventory, isAlive, equippedWeapon);
         this.hostile = hostile;
         this.dialogueOptions = dialogueOptions;
         this.questDetails = questDetails;
