@@ -17,18 +17,6 @@ public class Weapon extends Item {
         this.durability = durability;
     }
 
-    public void attack(Character target) {
-        // Implement weapon attack logic against a target character
-    }
-
-    public void upgrade() {
-        // Logic for upgrading weapon stats
-    }
-
-    public void decreaseDurability() {
-        // Decrease weapon durability with use, deactivate if necessary
-    }
-
     // Serialize and Deserialize
     @Override
     public String serialize() {
@@ -43,7 +31,7 @@ public class Weapon extends Item {
 
     @Override
     public void deserialize(String serializedData, ItemManager itemManager, LocationManager locationManager, EntityManager entityManager) {
-        super.deserialize(serializedData, itemManager, locationManager, entityManager); // Deserialize base Item properties
+        super.deserialize(serializedData, itemManager, locationManager, entityManager);
 
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(serializedData, JsonObject.class);
@@ -53,7 +41,6 @@ public class Weapon extends Item {
         this.range = jsonObject.get("range").getAsInt();
         this.durability = jsonObject.get("durability").getAsInt();
     }
-
 
     // Additional methods if necessary...
 }

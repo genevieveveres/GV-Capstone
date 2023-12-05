@@ -3,6 +3,7 @@ package star.odyssey.character;
 import star.odyssey.command.Describable;
 import star.odyssey.game.SerializableRPGObject;
 import star.odyssey.inventory.Item;
+import star.odyssey.inventory.Weapon;
 import star.odyssey.location.Location;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public abstract class Entity implements Describable, SerializableRPGObject {
     protected Location location;
     protected List<Item> inventory;
     protected boolean isAlive;
+    protected Weapon weapon;
 
     public Entity() {
     }
@@ -31,6 +33,19 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         this.location = location;
         this.inventory = inventory;
         this.isAlive = isAlive;
+    }
+
+    public Entity(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive, Weapon weapon) {
+        this.index = index;
+        this.name = name;
+        this.health = health;
+        this.strength = strength;
+        this.defense = defense;
+        this.detailedDescription = detailedDescription;
+        this.location = location;
+        this.inventory = inventory;
+        this.isAlive = isAlive;
+        this.weapon = weapon;
     }
 
     public String attack(Entity target) {
@@ -52,6 +67,16 @@ public abstract class Entity implements Describable, SerializableRPGObject {
             return this.getName() + " has been defeated.";
         }
         return "";
+    }
+
+    public String equip(Weapon weapon) {
+        if (weapon == null || !this.inventory.contains(weapon)) {
+            return "Weapon is not in inventory.";
+        }
+
+        // Your logic to equip the weapon
+        this.weapon = weapon;
+        return this.name + " has equipped " + weapon.getName() + ".";
     }
 
     public void heal() {
