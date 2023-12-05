@@ -170,15 +170,11 @@ public abstract class Entity implements Describable, SerializableRPGObject {
     public void setDefense(int defense) {
         this.defense = defense;
     }
-
     @Override
     public String getDetailedDescription() {
         return detailedDescription;
     }
 
-    public void setDetailedDescription(String detailedDescription) {
-        this.detailedDescription = detailedDescription;
-    }
 
     public Location getLocation() {
         return location;
@@ -212,5 +208,15 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         this.equippedWeapon = equippedWeapon;
     }
 
+    public Item getInventoryItem(String itemName) {
+        Item entityItem = null;
+        List<Item> playerInventory = this.getInventory();
+        for (Item item:playerInventory) {
+            if (item.getName().equals(itemName)) {
+                entityItem = item;
+            }
+        }
+        return entityItem;
+    }
     // Additional methods if necessary...
 }
