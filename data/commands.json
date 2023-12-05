@@ -123,5 +123,9 @@
   "sound": [
     "volume",
     "music"
+  ],
+  "sfx": [
+    "effect",
+    "effects"
   ]
 }
