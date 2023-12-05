@@ -51,7 +51,6 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         return this.getName() + " attacked " + target.getName() + " for " + totalDamage + " damage. " + result;
     }
 
-
     private int calculateDamage(int targetDefense) {
         int damage = this.strength - targetDefense;
         return Math.max(damage, 0);
@@ -62,6 +61,9 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         if (this.health <= 0) {
             this.health = 0;
             isAlive = false;
+            if (this instanceof NPC) {
+                ((NPC) this).removeFromLocation();
+            }
             return this.getName() + " has been defeated.";
         }
         return "";
@@ -130,9 +132,13 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         this.setInventory(updatedInventory);
 
         // Updating the entity's weapon
-        String weaponIndex = jsonObject.get("weaponIndex").getAsString();
-        Weapon weapon = (Weapon) itemManager.getItem(weaponIndex);
-        this.setEquippedWeapon(weapon);
+        if (jsonObject.has("weaponIndex") && !jsonObject.get("weaponIndex").isJsonNull()) {
+            String weaponIndex = jsonObject.get("weaponIndex").getAsString();
+            Weapon weapon = (Weapon) itemManager.getItem(weaponIndex);
+            this.setEquippedWeapon(weapon);
+        } else {
+            this.setEquippedWeapon(new Weapon());
+        }
     }
 
     // Getters and setters

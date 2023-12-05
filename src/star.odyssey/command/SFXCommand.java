@@ -6,7 +6,6 @@ import star.odyssey.sound.SoundEffect;
 import java.util.Map;
 
 import static star.odyssey.game.GameUtil.IntToJson;
-import static star.odyssey.game.GameUtil.jsonToInt;
 
 public class SFXCommand implements Command {
     String gameTxtFilePath = "./data/gameText.json";
