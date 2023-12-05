@@ -38,7 +38,9 @@
       "strength": 20,
       "defense": 20,
       "location": "valley",
-      "inventory": [],
+      "inventory": [
+        "elixir"
+      ],
       "isAlive": true,
       "equippedWeapon": "",
       "hostile": false,

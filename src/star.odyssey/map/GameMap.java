@@ -68,12 +68,12 @@ public class GameMap {
         for (Map.Entry<String, Integer> entry : sortedRooms) {
             if (entry.getValue().toString().startsWith(level)) {
                 if (entry.getKey().startsWith("blank_room")) {
-                    System.out.print("                               ");
+                    System.out.print("                                   ");
                 } else {
                     if (locationProcessor.hasNorth(entry.getKey())) {
-                        System.out.print(makeBrown(" ╔═════════════╩══════════════╗"));
+                        System.out.print(makeBrown(" ╔═══════════════╩════════════════╗"));
                     } else {
-                        System.out.print(makeBrown(" ╔════════════════════════════╗"));
+                        System.out.print(makeBrown(" ╔════════════════════════════════╗"));
                     }
                 }
             }
@@ -82,9 +82,9 @@ public class GameMap {
         for (Map.Entry<String, Integer> entry : sortedRooms) {
             if (entry.getValue().toString().startsWith(level)) {
                 if (entry.getKey().startsWith("blank_room")) {
-                    System.out.print("                               ");
+                    System.out.print("                                   ");
                 } else {
-                    System.out.print(makeBrown(" ║                            ║"));
+                    System.out.print(makeBrown(" ║                                ║"));
                 }
             }
         }
@@ -93,14 +93,15 @@ public class GameMap {
             String west;
             String east;
             String playerPin;
+            String extraSpace;
             if (entry.getKey().equalsIgnoreCase(playerLocationIndex)) {
-                playerPin = "\uD83D\uDC64";
+                playerPin = " \uD83D\uDC64";
             } else {
                 playerPin = "";
             }
             if (entry.getValue().toString().startsWith(level)) {
                 if (entry.getKey().startsWith("blank_room")) {
-                    System.out.print("                               ");
+                    System.out.print("                                   ");
                 } else {
                     if (locationProcessor.hasWest(entry.getKey())) {
                         west = "═╣";
@@ -112,7 +113,8 @@ public class GameMap {
                     } else {
                         east = "║";
                     }
-                    printCentered(locationProcessor.getRoomNameByIndex(entry.getKey()) + playerPin, 28, west, east);
+                    String resultText = locationProcessor.getRoomNameByIndex(entry.getKey()) + playerPin;
+                    printCentered(resultText, 32, west, east);
                 }
             }
         }
@@ -121,9 +123,9 @@ public class GameMap {
         for (Map.Entry<String, Integer> entry : sortedRooms) {
             if (entry.getValue().toString().startsWith(level)) {
                 if (entry.getKey().startsWith("blank_room")) {
-                    System.out.print("                               ");
+                    System.out.print("                                   ");
                 } else {
-                    System.out.print(makeBrown(" ║                            ║"));
+                    System.out.print(makeBrown(" ║                                ║"));
                 }
             }
         }
@@ -131,12 +133,12 @@ public class GameMap {
         for (Map.Entry<String, Integer> entry : sortedRooms) {
             if (entry.getValue().toString().startsWith(level)) {
                 if (entry.getKey().startsWith("blank_room")) {
-                    System.out.print("                               ");
+                    System.out.print("                                   ");
                 } else {
                     if (locationProcessor.hasSouth(entry.getKey())) {
-                        System.out.print(makeBrown(" ╚═════════════╦══════════════╝"));
+                        System.out.print(makeBrown(" ╚═══════════════╦════════════════╝"));
                     } else {
-                        System.out.print(makeBrown(" ╚════════════════════════════╝"));
+                        System.out.print(makeBrown(" ╚════════════════════════════════╝"));
                     }
 
                 }
@@ -151,7 +153,7 @@ public class GameMap {
         if (text.length() % 2 != 0) {
             extraSpace = " ";
         }
-        System.out.print(makeBrown(west) + " ".repeat(padding) + makeGreen(text) + " ".repeat(padding) + extraSpace + makeBrown(east));
+        System.out.print(makeBrown(west) + " ".repeat(padding) + makeGreen(text)  + " ".repeat(padding) + extraSpace + makeBrown(east));
     }
 
     private static int getMaxRoomNumber(String level) {

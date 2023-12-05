@@ -127,5 +127,9 @@
   "sfx": [
     "effect",
     "effects"
+  ],
+  "give": [
+    "trade",
+    "exchange"
   ]
 }

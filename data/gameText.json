@@ -80,6 +80,12 @@
     "talk_null": "Talking to the void? It's a good listener but not much of a talker. Try naming someone!",
     "talk_unknown": ", seems to be off on their own adventure. Or just really good at hide and seek."
   },
+  "give_cmd": {
+    "barter_success": "Given crystal to guardian. Received elixir in return.",
+    "barter_fail": "The guardian is not interested in this item.",
+    "not_needed": "No one here needs your ",
+    "not_found": "Item not found: "
+  },
   "sound_cmd": {
     "sound_null": "To adjust sound, please type \"sound\" then one of the following options: ",
     "sound_unknown": " seems to be an invalid option. To adjust sound, please choose from the following options: ",
