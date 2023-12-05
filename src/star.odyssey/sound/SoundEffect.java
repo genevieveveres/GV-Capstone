@@ -10,7 +10,6 @@ public enum SoundEffect {
     SHIP_SCANNER("data/audio/use_ship_scanner.wav"),
     ELIXIR("data/audio/use_elixir.wav");
 
-
     private Clip clip;
     private static boolean soundEnabled = true;
 
@@ -26,17 +25,29 @@ public enum SoundEffect {
     }
 
     // Play the sound effect from the beginning
-    public void play() {
+    public void play(int volume) {
         if (soundEnabled) {
             if (clip.isRunning()) {
                 clip.stop();
             }
             clip.setFramePosition(0);
+            setSFXVolume(volume);
             clip.start();
         }
     }
 
     public static void setSoundEnabled(boolean soundEnabled) {
         SoundEffect.soundEnabled = soundEnabled;
+    }
+
+    public void setSFXVolume(int volume) {
+        float volFloat = (float) volume / 100;
+        if (clip != null) {
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            float min = gainControl.getMinimum();
+            float max = gainControl.getMaximum();
+            float gain = (volFloat * (max - min)) + min;
+            gainControl.setValue(gain);
+        }
     }
 }
