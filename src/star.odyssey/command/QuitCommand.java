@@ -2,9 +2,12 @@ package star.odyssey.command;
 
 import star.odyssey.game.Game;
 import star.odyssey.game.GameUtil;
+import star.odyssey.ui.MainMenu;
 
 import java.util.Map;
 import java.util.Scanner;
+
+import static star.odyssey.ui.ConsoleDisplayUtils.clearScreen;
 
 public class QuitCommand implements Command {
     private final Scanner scanner;
@@ -18,18 +21,6 @@ public class QuitCommand implements Command {
         this.game = game;
     }
 
-    public String optionsValues(Map<String, String> optionsMap) {
-        StringBuilder optionsStr = new StringBuilder();
-        for (Map.Entry<String, String> option : optionsMap.entrySet()) {
-            if (!optionsStr.toString().isEmpty()) {
-                optionsStr.append(", ");
-            }
-            optionsStr.append(option.getValue());
-        }
-
-        return optionsStr.toString();
-    }
-
     @Override
     public String execute(String noun) {
         String optionChoices = GameUtil.optionsValues(optionsMap);
@@ -40,7 +31,9 @@ public class QuitCommand implements Command {
         String optionKey = GameUtil.getValueKey(optionsMap, response).toString();
 
         if ("[1]".equals(optionKey)) {
-            game.stop();
+            Game.stop();
+            clearScreen();
+            MainMenu.execute();
             return txtMap.get("quit_confirm");
         } else if ("[2]".equals(optionKey)) {
             return txtMap.get("quit_deny");
