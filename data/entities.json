@@ -22,6 +22,7 @@
       "location": "city_center",
       "inventory": [],
       "isAlive": true,
+      "equippedWeapon": "",
       "hostile": false,
       "dialogueOptions": [],
       "questDetails": "",
@@ -37,6 +38,7 @@
       "location": "valley",
       "inventory": [],
       "isAlive": true,
+      "equippedWeapon": "",
       "hostile": false,
       "dialogueOptions": [],
       "questDetails": "",
@@ -52,6 +54,7 @@
       "location": "ship_storeroom",
       "inventory": [],
       "isAlive": true,
+      "equippedWeapon": "",
       "hostile": false,
       "dialogueOptions": [
       ],
@@ -68,6 +71,7 @@
       "location": "ship_storeroom",
       "inventory": [],
       "isAlive": true,
+      "equippedWeapon": "",
       "hostile": true,
       "dialogueOptions": [
         "I am going to destroy you when we implement battle.",

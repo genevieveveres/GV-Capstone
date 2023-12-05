@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import star.odyssey.inventory.Weapon;
 
 import java.io.FileReader;
 import java.util.*;
@@ -84,9 +85,9 @@ public class EntityManager {
         boolean hidden = isNPC && entityObject.get("hidden").getAsBoolean();
 
         if (isNPC) {
-            return new NPC(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive, null, hostile, dialogueOptions, questDetails, hidden);
+            return new NPC(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive, new Weapon(), hostile, dialogueOptions, questDetails, hidden);
         } else {
-            return new Player(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive, null);
+            return new Player(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive, new Weapon());
         }
     }
 

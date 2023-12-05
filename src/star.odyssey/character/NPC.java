@@ -20,7 +20,7 @@ public class NPC extends Entity {
     private boolean hidden;
 
     String gameTxtFilePath = "./data/gameText.json";
-    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "npc_cmd_txt");
+    private final Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "npc_cmd_txt");
 
     public NPC(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive, Weapon equippedWeapon, boolean hostile, List<String> dialogueOptions, String questDetails, boolean hidden) {
         super(index, name, health, strength, defense, detailedDescription, location, inventory, isAlive, equippedWeapon);
@@ -38,12 +38,8 @@ public class NPC extends Entity {
         return dialogueOptions.get(rand.nextInt(dialogueOptions.size()));
     }
 
-    public void giveQuest() {
-        // Logic for assigning quests to the player
-    }
-
-    public void dropLoot() {
-        // Define loot dropping behavior upon NPC defeat
+    public void dropItems() {
+        // Define item dropping behavior upon NPC defeat
     }
 
     // Serialize and Deserialize

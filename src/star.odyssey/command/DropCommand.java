@@ -9,7 +9,7 @@ import java.util.Map;
 public class DropCommand implements Command {
     private final GameState gameState;
     String gameTxtFilePath = "./data/gameText.json";
-    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "drop_cmd");
+    private final Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "drop_cmd");
 
     public DropCommand(GameState gameState) {
         this.gameState = gameState;

@@ -58,13 +58,31 @@ public class ItemManager {
         return createBaseItem(itemObject);
     }
 
+//    private Weapon createWeapon(JsonObject itemObject) {
+//        Item baseItem = createBaseItem(itemObject);
+//        int damage = itemObject.get("damage").getAsInt();
+//        int range = itemObject.get("range").getAsInt();
+//        int durability = itemObject.get("durability").getAsInt();
+//
+//        return new Weapon(baseItem.getIndex(), baseItem.getName(), baseItem.getDescription(), baseItem.getDetailedDescription(), baseItem.isUsable(), baseItem.isActive(), baseItem.isHidden(), baseItem.isMovable(), baseItem.getUseText(), baseItem.getUseLocation(), damage, range, durability);
+//    }
+
     private Weapon createWeapon(JsonObject itemObject) {
-        Item baseItem = createBaseItem(itemObject);
+        String index = itemObject.get("index").getAsString();
+        String name = itemObject.get("name").getAsString();
+        String description = itemObject.get("description").getAsString();
+        String detailedDescription = itemObject.get("detailed_description").getAsString();
+        boolean usable = itemObject.get("usable").getAsBoolean();
+        boolean active = itemObject.get("active").getAsBoolean();
+        boolean hidden = itemObject.get("hidden").getAsBoolean();
+        boolean movable = itemObject.get("movable").getAsBoolean();
+        String useText = itemObject.get("useText").getAsString();
+        String useLocation = itemObject.get("useLocation").getAsString();
         int damage = itemObject.get("damage").getAsInt();
         int range = itemObject.get("range").getAsInt();
         int durability = itemObject.get("durability").getAsInt();
 
-        return new Weapon(baseItem.getIndex(), baseItem.getName(), baseItem.getDescription(), baseItem.getDetailedDescription(), baseItem.isUsable(), baseItem.isActive(), baseItem.isHidden(), baseItem.isMovable(), baseItem.getUseText(), baseItem.getUseLocation(), damage, range, durability);
+        return new Weapon(index, name, description, detailedDescription, usable, active, hidden, movable, useText, useLocation, damage, range, durability);
     }
 
     public Item getItem(String index) {

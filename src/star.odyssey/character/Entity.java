@@ -41,10 +41,16 @@ public abstract class Entity implements Describable, SerializableRPGObject {
     }
 
     public String attack(Entity target) {
-        int damage = calculateDamage(target.getDefense());
-        String result = target.takeDamage(damage);
-        return this.getName() + " attacked " + target.getName() + " for " + damage + " damage. " + result;
+        int totalDamage = calculateDamage(target.getDefense());
+
+        if (this.equippedWeapon != null) {
+            totalDamage += this.equippedWeapon.getDamage();
+        }
+
+        String result = target.takeDamage(totalDamage);
+        return this.getName() + " attacked " + target.getName() + " for " + totalDamage + " damage. " + result;
     }
+
 
     private int calculateDamage(int targetDefense) {
         int damage = this.strength - targetDefense;
@@ -73,7 +79,6 @@ public abstract class Entity implements Describable, SerializableRPGObject {
     public void heal() {
         this.health += 10;
     }
-
 
     // Serialize and Deserialize
     @Override
