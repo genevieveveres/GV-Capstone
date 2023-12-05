@@ -1,19 +1,12 @@
 package star.odyssey.character;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 import star.odyssey.game.GameUtil;
 import star.odyssey.inventory.Item;
-import star.odyssey.inventory.ItemManager;
 import star.odyssey.inventory.Weapon;
 import star.odyssey.location.Location;
-import star.odyssey.location.LocationManager;
 
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Player extends Entity {
 
@@ -26,14 +19,6 @@ public class Player extends Entity {
 
     public Player(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive) {
         super(index, name, health, strength, defense, detailedDescription, location, inventory, isAlive);
-    }
-
-    public void move() {
-        // Implement player-specific movement (e.g., based on player input)
-    }
-
-    public void defend() {
-        // Player-specific defense implementation (e.g., block, dodge)
     }
 
     public String getItem(Item item) {
@@ -63,7 +48,6 @@ public class Player extends Entity {
         return txtMap.get("item_drop_fail") + itemName;
     }
 
-
     public void useItem(Item item) {
         // Implement usage of items from the inventory
     }
@@ -71,53 +55,4 @@ public class Player extends Entity {
     public void equipWeapon(Weapon weapon) {
         // Equip or change weapons for the player
     }
-
-    // Serialize and Deserialize
-    @Override
-    public String serialize() {
-        Gson gson = new Gson();
-        JsonObject jsonObject = new JsonObject();
-
-        jsonObject.addProperty("index", this.index);
-        jsonObject.addProperty("health", this.health);
-        jsonObject.addProperty("strength", this.strength);
-        jsonObject.addProperty("defense", this.defense);
-        jsonObject.addProperty("isAlive", this.isAlive);
-        jsonObject.addProperty("locationIndex", this.location.getIndex());
-        // Serialize inventory as a list of item indices
-        List<String> inventoryIndices = this.inventory.stream()
-                .map(Item::getIndex)
-                .collect(Collectors.toList());
-        jsonObject.add("inventoryIndices", gson.toJsonTree(inventoryIndices));
-
-        return jsonObject.toString();
-    }
-
-    @Override
-    public void deserialize(String serializedData, ItemManager itemManager, LocationManager locationManager, EntityManager entityManager) {
-        Gson gson = new Gson();
-        JsonObject jsonObject = gson.fromJson(serializedData, JsonObject.class);
-
-        // Updating basic attributes
-        this.setHealth(jsonObject.get("health").getAsInt());
-        this.setStrength(jsonObject.get("strength").getAsInt());
-        this.setDefense(jsonObject.get("defense").getAsInt());
-        this.setAlive(jsonObject.get("isAlive").getAsBoolean());
-
-        // Updating the player's location
-        String locationIndex = jsonObject.get("locationIndex").getAsString();
-        Location location = locationManager.getLocation(locationIndex);
-        this.setLocation(location);
-
-        // Updating the player's inventory
-        Type type = new TypeToken<List<String>>() {
-        }.getType();
-        List<String> itemIndices = gson.fromJson(jsonObject.get("inventoryIndices"), type);
-        List<Item> updatedInventory = itemIndices.stream()
-                .map(itemManager::getItem)
-                .collect(Collectors.toList());
-        this.setInventory(updatedInventory);
-    }
-
-    // Additional methods if necessary...
 }

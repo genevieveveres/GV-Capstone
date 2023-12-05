@@ -1,12 +1,19 @@
 package star.odyssey.character;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import star.odyssey.command.Describable;
 import star.odyssey.game.SerializableRPGObject;
 import star.odyssey.inventory.Item;
+import star.odyssey.inventory.ItemManager;
 import star.odyssey.inventory.Weapon;
 import star.odyssey.location.Location;
+import star.odyssey.location.LocationManager;
 
+import java.lang.reflect.Type;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class Entity implements Describable, SerializableRPGObject {
     protected String index;
@@ -74,7 +81,6 @@ public abstract class Entity implements Describable, SerializableRPGObject {
             return "Weapon is not in inventory.";
         }
 
-        // Your logic to equip the weapon
         this.weapon = weapon;
         return this.name + " has equipped " + weapon.getName() + ".";
     }
@@ -83,13 +89,73 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         this.health += 10;
     }
 
+
+    // Serialize and Deserialize
+    @Override
+    public String serialize() {
+        Gson gson = new Gson();
+        JsonObject jsonObject = new JsonObject();
+
+        jsonObject.addProperty("index", this.index);
+        jsonObject.addProperty("health", this.health);
+        jsonObject.addProperty("strength", this.strength);
+        jsonObject.addProperty("defense", this.defense);
+        jsonObject.addProperty("isAlive", this.isAlive);
+        jsonObject.addProperty("locationIndex", this.location.getIndex());
+        // Serialize inventory as a list of item indices
+        List<String> inventoryIndices = this.inventory.stream()
+                .map(Item::getIndex)
+                .collect(Collectors.toList());
+        jsonObject.add("inventoryIndices", gson.toJsonTree(inventoryIndices));
+
+        return jsonObject.toString();
+    }
+
+    @Override
+    public void deserialize(String serializedData, ItemManager itemManager, LocationManager locationManager, EntityManager entityManager) {
+        Gson gson = new Gson();
+        JsonObject jsonObject = gson.fromJson(serializedData, JsonObject.class);
+
+        // Updating basic attributes
+        this.setHealth(jsonObject.get("health").getAsInt());
+        this.setStrength(jsonObject.get("strength").getAsInt());
+        this.setDefense(jsonObject.get("defense").getAsInt());
+        this.setAlive(jsonObject.get("isAlive").getAsBoolean());
+
+        // Updating the player's location
+        String locationIndex = jsonObject.get("locationIndex").getAsString();
+        Location location = locationManager.getLocation(locationIndex);
+        this.setLocation(location);
+
+        // Updating the player's inventory
+        Type type = new TypeToken<List<String>>() {
+        }.getType();
+        List<String> itemIndices = gson.fromJson(jsonObject.get("inventoryIndices"), type);
+        List<Item> updatedInventory = itemIndices.stream()
+                .map(itemManager::getItem)
+                .collect(Collectors.toList());
+        this.setInventory(updatedInventory);
+    }
+
     // Getters and setters
+    public String getIndex() {
+        return index;
+    }
+
     public void setIndex(String index) {
         this.index = index;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getHealth() {
+        return health;
     }
 
     public void setHealth(int health) {
@@ -112,33 +178,13 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         this.defense = defense;
     }
 
-    public void setInventory(List<Item> inventory) {
-        this.inventory = inventory;
-    }
-
-    public boolean isAlive() {
-        return isAlive;
-    }
-
-    public void setAlive(boolean alive) {
-        isAlive = alive;
-    }
-
-    public String getIndex() {
-        return index;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
     @Override
     public String getDetailedDescription() {
         return detailedDescription;
+    }
+
+    public void setDetailedDescription(String detailedDescription) {
+        this.detailedDescription = detailedDescription;
     }
 
     public Location getLocation() {
@@ -151,6 +197,26 @@ public abstract class Entity implements Describable, SerializableRPGObject {
 
     public List<Item> getInventory() {
         return inventory;
+    }
+
+    public void setInventory(List<Item> inventory) {
+        this.inventory = inventory;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
     }
 
     // Additional methods if necessary...
