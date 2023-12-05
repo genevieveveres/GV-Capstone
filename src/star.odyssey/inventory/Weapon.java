@@ -10,7 +10,11 @@ public class Weapon extends Item {
     private int range;
     private int durability;
 
-    public Weapon(String index, String name, String description, String detailedDescription, boolean usable, boolean active, boolean hidden, boolean movable, boolean sound,String useText, String useLocation, int damage, int range, int durability) {
+    public Weapon() {
+        super();
+    }
+
+    public Weapon(String index, String name, String description, String detailedDescription, boolean usable, boolean active, boolean hidden, boolean movable, boolean sound, String useText, String useLocation, int damage, int range, int durability) {
         super(index, name, description, detailedDescription, usable, active, hidden, movable, sound, useText, useLocation);
         this.damage = damage;
         this.range = range;
@@ -42,5 +46,28 @@ public class Weapon extends Item {
         this.durability = jsonObject.get("durability").getAsInt();
     }
 
-    // Additional methods if necessary...
+    // Getters and setters
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public int getRange() {
+        return range;
+    }
+
+    public void setRange(int range) {
+        this.range = range;
+    }
+
+    public int getDurability() {
+        return durability;
+    }
+
+    public void setDurability(int durability) {
+        this.durability = durability;
+    }
 }

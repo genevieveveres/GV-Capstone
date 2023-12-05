@@ -75,6 +75,4 @@ public class ItemManager {
     public Map<String, Item> getAllItems() {
         return new HashMap<>(items);
     }
-
-    // Additional methods as needed...
 }
