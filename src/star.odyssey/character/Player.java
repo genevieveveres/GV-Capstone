@@ -17,6 +17,7 @@ import static star.odyssey.ui.ConsoleDisplayUtils.*;
 public class Player extends Entity {
 
     String gameTxtFilePath = "./data/gameText.json";
+    String settingsFilePath = "./data/userSettings.json";
     private final Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "player_cmd_txt");
 
     public Player(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive, Weapon equippedWeapon) {
@@ -83,7 +84,7 @@ public class Player extends Entity {
             String capitalizedName = item.getIndex().toUpperCase();
             try {
                 SoundEffect effect = SoundEffect.valueOf(capitalizedName);
-                effect.play();
+                effect.play(GameUtil.jsonToInt(settingsFilePath, "current_sfx_volume"));
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }

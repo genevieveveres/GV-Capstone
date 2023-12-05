@@ -95,5 +95,14 @@
     "3": "low",
     "4": "medium",
     "5": "high"
+  },
+  "sfx_cmd": {
+    "sound_null": "To adjust sound, please type \"sfx\" then one of the following options: ",
+    "sound_unknown": " seems to be an invalid option. To adjust sound, please choose from the following options: ",
+    "sound_off": "Sound effects are now off.",
+    "sound_on": "Sound effects are now on.",
+    "sound_low": "The sound effect volume is now low.",
+    "sound_medium": "The sound effect volume is now medium.",
+    "sound_high": "The sound effect volume is now high."
   }
 }
