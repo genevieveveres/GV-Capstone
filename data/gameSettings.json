@@ -3,5 +3,10 @@
     "low_volume": "75",
     "med_volume": "85",
     "high_volume": "100"
+  },
+  "sfx_levels": {
+    "low_volume": "75",
+    "med_volume": "85",
+    "high_volume": "100"
   }
 }
