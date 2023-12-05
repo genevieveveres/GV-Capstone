@@ -2,6 +2,7 @@ package star.odyssey.game;
 
 import star.odyssey.command.CommandManager;
 import star.odyssey.sound.BackgroundAudioPlayer;
+import star.odyssey.sound.SoundEffect;
 import star.odyssey.ui.DisplayUI;
 
 public class Game {
@@ -25,6 +26,7 @@ public class Game {
     }
 
     private void mainGameLoop() {
+        SoundEffect.init();
         while (isRunning) {
             String soundFilePath = getGameState().getPlayer().getLocation().getSoundFilePath();
             if (backgroundAudioPlayer != null) {
