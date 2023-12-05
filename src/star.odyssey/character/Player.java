@@ -5,10 +5,12 @@ import star.odyssey.game.GameUtil;
 import star.odyssey.inventory.Item;
 import star.odyssey.inventory.Weapon;
 import star.odyssey.location.Location;
+import star.odyssey.sound.SoundEffect;
 import star.odyssey.ui.MainMenu;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import static star.odyssey.ui.ConsoleDisplayUtils.*;
 
@@ -62,7 +64,7 @@ public class Player extends Entity {
         if (!item.isActive()) {
             return item.getName() + txtMap.get("item_inactive");
         }
-        if (item.getUseLocation() != null && !item.getUseLocation().equals(this.getLocation().getIndex())) {
+        if (!Objects.equals(item.getUseLocation(), "") && !item.getUseLocation().equals(this.getLocation().getIndex())) {
             return item.getName() + txtMap.get("use_not_location");
         }
         if (item.getIndex().equals("starstone")) {
@@ -73,6 +75,16 @@ public class Player extends Entity {
             clearScreen();
             MainMenu.execute();
             return null;
+        }
+        if (item.hasSound()) {
+            String capitalizedName = item.getIndex().toUpperCase();
+            try {
+                SoundEffect effect = SoundEffect.valueOf(capitalizedName);
+                effect.play();
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+
         }
 
         return wrapText(item.getUseText());

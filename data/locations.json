@@ -42,7 +42,7 @@
         "generic"
       ],
       "items": [
-        "miningLaser"
+        "mining_laser"
       ],
       "soundFilePath": "data/audio/ambient_spaceship_engine.wav"
     },

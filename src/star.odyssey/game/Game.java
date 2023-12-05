@@ -26,7 +26,6 @@ public class Game {
     }
 
     private void mainGameLoop() {
-        SoundEffect.init();
         while (isRunning) {
             String soundFilePath = getGameState().getPlayer().getLocation().getSoundFilePath();
             if (backgroundAudioPlayer != null) {

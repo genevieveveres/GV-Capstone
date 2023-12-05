@@ -48,10 +48,11 @@ public class ItemManager {
         boolean active = itemObject.get("active").getAsBoolean();
         boolean hidden = itemObject.get("hidden").getAsBoolean();
         boolean movable = itemObject.get("movable").getAsBoolean();
+        boolean sound = itemObject.get("hasSound").getAsBoolean();
         String useText = itemObject.get("useText").getAsString();
         String useLocation = itemObject.get("useLocation").getAsString();
 
-        return new Item(index, name, description, detailedDescription, usable, active, hidden, movable, useText, useLocation);
+        return new Item(index, name, description, detailedDescription, usable, active, hidden, movable, sound, useText, useLocation);
     }
 
     private Item createItem(JsonObject itemObject) {
@@ -64,7 +65,7 @@ public class ItemManager {
         int range = itemObject.get("range").getAsInt();
         int durability = itemObject.get("durability").getAsInt();
 
-        return new Weapon(baseItem.getIndex(), baseItem.getName(), baseItem.getDescription(), baseItem.getDetailedDescription(), baseItem.isUsable(), baseItem.isActive(), baseItem.isHidden(), baseItem.isMovable(), baseItem.getUseText(), baseItem.getUseLocation(), damage, range, durability);
+        return new Weapon(baseItem.getIndex(), baseItem.getName(), baseItem.getDescription(), baseItem.getDetailedDescription(), baseItem.isUsable(), baseItem.isActive(), baseItem.isHidden(), baseItem.isMovable(), baseItem.hasSound(), baseItem.getUseText(), baseItem.getUseLocation(), damage, range, durability);
     }
 
     public Item getItem(String index) {
