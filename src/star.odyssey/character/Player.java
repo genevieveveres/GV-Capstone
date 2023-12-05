@@ -40,6 +40,10 @@ public class Player extends Entity {
     public String dropItem(String itemName) {
         for (Item item : inventory) {
             if (item.getName().equalsIgnoreCase(itemName)) {
+                if (equippedWeapon != null && equippedWeapon.equals(item)) {
+                    equippedWeapon = new Weapon();
+                }
+
                 inventory.remove(item);
                 location.addInventory(item);
                 return itemName + txtMap.get("item_drop");
