@@ -11,13 +11,12 @@ import java.util.Scanner;
 import static star.odyssey.ui.ConsoleDisplayUtils.makeRed;
 import static star.odyssey.ui.DisplayBackstory.displayBackstory;
 import static star.odyssey.ui.DisplayGameInfo.displayGameInfo;
-import static star.odyssey.ui.DisplaySplash.displaySplash;
 
 public class MainMenu {
 
     static Prompter prompter = new Prompter(new Scanner(System.in)); // Utility for user prompts.
 
-    public boolean isInteger(String s) {
+    public static boolean isInteger(String s) {
         for (int i = 0; i < s.length(); i++) {
             if (!Character.isDigit(s.charAt(i))) {
                 return false;
@@ -26,7 +25,7 @@ public class MainMenu {
         return true;
     }
 
-    private Map<String, String> readMainMenuFromJson() {
+    private static Map<String, String> readMainMenuFromJson() {
         Map<String, String> optionsMap;
         String gameTxtFilePath = "./data/gameText.json";
 
@@ -35,12 +34,11 @@ public class MainMenu {
         return optionsMap;
     }
 
-    public void execute() {
+    public static void execute() {
         String settingsFilePath = "./data/userSettings.json";
         BackgroundAudioPlayer backgroundAudioPlayer = new BackgroundAudioPlayer("data/audio/ambient_game_start.wav");
         backgroundAudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "initial_volume"));
         backgroundAudioPlayer.loop();
-        displaySplash(); // Displaying the splash screen at startup.
         Map<String, String> optionsMap = readMainMenuFromJson();
 
         boolean validOption = false;
@@ -79,7 +77,7 @@ public class MainMenu {
                     validOption = true;
                     break;
                 case 3:
-                    DisplayBackstory.displayBackstory();
+                    displayBackstory();
                     displayGameInfo();
                     continue;
                 case 4:

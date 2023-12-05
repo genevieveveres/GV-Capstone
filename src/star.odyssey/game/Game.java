@@ -6,10 +6,10 @@ import star.odyssey.ui.DisplayUI;
 
 public class Game {
     private final GameState gameState;
-    private boolean isRunning;
+    private static boolean isRunning;
     private final CommandManager commandManager;
     private final DisplayUI displayUI;
-    private BackgroundAudioPlayer backgroundAudioPlayer = null;
+    private static BackgroundAudioPlayer backgroundAudioPlayer = null;
     String settingsFilePath = "./data/userSettings.json";
 
     public Game(GameState gameState) {
@@ -61,7 +61,8 @@ public class Game {
         }
     }
 
-    public void stop() {
+    public static void stop() {
+        backgroundAudioPlayer.stop();
         isRunning = false;
     }
 

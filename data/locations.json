@@ -12,7 +12,9 @@
         "west": "ship_engine"
       },
       "npcs": [],
-      "items": [],
+      "items": [
+        "starstone"
+      ],
       "soundFilePath": "data/audio/ambient_spaceship_entry.wav"
     },
     {
@@ -191,7 +193,6 @@
         "guardian"
       ],
       "items": [
-        "starstone"
       ],
       "soundFilePath": "data/audio/ambient_valley.wav"
     }

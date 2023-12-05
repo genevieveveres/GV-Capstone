@@ -8,8 +8,9 @@
       "detailed_description": "The Starstone's significance transcends its aesthetic brilliance; it is a key to the interstellar journey. Within its core lies the potential to power spacecraft engines and traverse the vastness of the cosmos. As one gazes upon the Starstone, there's a profound sense of connection to the mysteries of the alien world, an acknowledgment of the celestial forces that converge within this radiant mineral. Maybe someone knows what other mysterious powers it may have.",
       "usable": true,
       "active": true,
-      "hidden": true,
-      "movable": true
+      "hidden": false,
+      "movable": true,
+      "hasSound": false
     },
     {
       "index": "ore",
@@ -20,7 +21,8 @@
       "usable": true,
       "active": true,
       "hidden": true,
-      "movable": true
+      "movable": true,
+      "hasSound": true
     },
     {
       "index": "miningLaser",
@@ -32,6 +34,7 @@
       "active": true,
       "hidden": false,
       "movable": true,
+      "hasSound": true,
       "damage": 10,
       "range": 10,
       "durability": 10
@@ -45,7 +48,8 @@
       "usable": true,
       "active": true,
       "hidden": false,
-      "movable": false
+      "movable": false,
+      "hasSound": false
     },
     {
       "index": "journal",
@@ -56,7 +60,8 @@
       "usable": true,
       "active": true,
       "hidden": false,
-      "movable": false
+      "movable": false,
+      "hasSound": false
     },
     {
       "index": "elixir",
@@ -67,7 +72,8 @@
       "usable": true,
       "active": true,
       "hidden": false,
-      "movable": true
+      "movable": true,
+      "hasSound": true
     },
     {
       "index": "plasma_rifle",
