@@ -88,6 +88,20 @@
       "useLocation": ""
     },
     {
+      "index": "crystal",
+      "type": "item",
+      "name": "crystal",
+      "description": "This crystal is very rare and hard to find",
+      "detailed_description": "This crystal is precious for the guardian, give it to the guardian to get something in return",
+      "usable": true,
+      "active": true,
+      "hidden": false,
+      "movable": true,
+      "hasSound": false,
+      "useText": "Precious for the Luminara",
+      "useLocation": ""
+    },
+    {
       "index": "plasmaRifle",
       "type": "weapon",
       "name": "Plasma Rifle",

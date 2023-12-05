@@ -12,9 +12,7 @@
         "west": "ship_engine"
       },
       "npcs": [],
-      "items": [
-        "starstone"
-      ],
+      "items": [],
       "soundFilePath": "data/audio/ambient_spaceship_entry.wav"
     },
     {
@@ -57,9 +55,8 @@
       },
       "npcs": [],
       "items": [
-        "journal",
-        "elixir"
-      ],
+        "journal"
+        ],
       "soundFilePath": "data/audio/ambient_spaceship_entry.wav"
     },
     {
@@ -151,7 +148,9 @@
         "north": "crash_site"
       },
       "npcs": [],
-      "items": [],
+      "items": [
+        "crystal"
+      ],
       "soundFilePath": "data/audio/ambient_desert.wav"
     },
     {
@@ -194,6 +193,7 @@
         "guardian"
       ],
       "items": [
+        "starstone"
       ],
       "soundFilePath": "data/audio/ambient_valley.wav"
     }
