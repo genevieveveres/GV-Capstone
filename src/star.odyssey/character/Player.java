@@ -1,15 +1,10 @@
 package star.odyssey.character;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 import star.odyssey.game.Game;
 import star.odyssey.game.GameUtil;
 import star.odyssey.inventory.Item;
 import star.odyssey.inventory.Weapon;
 import star.odyssey.location.Location;
-import star.odyssey.location.LocationManager;
-import star.odyssey.ui.ConsoleDisplayUtils;
 import star.odyssey.ui.MainMenu;
 
 import java.util.List;

@@ -212,7 +212,7 @@ public abstract class Entity implements Describable, SerializableRPGObject {
     public Item getInventoryItem(String itemName) {
         Item entityItem = null;
         List<Item> entityInventory = this.getInventory();
-        for (Item item:entityInventory) {
+        for (Item item : entityInventory) {
             if (item.getName().equalsIgnoreCase(itemName)) {
                 entityItem = item;
             }
