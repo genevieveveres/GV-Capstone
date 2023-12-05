@@ -129,7 +129,7 @@ public abstract class Entity implements Describable, SerializableRPGObject {
                 .collect(Collectors.toList());
         this.setInventory(updatedInventory);
 
-        // Updaing the entity's weapon
+        // Updating the entity's weapon
         String weaponIndex = jsonObject.get("weaponIndex").getAsString();
         Weapon weapon = (Weapon) itemManager.getItem(weaponIndex);
         this.setEquippedWeapon(weapon);
@@ -224,5 +224,4 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         }
         return entityItem;
     }
-    // Additional methods if necessary...
 }

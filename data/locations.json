@@ -43,7 +43,6 @@
       ],
       "items": [
         "miningLaser",
-        "plasmaRifle",
         "gravityHammer"
       ],
       "soundFilePath": "data/audio/ambient_spaceship_engine.wav"

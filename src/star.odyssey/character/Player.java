@@ -89,7 +89,6 @@ public class Player extends Entity {
             }
 
         }
-
         return wrapText(item.getUseText());
     }
 }

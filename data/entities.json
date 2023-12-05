@@ -7,9 +7,11 @@
     "defense": 100,
     "detailed_description": "Player description",
     "location": "ship_storeroom",
-    "inventory": [],
+    "inventory": [
+      "plasmaRifle"
+    ],
     "isAlive": true,
-    "equippedWeapon": ""
+    "equippedWeapon": "plasmaRifle"
   },
   "npcs": [
     {
@@ -51,7 +53,7 @@
       "health": 50,
       "strength": 20,
       "defense": 20,
-      "location": "ship_storeroom",
+      "location": "city_center",
       "inventory": [],
       "isAlive": true,
       "equippedWeapon": "",
@@ -69,9 +71,11 @@
       "strength": 20,
       "defense": 20,
       "location": "ship_storeroom",
-      "inventory": [],
+      "inventory": [
+        "gravityHammer"
+      ],
       "isAlive": true,
-      "equippedWeapon": "",
+      "equippedWeapon": "gravityHammer",
       "hostile": true,
       "dialogueOptions": [
         "I am going to destroy you when we implement battle.",

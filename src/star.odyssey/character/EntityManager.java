@@ -13,7 +13,7 @@ public class EntityManager {
     private Player player;
     private String playerLocationIndex;
     private final List<String> playerItemIndexes;
-    private final String playerEquippedWeaponIndex;
+    private String playerEquippedWeaponIndex;
     private final Map<String, NPC> npcs;
     private final Map<String, String> npcLocationMap;
     private final Map<String, List<String>> npcItemsMap;
@@ -38,30 +38,33 @@ public class EntityManager {
             JsonObject playerObject = jsonObject.getAsJsonObject("player");
             if (playerObject != null) {
                 this.player = createPlayer(playerObject);
-
-                // Extract and store player's location index
                 playerLocationIndex = playerObject.get("location").getAsString();
-
-                // Extract and store player's inventory
                 JsonArray inventoryArray = playerObject.getAsJsonArray("inventory");
                 for (JsonElement item : inventoryArray) {
                     playerItemIndexes.add(item.getAsString());
                 }
+                playerEquippedWeaponIndex = playerObject.has("equippedWeapon") ?
+                        playerObject.get("equippedWeapon").getAsString() : "";
             }
 
             // Load NPC data
             JsonArray npcsArray = jsonObject.getAsJsonArray("npcs");
             if (npcsArray != null) {
                 for (JsonElement npcElement : npcsArray) {
-                    NPC npc = createNPC(npcElement.getAsJsonObject());
+                    JsonObject npcObj = npcElement.getAsJsonObject();
+                    NPC npc = createNPC(npcObj);
                     npcs.put(npc.getIndex(), npc);
 
-                    // Storing location and item information for later association
-                    JsonObject npcObj = npcElement.getAsJsonObject();
                     String locationIndex = npcObj.has("location") ? npcObj.get("location").getAsString() : null;
                     npcLocationMap.put(npc.getIndex(), locationIndex);
-                    List<String> itemIndexes = npcObj.has("items") ? parseItemIndexes(npcObj.getAsJsonArray("items")) : Collections.emptyList();
+
+                    List<String> itemIndexes = npcObj.has("inventory") ? parseItemIndexes(npcObj.getAsJsonArray("inventory")) : Collections.emptyList();
                     npcItemsMap.put(npc.getIndex(), itemIndexes);
+
+                    String equippedWeaponIndex = npcObj.has("equippedWeapon") ? npcObj.get("equippedWeapon").getAsString() : null;
+                    if (equippedWeaponIndex != null) {
+                        npcEquippedWeaponMap.put(npc.getIndex(), equippedWeaponIndex);
+                    }
                 }
             }
         } catch (Exception e) {
@@ -155,6 +158,4 @@ public class EntityManager {
     public List<String> getNPCsItemIndexes(String npcIndex) {
         return npcItemsMap.getOrDefault(npcIndex, Collections.emptyList());
     }
-
-    // Additional methods as needed...
 }

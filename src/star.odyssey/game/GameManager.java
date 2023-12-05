@@ -1,6 +1,7 @@
 package star.odyssey.game;
 
 import star.odyssey.character.EntityManager;
+import star.odyssey.character.NPC;
 import star.odyssey.inventory.Item;
 import star.odyssey.inventory.ItemManager;
 import star.odyssey.inventory.Weapon;
@@ -130,14 +131,19 @@ public class GameManager {
     }
 
     private void associateNPCsWithEquippedWeapons() {
-        entityManager.getAllNPCs().forEach((npcIndex, npc) -> {
-            String weaponIndex = entityManager.getNpcEquippedWeaponMap().get(npcIndex);
-            if (weaponIndex != null) {
+        for (Map.Entry<String, String> entry : entityManager.getNpcEquippedWeaponMap().entrySet()) {
+            String npcIndex = entry.getKey();
+            String weaponIndex = entry.getValue();
+
+            NPC npc = entityManager.getNPC(npcIndex);
+            if (npc != null && weaponIndex != null && !weaponIndex.isEmpty()) {
                 Item weapon = itemManager.getItem(weaponIndex);
-                if (weapon != null && npc.getInventory().contains(weapon)) {
-                    npc.setEquippedWeapon((Weapon) weapon);
+                if (weapon instanceof Weapon) {
+                    if (npc.getInventory().stream().anyMatch(item -> item.getIndex().equals(weaponIndex))) {
+                        npc.setEquippedWeapon((Weapon) weapon);
+                    }
                 }
             }
-        });
+        }
     }
 }

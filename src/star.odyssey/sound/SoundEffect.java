@@ -1,7 +1,8 @@
 package star.odyssey.sound;
 
-import java.io.*;
 import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
 
 public enum SoundEffect {
     MINING_LASER("data/audio/use_mining_laser.wav"),
@@ -26,10 +27,10 @@ public enum SoundEffect {
 
     // Play the sound effect from the beginning
     public void play() {
-            if (clip.isRunning()) {
-                clip.stop();
-            }
-            clip.setFramePosition(0);
-            clip.start();
+        if (clip.isRunning()) {
+            clip.stop();
+        }
+        clip.setFramePosition(0);
+        clip.start();
     }
 }
