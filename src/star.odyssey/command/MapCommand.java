@@ -11,11 +11,9 @@ import static star.odyssey.ui.ConsoleDisplayUtils.clearScreen;
 import static star.odyssey.ui.ConsoleDisplayUtils.pauseDisplay;
 
 public class MapCommand implements Command {
-    private final GameMap gameMap;
     private final GameState gameState;
 
     public MapCommand(GameState gameState) {
-        this.gameMap = new GameMap();
         this.gameState = gameState;
     }
 
@@ -27,7 +25,7 @@ public class MapCommand implements Command {
                 .filter(Location::isVisited)
                 .map(Location::getIndex)
                 .collect(Collectors.toList());
-        System.out.println(gameMap.drawGameMap(visitedLocations, gameState.getPlayer().getLocation().getIndex()));
+        System.out.println(GameMap.drawGameMap(visitedLocations, gameState.getPlayer().getLocation().getIndex()));
         pauseDisplay();
         return noun;
     }

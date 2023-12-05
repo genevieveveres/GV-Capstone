@@ -52,7 +52,7 @@ public class DisplayUI {
 
         // Display location items
         System.out.print(makeMagenta("\uD83E\uDDF3 Items: "));
-        List<String> locationItems = currentLocation.getItems().stream().map(Item::getName).collect(Collectors.toList());
+        List<String> locationItems = currentLocation.getItems().stream().filter(item -> !item.isHidden()).map(Item::getName).collect(Collectors.toList());
         System.out.println(String.join(", ", locationItems));
 
         // Display location NPCs
