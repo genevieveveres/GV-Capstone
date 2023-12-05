@@ -14,7 +14,7 @@ public class Game {
 
     public Game(GameState gameState) {
         this.gameState = gameState;
-        this.isRunning = false;
+        isRunning = false;
         this.commandManager = new CommandManager(this);
         this.displayUI = new DisplayUI(gameState);
     }

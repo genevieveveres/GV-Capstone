@@ -15,7 +15,7 @@ import static star.odyssey.ui.ConsoleDisplayUtils.*;
 public class Player extends Entity {
 
     String gameTxtFilePath = "./data/gameText.json";
-    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "player_cmd_txt");
+    private final Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "player_cmd_txt");
 
     public Player(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive, Weapon equippedWeapon) {
         super(index, name, health, strength, defense, detailedDescription, location, inventory, isAlive, equippedWeapon);
@@ -48,7 +48,6 @@ public class Player extends Entity {
         return txtMap.get("item_drop_fail") + itemName;
     }
 
-
     public String useItem(Item item) {
         if (!item.isUsable()) {
             return item.getName() + txtMap.get("use_not_usable");
@@ -76,9 +75,5 @@ public class Player extends Entity {
         }
 
         return wrapText(item.getUseText());
-    }
-
-    public void equipWeapon(Weapon weapon) {
-        // Equip or change weapons for the player
     }
 }
