@@ -12,6 +12,7 @@ public enum SoundEffect {
 
 
     private Clip clip;
+    private static boolean soundEnabled = true;
 
     // Constructor to construct each element of the enum with its own sound file.
     SoundEffect(String soundFileName) {
@@ -26,10 +27,16 @@ public enum SoundEffect {
 
     // Play the sound effect from the beginning
     public void play() {
+        if (soundEnabled) {
             if (clip.isRunning()) {
                 clip.stop();
             }
             clip.setFramePosition(0);
             clip.start();
+        }
+    }
+
+    public static void setSoundEnabled(boolean soundEnabled) {
+        SoundEffect.soundEnabled = soundEnabled;
     }
 }
