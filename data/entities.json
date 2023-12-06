@@ -15,7 +15,7 @@
   },
   "npcs": [
     {
-      "index": "ancient_guardian",
+      "index": "guardian",
       "name": "Ancient Guardian",
       "detailed_description": "The Guardian of the Starstone is a colossal entity, ancient and wise, positioned in the heart of the Whispering Valleys. Its form is a convergence of ethereal energies, resembling a towering silhouette with luminescent patterns that dance across its surface. The Guardian exudes a sense of both formidable strength and serene guardianship over the mystical Starstone.",
       "health": 100,
@@ -24,8 +24,8 @@
       "location": "ship_storeroom",
       "inventory": [
         "elixir",
-        "starstone",
-        "gravityHammer"
+        "gravityHammer",
+        "starstone"
       ],
       "isAlive": true,
       "equippedWeapon": "gravityHammer",
