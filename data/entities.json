@@ -4,7 +4,7 @@
     "name": "Player",
     "health": 100,
     "strength": 30,
-    "defense": 100,
+    "defense": 30,
     "detailed_description": "Player description",
     "location": "ship_storeroom",
     "inventory": [
@@ -15,7 +15,46 @@
   },
   "npcs": [
     {
-      "index": "lum_speaker",
+      "index": "guardian",
+      "name": "Ancient Guardian",
+      "detailed_description": "The Guardian of the Starstone is a colossal entity, ancient and wise, positioned in the heart of the Whispering Valleys. Its form is a convergence of ethereal energies, resembling a towering silhouette with luminescent patterns that dance across its surface. The Guardian exudes a sense of both formidable strength and serene guardianship over the mystical Starstone.",
+      "health": 100,
+      "strength": 30,
+      "defense": 20,
+      "location": "ship_storeroom",
+      "inventory": [
+        "elixir",
+        "gravityHammer",
+        "starstone"
+      ],
+      "isAlive": true,
+      "equippedWeapon": "gravityHammer",
+      "hostile": true,
+      "dialogueOptions": [],
+      "questDetails": "",
+      "hidden": false
+    },
+    {
+      "index": "sandshifter",
+      "name": "Sandshifter",
+      "detailed_description": "The Sandshifter is a formidable creature that prowls the shifting dunes, its presence a testament to adaptation in the harsh environment. The creature's body is covered in a textured, sandstone-like skin, featuring intricate patterns that mimic the desert's dunes.",
+      "health": 50,
+      "strength": 20,
+      "defense": 20,
+      "location": "ship_storeroom",
+      "inventory": [],
+      "isAlive": true,
+      "equippedWeapon": "",
+      "hostile": true,
+      "dialogueOptions": [
+        "I am going to destroy you when we implement battle.",
+        "I really don't like it here. I want to be in the desert"
+      ],
+      "questDetails": "",
+      "hidden": true
+    },
+    {
+      "index": "luminara_speaker",
       "name": "Luminara Speaker",
       "health": 100,
       "strength": 10,
@@ -29,62 +68,6 @@
       "dialogueOptions": [],
       "questDetails": "",
       "hidden": false
-    },
-    {
-      "index": "guardian",
-      "name": "Ancient Guardian",
-      "detailed_description": "The Guardian of the Starstone is a colossal entity, ancient and wise, positioned in the heart of the Whispering Valleys. Its form is a convergence of ethereal energies, resembling a towering silhouette with luminescent patterns that dance across its surface. The Guardian exudes a sense of both formidable strength and serene guardianship over the mystical Starstone.",
-      "health": 50,
-      "strength": 20,
-      "defense": 20,
-      "location": "valley",
-      "inventory": [
-        "elixir"
-      ],
-      "isAlive": true,
-      "equippedWeapon": "",
-      "hostile": false,
-      "dialogueOptions": [],
-      "questDetails": "",
-      "hidden": true
-    },
-    {
-      "index": "generic",
-      "name": "Generic",
-      "detailed_description": "I am just a generic NPC for testing purposes. I know I will be killed when testing is done.",
-      "health": 50,
-      "strength": 20,
-      "defense": 20,
-      "location": "city_center",
-      "inventory": [],
-      "isAlive": true,
-      "equippedWeapon": "",
-      "hostile": false,
-      "dialogueOptions": [
-      ],
-      "questDetails": "",
-      "hidden": true
-    },
-    {
-      "index": "sandshifter",
-      "name": "Sandshifter",
-      "detailed_description": "The Sandshifter is a formidable creature that prowls the shifting dunes, its presence a testament to adaptation in the harsh environment. The creature's body is covered in a textured, sandstone-like skin, featuring intricate patterns that mimic the desert's dunes.",
-      "health": 50,
-      "strength": 20,
-      "defense": 20,
-      "location": "ship_storeroom",
-      "inventory": [
-        "gravityHammer"
-      ],
-      "isAlive": true,
-      "equippedWeapon": "gravityHammer",
-      "hostile": true,
-      "dialogueOptions": [
-        "I am going to destroy you when we implement battle.",
-        "I really don't like it here. I want to be in the desert"
-      ],
-      "questDetails": "",
-      "hidden": true
     }
   ]
 }

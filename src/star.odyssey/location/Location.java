@@ -125,6 +125,10 @@ public class Location implements Describable, SerializableRPGObject {
         npcs.remove(npc);
     }
 
+    public List<NPC> getNpcs() {
+        return npcs;
+    }
+
     // Serialize and Deserialize
     @Override
     public String serialize() {
@@ -186,7 +190,4 @@ public class Location implements Describable, SerializableRPGObject {
             }
         }
     }
-
-
-    // Additional methods if necessary...
 }

@@ -37,7 +37,8 @@
         "south": "ship_engine"
       },
       "npcs": [
-        "generic"
+        "guardian",
+        "sandshifter"
       ],
       "items": [
         "miningLaser",
@@ -56,7 +57,7 @@
       "npcs": [],
       "items": [
         "journal"
-        ],
+      ],
       "soundFilePath": "data/audio/ambient_spaceship_entry.wav"
     },
     {
@@ -189,12 +190,8 @@
       "connections": {
         "north": "cave"
       },
-      "npcs": [
-        "guardian"
-      ],
-      "items": [
-        "starstone"
-      ],
+      "npcs": [],
+      "items": [],
       "soundFilePath": "data/audio/ambient_valley.wav"
     }
   ]

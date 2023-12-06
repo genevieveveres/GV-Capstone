@@ -45,9 +45,13 @@ public class NPC extends Entity {
         }
     }
 
-
     public void dropItems() {
-        // Define item dropping behavior upon NPC defeat
+        if (this.location != null) {
+            for (Item item : this.inventory) {
+                this.location.addInventory(item);
+            }
+            this.inventory.clear();
+        }
     }
 
     // Serialize and Deserialize
@@ -87,5 +91,27 @@ public class NPC extends Entity {
 
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
+    }
+
+    @Override
+    public String toString() {
+        return "NPC{" +
+                "hostile=" + hostile +
+                ", dialogueOptions=" + dialogueOptions +
+                ", questDetails='" + questDetails + '\'' +
+                ", hidden=" + hidden +
+                ", gameTxtFilePath='" + gameTxtFilePath + '\'' +
+                ", txtMap=" + txtMap +
+                ", index='" + index + '\'' +
+                ", name='" + name + '\'' +
+                ", health=" + health +
+                ", strength=" + strength +
+                ", defense=" + defense +
+                ", detailedDescription='" + detailedDescription + '\'' +
+                ", location=" + location +
+                ", inventory=" + inventory +
+                ", isAlive=" + isAlive +
+                ", equippedWeapon=" + equippedWeapon +
+                "} " + super.toString();
     }
 }
