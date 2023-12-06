@@ -4,7 +4,7 @@
     "name": "Player",
     "health": 100,
     "strength": 30,
-    "defense": 100,
+    "defense": 30,
     "detailed_description": "Player description",
     "location": "ship_storeroom",
     "inventory": [
@@ -45,23 +45,6 @@
       "equippedWeapon": "",
       "hostile": false,
       "dialogueOptions": [],
-      "questDetails": "",
-      "hidden": true
-    },
-    {
-      "index": "generic",
-      "name": "Generic",
-      "detailed_description": "I am just a generic NPC for testing purposes. I know I will be killed when testing is done.",
-      "health": 50,
-      "strength": 20,
-      "defense": 20,
-      "location": "city_center",
-      "inventory": [],
-      "isAlive": true,
-      "equippedWeapon": "",
-      "hostile": false,
-      "dialogueOptions": [
-      ],
       "questDetails": "",
       "hidden": true
     },

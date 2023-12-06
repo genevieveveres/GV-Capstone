@@ -40,36 +40,6 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         this.equippedWeapon = equippedWeapon;
     }
 
-    public String attack(Entity target) {
-        int totalDamage = calculateDamage(target.getDefense());
-
-        if (this.equippedWeapon != null) {
-            totalDamage += this.equippedWeapon.getDamage();
-        }
-
-        String result = target.takeDamage(totalDamage);
-        return this.getName() + " attacked " + target.getName() + " for " + totalDamage + " damage. " + result;
-    }
-
-    private int calculateDamage(int targetDefense) {
-        int damage = this.strength - targetDefense;
-        return Math.max(damage, 0);
-    }
-
-    public String takeDamage(int damage) {
-        this.health -= damage;
-        if (this.health <= 0) {
-            this.health = 0;
-            isAlive = false;
-            if (this instanceof NPC) {
-                ((NPC) this).dropItems();
-                ((NPC) this).removeFromLocation();
-            }
-            return this.getName() + " has been defeated.";
-        }
-        return "";
-    }
-
     public String equip(Weapon weapon) {
         if (weapon == null || !this.inventory.contains(weapon)) {
             return "Weapon is not in inventory.";

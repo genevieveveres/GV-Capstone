@@ -134,9 +134,7 @@
       "connections": {
         "north": "city_entrance"
       },
-      "npcs": [
-        "generic"
-      ],
+      "npcs": [],
       "items": [],
       "soundFilePath": "data/audio/ambient_city_center.wav"
     },
