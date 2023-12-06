@@ -3,6 +3,10 @@ package star.odyssey.game;
 import star.odyssey.command.CommandManager;
 import star.odyssey.sound.BackgroundAudioPlayer;
 import star.odyssey.ui.DisplayUI;
+import star.odyssey.ui.MainMenu;
+
+import static star.odyssey.ui.ConsoleDisplayUtils.clearScreen;
+import static star.odyssey.ui.ConsoleDisplayUtils.pauseDisplay;
 
 public class Game {
     private final GameState gameState;
@@ -39,6 +43,11 @@ public class Game {
             // Display the last command result
             System.out.println(lastCommandResult);
 
+            if (!(gameState.getPlayer().isAlive())) {
+                // Perform additional actions here if needed before ending the game
+                Game.playerDefeated();
+            }
+
             // Process commands in a separate thread
             Thread commandThread = new Thread(commandManager::processCommands);
 
@@ -68,5 +77,12 @@ public class Game {
 
     public GameState getGameState() {
         return gameState;
+    }
+
+    public static void playerDefeated() {
+        pauseDisplay();
+        Game.stop();
+        clearScreen();
+        MainMenu.execute();
     }
 }

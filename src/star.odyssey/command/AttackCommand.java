@@ -3,6 +3,7 @@ package star.odyssey.command;
 import star.odyssey.character.NPC;
 import star.odyssey.character.Player;
 import star.odyssey.combat.CombatEngine;
+import star.odyssey.game.Game;
 import star.odyssey.game.GameState;
 
 import java.util.List;
