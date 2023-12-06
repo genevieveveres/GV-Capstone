@@ -56,7 +56,7 @@
       "hidden": false,
       "movable": false,
       "hasSound": true,
-      "useText": "You activate the scanners to assess the environmental conditions outside. The holographic displays come to life, presenting a comprehensive analysis of the alien world's energy emissions.",
+      "useText": "You activate the scanners to assess the environmental conditions outside. The holographic displays come to life, presenting a comprehensive analysis of the alien world's energy emissions. A energy spike in the mountains to the east seems interesting.",
       "useLocation": "ship_control"
     },
     {
@@ -92,7 +92,7 @@
       "type": "item",
       "name": "crystal",
       "description": "This crystal is very rare and hard to find",
-      "detailed_description": "This crystal is precious for the guardian, give it to the guardian to get something in return",
+      "detailed_description": "This crystal seems special , give it to the Luminara speaker to get something in return",
       "usable": true,
       "active": true,
       "hidden": false,
@@ -102,12 +102,12 @@
       "useLocation": ""
     },
     {
-      "index": "plasmaRifle",
+      "index": "plasma_rifle",
       "type": "weapon",
       "name": "Plasma Rifle",
       "description": "A high-tech rifle emitting concentrated plasma bursts.",
       "detailed_description": "This rifle harnesses the power of ionized gas, emitting powerful bursts of plasma. Ideal for long-range combat in the vacuum of space, it combines futuristic design with lethal efficiency.",
-      "usable": true,
+      "usable": false,
       "active": true,
       "hidden": false,
       "movable": true,
@@ -116,15 +116,15 @@
       "range": 20,
       "durability": 50,
       "useText": "The Plasma Rifle crackles with energy as you aim. Releasing a shot, a blazing trail of plasma arcs towards its target, burning through obstacles with ease.",
-      "useLocation": "battlefield"
+      "useLocation": ""
     },
     {
-      "index": "gravityHammer",
+      "index": "gravity_hammer",
       "type": "weapon",
       "name": "Gravity Hammer",
       "description": "A formidable melee weapon manipulating gravitational fields.",
       "detailed_description": "This hammer is a masterpiece of engineering, using localized gravity fields to magnify its impact. It's a symbol of strength and power, capable of unleashing devastating blows that can disrupt enemy defenses.",
-      "usable": true,
+      "usable": false,
       "active": true,
       "hidden": false,
       "movable": true,
@@ -133,7 +133,7 @@
       "range": 5,
       "durability": 40,
       "useText": "Swinging the Gravity Hammer creates a visible distortion in the air, and upon impact, it releases a shockwave that sends adversaries reeling.",
-      "useLocation": "close_combat"
+      "useLocation": ""
     }
   ]
 }

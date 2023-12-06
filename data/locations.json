@@ -37,12 +37,11 @@
         "south": "ship_engine"
       },
       "npcs": [
-        "guardian",
-        "sandshifter"
       ],
       "items": [
         "miningLaser",
-        "gravityHammer"
+        "gravity_hammer",
+        "plasma_rifle"
       ],
       "soundFilePath": "data/audio/ambient_spaceship_engine.wav"
     },
@@ -148,9 +147,8 @@
       "connections": {
         "north": "crash_site"
       },
-      "npcs": [],
+      "npcs": ["sandshifter"],
       "items": [
-        "crystal"
       ],
       "soundFilePath": "data/audio/ambient_desert.wav"
     },
@@ -163,7 +161,7 @@
         "north": "jungle",
         "south": "cave"
       },
-      "npcs": [],
+      "npcs": ["guardian"],
       "items": [
         "ore"
       ],
