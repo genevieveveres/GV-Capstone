@@ -31,15 +31,15 @@ public class GiveCommand implements Command {
         // Check if the item was found
         if (itemToGive != null & itemToGive.equals(gameState.getPlayer().getInventoryItem(itemToGive.getName()))) {
             // Find the NPC "guardian" in the list of NPCs
-            NPC guardian = findNPC("guardian");
+            NPC targetNPC = findNPC("luminara_speaker");
 
             // Check if the NPC "guardian" was found
-            if (guardian != null && gameState.getEntityManager().getNPC("guardian").getLocation().equals(gameState.getPlayer().getLocation())) {
+            if (targetNPC != null && gameState.getEntityManager().getNPC("luminara_speaker").getLocation().equals(gameState.getPlayer().getLocation())) {
                 // Check if the player is giving the crystal to the guardian
-                if (gameState.getPlayer().getInventory().contains(itemToGive) && itemToGive.getName().equals("crystal") && gameState.getEntityManager().getNPC("guardian").getLocation().equals(gameState.getPlayer().getLocation())) {
+                if (gameState.getPlayer().getInventory().contains(itemToGive) && itemToGive.getName().equals("crystal") && gameState.getEntityManager().getNPC("luminara_speaker").getLocation().equals(gameState.getPlayer().getLocation())) {
                     gameState.getPlayer().dropItem(itemToGive.getName());
                     gameState.getPlayer().getItem(itemToGet);
-                    gameState.getEntityManager().getNPC("guardian").getInventoryItem("crystal");
+                    gameState.getEntityManager().getNPC("luminara_speaker").getInventoryItem("crystal");
 
                     return txtMap.get("barter_success");
                 } else {

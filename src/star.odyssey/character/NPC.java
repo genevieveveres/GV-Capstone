@@ -93,6 +93,14 @@ public class NPC extends Entity {
         this.hidden = hidden;
     }
 
+    public boolean isHostile() {
+        return hostile;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
     @Override
     public String toString() {
         return "NPC{" +

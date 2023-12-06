@@ -4,8 +4,12 @@ import star.odyssey.character.Entity;
 import star.odyssey.character.NPC;
 import star.odyssey.character.Player;
 import star.odyssey.inventory.Weapon;
+import star.odyssey.ui.ConsoleDisplayUtils;
 
 import java.util.Random;
+
+import static star.odyssey.ui.ConsoleDisplayUtils.makeGreen;
+import static star.odyssey.ui.ConsoleDisplayUtils.makeRed;
 
 public class CombatEngine {
     private final Player player;
@@ -43,9 +47,9 @@ public class CombatEngine {
         stats.append("Health: ").append(npc.getHealth());
         stats.append(", Strength: ").append(npc.getStrength());
         stats.append(", Defense: ").append(npc.getDefense());
-        stats.append(", Equipped Weapon: ").append(equippedWeapon != null ? equippedWeapon.getName() : "None").append("\n");
+        stats.append(", Equipped Weapon: ").append(equippedWeapon.getName() != null ? equippedWeapon.getName() : "None").append("\n");
 
-        if (equippedWeapon != null) {
+        if (equippedWeapon.getName() != null) {
             stats.append("Weapon Damage: ").append(equippedWeapon.getDamage());
             stats.append(", Weapon Range: ").append(equippedWeapon.getRange());
             stats.append(", Weapon Durability: ").append(equippedWeapon.getDurability()).append("\n");

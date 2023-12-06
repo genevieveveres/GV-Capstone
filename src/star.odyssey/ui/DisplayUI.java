@@ -61,7 +61,7 @@ public class DisplayUI {
 
         // Display location NPCs
         System.out.print(makeMagenta("\uD83D\uDC65 NPCs: "));
-        List<String> locationNPCs = currentLocation.getNPCs().stream().map(NPC::getName).collect(Collectors.toList());
+        List<String> locationNPCs = currentLocation.getNPCs().stream().filter(item -> !item.isHidden()).map(NPC::getName).collect(Collectors.toList());
         System.out.println(String.join(", ", locationNPCs));
 
         printDivider();

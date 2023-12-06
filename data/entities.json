@@ -1,17 +1,16 @@
 {
   "player": {
     "index": "player",
-    "name": "Player",
+    "name": "Alexa the All Knowing",
     "health": 100,
     "strength": 30,
-    "defense": 30,
+    "defense": 40,
     "detailed_description": "Player description",
     "location": "ship_storeroom",
     "inventory": [
-      "plasmaRifle"
     ],
     "isAlive": true,
-    "equippedWeapon": "plasmaRifle"
+    "equippedWeapon": "plasma_rifle"
   },
   "npcs": [
     {
@@ -21,16 +20,16 @@
       "health": 100,
       "strength": 30,
       "defense": 20,
-      "location": "ship_storeroom",
+      "location": "mountains",
       "inventory": [
         "elixir",
-        "gravityHammer",
+        "gravity_hammer",
         "starstone"
       ],
       "isAlive": true,
-      "equippedWeapon": "gravityHammer",
+      "equippedWeapon": "gravity_hammer",
       "hostile": true,
-      "dialogueOptions": [],
+      "dialogueOptions": ["Lets get on with this so you can win the game."],
       "questDetails": "",
       "hidden": false
     },
@@ -39,19 +38,18 @@
       "name": "Sandshifter",
       "detailed_description": "The Sandshifter is a formidable creature that prowls the shifting dunes, its presence a testament to adaptation in the harsh environment. The creature's body is covered in a textured, sandstone-like skin, featuring intricate patterns that mimic the desert's dunes.",
       "health": 50,
-      "strength": 20,
+      "strength": 40,
       "defense": 20,
-      "location": "ship_storeroom",
-      "inventory": [],
+      "location": "desert",
+      "inventory": ["crystal"],
       "isAlive": true,
       "equippedWeapon": "",
       "hostile": true,
       "dialogueOptions": [
-        "I am going to destroy you when we implement battle.",
-        "I really don't like it here. I want to be in the desert"
+        "Do you really want to talk? I just want to fight!"
       ],
       "questDetails": "",
-      "hidden": true
+      "hidden": false
     },
     {
       "index": "luminara_speaker",
@@ -65,7 +63,11 @@
       "isAlive": true,
       "equippedWeapon": "",
       "hostile": false,
-      "dialogueOptions": [],
+      "dialogueOptions": [
+        "Greetings, brave interstellar traveler. Your plight has not gone unnoticed. How may the Luminara assist you?",
+        "I have a healing elixir to trade for a Sandshifter crystal unless I have already given it to you",
+        "The Sandshifters live in the Glass Desert"
+      ],
       "questDetails": "",
       "hidden": false
     }
