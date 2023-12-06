@@ -29,13 +29,23 @@ public class CombatEngine {
     public String startCombat() {
         StringBuilder combatLog = new StringBuilder();
         combatLog.append(getNPCStats()).append("\n");
+        boolean playerDefeated = false;
 
         while (player.isAlive() && npc.isAlive()) {
             combatLog.append(performAttack(player, npc)).append("\n");
             if (!npc.isAlive()) break;
+
             combatLog.append(performAttack(npc, player)).append("\n");
-            if (!player.isAlive()) break;
+            if (!player.isAlive()) {
+                playerDefeated = true;
+                break;
+            }
         }
+
+        if (playerDefeated) {
+            return combatLog.append("\nPlayer defeated. Returning to main menu...").toString();
+        }
+
         return combatLog.toString();
     }
 
