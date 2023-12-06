@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import star.odyssey.inventory.Item;
+import star.odyssey.inventory.Weapon;
 
 import java.io.FileReader;
 import java.util.*;
@@ -13,16 +13,20 @@ public class EntityManager {
     private Player player;
     private String playerLocationIndex;
     private final List<String> playerItemIndexes;
+    private String playerEquippedWeaponIndex;
     private final Map<String, NPC> npcs;
-    private final Map<String, String> npcLocationMap; // Map of NPC index to Location index
-    private final Map<String, List<String>> npcItemsMap; // Map of NPC index to list of Item indexes
+    private final Map<String, String> npcLocationMap;
+    private final Map<String, List<String>> npcItemsMap;
+    private final Map<String, String> npcEquippedWeaponMap;
 
     public EntityManager(String jsonFilePath) {
         npcs = new HashMap<>();
         playerLocationIndex = "";
         playerItemIndexes = new ArrayList<>();
+        playerEquippedWeaponIndex = "";
         npcLocationMap = new HashMap<>();
         npcItemsMap = new HashMap<>();
+        npcEquippedWeaponMap = new HashMap<>();
         loadEntitiesFromJson(jsonFilePath);
     }
 
@@ -34,30 +38,33 @@ public class EntityManager {
             JsonObject playerObject = jsonObject.getAsJsonObject("player");
             if (playerObject != null) {
                 this.player = createPlayer(playerObject);
-
-                // Extract and store player's location index
                 playerLocationIndex = playerObject.get("location").getAsString();
-
-                // Extract and store player's inventory
                 JsonArray inventoryArray = playerObject.getAsJsonArray("inventory");
                 for (JsonElement item : inventoryArray) {
                     playerItemIndexes.add(item.getAsString());
                 }
+                playerEquippedWeaponIndex = playerObject.has("equippedWeapon") ?
+                        playerObject.get("equippedWeapon").getAsString() : "";
             }
 
             // Load NPC data
             JsonArray npcsArray = jsonObject.getAsJsonArray("npcs");
             if (npcsArray != null) {
                 for (JsonElement npcElement : npcsArray) {
-                    NPC npc = createNPC(npcElement.getAsJsonObject());
+                    JsonObject npcObj = npcElement.getAsJsonObject();
+                    NPC npc = createNPC(npcObj);
                     npcs.put(npc.getIndex(), npc);
 
-                    // Storing location and item information for later association
-                    JsonObject npcObj = npcElement.getAsJsonObject();
                     String locationIndex = npcObj.has("location") ? npcObj.get("location").getAsString() : null;
                     npcLocationMap.put(npc.getIndex(), locationIndex);
-                    List<String> itemIndexes = npcObj.has("items") ? parseItemIndexes(npcObj.getAsJsonArray("items")) : Collections.emptyList();
+
+                    List<String> itemIndexes = npcObj.has("inventory") ? parseItemIndexes(npcObj.getAsJsonArray("inventory")) : Collections.emptyList();
                     npcItemsMap.put(npc.getIndex(), itemIndexes);
+
+                    String equippedWeaponIndex = npcObj.has("equippedWeapon") ? npcObj.get("equippedWeapon").getAsString() : null;
+                    if (equippedWeaponIndex != null) {
+                        npcEquippedWeaponMap.put(npc.getIndex(), equippedWeaponIndex);
+                    }
                 }
             }
         } catch (Exception e) {
@@ -81,9 +88,9 @@ public class EntityManager {
         boolean hidden = isNPC && entityObject.get("hidden").getAsBoolean();
 
         if (isNPC) {
-            return new NPC(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive, hostile, dialogueOptions, questDetails, hidden);
+            return new NPC(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive, new Weapon(), hostile, dialogueOptions, questDetails, hidden);
         } else {
-            return new Player(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive);
+            return new Player(index, name, health, strength, defense, detailedDescription, null, new ArrayList<>(), isAlive, new Weapon());
         }
     }
 
@@ -111,23 +118,13 @@ public class EntityManager {
         return itemIndexes;
     }
 
-    public void addItemToNPC(String npcIndex, Item item) {
-        NPC npc = npcs.get(npcIndex);
-        if (npc != null) {
-            npc.getInventory().add(item);
-        }
-    }
-
+    // Getters and setters
     public Player getPlayer() {
         return player;
     }
 
-    public NPC getNPC(String index) {
-        return npcs.get(index);
-    }
-
-    public Map<String, NPC> getAllNPCs() {
-        return new HashMap<>(npcs);
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public String getPlayerLocationIndex() {
@@ -138,6 +135,22 @@ public class EntityManager {
         return playerItemIndexes;
     }
 
+    public String getPlayerEquippedWeaponIndex() {
+        return playerEquippedWeaponIndex;
+    }
+
+    public Map<String, String> getNpcEquippedWeaponMap() {
+        return npcEquippedWeaponMap;
+    }
+
+    public NPC getNPC(String index) {
+        return npcs.get(index);
+    }
+
+    public Map<String, NPC> getAllNPCs() {
+        return new HashMap<>(npcs);
+    }
+
     public String getNPCsLocationIndex(String npcIndex) {
         return npcLocationMap.get(npcIndex);
     }
@@ -145,6 +158,4 @@ public class EntityManager {
     public List<String> getNPCsItemIndexes(String npcIndex) {
         return npcItemsMap.getOrDefault(npcIndex, Collections.emptyList());
     }
-
-    // Additional methods as needed...
 }

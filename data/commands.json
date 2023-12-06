@@ -62,7 +62,6 @@
     "outfit",
     "arm",
     "adorn",
-    "suit up",
     "prepare"
   ],
   "drop": [
@@ -120,5 +119,17 @@
   "map": [
     "layout",
     "world"
+  ],
+  "sound": [
+    "volume",
+    "music"
+  ],
+  "sfx": [
+    "effect",
+    "effects"
+  ],
+  "give": [
+    "trade",
+    "exchange"
   ]
 }

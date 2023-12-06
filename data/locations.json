@@ -37,10 +37,11 @@
         "south": "ship_engine"
       },
       "npcs": [
-        "generic"
       ],
       "items": [
-        "miningLaser"
+        "miningLaser",
+        "gravity_hammer",
+        "plasma_rifle"
       ],
       "soundFilePath": "data/audio/ambient_spaceship_engine.wav"
     },
@@ -54,8 +55,7 @@
       },
       "npcs": [],
       "items": [
-        "journal",
-        "elixir"
+        "journal"
       ],
       "soundFilePath": "data/audio/ambient_spaceship_entry.wav"
     },
@@ -147,8 +147,9 @@
       "connections": {
         "north": "crash_site"
       },
-      "npcs": [],
-      "items": [],
+      "npcs": ["sandshifter"],
+      "items": [
+      ],
       "soundFilePath": "data/audio/ambient_desert.wav"
     },
     {
@@ -160,7 +161,7 @@
         "north": "jungle",
         "south": "cave"
       },
-      "npcs": [],
+      "npcs": ["guardian"],
       "items": [
         "ore"
       ],
@@ -187,12 +188,8 @@
       "connections": {
         "north": "cave"
       },
-      "npcs": [
-        "guardian"
-      ],
-      "items": [
-        "starstone"
-      ],
+      "npcs": [],
+      "items": [],
       "soundFilePath": "data/audio/ambient_valley.wav"
     }
   ]

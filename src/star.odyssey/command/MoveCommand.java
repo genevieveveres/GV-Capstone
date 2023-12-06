@@ -1,18 +1,18 @@
 package star.odyssey.command;
 
+import star.odyssey.character.Entity;
 import star.odyssey.game.GameState;
 import star.odyssey.game.GameUtil;
 import star.odyssey.location.Location;
-import star.odyssey.sound.BackgroundAudioPlayer;
 
 import java.util.Map;
 
 public class MoveCommand implements Command {
     private final GameState gameState;
-    private BackgroundAudioPlayer backgroundAudioPlayer;
 
     String gameTxtFilePath = "./data/gameText.json";
-    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "move_cmd");
+    private final Map<String, String> moveTxtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "move_cmd");
+
 
     public MoveCommand(GameState gameState) {
         this.gameState = gameState;
@@ -20,18 +20,21 @@ public class MoveCommand implements Command {
 
     @Override
     public String execute(String direction) {
+        Entity player = gameState.getPlayer();
+
         if (direction == null || direction.isEmpty()) {
-            return txtMap.get("direction_null");
+            return moveTxtMap.get("direction_null");
         }
 
-        Location currentLocation = gameState.getPlayer().getLocation();
+        Location currentLocation = player.getLocation();
         Location nextLocation = currentLocation.getConnections().get(direction);
 
         if (nextLocation == null) {
-            return txtMap.get("direction_unknown");
+            return moveTxtMap.get("direction_unknown");
         } else {
-            gameState.getPlayer().setLocation(nextLocation);
-            return txtMap.get("move_success") + nextLocation.getName();
+            player.setLocation(nextLocation);
+            player.getLocation().setVisited(true);
+            return moveTxtMap.get("move_success") + nextLocation.getName();
         }
     }
 }

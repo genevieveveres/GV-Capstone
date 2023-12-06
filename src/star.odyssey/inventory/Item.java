@@ -16,8 +16,14 @@ public class Item implements Describable, SerializableRPGObject {
     private boolean active;
     private boolean hidden;
     private boolean movable;
+    private boolean sound;
+    private String useText;
+    private String useLocation;
 
-    public Item(String index, String name, String description, String detailedDescription, boolean usable, boolean active, boolean hidden, boolean movable) {
+    public Item() {
+    }
+
+    public Item(String index, String name, String description, String detailedDescription, boolean usable, boolean active, boolean hidden, boolean movable, boolean sound, String useText, String useLocation) {
         this.index = index;
         this.name = name;
         this.description = description;
@@ -26,10 +32,34 @@ public class Item implements Describable, SerializableRPGObject {
         this.active = active;
         this.hidden = hidden;
         this.movable = movable;
+        this.sound = sound;
+        this.useText = useText;
+        this.useLocation = useLocation;
     }
 
-    public void use() {
-        // Define how the item is used (e.g., consume potion, read scroll)
+    // Serialize and Deserialize
+    @Override
+    public String serialize() {
+        Gson gson = new Gson();
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("index", index);
+        jsonObject.addProperty("usable", usable);
+        jsonObject.addProperty("active", active);
+        jsonObject.addProperty("hidden", hidden);
+        jsonObject.addProperty("movable", movable);
+        return gson.toJson(jsonObject);
+    }
+
+    @Override
+    public void deserialize(String serializedData, ItemManager itemManager, LocationManager locationManager, EntityManager entityManager) {
+        Gson gson = new Gson();
+        JsonObject jsonObject = gson.fromJson(serializedData, JsonObject.class);
+
+        // Update fields from the serialized data
+        this.usable = jsonObject.get("usable").getAsBoolean();
+        this.active = jsonObject.get("active").getAsBoolean();
+        this.hidden = jsonObject.get("hidden").getAsBoolean();
+        this.movable = jsonObject.get("movable").getAsBoolean();
     }
 
     // Getters and setters
@@ -66,29 +96,15 @@ public class Item implements Describable, SerializableRPGObject {
         return movable;
     }
 
-    // Serialize and Deserialize
-    @Override
-    public String serialize() {
-        Gson gson = new Gson();
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("index", index);
-        jsonObject.addProperty("usable", usable);
-        jsonObject.addProperty("active", active);
-        jsonObject.addProperty("hidden", hidden);
-        jsonObject.addProperty("movable", movable);
-        return gson.toJson(jsonObject);
+    public boolean hasSound() {
+        return sound;
     }
 
-    @Override
-    public void deserialize(String serializedData, ItemManager itemManager, LocationManager locationManager, EntityManager entityManager) {
-        Gson gson = new Gson();
-        JsonObject jsonObject = gson.fromJson(serializedData, JsonObject.class);
-        this.index = jsonObject.get("index").getAsString();
-        this.usable = jsonObject.get("usable").getAsBoolean();
-        this.active = jsonObject.get("active").getAsBoolean();
-        this.hidden = jsonObject.get("hidden").getAsBoolean();
-        this.movable = jsonObject.get("movable").getAsBoolean();
+    public String getUseText() {
+        return useText;
     }
 
-    // Additional methods if necessary...
+    public String getUseLocation() {
+        return useLocation;
+    }
 }

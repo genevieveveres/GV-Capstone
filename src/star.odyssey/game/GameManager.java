@@ -1,9 +1,10 @@
 package star.odyssey.game;
 
 import star.odyssey.character.EntityManager;
-import star.odyssey.character.Player;
+import star.odyssey.character.NPC;
 import star.odyssey.inventory.Item;
 import star.odyssey.inventory.ItemManager;
+import star.odyssey.inventory.Weapon;
 import star.odyssey.location.Location;
 import star.odyssey.location.LocationManager;
 
@@ -11,63 +12,73 @@ import java.util.List;
 import java.util.Map;
 
 public class GameManager {
-    private final Game game;
-    private final GameState gameState;
+    private Game game;
+    private GameState gameState;
     private final ItemManager itemManager;
     private final EntityManager entityManager;
     private final LocationManager locationManager;
-    String gameTxtFilePath = "./data/gameText.json";
-    private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "game_mgr");
+    private final String gameTxtFilePath = "./data/gameText.json";
+    private final Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "game_mgr");
 
     public GameManager() {
-        // Initialize managers independently
-        itemManager = new ItemManager("./data/items.json");
-        entityManager = new EntityManager("./data/entities.json");
-        locationManager = new LocationManager("./data/locations.json");
+        this.itemManager = new ItemManager("./data/items.json");
+        this.entityManager = new EntityManager("./data/entities.json");
+        this.locationManager = new LocationManager("./data/locations.json");
 
-        Player player = entityManager.getPlayer();
-        validatePlayer(player);
+        initializeNewGame();
+    }
 
-        // Associate entities
-        associateEntities(player);
-
-        // Create the GameState
-        gameState = new GameState(player, entityManager, itemManager, locationManager);
-
-        // Create the game instance
+    private void initializeNewGame() {
+        validatePlayer();
+        associateEntities();
+        gameState = new GameState(entityManager, itemManager, locationManager);
         game = new Game(gameState);
     }
 
-    private void associateEntities(Player player) {
-        associatePlayerWithLocation(player);
-        associatePlayerWithItems(player);
+    public void loadSavedGame() {
+        LoadGame loadGame = new LoadGame(gameState);
+        loadGame.load();
+        game = new Game(gameState);
+        startGame();
+    }
+
+    public void startGame() {
+        game.start();
+    }
+
+    private void associateEntities() {
+        associatePlayerWithLocation();
+        associatePlayerWithItems();
         associateNPCsWithLocations();
         associateItemsWithNPCs();
         associateItemsWithLocations();
+        associatePlayerWithEquippedWeapon();
+        associateNPCsWithEquippedWeapons();
     }
 
-    private void validatePlayer(Player player) {
-        if (player == null) {
+    private void validatePlayer() {
+        if (entityManager.getPlayer() == null) {
             throw new IllegalStateException(txtMap.get("player_null"));
         }
     }
 
-    private void associatePlayerWithLocation(Player player) {
+    private void associatePlayerWithLocation() {
         String locationIndex = entityManager.getPlayerLocationIndex();
         Location startingLocation = locationManager.getLocation(locationIndex);
         if (startingLocation != null) {
-            player.setLocation(startingLocation);
+            entityManager.getPlayer().setLocation(startingLocation);
+            entityManager.getPlayer().getLocation().setVisited(true);
         } else {
             throw new IllegalStateException(txtMap.get("location_null"));
         }
     }
 
-    private void associatePlayerWithItems(Player player) {
+    private void associatePlayerWithItems() {
         List<String> itemIndexes = entityManager.getPlayerItemIndexes();
         for (String itemIndex : itemIndexes) {
             Item item = itemManager.getItem(itemIndex);
             if (item != null) {
-                player.getInventory().add(item);
+                entityManager.getPlayer().getInventory().add(item);
             }
         }
     }
@@ -109,9 +120,30 @@ public class GameManager {
         });
     }
 
-    public void startGame() {
-        game.start();
+    private void associatePlayerWithEquippedWeapon() {
+        String weaponIndex = entityManager.getPlayerEquippedWeaponIndex();
+        if (!weaponIndex.isEmpty()) {
+            Item weapon = itemManager.getItem(weaponIndex);
+            if (weapon != null && entityManager.getPlayer().getInventory().contains(weapon)) {
+                entityManager.getPlayer().setEquippedWeapon((Weapon) weapon);
+            }
+        }
     }
 
-    // Additional methods as needed...
+    private void associateNPCsWithEquippedWeapons() {
+        for (Map.Entry<String, String> entry : entityManager.getNpcEquippedWeaponMap().entrySet()) {
+            String npcIndex = entry.getKey();
+            String weaponIndex = entry.getValue();
+
+            NPC npc = entityManager.getNPC(npcIndex);
+            if (npc != null && weaponIndex != null && !weaponIndex.isEmpty()) {
+                Item weapon = itemManager.getItem(weaponIndex);
+                if (weapon instanceof Weapon) {
+                    if (npc.getInventory().stream().anyMatch(item -> item.getIndex().equals(weaponIndex))) {
+                        npc.setEquippedWeapon((Weapon) weapon);
+                    }
+                }
+            }
+        }
+    }
 }

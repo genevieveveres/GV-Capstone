@@ -52,6 +52,13 @@ public class LookCommand implements Command {
             }
         }
 
+        // Search for a matching item in player inventory
+        for (Item item : player.getInventory()) {
+            if (item.getName().equalsIgnoreCase(noun)) {
+                return item;
+            }
+        }
+
         // If nothing matches, return null
         return null;
     }

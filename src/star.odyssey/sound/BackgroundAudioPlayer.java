@@ -30,4 +30,15 @@ public class BackgroundAudioPlayer {
             clip.stop();
         }
     }
+
+    public void setVolume(int volume) {
+        float volFloat = (float) volume / 100;
+        if (clip != null) {
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            float min = gainControl.getMinimum();
+            float max = gainControl.getMaximum();
+            float gain = (volFloat * (max - min)) + min;
+            gainControl.setValue(gain);
+        }
+    }
 }

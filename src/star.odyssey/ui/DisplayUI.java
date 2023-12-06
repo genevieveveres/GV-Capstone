@@ -27,7 +27,11 @@ public class DisplayUI {
     public void displayPlayerInfo() {
         // Display player info
         printDivider("Player Info");
-        System.out.println(makeMagenta("\uD83D\uDC64 Name: ") + player.getName() + ", " + makeMagenta("\u2764\uFE0F Health: ") + player.getHealth());
+        System.out.println(makeMagenta("\uD83D\uDC64 Name: ") + player.getName() + ", " +
+                makeMagenta("\u2764\uFE0F Health: ") + player.getHealth() + ", " +
+                makeMagenta("\u2694\uFE0F Weapon: ") +
+                (player.getEquippedWeapon().getName() != null ? player.getEquippedWeapon().getName() : ""));
+
 
         // Display player inventory
         System.out.print(makeMagenta("\uD83C\uDF92 Inventory: "));
@@ -52,16 +56,14 @@ public class DisplayUI {
 
         // Display location items
         System.out.print(makeMagenta("\uD83E\uDDF3 Items: "));
-        List<String> locationItems = currentLocation.getItems().stream().map(Item::getName).collect(Collectors.toList());
+        List<String> locationItems = currentLocation.getItems().stream().filter(item -> !item.isHidden()).map(Item::getName).collect(Collectors.toList());
         System.out.println(String.join(", ", locationItems));
 
         // Display location NPCs
         System.out.print(makeMagenta("\uD83D\uDC65 NPCs: "));
-        List<String> locationNPCs = currentLocation.getNPCs().stream().map(NPC::getName).collect(Collectors.toList());
+        List<String> locationNPCs = currentLocation.getNPCs().stream().filter(item -> !item.isHidden()).map(NPC::getName).collect(Collectors.toList());
         System.out.println(String.join(", ", locationNPCs));
 
         printDivider();
     }
-
-
 }

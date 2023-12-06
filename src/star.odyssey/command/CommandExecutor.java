@@ -22,7 +22,13 @@ public class CommandExecutor {
         commandMap.put("talk", new TalkCommand(game.getGameState()));
         commandMap.put("heal", new HealCommand(game.getGameState()));
         commandMap.put("save", new SaveCommand(game.getGameState()));
-        commandMap.put("map", new MapCommand());
+        commandMap.put("map", new MapCommand(game.getGameState()));
+        commandMap.put("sound", new SoundCommand());
+        commandMap.put("sfx", new SFXCommand());
+        commandMap.put("attack", new AttackCommand(game.getGameState()));
+        commandMap.put("equip", new EquipCommand(game.getGameState()));
+        commandMap.put("use", new UseCommand(game.getGameState()));
+        commandMap.put("give", new GiveCommand(game.getGameState()));
         // Initialize other commands as needed
     }
 

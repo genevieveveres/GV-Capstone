@@ -11,7 +11,6 @@ import java.util.Scanner;
 import static star.odyssey.ui.ConsoleDisplayUtils.makeRed;
 import static star.odyssey.ui.DisplayBackstory.displayBackstory;
 import static star.odyssey.ui.DisplayGameInfo.displayGameInfo;
-import static star.odyssey.ui.DisplaySplash.displaySplash;
 
 public class MainMenu {
 
@@ -26,7 +25,7 @@ public class MainMenu {
         return true;
     }
 
-    private Map<String, String> readMainMenuFromJson() {
+    private static Map<String, String> readMainMenuFromJson() {
         Map<String, String> optionsMap;
         String gameTxtFilePath = "./data/gameText.json";
 
@@ -35,10 +34,11 @@ public class MainMenu {
         return optionsMap;
     }
 
-    public void execute() {
+    public static void execute() {
+        String settingsFilePath = "./data/userSettings.json";
         BackgroundAudioPlayer backgroundAudioPlayer = new BackgroundAudioPlayer("data/audio/ambient_game_start.wav");
+        backgroundAudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "initial_volume"));
         backgroundAudioPlayer.loop();
-        displaySplash(); // Displaying the splash screen at startup.
         Map<String, String> optionsMap = readMainMenuFromJson();
 
         boolean validOption = false;
@@ -60,9 +60,9 @@ public class MainMenu {
                 userOption = Integer.parseInt(prompter.prompt(promtString));
             } catch (Exception ignored) {
             }
+            GameManager gameManager = new GameManager();
             switch (userOption) {
                 case 1:
-                    GameManager gameManager = new GameManager();
                     displayBackstory();
                     displayGameInfo();
                     backgroundAudioPlayer.stop();
@@ -70,8 +70,8 @@ public class MainMenu {
                     validOption = true;
                     break;
                 case 2:
-                    System.out.println("Load Game");
                     backgroundAudioPlayer.stop();
+                    gameManager.loadSavedGame(); // Loading a previously saved game.
                     validOption = true;
                     break;
                 case 3:

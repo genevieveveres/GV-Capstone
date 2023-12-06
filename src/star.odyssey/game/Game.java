@@ -3,17 +3,22 @@ package star.odyssey.game;
 import star.odyssey.command.CommandManager;
 import star.odyssey.sound.BackgroundAudioPlayer;
 import star.odyssey.ui.DisplayUI;
+import star.odyssey.ui.MainMenu;
+
+import static star.odyssey.ui.ConsoleDisplayUtils.clearScreen;
+import static star.odyssey.ui.ConsoleDisplayUtils.pauseDisplay;
 
 public class Game {
     private final GameState gameState;
-    private boolean isRunning;
+    private static boolean isRunning;
     private final CommandManager commandManager;
     private final DisplayUI displayUI;
-    private BackgroundAudioPlayer backgroundAudioPlayer = null;
+    private static BackgroundAudioPlayer backgroundAudioPlayer = null;
+    String settingsFilePath = "./data/userSettings.json";
 
     public Game(GameState gameState) {
         this.gameState = gameState;
-        this.isRunning = false;
+        isRunning = false;
         this.commandManager = new CommandManager(this);
         this.displayUI = new DisplayUI(gameState);
     }
@@ -30,12 +35,18 @@ public class Game {
                 backgroundAudioPlayer.stop();
             }
             backgroundAudioPlayer = new BackgroundAudioPlayer(soundFilePath);
+            backgroundAudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "current_volume"));
             backgroundAudioPlayer.loop();
             // Main loop for game execution; process commands and update game state
             displayUI.displayMainUI();
             String lastCommandResult = commandManager.getLastCommandResult();
             // Display the last command result
             System.out.println(lastCommandResult);
+
+            if (!(gameState.getPlayer().isAlive())) {
+                // Perform additional actions here if needed before ending the game
+                Game.playerDefeated();
+            }
 
             // Process commands in a separate thread
             Thread commandThread = new Thread(commandManager::processCommands);
@@ -59,7 +70,8 @@ public class Game {
         }
     }
 
-    public void stop() {
+    public static void stop() {
+        backgroundAudioPlayer.stop();
         isRunning = false;
     }
 
@@ -67,5 +79,10 @@ public class Game {
         return gameState;
     }
 
-    // Additional methods as needed...
+    public static void playerDefeated() {
+        pauseDisplay();
+        Game.stop();
+        clearScreen();
+        MainMenu.execute();
+    }
 }
