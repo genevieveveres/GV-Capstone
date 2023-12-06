@@ -1,7 +1,8 @@
 package star.odyssey.command;
 
-import star.odyssey.character.Entity;
 import star.odyssey.character.NPC;
+import star.odyssey.character.Player;
+import star.odyssey.combat.CombatEngine;
 import star.odyssey.game.GameState;
 
 public class AttackCommand implements Command {
@@ -13,13 +14,15 @@ public class AttackCommand implements Command {
 
     @Override
     public String execute(String targetName) {
-        Entity player = gameState.getPlayer();
+        Player player = gameState.getPlayer();
         NPC target = gameState.getEntityManager().getNPC(targetName);
 
         if (target == null) {
             return "No such enemy found.";
         }
 
-        return player.attack(target);
+        CombatEngine combatEngine = new CombatEngine(player, target);
+
+        return combatEngine.startCombat();
     }
 }

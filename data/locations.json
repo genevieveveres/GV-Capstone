@@ -37,11 +37,10 @@
         "south": "ship_engine"
       },
       "npcs": [
-        "generic"
+        "sandshifter"
       ],
       "items": [
-        "miningLaser",
-        "gravityHammer"
+        "mining_laser"
       ],
       "soundFilePath": "data/audio/ambient_spaceship_engine.wav"
     },
@@ -56,7 +55,7 @@
       "npcs": [],
       "items": [
         "journal"
-        ],
+      ],
       "soundFilePath": "data/audio/ambient_spaceship_entry.wav"
     },
     {
@@ -135,7 +134,9 @@
       "connections": {
         "north": "city_entrance"
       },
-      "npcs": [],
+      "npcs": [
+        "generic"
+      ],
       "items": [],
       "soundFilePath": "data/audio/ambient_city_center.wav"
     },

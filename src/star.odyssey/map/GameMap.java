@@ -153,7 +153,7 @@ public class GameMap {
         if (text.length() % 2 != 0) {
             extraSpace = " ";
         }
-        System.out.print(makeBrown(west) + " ".repeat(padding) + makeGreen(text)  + " ".repeat(padding) + extraSpace + makeBrown(east));
+        System.out.print(makeBrown(west) + " ".repeat(padding) + makeGreen(text) + " ".repeat(padding) + extraSpace + makeBrown(east));
     }
 
     private static int getMaxRoomNumber(String level) {

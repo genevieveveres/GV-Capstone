@@ -45,9 +45,13 @@ public class NPC extends Entity {
         }
     }
 
-
     public void dropItems() {
-        // Define item dropping behavior upon NPC defeat
+        if (this.location != null) {
+            for (Item item : this.inventory) {
+                this.location.addInventory(item);
+            }
+            this.inventory.clear();
+        }
     }
 
     // Serialize and Deserialize

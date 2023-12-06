@@ -62,6 +62,7 @@ public abstract class Entity implements Describable, SerializableRPGObject {
             this.health = 0;
             isAlive = false;
             if (this instanceof NPC) {
+                ((NPC) this).dropItems();
                 ((NPC) this).removeFromLocation();
             }
             return this.getName() + " has been defeated.";
