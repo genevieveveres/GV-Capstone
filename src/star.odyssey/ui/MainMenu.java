@@ -70,8 +70,6 @@ public class MainMenu {
                     validOption = true;
                     break;
                 case 2:
-                    displayBackstory();
-                    displayGameInfo();
                     backgroundAudioPlayer.stop();
                     gameManager.loadSavedGame(); // Loading a previously saved game.
                     validOption = true;

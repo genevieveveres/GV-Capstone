@@ -4,8 +4,11 @@ import star.odyssey.character.NPC;
 import star.odyssey.character.Player;
 import star.odyssey.combat.CombatEngine;
 import star.odyssey.game.GameState;
+import star.odyssey.ui.ConsoleDisplayUtils;
 
 import java.util.List;
+
+import static star.odyssey.ui.ConsoleDisplayUtils.clearScreen;
 
 public class AttackCommand implements Command {
     private final GameState gameState;

@@ -1,8 +1,11 @@
 package star.odyssey.command;
 
 import star.odyssey.game.GameUtil;
+import star.odyssey.ui.ConsoleDisplayUtils;
 
 import java.util.Map;
+
+import static star.odyssey.ui.ConsoleDisplayUtils.wrapText;
 
 // Command to display a list of available commands.
 public class HelpCommand implements Command {
@@ -19,9 +22,9 @@ public class HelpCommand implements Command {
     public String execute(String noun) {
         StringBuilder result = new StringBuilder(txtMap.get("builderStart"));
         for (String commandKey : commandMap.keySet()) {
-            result.append("- ").append(commandKey).append("\n"); // Appending each available command.
+            result.append("- ").append(commandKey).append(" "); // Appending each available command.
         }
 
-        return result.toString().trim();
+        return wrapText(result.toString().trim());
     }
 }
