@@ -1,6 +1,23 @@
 {
   "locations": [
     {
+      "index": "ship_storeroom",
+      "name": "Storeroom",
+      "description": "The ship storeroom harbors a clandestine cache of tools for exploration, featuring a mining laser and carefully stored explosives. Dim lighting casts shadows on sturdy crates and metallic canisters, hinting at the dual nature of this space as both a storage facility and a potential arsenal for navigating the challenges of alien worlds.",
+      "detailed_description": "The ship storeroom unfolds as a secretive chamber within the spacecraft, housing tools crucial for exploration. Sturdy crates and metallic canisters line the shelves, organized with military precision. Dim lighting casts shadows that play across the surfaces of mining lasers, crates, and carefully labeled containers of explosives.\\nAt the center of the room, a formidable mining laser rests securely in a designated rack. Its metallic frame, adorned with controls and indicators, hints at its potential for extracting resources from the alien landscapes. Nearby, a collection of carefully stored explosives, each labeled with cautionary markings, adds a layer of gravity to the room, highlighting the need for preparedness in the face of unforeseen challenges.",
+      "connections": {
+        "south": "ship_engine"
+      },
+      "npcs": [
+        "sandshifter",
+        "guardian"
+      ],
+      "items": [
+        "mining_laser"
+      ],
+      "soundFilePath": "data/audio/ambient_spaceship_engine.wav"
+    },
+    {
       "index": "ship_entry",
       "name": "Spaceship Entry",
       "description": "The entryway of your spacecraft bears the scars of the crash, with a partially damaged hatch revealing the inner workings of the vessel. A makeshift ramp, constructed from salvaged materials, extends to the ground, bridging the gap between the alien terrain and the spacecraft's wounded exterior.",
@@ -26,22 +43,6 @@
       },
       "npcs": [],
       "items": [],
-      "soundFilePath": "data/audio/ambient_spaceship_engine.wav"
-    },
-    {
-      "index": "ship_storeroom",
-      "name": "Storeroom",
-      "description": "The ship storeroom harbors a clandestine cache of tools for exploration, featuring a mining laser and carefully stored explosives. Dim lighting casts shadows on sturdy crates and metallic canisters, hinting at the dual nature of this space as both a storage facility and a potential arsenal for navigating the challenges of alien worlds.",
-      "detailed_description": "The ship storeroom unfolds as a secretive chamber within the spacecraft, housing tools crucial for exploration. Sturdy crates and metallic canisters line the shelves, organized with military precision. Dim lighting casts shadows that play across the surfaces of mining lasers, crates, and carefully labeled containers of explosives.\\nAt the center of the room, a formidable mining laser rests securely in a designated rack. Its metallic frame, adorned with controls and indicators, hints at its potential for extracting resources from the alien landscapes. Nearby, a collection of carefully stored explosives, each labeled with cautionary markings, adds a layer of gravity to the room, highlighting the need for preparedness in the face of unforeseen challenges.",
-      "connections": {
-        "south": "ship_engine"
-      },
-      "npcs": [
-        "sandshifter"
-      ],
-      "items": [
-        "mining_laser"
-      ],
       "soundFilePath": "data/audio/ambient_spaceship_engine.wav"
     },
     {
@@ -188,12 +189,8 @@
       "connections": {
         "north": "cave"
       },
-      "npcs": [
-        "guardian"
-      ],
-      "items": [
-        "starstone"
-      ],
+      "npcs": [],
+      "items": [],
       "soundFilePath": "data/audio/ambient_valley.wav"
     }
   ]
