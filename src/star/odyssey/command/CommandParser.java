@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 public class CommandParser {
-    private final Set<String> unnecessaryWords; // Set of words to ignore during parsing.
+    private static Set<String> unnecessaryWords = null; // Set of words to ignore during parsing.
 
     public CommandParser() {
         unnecessaryWords = new HashSet<>();
@@ -28,7 +28,7 @@ public class CommandParser {
         }
     }
 
-    public ParsedCommand parseCommand(String input) {
+    public static ParsedCommand parseCommand(String input) {
         String[] words = input.trim().toLowerCase().split("\\s+");
         StringBuilder nounBuilder = new StringBuilder();
         String verb = null;
