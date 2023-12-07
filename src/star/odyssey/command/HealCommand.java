@@ -19,7 +19,13 @@ public class HealCommand implements Command {
     @Override
     public String execute(String entityName) {
         Player player = gameState.getPlayer();
-        if (entityName.equalsIgnoreCase(player.getName())) {
+
+        //Use the provided parser to parse the player name the same way the command will be parsed
+        ParsedCommand holder = CommandParser.parseCommand(player.getName());
+        String parsedName = holder.getVerb() + " " + holder.getNoun();
+
+        //Allow player to be healed by just entering the word "heal"
+        if (entityName.equalsIgnoreCase(parsedName) || entityName.equals("")) {
             player.heal();
             return txtMap.get("heal_yourself");
         }
