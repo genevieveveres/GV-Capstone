@@ -5,6 +5,7 @@ import javax.swing.*;
 public class MainFrame extends JFrame {
     private JPanel mainPanel;
     private JButton clickMeButton;
+    private JLabel label1;
 
     public MainFrame(){
         this.setContentPane(mainPanel);
