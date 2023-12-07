@@ -33,13 +33,13 @@ public class GiveCommand implements Command {
             // Find the NPC "guardian" in the list of NPCs
             NPC targetNPC = findNPC("luminara_speaker");
 
-            // Check if the NPC "guardian" was found
-            if (targetNPC != null && targetNPC.isAlive() && gameState.getEntityManager().getNPC("luminara_speaker").getLocation().equals(gameState.getPlayer().getLocation())) {
-                // Check if the player is giving the crystal to the guardian
+            // Check if the NPC "luminara speaker" was found
+            if (targetNPC != null && targetNPC.isAlive() && targetNPC.getLocation().equals(gameState.getPlayer().getLocation())) {
+                // Check if the player is giving the crystal to the luminara speaker
                 if (gameState.getPlayer().getInventory().contains(itemToGive) && itemToGive.getName().equals("crystal") && targetNPC.getLocation().equals(gameState.getPlayer().getLocation())) {
-                    gameState.getPlayer().dropItem(itemToGive.getName());
+                    gameState.getPlayer().getInventory().remove(itemToGive);
                     gameState.getPlayer().getItem(itemToGet);
-                    gameState.getEntityManager().getNPC("luminara_speaker").getInventoryItem("crystal");
+                    targetNPC.getInventoryItem("crystal");
 
                     return txtMap.get("barter_success");
                 } else {
