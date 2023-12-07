@@ -5,7 +5,7 @@
       "type": "item",
       "name": "Starstone",
       "description": "The Starstone is a radiant mineral. Its surface shimmers with a luminosity that mirrors the celestial energies of the alien world. A rare and ancient gem, the Starstone possesses an ethereal beauty that captivates all who behold it.",
-      "detailed_description": "The Starstone's significance transcends its aesthetic brilliance; it is a key to the interstellar journey. Within its core lies the potential to power spacecraft engines and traverse the vastness of the cosmos. As one gazes upon the Starstone, there's a profound sense of connection to the mysteries of the alien world, an acknowledgment of the celestial forces that converge within this radiant mineral. Maybe someone knows what other mysterious powers it may have.",
+      "detailed_description": "The Starstone's significance transcends its aesthetic brilliance; it is the key to interstellar journeying. Within its core lies the potential to power spacecraft engines and traverse the vastness of the cosmos. As one gazes upon the Starstone, there's a profound sense of connection to the mysteries of the alien world, an acknowledgment of the celestial forces that converge within this radiant mineral. Maybe someone knows what other mysterious powers it may have.",
       "usable": true,
       "active": true,
       "hidden": false,
@@ -84,7 +84,7 @@
       "hidden": false,
       "movable": true,
       "hasSound": true,
-      "useText": "As you consume the Luminescent Tranquility Elixir, a gentle wave of calm envelops you, like a soothing breeze in the midst of cosmic turmoil. . As the elixir takes effect, a soft glow emanates from your being—a manifestation of the healing energies at play. The Luminescent Tranquility Elixir becomes a beacon of light within, dispelling the shadows of fatigue and revitalizing the spirit. The soothing energy extends to every cell, mending the subtle fractures of interstellar exploration.",
+      "useText": "As you consume the Luminescent Tranquility Elixir, a gentle wave of calm envelops you, like a soothing breeze in the midst of cosmic turmoil. As the elixir takes effect, a soft glow emanates from your being—a manifestation of the healing energies at play. The Luminescent Tranquility Elixir becomes a beacon of light within, dispelling the shadows of fatigue and revitalizing the spirit. The soothing energy extends to every cell, mending the subtle fractures of interstellar exploration.",
       "useLocation": ""
     },
     {
@@ -92,13 +92,13 @@
       "type": "item",
       "name": "crystal",
       "description": "This crystal is very rare and hard to find",
-      "detailed_description": "This crystal seems special , give it to the Luminara speaker to get something in return",
+      "detailed_description": "This crystal seems special, give it to the Luminara speaker to get something in return.",
       "usable": true,
       "active": true,
       "hidden": false,
       "movable": true,
       "hasSound": false,
-      "useText": "Precious for the Luminara",
+      "useText": "Precious to the Luminara",
       "useLocation": ""
     },
     {

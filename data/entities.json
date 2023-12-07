@@ -29,7 +29,7 @@
       "isAlive": true,
       "equippedWeapon": "gravity_hammer",
       "hostile": true,
-      "dialogueOptions": ["Lets get on with this so you can win the game."],
+      "dialogueOptions": ["Let's get on with this so you can win the game."],
       "questDetails": "",
       "hidden": false
     },
