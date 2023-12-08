@@ -31,11 +31,15 @@ public class HelpCommand implements Command {
 //
 //        return wrapText(result.toString().trim());
 
-        clearScreen();
-        String helpText = GameUtil.jsonToString(gameTxtFilePath, "helpText");
-        System.out.println(helpText);
-        pauseDisplay();
-        clearScreen();
+        //NEW Console manner of doing things with improved text
+//        clearScreen();
+//        String helpText = GameUtil.jsonToString(gameTxtFilePath, "helpText");
+//        System.out.println(helpText);
+//        pauseDisplay();
+//        clearScreen();
+
+        //SWING - when this command it called, launch HelpFrame.
+        HelpFrame theHelpFrame = new HelpFrame();
 
         return "";
     }
