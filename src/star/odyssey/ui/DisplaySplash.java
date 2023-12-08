@@ -18,15 +18,25 @@ public class DisplaySplash {
         String gameTxtFilePath = "./data/gameText.json";
 
         String splashscreen = GameUtil.jsonToString(gameTxtFilePath, "splashscreen");
+//        List<ColoredText> coloredTextList = new ArrayList<>(); // SWING
         for (char c : splashscreen.toCharArray()) {
             if (c == '█') {
                 System.out.print(makeRed(String.valueOf(c)));
+                // SWING
+//                coloredTextList.add(new ColoredText(String.valueOf(c), TextColor.RED));
             } else if (c == '░') {
                 System.out.print(makeBlue(String.valueOf(c)));
+                // SWING
+//                coloredTextList.add(new ColoredText(String.valueOf(c), TextColor.BLUE));
             } else {
                 System.out.print(c);
+                // SWING
+//                coloredTextList.add(new ColoredText(String.valueOf(c)));
+//                coloredTextList.add(new ColoredText(String.valueOf(c)));
             }
         }
+//        SwingDisplayUtils.getInstance().displayText(coloredTextList);
+
         pauseDisplay();
         clearScreen();
         backgroundAudioPlayer.stop();
