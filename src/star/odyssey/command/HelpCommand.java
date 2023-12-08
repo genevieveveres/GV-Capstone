@@ -3,6 +3,7 @@ package star.odyssey.command;
 import star.odyssey.game.GameUtil;
 import star.odyssey.ui.ConsoleDisplayUtils;
 import star.odyssey.ui.DisplayGameInfo;
+import star.odyssey.ui.swing.HelpFrame;
 
 import java.util.Map;
 
@@ -22,6 +23,7 @@ public class HelpCommand implements Command {
 
     @Override
     public String execute(String noun) {
+        //OLD manner of doing things
 //        StringBuilder result = new StringBuilder(txtMap.get("builderStart"));
 //        for (String commandKey : commandMap.keySet()) {
 //            result.append("- ").append(commandKey).append(" "); // Appending each available command.
@@ -29,7 +31,6 @@ public class HelpCommand implements Command {
 //
 //        return wrapText(result.toString().trim());
 
-        String helpFilePath = "./data/gameText.json";
         clearScreen();
         String helpText = GameUtil.jsonToString(gameTxtFilePath, "helpText");
         System.out.println(helpText);
