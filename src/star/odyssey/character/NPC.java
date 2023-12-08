@@ -14,6 +14,8 @@ import java.util.Map;
 import java.util.Random;
 
 public class NPC extends Entity {
+
+    // INSTANCE VARIABLES
     private boolean hostile;
     private List<String> dialogueOptions;
     private String questDetails;
@@ -22,6 +24,7 @@ public class NPC extends Entity {
     String gameTxtFilePath = "./data/gameText.json";
     private final Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "npc_cmd_txt");
 
+    // CONSTRUCTORS
     public NPC(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive, Weapon equippedWeapon, boolean hostile, List<String> dialogueOptions, String questDetails, boolean hidden) {
         super(index, name, health, strength, defense, detailedDescription, location, inventory, isAlive, equippedWeapon);
         this.hostile = hostile;
@@ -30,6 +33,7 @@ public class NPC extends Entity {
         this.hidden = hidden;
     }
 
+    // METHODS
     public String talk() {
         if (dialogueOptions.isEmpty()) {
             return getName() + txtMap.get("ignored");
@@ -84,7 +88,7 @@ public class NPC extends Entity {
     }
 
 
-    // Getters and setters
+    // GETTERS AND SETTERS
     public void setHostile(boolean hostile) {
         this.hostile = hostile;
     }

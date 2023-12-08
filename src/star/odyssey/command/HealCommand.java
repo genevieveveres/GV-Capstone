@@ -4,18 +4,21 @@ import star.odyssey.character.NPC;
 import star.odyssey.character.Player;
 import star.odyssey.game.GameState;
 import star.odyssey.game.GameUtil;
-
 import java.util.Map;
 
 public class HealCommand implements Command {
+
+    // INSTANCE VARIABLES
     private final GameState gameState;
     String gameTxtFilePath = "./data/gameText.json";
     private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "heal_cmd");
 
+    // CONSTRUCTORS
     public HealCommand(GameState gameState) {
         this.gameState = gameState;
     }
 
+    // METHODS
     @Override
     public String execute(String entityName) {
         Player player = gameState.getPlayer();

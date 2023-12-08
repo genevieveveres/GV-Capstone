@@ -12,20 +12,23 @@ import static star.odyssey.ui.ConsoleDisplayUtils.makeGreen;
 import static star.odyssey.ui.ConsoleDisplayUtils.makeRed;
 
 public class CombatEngine {
+
+    // INSTANCE VARIABLES
     private final Player player;
     private final NPC npc;
     private static final Random random = new Random();
-
     private static final double CRITICAL_HIT_CHANCE = 0.15;
     private static final double DODGE_CHANCE = 0.1;
     private static final double DAMAGE_VARIATION_FACTOR = 0.2;
     private static final int CRITICAL_HIT_MULTIPLIER = 2;
 
+    // CONSTRUCTORS
     public CombatEngine(Player player, NPC npc) {
         this.player = player;
         this.npc = npc;
     }
 
+    // METHODS
     public String startCombat() {
         StringBuilder combatLog = new StringBuilder();
         combatLog.append(getNPCStats()).append("\n");

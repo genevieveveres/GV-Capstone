@@ -8,10 +8,13 @@ import java.io.FileReader;
 import java.util.*;
 
 public class CommandConfig {
+
+    // INSTANCE VARIABLES
     private Map<String, List<String>> commands;
     String gameTxtFilePath = "./data/gameText.json";
     private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "cmd_config");
 
+    // CONSTRUCTORS
     public CommandConfig(String configFile) {
         try {
             Gson gson = new Gson();
@@ -24,6 +27,7 @@ public class CommandConfig {
         }
     }
 
+    // METHODS
     private void validateSynonyms() {
         Set<String> uniqueSynonyms = new HashSet<>();
         Set<String> repeatedSynonyms = new HashSet<>();
@@ -41,6 +45,7 @@ public class CommandConfig {
         }
     }
 
+    // GETTERS AND SETTERS
     public List<String> getSynonyms(String command) {
         // Return synonyms for a given command, or an empty list if none
         return commands.getOrDefault(command, Collections.emptyList());

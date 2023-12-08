@@ -1,24 +1,24 @@
 package star.odyssey.command;
 
 import star.odyssey.game.GameUtil;
-
 import java.util.Map;
-
 import static star.odyssey.game.GameUtil.IntToJson;
 import static star.odyssey.game.GameUtil.jsonToInt;
 
 public class SoundCommand implements Command {
+
+    // INSTANCE VARIABLES
     String gameTxtFilePath = "./data/gameText.json";
     private final Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "sound_cmd");
     private final Map<String, String> optionsMap = GameUtil.jsonToStringMap(gameTxtFilePath, "sound_options");
-
     private final String gameSettings = "data/gameSettings.json";
     private final Map<String, String> soundLevelMap = GameUtil.jsonToStringMap(gameSettings, "sound_levels");
 
-
+    // CONSTRUCTORS
     public SoundCommand() {
     }
 
+    // METHODS
     @Override
     public String execute(String option) {
 

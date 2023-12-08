@@ -1,16 +1,19 @@
 package star.odyssey.map;
 
 import java.util.*;
-
 import static star.odyssey.ui.ConsoleDisplayUtils.makeBrown;
 import static star.odyssey.ui.ConsoleDisplayUtils.makeGreen;
 
 
 public class GameMap {
 
+    // INSTANCE VARIABLES
     private static Map<String, Integer> roomValues = new HashMap<>();
     private static List<Map.Entry<String, Integer>> sortedRooms;
 
+    // CONSTRUCTORS
+
+    // METHODS
     public static String drawGameMap(List<String> visitedLocations, String playerLocationIndex) {
         // Create a list of entries and sort them based on values
         LocationProcessor locationProcessor = new LocationProcessor();
@@ -156,6 +159,7 @@ public class GameMap {
         System.out.print(makeBrown(west) + " ".repeat(padding) + makeGreen(text) + " ".repeat(padding) + extraSpace + makeBrown(east));
     }
 
+    // GETTERS AND SETTERS
     private static int getMaxRoomNumber(String level) {
         return sortedRooms.stream()
                 .filter(entry -> entry.getValue().toString().startsWith(level))
@@ -163,9 +167,4 @@ public class GameMap {
                 .max(Integer::compareTo)
                 .orElse(0);
     }
-
-//    public static void main(String[] args) {
-//        drawGameMap();
-//    }
-
 }

@@ -8,6 +8,8 @@ import star.odyssey.game.SerializableRPGObject;
 import star.odyssey.location.LocationManager;
 
 public class Item implements Describable, SerializableRPGObject {
+
+    // INSTANCE VARIABLES
     private String index;
     private String name;
     private String description;
@@ -20,9 +22,11 @@ public class Item implements Describable, SerializableRPGObject {
     private String useText;
     private String useLocation;
 
+    // CONSTRUCTORS
     public Item() {
     }
 
+    // METHODS
     public Item(String index, String name, String description, String detailedDescription, boolean usable, boolean active, boolean hidden, boolean movable, boolean sound, String useText, String useLocation) {
         this.index = index;
         this.name = name;
@@ -62,7 +66,7 @@ public class Item implements Describable, SerializableRPGObject {
         this.movable = jsonObject.get("movable").getAsBoolean();
     }
 
-    // Getters and setters
+    // GETTERS AND SETTERS
     public String getIndex() {
         return index;
     }

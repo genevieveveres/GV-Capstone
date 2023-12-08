@@ -4,14 +4,18 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
 public class LocationProcessor {
+
+    // INSTANCE VARIABLES
     private HashMap<String, Integer> finalGrid;
 
+    // CONSTRUCTORS
+
+    // METHODS
     public HashMap<String, Integer> processLocations() {
         try {
             Gson gson = new Gson();
@@ -62,7 +66,7 @@ public class LocationProcessor {
 //                    System.out.println("Connected room: " + connectedRoom);
                     int roomValueInt = Integer.parseInt(roomValue);
                     roomValueInt -= 1;
-                    // if roomvalueint has the second number of the 2 digit value as 0, then make the increase the value of all other rooms by 1
+                    // if roomValueInt has the second number of the 2 digit value as 0, then make the increase the value of all other rooms by 1
                     if (roomValueInt % 10 == 0) {
                         roomValueInt = Integer.parseInt(roomValue);
                         for (String room : roomList.keySet()) {
@@ -89,7 +93,7 @@ public class LocationProcessor {
 //                    System.out.println("Connected room: " + connectedRoom);
                     int roomValueInt = Integer.parseInt(roomValue);
                     roomValueInt -= 10;
-                    // if roomvalueint is 1 then set it to 11 and then add 10 to all other rooms values currently in the map
+                    // if roomValueInt is 1 then set it to 11 and then add 10 to all other rooms values currently in the map
                     if (roomValueInt >= 0 && roomValueInt <= 9) {
                         roomValueInt = Integer.parseInt(roomValue);
                         if (westActivated) {
@@ -139,6 +143,7 @@ public class LocationProcessor {
         return false;
     }
 
+    // GETTERS AND SETTERS
     public String getRoomNameByIndex(String roomIndex) {
         try {
             // Read the JSON file into a JsonObject

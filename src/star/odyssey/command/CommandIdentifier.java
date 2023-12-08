@@ -1,13 +1,17 @@
 package star.odyssey.command;
 
 public class CommandIdentifier {
+
+    // INSTANCE VARIABLES
     private final CommandConfig config;
 
+    // CONSTRUCTORS
     public CommandIdentifier(CommandConfig config) {
         this.config = config;
         // Initialize with a CommandConfig to access command synonyms
     }
 
+    // METHODS
     public String identifyCommand(String commandWord) {
         if (commandWord == null) return null;
 

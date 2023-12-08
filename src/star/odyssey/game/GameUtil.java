@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,6 +14,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GameUtil {
+
+    // INSTANCE VARIABLES
+
+    // CONSTRUCTORS
+
+    // METHODS (STATIC)
     public static Map<String, String> jsonToStringMap(String filePath, String desiredItem) {
         Map<String, String> map = null;
         try (FileReader reader = new FileReader(filePath)) {

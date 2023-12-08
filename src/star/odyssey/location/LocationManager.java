@@ -6,15 +6,17 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import star.odyssey.character.NPC;
 import star.odyssey.inventory.Item;
-
 import java.io.FileReader;
 import java.util.*;
 
 public class LocationManager {
+
+    // INSTANCE VARIABLES
     private final Map<String, Location> locations;
     private final Map<String, List<String>> locationItemsMap;
     private final Map<String, List<String>> locationNPCsMap;
 
+    // CONSTRUCTORS
     public LocationManager(String jsonFilePath) {
         locations = new HashMap<>();
         locationItemsMap = new HashMap<>();
@@ -22,6 +24,7 @@ public class LocationManager {
         loadLocationsFromJson(jsonFilePath);
     }
 
+    // METHODS
     private void loadLocationsFromJson(String jsonFilePath) {
         try (FileReader reader = new FileReader(jsonFilePath)) {
             JsonObject jsonObject = JsonParser.parseReader(reader).getAsJsonObject();
@@ -124,6 +127,4 @@ public class LocationManager {
     public Map<String, Location> getLocations() {
         return new HashMap<>(locations);
     }
-
-    // Additional methods as needed...
 }

@@ -6,12 +6,16 @@ import star.odyssey.inventory.Item;
 import star.odyssey.inventory.Weapon;
 
 public class EquipCommand implements Command {
+
+    // INSTANCE VARIABLES
     private final GameState gameState;
 
+    // CONSTRUCTORS
     public EquipCommand(GameState gameState) {
         this.gameState = gameState;
     }
 
+    // METHODS
     @Override
     public String execute(String weaponName) {
         Player player = gameState.getPlayer();

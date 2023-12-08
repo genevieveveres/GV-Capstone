@@ -12,12 +12,16 @@ import java.util.List;
 import static star.odyssey.ui.ConsoleDisplayUtils.clearScreen;
 
 public class AttackCommand implements Command {
+
+    // INSTANCE VARIABLES
     private final GameState gameState;
 
+    // CONSTRUCTORS
     public AttackCommand(GameState gameState) {
         this.gameState = gameState;
     }
 
+    // METHODS
     @Override
     public String execute(String targetName) {
 

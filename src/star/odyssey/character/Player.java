@@ -16,14 +16,17 @@ import static star.odyssey.ui.ConsoleDisplayUtils.*;
 
 public class Player extends Entity {
 
+    // INSTANCE VARIABLES
     String gameTxtFilePath = "./data/gameText.json";
     String settingsFilePath = "./data/userSettings.json";
     private final Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "player_cmd_txt");
 
+    // CONSTRUCTORS
     public Player(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive, Weapon equippedWeapon) {
         super(index, name, health, strength, defense, detailedDescription, location, inventory, isAlive, equippedWeapon);
     }
 
+    //METHODS
     public String getItem(Item item) {
         if (!item.isMovable()) {
             return item.getName() + txtMap.get("item_unmovable");

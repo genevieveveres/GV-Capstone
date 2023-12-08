@@ -7,10 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandExecutor {
+
+    // INSTANCE VARIABLES
     private final Map<String, Command> commandMap; // Stores command instances against their keys.
     String gameTxtFilePath = "./data/gameText.json";
     private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "cmd_config");
 
+    // CONSTRUCTOR
     public CommandExecutor(Game game) {
         commandMap = new HashMap<>();
         commandMap.put("help", new HelpCommand(commandMap));
@@ -32,6 +35,7 @@ public class CommandExecutor {
         // Initialize other commands as needed
     }
 
+    // METHODS
     public String executeCommand(String commandKey, String noun) {
         Command command = commandMap.get(commandKey); // Retrieve the command object by key.
         if (command != null) {
