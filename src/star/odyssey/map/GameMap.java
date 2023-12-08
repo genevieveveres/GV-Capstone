@@ -71,20 +71,20 @@ public class GameMap {
                     System.out.println("                                   ");
                 } else {
                     if (locationProcessor.hasNorth(entry.getKey())) {
-                        System.out.println(makeBrown(" ╔═══════════════╩════════════════╗"));
+                        System.out.print(makeBrown(" ╔═══════════════╩════════════════╗"));
                     } else {
-                        System.out.println(makeBrown(" ╔════════════════════════════════╗"));
+                        System.out.print(makeBrown(" ╔════════════════════════════════╗"));
                     }
                 }
             }
         }
-        System.out.println("\n");
+        System.out.print("\n");
         for (Map.Entry<String, Integer> entry : sortedRooms) {
             if (entry.getValue().toString().startsWith(level)) {
                 if (entry.getKey().startsWith("blank_room")) {
-                    System.out.println("                                   ");
+                    System.out.print("                                   ");
                 } else {
-                    System.out.println(makeBrown(" ║                                ║"));
+                    System.out.print(makeBrown(" ║                                ║"));
                 }
             }
         }
@@ -101,7 +101,7 @@ public class GameMap {
             }
             if (entry.getValue().toString().startsWith(level)) {
                 if (entry.getKey().startsWith("blank_room")) {
-                    System.out.println("                                   ");
+                    System.out.print("                                   ");
                 } else {
                     if (locationProcessor.hasWest(entry.getKey())) {
                         west = "═╣";
@@ -127,7 +127,7 @@ public class GameMap {
                 if (entry.getKey().startsWith("blank_room")) {
                     System.out.print("                                   ");
                 } else {
-                    System.out.println(makeBrown(" ║                                ║"));
+                    System.out.print(makeBrown(" ║                                ║"));
                 }
             }
         }
@@ -135,12 +135,12 @@ public class GameMap {
         for (Map.Entry<String, Integer> entry : sortedRooms) {
             if (entry.getValue().toString().startsWith(level)) {
                 if (entry.getKey().startsWith("blank_room")) {
-                    System.out.println("                                   ");
+                    System.out.print("                                   ");
                 } else {
                     if (locationProcessor.hasSouth(entry.getKey())) {
-                        System.out.println(makeBrown(" ╚═══════════════╦════════════════╝"));
+                        System.out.print(makeBrown(" ╚═══════════════╦════════════════╝"));
                     } else {
-                        System.out.println(makeBrown(" ╚════════════════════════════════╝"));
+                        System.out.print(makeBrown(" ╚════════════════════════════════╝"));
                     }
 
                 }
