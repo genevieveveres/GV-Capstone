@@ -37,6 +37,7 @@ public class SwingMainMenu {
     }
 
     public static void execute() {
+        SwingDisplayUtils.getInstance().displayText(null, null);
         String settingsFilePath = "./data/userSettings.json";
         Map<String, String> optionsMap = readMainMenuFromJson();
 
