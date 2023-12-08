@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
         // Swing UI:
-        //MainFrame mainFrame = new MainFrame();
+        MainFrame mainFrame = new MainFrame();
 
         // Console UI:
         displaySplash(); // Displaying the splash screen at startup.
