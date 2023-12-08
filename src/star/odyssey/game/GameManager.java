@@ -7,11 +7,12 @@ import star.odyssey.inventory.ItemManager;
 import star.odyssey.inventory.Weapon;
 import star.odyssey.location.Location;
 import star.odyssey.location.LocationManager;
-
 import java.util.List;
 import java.util.Map;
 
 public class GameManager {
+
+    // INSTANCE VARIABLES
     private Game game;
     private GameState gameState;
     private final ItemManager itemManager;
@@ -20,6 +21,7 @@ public class GameManager {
     private final String gameTxtFilePath = "./data/gameText.json";
     private final Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "game_mgr");
 
+    // CONSTRUCTORS
     public GameManager() {
         this.itemManager = new ItemManager("./data/items.json");
         this.entityManager = new EntityManager("./data/entities.json");
@@ -28,6 +30,7 @@ public class GameManager {
         initializeNewGame();
     }
 
+    // METHODS
     private void initializeNewGame() {
         validatePlayer();
         associateEntities();

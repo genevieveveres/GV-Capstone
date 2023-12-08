@@ -13,17 +13,20 @@ import star.odyssey.location.Location;
 import star.odyssey.location.LocationManager;
 
 public class GameState implements SerializableRPGObject {
+
+    // INSTANCE VARIABLES
     private final EntityManager entityManager;
     private final ItemManager itemManager;
     private final LocationManager locationManager;
 
+    // CONSTRUCTORS
     public GameState(EntityManager entityManager, ItemManager itemManager, LocationManager locationManager) {
         this.entityManager = entityManager;
         this.itemManager = itemManager;
         this.locationManager = locationManager;
     }
 
-    // Getters and setters
+    // GETTERS AND SETTERS
     public Player getPlayer() {
         return getEntityManager().getPlayer();
     }
@@ -124,7 +127,4 @@ public class GameState implements SerializableRPGObject {
             }
         }
     }
-
-
-    // Additional methods to update and manage other parts of the game state
 }

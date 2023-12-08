@@ -4,20 +4,21 @@ import star.odyssey.character.Entity;
 import star.odyssey.game.GameState;
 import star.odyssey.game.GameUtil;
 import star.odyssey.location.Location;
-
 import java.util.Map;
 
 public class MoveCommand implements Command {
-    private final GameState gameState;
 
+    // INSTANCE VARIABLES
+    private final GameState gameState;
     String gameTxtFilePath = "./data/gameText.json";
     private final Map<String, String> moveTxtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "move_cmd");
 
-
+    // CONSTRUCTORS
     public MoveCommand(GameState gameState) {
         this.gameState = gameState;
     }
 
+    // METHODS
     @Override
     public String execute(String direction) {
         Entity player = gameState.getPlayer();

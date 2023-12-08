@@ -10,6 +10,8 @@ import java.io.FileReader;
 import java.util.*;
 
 public class EntityManager {
+
+    // INSTANCE VARIABLES
     private Player player;
     private String playerLocationIndex;
     private final List<String> playerItemIndexes;
@@ -19,6 +21,7 @@ public class EntityManager {
     private final Map<String, List<String>> npcItemsMap;
     private final Map<String, String> npcEquippedWeaponMap;
 
+    // CONSTRUCTOR
     public EntityManager(String jsonFilePath) {
         npcs = new HashMap<>();
         playerLocationIndex = "";
@@ -30,6 +33,7 @@ public class EntityManager {
         loadEntitiesFromJson(jsonFilePath);
     }
 
+    // METHODS
     private void loadEntitiesFromJson(String jsonFilePath) {
         try (FileReader reader = new FileReader(jsonFilePath)) {
             JsonObject jsonObject = JsonParser.parseReader(reader).getAsJsonObject();
@@ -118,7 +122,7 @@ public class EntityManager {
         return itemIndexes;
     }
 
-    // Getters and setters
+    // GETTERS AND SETTERS
     public Player getPlayer() {
         return player;
     }

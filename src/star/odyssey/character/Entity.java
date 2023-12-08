@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class Entity implements Describable, SerializableRPGObject {
+
+    // INSTANCE VARIABLES
     protected String index;
     protected String name;
     protected int health;
@@ -27,6 +29,7 @@ public abstract class Entity implements Describable, SerializableRPGObject {
     protected boolean isAlive;
     protected Weapon equippedWeapon;
 
+    // CONSTRUCTORS
     public Entity(String index, String name, int health, int strength, int defense, String detailedDescription, Location location, List<Item> inventory, boolean isAlive, Weapon equippedWeapon) {
         this.index = index;
         this.name = name;
@@ -40,6 +43,7 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         this.equippedWeapon = equippedWeapon;
     }
 
+    // METHODS
     public String equip(Weapon weapon) {
         if (weapon == null || !this.inventory.contains(weapon)) {
             return "Weapon is not in inventory.";
@@ -112,7 +116,7 @@ public abstract class Entity implements Describable, SerializableRPGObject {
         }
     }
 
-    // Getters and setters
+    // GETTERS AND SETTERS
     public String getIndex() {
         return index;
     }

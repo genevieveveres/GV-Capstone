@@ -8,6 +8,8 @@ import java.util.Map;
 import static star.odyssey.ui.ConsoleDisplayUtils.makeCyan;
 
 public class CommandManager {
+
+    // INSTANCE VARIABLES
     private final CommandReader reader;
     private final CommandParser parser;
     private final CommandIdentifier identifier;
@@ -17,6 +19,7 @@ public class CommandManager {
     String gameTxtFilePath = "./data/gameText.json";
     private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "cmd_config");
 
+    // CONSTRUCTORS
     public CommandManager(Game game) {
         this.config = new CommandConfig("./data/commands.json");
         reader = new CommandReader();
@@ -26,6 +29,7 @@ public class CommandManager {
         lastCommandResult = "";
     }
 
+    // METHODS
     public void processCommands() {
         boolean isGameRunning = true;
         while (isGameRunning) {
@@ -47,6 +51,7 @@ public class CommandManager {
         }
     }
 
+    // GETTERS AND SETTERS
     public String getLastCommandResult() {
         return makeCyan(lastCommandResult);
     }

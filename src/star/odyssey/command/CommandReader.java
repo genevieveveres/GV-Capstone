@@ -3,13 +3,17 @@ package star.odyssey.command;
 import java.util.Scanner;
 
 public class CommandReader {
+
+    // INSTANCE VARIABLES
     private final Scanner scanner;
 
+    // CONSTRUCTORS
     public CommandReader() {
         // Initialize the scanner for reading user input
         scanner = new Scanner(System.in);
     }
 
+    // METHODS
     public String readCommand() {
         String input;
         do {

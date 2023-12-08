@@ -2,23 +2,23 @@ package star.odyssey.command;
 
 import star.odyssey.game.GameUtil;
 import star.odyssey.sound.SoundEffect;
-
 import java.util.Map;
-
 import static star.odyssey.game.GameUtil.IntToJson;
 
 public class SFXCommand implements Command {
+
+    // INSTANCE VARIABLES
     String gameTxtFilePath = "./data/gameText.json";
     private final Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "sfx_cmd");
     private final Map<String, String> optionsMap = GameUtil.jsonToStringMap(gameTxtFilePath, "sound_options");
-
     private final String gameSettings = "data/gameSettings.json";
     private final Map<String, String> soundLevelMap = GameUtil.jsonToStringMap(gameSettings, "sfx_levels");
 
-
+    // CONSTRUCTORS
     public SFXCommand() {
     }
 
+    // METHODS
     @Override
     public String execute(String option) {
 

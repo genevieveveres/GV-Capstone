@@ -3,24 +3,26 @@ package star.odyssey.command;
 import star.odyssey.game.Game;
 import star.odyssey.game.GameUtil;
 import star.odyssey.ui.MainMenu;
-
 import java.util.Map;
 import java.util.Scanner;
-
 import static star.odyssey.ui.ConsoleDisplayUtils.clearScreen;
 
 public class QuitCommand implements Command {
+
+    // INSTANCE VARIABLES
     private final Scanner scanner;
     private final Game game;
     String gameTxtFilePath = "./data/gameText.json";
     private final Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "quit_cmd");
     private final Map<String, String> optionsMap = GameUtil.jsonToStringMap(gameTxtFilePath, "quit_options");
 
+    // CONSTRUCTORS
     public QuitCommand(Game game) {
         scanner = new Scanner(System.in);
         this.game = game;
     }
 
+    // METHODS
     @Override
     public String execute(String noun) {
         String optionChoices = GameUtil.optionsValues(optionsMap);

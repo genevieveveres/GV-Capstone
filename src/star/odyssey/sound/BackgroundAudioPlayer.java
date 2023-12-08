@@ -6,8 +6,10 @@ import java.io.IOException;
 
 public class BackgroundAudioPlayer {
 
+    // INSTANCE VARIABLES
     private Clip clip;
 
+    // CONSTRUCTORS
     public BackgroundAudioPlayer(String filePath) {
         try {
             File audioFile = new File(filePath);
@@ -19,6 +21,7 @@ public class BackgroundAudioPlayer {
         }
     }
 
+    // METHODS
     public void loop() {
         if (clip != null) {
             clip.loop(Clip.LOOP_CONTINUOUSLY);

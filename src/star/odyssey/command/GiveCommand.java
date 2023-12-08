@@ -4,18 +4,21 @@ import star.odyssey.character.NPC;
 import star.odyssey.game.GameState;
 import star.odyssey.game.GameUtil;
 import star.odyssey.inventory.Item;
-
 import java.util.Map;
 
 public class GiveCommand implements Command {
+
+    // INSTANCE VARIABLES
     private final GameState gameState;
     String gameTxtFilePath = "./data/gameText.json";
     private Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "give_cmd");
 
+    // CONSTRUCTORS
     public GiveCommand(GameState gameState) {
         this.gameState = gameState;
     }
 
+    // METHODS
     @Override
     public String execute(String noun) {
         if (noun == null || noun.isEmpty()) {

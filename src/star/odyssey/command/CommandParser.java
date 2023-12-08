@@ -2,20 +2,23 @@ package star.odyssey.command;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.io.FileReader;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class CommandParser {
+
+    // INSTANCE VARIABLES
     private static Set<String> unnecessaryWords = null; // Set of words to ignore during parsing.
 
+    // CONSTRUCTORS
     public CommandParser() {
         unnecessaryWords = new HashSet<>();
         loadUnnecessaryWords(); // Load words that are not essential for command parsing.
     }
 
+    // METHODS
     private void loadUnnecessaryWords() {
         try {
             Gson gson = new Gson();

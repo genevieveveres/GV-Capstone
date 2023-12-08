@@ -6,10 +6,13 @@ import star.odyssey.character.EntityManager;
 import star.odyssey.location.LocationManager;
 
 public class Weapon extends Item {
+
+    // INSTANCE VARIABLES
     private int damage;
     private int range;
     private int durability;
 
+    // CONSTRUCTORS
     public Weapon() {
         super();
     }
@@ -21,6 +24,7 @@ public class Weapon extends Item {
         this.durability = durability;
     }
 
+    // METHODS
     // Serialize and Deserialize
     @Override
     public String serialize() {
@@ -46,7 +50,7 @@ public class Weapon extends Item {
         this.durability = jsonObject.get("durability").getAsInt();
     }
 
-    // Getters and setters
+    // GETTERS AND SETTERS
     public int getDamage() {
         return damage;
     }

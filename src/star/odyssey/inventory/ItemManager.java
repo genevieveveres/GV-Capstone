@@ -4,19 +4,22 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ItemManager {
+
+    // INSTANCE VARIABLES
     private final Map<String, Item> items;
 
+    // CONSTRUCTORS
     public ItemManager(String jsonFilePath) {
         items = new HashMap<>();
         loadItemsFromJson(jsonFilePath);
     }
 
+    // METHODS
     private void loadItemsFromJson(String jsonFilePath) {
         try (FileReader reader = new FileReader(jsonFilePath)) {
             JsonObject jsonObject = JsonParser.parseReader(reader).getAsJsonObject();
@@ -68,6 +71,7 @@ public class ItemManager {
         return new Weapon(baseItem.getIndex(), baseItem.getName(), baseItem.getDescription(), baseItem.getDetailedDescription(), baseItem.isUsable(), baseItem.isActive(), baseItem.isHidden(), baseItem.isMovable(), baseItem.hasSound(), baseItem.getUseText(), baseItem.getUseLocation(), damage, range, durability);
     }
 
+    // GETTERS AND SETTERS
     public Item getItem(String index) {
         return items.get(index);
     }

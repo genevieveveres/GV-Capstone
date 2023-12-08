@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Location implements Describable, SerializableRPGObject {
+
+    // INSTANCE VARIABLES
     private String index;
     private String name;
     private String description;
@@ -26,6 +28,7 @@ public class Location implements Describable, SerializableRPGObject {
     private String soundFilePath;
     private boolean visited;
 
+    // CONSTRUCTORS
     public Location(String index, String name, String description, String detailedDescription, List<NPC> npcs, List<Item> items, String soundFilePath) {
         this.index = index;
         this.name = name;
@@ -49,7 +52,7 @@ public class Location implements Describable, SerializableRPGObject {
         this.visited = visited;
     }
 
-    // Getters and Setters
+    // GETTERS AND SETTERS
     public boolean isVisited() {
         return visited;
     }

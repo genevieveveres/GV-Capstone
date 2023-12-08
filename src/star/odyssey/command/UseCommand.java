@@ -8,14 +8,18 @@ import star.odyssey.inventory.Item;
 import java.util.Map;
 
 public class UseCommand implements Command {
+
+    // INSTANCE VARIABLES
     private final GameState gameState;
     String gameTxtFilePath = "./data/gameText.json";
     private final Map<String, String> txtMap = GameUtil.jsonToStringMap(gameTxtFilePath, "use_cmd");
 
+    // CONSTRUCTORS
     public UseCommand(GameState gameState) {
         this.gameState = gameState;
     }
 
+    // METHODS
     @Override
     public String execute(String itemName) {
 

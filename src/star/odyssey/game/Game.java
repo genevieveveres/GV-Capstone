@@ -4,11 +4,12 @@ import star.odyssey.command.CommandManager;
 import star.odyssey.sound.BackgroundAudioPlayer;
 import star.odyssey.ui.DisplayUI;
 import star.odyssey.ui.MainMenu;
-
 import static star.odyssey.ui.ConsoleDisplayUtils.clearScreen;
 import static star.odyssey.ui.ConsoleDisplayUtils.pauseDisplay;
 
 public class Game {
+
+    // INSTANCE VARIABLES
     private final GameState gameState;
     private static boolean isRunning;
     private final CommandManager commandManager;
@@ -16,6 +17,7 @@ public class Game {
     private static BackgroundAudioPlayer backgroundAudioPlayer = null;
     String settingsFilePath = "./data/userSettings.json";
 
+    // CONSTRUCTORS
     public Game(GameState gameState) {
         this.gameState = gameState;
         isRunning = false;
@@ -23,6 +25,7 @@ public class Game {
         this.displayUI = new DisplayUI(gameState);
     }
 
+    // METHODS
     public void start() {
         isRunning = true;
         mainGameLoop();
@@ -75,14 +78,15 @@ public class Game {
         isRunning = false;
     }
 
-    public GameState getGameState() {
-        return gameState;
-    }
-
     public static void playerDefeated() {
         pauseDisplay();
         Game.stop();
         clearScreen();
         MainMenu.execute();
+    }
+
+    // GETTERS AND SETTERS
+    public GameState getGameState() {
+        return gameState;
     }
 }
