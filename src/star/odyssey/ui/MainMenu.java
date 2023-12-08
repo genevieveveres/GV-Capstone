@@ -34,6 +34,10 @@ public class MainMenu {
         return optionsMap;
     }
 
+    public static void execute(String input){
+        execute();
+    }
+
     public static void execute() {
         String settingsFilePath = "./data/userSettings.json";
         BackgroundAudioPlayer backgroundAudioPlayer = new BackgroundAudioPlayer("data/audio/ambient_game_start.wav");
