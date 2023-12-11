@@ -45,6 +45,10 @@ public class GameManager {
         startGame();
     }
 
+    public void startGame(String a){
+        game.start();
+    }
+
     public void startGame() {
         game.start();
     }
