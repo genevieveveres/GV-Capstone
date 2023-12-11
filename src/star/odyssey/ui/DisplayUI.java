@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import static star.odyssey.ui.ConsoleDisplayUtils.*;
 
+// Team2: Refactored to redirect the System.out.prints to UniversalDisplay, that class handles printing in the Console or Swing
 public class DisplayUI {
     private final Player player;
 
@@ -52,6 +53,7 @@ public class DisplayUI {
 //        System.out.println(String.join(", ", inventoryItems));
     }
 
+
     public void displayLocationInfo() {
         // Display player location
         printDivider("Location Info");
@@ -62,17 +64,19 @@ public class DisplayUI {
                 new ColoredText(currentLocation.getName()));
 
         // Display location description
-        System.out.println(wrapText(makeMagenta("\uD83D\uDCDC Description: ") + currentLocation.getDescription()));
+        //System.out.println(wrapText(makeMagenta("\uD83D\uDCDC Description: ") + currentLocation.getDescription()));
         UniversalDisplay.println(
                 new ColoredText("\uD83D\uDCDC Description: ", TextColor.MAGENTA),
                 new ColoredText(currentLocation.getDescription())
         );
 
         // Display location connections
-        System.out.println(makeMagenta("\uD83E\uDDED Connections:"));
-        UniversalDisplay.println(new ColoredText("\uD83E\uDDED Connections:", TextColor.MAGENTA));
+        //System.out.println(makeMagenta("\uD83E\uDDED Connections:"));
+        UniversalDisplay.println(
+                new ColoredText("\uD83E\uDDED Description: ", TextColor.MAGENTA)
+        );
         currentLocation.getConnections().entrySet().forEach(location -> {
-            System.out.println("    " + makeMagenta(location.getKey().toUpperCase()) + " ➔ " + location.getValue().getName());
+            //System.out.println("    " + makeMagenta(location.getKey().toUpperCase()) + " ➔ " + location.getValue().getName());
             UniversalDisplay.println(
                     new ColoredText("    "),
                     new ColoredText(location.getKey().toUpperCase(), TextColor.MAGENTA),
@@ -82,17 +86,18 @@ public class DisplayUI {
         });
 
         // Display location items
-        System.out.print(makeMagenta("\uD83E\uDDF3 Items: "));
+        //System.out.print(makeMagenta("\uD83E\uDDF3 Items: "));
         List<String> locationItems = currentLocation.getItems().stream().filter(item -> !item.isHidden()).map(Item::getName).collect(Collectors.toList());
-        System.out.println(String.join(", ", locationItems));
+        //System.out.println(String.join(", ", locationItems));
         UniversalDisplay.print(new ColoredText("\uD83E\uDDF3 Items: ", TextColor.MAGENTA));
         UniversalDisplay.println(new ColoredText(String.join(", ", locationItems)));
 
         // Display location NPCs
-        System.out.print(makeMagenta("\uD83D\uDC65 NPCs: "));
+        //System.out.print(makeMagenta("\uD83D\uDC65 NPCs: "));
         List<String> locationNPCs = currentLocation.getNPCs().stream().filter(item -> !item.isHidden()).map(NPC::getName).collect(Collectors.toList());
-        System.out.println(String.join(", ", locationNPCs));
+        //System.out.println(String.join(", ", locationNPCs));
         UniversalDisplay.print(new ColoredText("\uD83D\uDC65 NPCs: ", TextColor.MAGENTA));
+        UniversalDisplay.println(String.join(", ", locationNPCs));
 
         printDivider();
     }

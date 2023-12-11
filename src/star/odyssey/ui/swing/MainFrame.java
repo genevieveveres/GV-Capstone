@@ -15,7 +15,6 @@ import java.util.Map;
 public class MainFrame extends JFrame {
     private JPanel mainPanel;
     private JButton clickMeButton;
-    private JLabel label1;
     private JTextField textField1;
     private JTextPane textPane1;
 
@@ -30,7 +29,7 @@ public class MainFrame extends JFrame {
 
         this.setContentPane(mainPanel);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(1200, 500);
+        this.setSize(800, 500);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setResizable(false);
@@ -42,7 +41,6 @@ public class MainFrame extends JFrame {
     }
 
     private void initializeStyleMap(){
-        //System.setProperty("awt.useSystemAAFontSettings","false");
 
         Font font = new Font("Courier New", Font.PLAIN, 12);
         textPane1.setFont(font);
@@ -56,23 +54,22 @@ public class MainFrame extends JFrame {
         Style styleGreen = textPane1.addStyle("GreenStyle", null);
         StyleConstants.setForeground(styleGreen, Color.GREEN);
         styleMap.put(TextColor.GREEN, styleGreen);
+        Style styleMagenta = textPane1.addStyle("MagentaStyle", null);
+        StyleConstants.setForeground(styleMagenta, Color.MAGENTA);
+        styleMap.put(TextColor.MAGENTA, styleMagenta);
+        Style styleCyan = textPane1.addStyle("CyanStyle", null);
+        StyleConstants.setForeground(styleCyan, Color.CYAN);
+        styleMap.put(TextColor.CYAN, styleCyan);
 
         Style fontStyle = textPane1.addStyle("MyFont", null);
         styleMap.put(TextColor.NONE, fontStyle);
         StyleConstants.setForeground(fontStyle, Color.WHITE);
         for (var style : styleMap.values()){
             StyleConstants.setBold(style, false);
-//            StyleConstants.setFontSize(style, font.getSize());
-//            StyleConstants.setFontFamily(style, font.getFamily());
         }
     }
 
     private void clickMeButton_Click(ActionEvent e){
-//        label1.setText(textField1.getText());
-//        textField1.setText("");
-//        if(consoleCallbackString != null){
-//            consoleCallbackString.callback(null);
-//        }
         if(textField1.getText().equals("")){
             consoleCallbackString.callback(null);
         }else {

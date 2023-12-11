@@ -1,6 +1,8 @@
 package star.odyssey.ui;
 
 import org.apache.commons.text.WordUtils;
+import star.odyssey.env.GameEnvironment;
+import star.odyssey.ui.swing.SwingDisplayUtils;
 import star.odyssey.ui.swing.text.ColoredText;
 import star.odyssey.ui.swing.text.TextColor;
 
@@ -10,17 +12,22 @@ public class ConsoleDisplayUtils {
 
     // clears screen
     public static void clearScreen() {
-        try {
-            if (System.getProperty("os.name").contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                // For non-Windows systems, you can use the ANSI escape code
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
+        if(!GameEnvironment.ENVIRONMENT) {
+            try {
+                if (System.getProperty("os.name").contains("Windows")) {
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                } else {
+                    // For non-Windows systems, you can use the ANSI escape code
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
+                }
+            } catch (Exception e) {
+                // Handle exceptions (e.g., file not found, JSON parsing error)
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            // Handle exceptions (e.g., file not found, JSON parsing error)
-            e.printStackTrace();
+        }else // If the environment is SWING
+        {
+            SwingDisplayUtils.clearScreen();
         }
     }
 

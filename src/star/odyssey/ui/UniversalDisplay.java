@@ -44,7 +44,7 @@ public class UniversalDisplay {
     }
 
     public static void println(String text){
-        println(text);
+        println(new ColoredText(text));
     }
 
     public static void println(String text, TextColor color){
@@ -60,7 +60,7 @@ public class UniversalDisplay {
         if(makeColorMap == null)
             initializeColorMap();
         if(GameEnvironment.ENVIRONMENT) {
-            SwingDisplayUtils.getInstance().displayTextNl(text, null);
+            SwingDisplayUtils.getInstance().displayText(text, null);
         }else{
             for (var line : text){
                 if(line.getTextColor() != TextColor.NONE){

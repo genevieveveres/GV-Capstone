@@ -15,6 +15,8 @@ import static star.odyssey.ui.DisplayBackstory.displayBackstory;
 import static star.odyssey.ui.DisplayGameInfo.displayGameInfo;
 
 public class SwingMainMenu {
+    private static int userOption;
+    private static GameManager gameManager;
 
     public static boolean isInteger(String s) {
         for (int i = 0; i < s.length(); i++) {
@@ -66,21 +68,22 @@ public class SwingMainMenu {
     }
 
     private static void optionsSelected(String userInput){
-        int userOption = 0;
+        //int userOption = 0;
         try {
             userOption = Integer.parseInt(userInput);
         }catch (Exception e){}
-        GameManager gameManager = new GameManager();
+        gameManager = new GameManager();
         switch (userOption) {
             case 1:
-                SwingMainMenu.displayBackstory();
+                //SwingMainMenu.displayBackstory();
 //                displayBackstory();
 //                displayGameInfo();
                 //backgroundAudioPlayer.stop();
-                SwingDisplayUtils.pauseDisplay(SwingMainMenu::displayGameInfo);
-                SwingDisplayUtils.pauseDisplay(SwingMainMenu::execute);
-                gameManager.startGame(); // Starting a new game.
+//                SwingDisplayUtils.pauseDisplay(SwingMainMenu::displayGameInfo);
+//                SwingDisplayUtils.pauseDisplay(SwingMainMenu::execute);
+//                gameManager.startGame(); // Starting a new game.
                 //validOption = true;
+                SwingMainMenu.displayBackstory();
                 break;
             case 2:
                 //backgroundAudioPlayer.stop();
@@ -88,9 +91,10 @@ public class SwingMainMenu {
                 //validOption = true;
                 break;
             case 3:
+                //SwingDisplayUtils.pauseDisplay(SwingMainMenu::displayBackstory);
                 SwingMainMenu.displayBackstory();
-                SwingDisplayUtils.pauseDisplay(SwingMainMenu::displayGameInfo);
-                SwingDisplayUtils.pauseDisplay(SwingMainMenu::execute);
+                //SwingDisplayUtils.pauseDisplay(SwingMainMenu::displayGameInfo);
+                //SwingDisplayUtils.pauseDisplay(SwingMainMenu::execute);
                 //displayGameInfo();
                 //continue;
                 break;
@@ -113,6 +117,7 @@ public class SwingMainMenu {
         coloredTextList.add(new ColoredTextLine(wrapText(backstory)));
         //System.out.println(wrapText(backstory));
         SwingDisplayUtils.getInstance().displayText(coloredTextList, null);
+        SwingDisplayUtils.pauseDisplay(SwingMainMenu::displayGameInfo);
         //clearScreen();
     }
 
@@ -124,6 +129,10 @@ public class SwingMainMenu {
         coloredTextList.add(new ColoredTextLine(gameInfo));
         //System.out.println(gameInfo);
         SwingDisplayUtils.getInstance().displayText(coloredTextList, null);
+        if(userOption == 3)
+            SwingDisplayUtils.pauseDisplay(SwingMainMenu::execute);
+        if(userOption == 1)
+            SwingDisplayUtils.pauseDisplay(gameManager::startGame);
         //clearScreen();
     }
 
