@@ -5,6 +5,7 @@ import star.odyssey.ui.ConsoleDisplayUtils;
 import star.odyssey.ui.DisplayGameInfo;
 import star.odyssey.ui.swing.HelpFrame;
 
+import javax.swing.*;
 import java.util.Map;
 
 import static star.odyssey.ui.ConsoleDisplayUtils.*;
@@ -42,7 +43,13 @@ public class HelpCommand implements Command {
 //        clearScreen();
 
         //SWING - when this command it called, launch HelpFrame.
-        HelpFrame theHelpFrame = new HelpFrame();
+//        HelpFrame theHelpFrame = new HelpFrame();
+
+        //TODO: find out how to pass the MainFrame in here so it's a true "child" pop up
+        //For now, the below code is also in the MainFrame class as a method
+        String helpText = GameUtil.jsonToString(gameTxtFilePath, "helpText2");
+        JOptionPane.showMessageDialog(new JFrame(),helpText);
+
 
         return "";
     }

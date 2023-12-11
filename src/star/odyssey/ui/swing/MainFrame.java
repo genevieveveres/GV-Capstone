@@ -1,5 +1,6 @@
 package star.odyssey.ui.swing;
 
+import star.odyssey.game.GameUtil;
 import star.odyssey.ui.swing.callbacks.CallBackString;
 import star.odyssey.ui.swing.callbacks.CallBackVoid;
 import star.odyssey.ui.swing.text.ColoredText;
@@ -15,6 +16,7 @@ import java.util.Map;
 public class MainFrame extends JFrame {
     private JPanel mainPanel;
     private JButton clickMeButton;
+    private JButton helpButton;
     private JLabel label1;
     private JTextField textField1;
     private JTextPane textPane1;
@@ -35,8 +37,10 @@ public class MainFrame extends JFrame {
         this.setVisible(true);
         this.setResizable(false);
 
+
         clickMeButton.addActionListener(this::clickMeButton_Click);
         textField1.addActionListener(this::clickMeButton_Click);
+        helpButton.addActionListener(this::displayHelpPopup);
 
         initializeStyleMap();
     }
@@ -90,5 +94,10 @@ public class MainFrame extends JFrame {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void displayHelpPopup(ActionEvent e){
+        String helpText = GameUtil.jsonToString("./data/gameText.json", "helpText2");
+        JOptionPane.showMessageDialog(this,helpText);
     }
 }
