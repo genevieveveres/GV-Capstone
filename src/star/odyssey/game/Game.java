@@ -1,6 +1,7 @@
 package star.odyssey.game;
 
 import star.odyssey.command.CommandManager;
+import star.odyssey.env.GameEnvironment;
 import star.odyssey.sound.BackgroundAudioPlayer;
 import star.odyssey.ui.DisplayUI;
 import star.odyssey.ui.MainMenu;
@@ -28,7 +29,11 @@ public class Game {
     // METHODS
     public void start() {
         isRunning = true;
-        mainGameLoop();
+        if(!GameEnvironment.ENVIRONMENT) {
+            mainGameLoop();
+        }else{
+            swingGameHandler();
+        }
     }
 
     private void mainGameLoop() {
@@ -71,6 +76,48 @@ public class Game {
                 break;
             }
         }
+    }
+
+    private void swingGameHandler(){
+        //while (isRunning) {
+            String soundFilePath = getGameState().getPlayer().getLocation().getSoundFilePath();
+            if (backgroundAudioPlayer != null) {
+                backgroundAudioPlayer.stop();
+            }
+            backgroundAudioPlayer = new BackgroundAudioPlayer(soundFilePath);
+            backgroundAudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "current_volume"));
+            backgroundAudioPlayer.loop();
+            // Main loop for game execution; process commands and update game state
+            displayUI.displayMainUI();
+            String lastCommandResult = commandManager.getLastCommandResult();
+            // Display the last command result
+            System.out.println(lastCommandResult);
+
+            if (!(gameState.getPlayer().isAlive())) {
+                // Perform additional actions here if needed before ending the game
+                Game.playerDefeated();
+            }
+
+            // Process commands in a separate thread
+            Thread commandThread = new Thread(commandManager::processCommands);
+
+            // Start the command processing thread
+            commandThread.start();
+
+            try {
+                // Wait for the command thread to finish before moving on
+                commandThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // Check if the game should continue after processing the command
+            if (!isRunning) {
+                // Display the goodbye message before breaking
+                System.out.println(commandManager.getLastCommandResult());
+                //break;
+            }
+        //}
     }
 
     public static void stop() {

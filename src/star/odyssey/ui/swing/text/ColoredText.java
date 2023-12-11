@@ -1,5 +1,7 @@
 package star.odyssey.ui.swing.text;
 
+import java.util.List;
+
 public class ColoredText {
     private String text;
     private TextColor textColor;

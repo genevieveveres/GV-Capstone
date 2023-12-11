@@ -55,4 +55,16 @@ public class CommandManager {
     public String getLastCommandResult() {
         return makeCyan(lastCommandResult);
     }
+
+    public CommandReader getReader() {
+        return reader;
+    }
+
+    public CommandIdentifier getIdentifier() {
+        return identifier;
+    }
+
+    public CommandExecutor getExecutor() {
+        return executor;
+    }
 }

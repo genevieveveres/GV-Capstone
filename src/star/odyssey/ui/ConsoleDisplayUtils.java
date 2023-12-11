@@ -1,6 +1,10 @@
 package star.odyssey.ui;
 
 import org.apache.commons.text.WordUtils;
+import star.odyssey.ui.swing.text.ColoredText;
+import star.odyssey.ui.swing.text.TextColor;
+
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ConsoleDisplayUtils {
 
@@ -67,7 +71,12 @@ public class ConsoleDisplayUtils {
     public static void printDivider(int totalLength, String title) {
         int remainingEquals = Math.max(0, totalLength - title.length());
 
-        System.out.println(makeRed("==" + makeCyan(title) + makeRed(repeatCharacter('=', remainingEquals))));
+        //System.out.println(makeRed("==" + makeCyan(title) + makeRed(repeatCharacter('=', remainingEquals))));
+        UniversalDisplay.println(
+                new ColoredText("==", TextColor.RED),
+                new ColoredText(title, TextColor.CYAN),
+                new ColoredText(repeatCharacter('=', remainingEquals), TextColor.RED)
+        );
     }
 
     private static String repeatCharacter(char character, int count) {

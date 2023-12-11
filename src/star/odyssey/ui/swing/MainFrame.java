@@ -68,11 +68,17 @@ public class MainFrame extends JFrame {
     }
 
     private void clickMeButton_Click(ActionEvent e){
-        label1.setText(textField1.getText());
-        textField1.setText("");
-        if(consoleCallbackString != null){
+//        label1.setText(textField1.getText());
+//        textField1.setText("");
+//        if(consoleCallbackString != null){
+//            consoleCallbackString.callback(null);
+//        }
+        if(textField1.getText().equals("")){
             consoleCallbackString.callback(null);
+        }else {
+            consoleCallbackString.callback(textField1.getText());
         }
+        textField1.setText("");
     }
 
     public void displayTextInsidePane(java.util.List<ColoredText> text, CallBackString callback){
