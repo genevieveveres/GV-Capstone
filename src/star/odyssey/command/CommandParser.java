@@ -32,7 +32,11 @@ public class CommandParser {
     }
 
     public static ParsedCommand parseCommand(String input) {
-        String[] words = input.trim().toLowerCase().split("\\s+");//split words by spaces
+        if(input == null)
+        {
+            input = "";
+        }
+        String[] words = input.trim().toLowerCase().split("\\s+");
         StringBuilder nounBuilder = new StringBuilder();
         String verb = null;
 

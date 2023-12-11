@@ -109,6 +109,10 @@ public class SwingMainMenu {
         }
     }
 
+    public static void swingGameHandler(String s){
+        gameManager.swingGameHandler();
+    }
+
     private static void displayBackstory() {
         String gameTxtFilePath = "./data/gameText.json";
         SwingDisplayUtils.clearScreen();

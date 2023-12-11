@@ -88,7 +88,7 @@ public class Game {
         }
     }
     // This method replaces the mainGameLoop in the case the game is running on SWING
-    private void swingGameHandler(){
+    public void swingGameHandler(){
         String soundFilePath = getGameState().getPlayer().getLocation().getSoundFilePath();
         if (backgroundAudioPlayer != null) {
             backgroundAudioPlayer.stop();
@@ -113,12 +113,13 @@ public class Game {
     private void processSwingCommands(){
         List<ColoredText> list = new ArrayList<>();
         list.add(new ColoredTextLine(">"));
-        SwingDisplayUtils.getInstance().displayText(list, this::incommingUserInput);
+        SwingDisplayUtils.getInstance().displayText(list, this::incomingUserInput);
     }
 
-    private void incommingUserInput(String input){
+    public void incomingUserInput(String input){
         commandManager.swingCommand(input);
-        swingGameHandler();
+        if(input!= null && !input.trim().toLowerCase().equals("map"))
+            swingGameHandler();
     }
 
 

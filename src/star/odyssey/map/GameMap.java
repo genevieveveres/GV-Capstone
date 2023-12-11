@@ -1,5 +1,10 @@
 package star.odyssey.map;
 
+import org.w3c.dom.Text;
+import star.odyssey.ui.UniversalDisplay;
+import star.odyssey.ui.swing.text.ColoredText;
+import star.odyssey.ui.swing.text.TextColor;
+
 import java.util.*;
 import static star.odyssey.ui.ConsoleDisplayUtils.makeBrown;
 import static star.odyssey.ui.ConsoleDisplayUtils.makeGreen;
@@ -71,23 +76,29 @@ public class GameMap {
         for (Map.Entry<String, Integer> entry : sortedRooms) {
             if (entry.getValue().toString().startsWith(level)) {
                 if (entry.getKey().startsWith("blank_room")) {
-                    System.out.print("                                   ");
+                    //System.out.print("                                   ");
+                    UniversalDisplay.print("                                   ");
                 } else {
                     if (locationProcessor.hasNorth(entry.getKey())) {
-                        System.out.print(makeBrown(" ╔═══════════════╩════════════════╗"));
+                        UniversalDisplay.print(" ╔═══════════════╩════════════════╗", TextColor.BROWN);
+                        //System.out.print(makeBrown(" ╔═══════════════╩════════════════╗"));
                     } else {
-                        System.out.print(makeBrown(" ╔════════════════════════════════╗"));
+                        UniversalDisplay.print(" ╔════════════════════════════════╗", TextColor.BROWN);
+                        //System.out.print(makeBrown(" ╔════════════════════════════════╗"));
                     }
                 }
             }
         }
-        System.out.println();
+        //System.out.println();
+        UniversalDisplay.println("");
         for (Map.Entry<String, Integer> entry : sortedRooms) {
             if (entry.getValue().toString().startsWith(level)) {
                 if (entry.getKey().startsWith("blank_room")) {
-                    System.out.print("                                   ");
+                    //System.out.print("                                   ");
+                    UniversalDisplay.print("                                   ");
                 } else {
-                    System.out.print(makeBrown(" ║                                ║"));
+                    //System.out.print(makeBrown(" ║                                ║"));
+                    UniversalDisplay.print(" ║                                ║");
                 }
             }
         }
@@ -126,22 +137,28 @@ public class GameMap {
         for (Map.Entry<String, Integer> entry : sortedRooms) {
             if (entry.getValue().toString().startsWith(level)) {
                 if (entry.getKey().startsWith("blank_room")) {
-                    System.out.print("                                   ");
+                    //System.out.print("                                   ");
+                    UniversalDisplay.print("                                   ");
                 } else {
-                    System.out.print(makeBrown(" ║                                ║"));
+                    //System.out.print(makeBrown(" ║                                ║"));
+                    UniversalDisplay.print(" ║                                ║", TextColor.BROWN);
                 }
             }
         }
-        System.out.println();
+        UniversalDisplay.println("");
+        //System.out.println();
         for (Map.Entry<String, Integer> entry : sortedRooms) {
             if (entry.getValue().toString().startsWith(level)) {
                 if (entry.getKey().startsWith("blank_room")) {
-                    System.out.print("                                   ");
+                    //System.out.print("                                   ");
+                    UniversalDisplay.print("                                   ");
                 } else {
                     if (locationProcessor.hasSouth(entry.getKey())) {
-                        System.out.print(makeBrown(" ╚═══════════════╦════════════════╝"));
+                        UniversalDisplay.println(" ╚═══════════════╦════════════════╝");
+                        //System.out.print(makeBrown(" ╚═══════════════╦════════════════╝"));
                     } else {
-                        System.out.print(makeBrown(" ╚════════════════════════════════╝"));
+                        UniversalDisplay.println(" ╚════════════════════════════════╝");
+                        //System.out.print(makeBrown(" ╚════════════════════════════════╝"));
                     }
 
                 }
@@ -156,7 +173,15 @@ public class GameMap {
         if (text.length() % 2 != 0) {
             extraSpace = " ";
         }
-        System.out.print(makeBrown(west) + " ".repeat(padding) + makeGreen(text) + " ".repeat(padding) + extraSpace + makeBrown(east));
+        //System.out.print(makeBrown(west) + " ".repeat(padding) + makeGreen(text) + " ".repeat(padding) + extraSpace + makeBrown(east));
+        UniversalDisplay.print(
+                new ColoredText(west, TextColor.BROWN),
+                new ColoredText(" ".repeat(padding)),
+                new ColoredText(text, TextColor.GREEN),
+                new ColoredText(" ".repeat(padding)),
+                new ColoredText(extraSpace),
+                new ColoredText(east, TextColor.BROWN)
+        );
     }
 
     // GETTERS AND SETTERS
