@@ -1,7 +1,6 @@
 package star.odyssey.ui;
 
 import star.odyssey.game.GameUtil;
-
 import static star.odyssey.ui.ConsoleDisplayUtils.*;
 
 public class DisplayBackstory {
@@ -12,9 +11,5 @@ public class DisplayBackstory {
         System.out.println(wrapText(backstory));
         pauseDisplay();
         clearScreen();
-    }
-
-    public static void main(String[] args) {
-        displayBackstory();
     }
 }
