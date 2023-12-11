@@ -31,13 +31,17 @@ public class CombatEngine {
     // METHODS
     public String startCombat() {
         StringBuilder combatLog = new StringBuilder();
+        //Start by showing initial stats
         combatLog.append(getNPCStats()).append("\n");
+        //Condition to determine whether to print "Player defeated"
         boolean playerDefeated = false;
 
         while (player.isAlive() && npc.isAlive()) {
+            //Player attacks the NPC, and if NPC dies force break out of the loop
             combatLog.append(performAttack(player, npc)).append("\n");
             if (!npc.isAlive()) break;
 
+            //NPC attacks the Player and if player dies break out of the loop
             combatLog.append(performAttack(npc, player)).append("\n");
             if (!player.isAlive()) {
                 playerDefeated = true;
@@ -52,6 +56,7 @@ public class CombatEngine {
         return combatLog.toString();
     }
 
+    //Get all necessary stats from NPC to display
     private String getNPCStats() {
         StringBuilder stats = new StringBuilder();
         Weapon equippedWeapon = npc.getEquippedWeapon();
@@ -71,21 +76,25 @@ public class CombatEngine {
     }
 
     private String performAttack(Entity attacker, Entity defender) {
+        //If attack was randomly dodged, exit and send String
         if (dodgeAttack()) {
             return defender.getName() + " dodged the attack by " + attacker.getName() + ".";
         }
 
         int baseDamage = calculateDamage(attacker, defender);
-        baseDamage = applyRandomVariation(baseDamage);
+        baseDamage = applyRandomVariation(baseDamage); //Randomize damage a bit
 
+        //Determine randomly if hit was critical
         if (isCriticalHit()) {
             baseDamage *= CRITICAL_HIT_MULTIPLIER;
+            //Critical hit string
             return attacker.getName() + " landed a critical hit on " + defender.getName() + " for " + baseDamage + " damage.\n" + takeDamage(defender, baseDamage);
         }
-
+        //Regular hit string
         return attacker.getName() + " attacked " + defender.getName() + " for " + baseDamage + " damage.\n" + takeDamage(defender, baseDamage);
     }
 
+    //strength + weapon - enemy defense, or 1 min
     private int calculateDamage(Entity attacker, Entity defender) {
         Weapon weapon = attacker.getEquippedWeapon();
         int weaponDamage = weapon != null ? weapon.getDamage() : 0;
@@ -97,18 +106,20 @@ public class CombatEngine {
     }
 
     private String takeDamage(Entity entity, int damage) {
+        //Deal the damage
         entity.setHealth(entity.getHealth() - damage);
 
+        //If the one taking damage is now under 0
         if (entity.getHealth() <= 0) {
-            entity.setHealth(0);
-            entity.setAlive(false);
-            if (entity instanceof NPC) {
-                ((NPC) entity).dropItems();
-                ((NPC) entity).removeFromLocation();
+            entity.setHealth(0); //Set their health to 0, not neg
+            entity.setAlive(false); //Make then unalive
+            if (entity instanceof NPC) { //If it's not the player
+                ((NPC) entity).dropItems(); //Drop their items
+                ((NPC) entity).removeFromLocation(); //Remove NPC from location
             }
-            return entity.getName() + " has been defeated.";
+            return entity.getName() + " has been defeated."; //Defeated String
         }
-        return entity.getName() + " took " + damage + " damage.";
+        return entity.getName() + " took " + damage + " damage."; //Damage String
     }
 
     private int applyRandomVariation(int baseDamage) {
