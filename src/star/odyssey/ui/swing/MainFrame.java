@@ -65,6 +65,9 @@ public class MainFrame extends JFrame {
         Style styleCyan = textPane1.addStyle("CyanStyle", null);
         StyleConstants.setForeground(styleCyan, Color.CYAN);
         styleMap.put(TextColor.CYAN, styleCyan);
+        Style styleBrown = textPane1.addStyle("BrownStyle", null);
+        StyleConstants.setForeground(styleBrown, Color.YELLOW);
+        styleMap.put(TextColor.BROWN, styleBrown);
 
         Style fontStyle = textPane1.addStyle("MyFont", null);
         styleMap.put(TextColor.NONE, fontStyle);

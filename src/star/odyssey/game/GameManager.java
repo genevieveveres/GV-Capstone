@@ -53,6 +53,10 @@ public class GameManager {
         game.start();
     }
 
+    public void swingGameHandler(){
+        game.swingGameHandler();
+    }
+
     private void associateEntities() {
         associatePlayerWithLocation();
         associatePlayerWithItems();

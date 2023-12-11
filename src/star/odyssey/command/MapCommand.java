@@ -1,8 +1,13 @@
 package star.odyssey.command;
 
+import star.odyssey.env.GameEnvironment;
 import star.odyssey.game.GameState;
 import star.odyssey.location.Location;
 import star.odyssey.map.GameMap;
+import star.odyssey.ui.UniversalDisplay;
+import star.odyssey.ui.swing.SwingDisplayUtils;
+import star.odyssey.ui.swing.SwingMainMenu;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,8 +34,15 @@ public class MapCommand implements Command {
                 .filter(Location::isVisited)
                 .map(Location::getIndex)
                 .collect(Collectors.toList());
-        System.out.println(GameMap.drawGameMap(visitedLocations, gameState.getPlayer().getLocation().getIndex()));
-        pauseDisplay();
+        if(!GameEnvironment.ENVIRONMENT)
+        {
+            System.out.println(GameMap.drawGameMap(visitedLocations, gameState.getPlayer().getLocation().getIndex()));
+            pauseDisplay();
+        }
+        else {
+            UniversalDisplay.println(GameMap.drawGameMap(visitedLocations, gameState.getPlayer().getLocation().getIndex()));
+            SwingDisplayUtils.pauseDisplay(SwingMainMenu::swingGameHandler);
+        }
         return noun;
     }
 
