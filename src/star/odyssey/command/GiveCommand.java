@@ -21,6 +21,12 @@ public class GiveCommand implements Command {
     // METHODS
     @Override
     public String execute(String noun) {
+
+        /*
+        NOTE: The only valid exchange in this implementation is giving the crystal to the Luminara Speaker in exchange
+        for the Healing Elixir.
+         */
+        //validate
         if (noun == null || noun.isEmpty()) {
             return "Usage: give <item_name>";
         }
@@ -29,11 +35,11 @@ public class GiveCommand implements Command {
 
         // Find the item in the list of items
         Item itemToGive = findItem(itemName);
-        Item itemToGet = findItem("Healing Elixir");
+        Item itemToGet = findItem("Healing Elixir"); //this is the only thing you can get
 
         // Check if the item was found
         if (itemToGive != null & itemToGive.equals(gameState.getPlayer().getInventoryItem(itemToGive.getName()))) {
-            // Find the NPC "guardian" in the list of NPCs
+            // Find the NPC "luminara_speaker" in the list of NPCs
             NPC targetNPC = findNPC("luminara_speaker");
 
             // Check if the NPC "luminara speaker" was found
@@ -56,6 +62,8 @@ public class GiveCommand implements Command {
         }
     }
 
+
+    //Provide a reference to the item in question
     private Item findItem(String itemName) {
         for (Item item : gameState.getItemManager().getAllItems().values()) {
             if (item.getName().equalsIgnoreCase(itemName)) {
@@ -65,6 +73,7 @@ public class GiveCommand implements Command {
         return null;
     }
 
+    //Provide a reference the NPC in question
     private NPC findNPC(String npcIndex) {
         for (NPC npc : gameState.getEntityManager().getAllNPCs().values()) {
             if (npc.getIndex().equalsIgnoreCase(npcIndex)) {

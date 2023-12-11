@@ -15,7 +15,7 @@ public class CommandIdentifier {
     public String identifyCommand(String commandWord) {
         if (commandWord == null) return null;
 
-        // Directly check if the command word is a key
+        // Directly check if the command word is a key itself (not syn)
         if (config.getCommands().containsKey(commandWord.toLowerCase())) {
             return commandWord.toLowerCase();
         }

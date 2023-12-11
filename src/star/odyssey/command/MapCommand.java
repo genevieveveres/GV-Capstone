@@ -24,6 +24,7 @@ public class MapCommand implements Command {
     public String execute(String noun) {
         clearScreen();
         System.out.println();
+        //Build list of locations player has been to
         List<String> visitedLocations = gameState.getLocationManager().getLocations().values().stream()
                 .filter(Location::isVisited)
                 .map(Location::getIndex)

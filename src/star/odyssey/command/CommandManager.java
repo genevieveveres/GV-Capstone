@@ -31,7 +31,7 @@ public class CommandManager {
 
     // METHODS
     public void processCommands() {
-        boolean isGameRunning = true;
+        boolean isGameRunning = true; //More like "is game waiting on this command"
         while (isGameRunning) {
             // Read command input from the user
             String input = reader.readCommand();

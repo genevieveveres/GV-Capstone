@@ -19,9 +19,12 @@ public class EquipCommand implements Command {
     @Override
     public String execute(String weaponName) {
         Player player = gameState.getPlayer();
-
+        //Go through player inventory
         for (Item item : player.getInventory()) {
+            //If you find something that is a weapon
+            //and that matches the given name
             if (item.getName().equalsIgnoreCase(weaponName) && item instanceof Weapon) {
+                //padd to the player's equip method
                 return player.equip((Weapon) item);
             }
         }

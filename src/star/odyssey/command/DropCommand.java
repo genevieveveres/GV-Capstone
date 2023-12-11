@@ -20,10 +20,12 @@ public class DropCommand implements Command {
     // METHODS
     @Override
     public String execute(String itemName) {
+        //validate noun
         if (itemName == null || itemName.trim().isEmpty()) {
             return txtMap.get("drop_fail");
         }
 
+        //if valid, pass to Player's drop command
         Player player = gameState.getPlayer();
         return player.dropItem(itemName);
     }

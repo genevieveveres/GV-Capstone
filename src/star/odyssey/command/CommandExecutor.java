@@ -15,6 +15,7 @@ public class CommandExecutor {
 
     // CONSTRUCTOR
     public CommandExecutor(Game game) {
+        //Popuplate the Map of commands
         commandMap = new HashMap<>();
         commandMap.put("help", new HelpCommand(commandMap));
         commandMap.put("quit", new QuitCommand(game));

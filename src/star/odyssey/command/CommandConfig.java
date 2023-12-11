@@ -41,6 +41,7 @@ public class CommandConfig {
         }
 
         if (!repeatedSynonyms.isEmpty()) {
+            //Tell user dup Syn was found and not added
             System.err.println(txtMap.get("synonym_error") + repeatedSynonyms);
         }
     }

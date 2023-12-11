@@ -25,13 +25,17 @@ public class QuitCommand implements Command {
     // METHODS
     @Override
     public String execute(String noun) {
+        //Get options available to the players
         String optionChoices = GameUtil.optionsValues(optionsMap);
+        //Divide options by , into a list
         String[] optionsList = optionChoices.split(", ");
 
+        //Present options to player
         System.out.print(txtMap.get("quit_question") + optionsList[0] + " or " + optionsList[1] + ": ");
         String response = scanner.nextLine().trim().toLowerCase();
         String optionKey = GameUtil.getValueKey(optionsMap, response).toString();
 
+        //Interpret player choice
         if ("[1]".equals(optionKey)) {
             Game.stop();
             clearScreen();
