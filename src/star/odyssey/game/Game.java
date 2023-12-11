@@ -33,11 +33,12 @@ public class Game {
 
     private void mainGameLoop() {
         while (isRunning) {
+            //Get path to location sound
             String soundFilePath = getGameState().getPlayer().getLocation().getSoundFilePath();
             if (backgroundAudioPlayer != null) {
-                backgroundAudioPlayer.stop();
+                backgroundAudioPlayer.stop();//Stop any existing backgroundAudioPlayer
             }
-            backgroundAudioPlayer = new BackgroundAudioPlayer(soundFilePath);
+            backgroundAudioPlayer = new BackgroundAudioPlayer(soundFilePath);//Create a new AudioPlayer
             backgroundAudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "current_volume"));
             backgroundAudioPlayer.loop();
             // Main loop for game execution; process commands and update game state
@@ -73,11 +74,13 @@ public class Game {
         }
     }
 
+    // End the game
     public static void stop() {
         backgroundAudioPlayer.stop();
         isRunning = false;
     }
 
+    //End and send player back to main menu
     public static void playerDefeated() {
         pauseDisplay();
         Game.stop();
