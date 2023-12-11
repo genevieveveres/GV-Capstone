@@ -27,12 +27,12 @@ public class HelpCommand implements Command {
     @Override
     public String execute(String noun) {
         //OLD manner of doing things
-//        StringBuilder result = new StringBuilder(txtMap.get("builderStart"));
-//        for (String commandKey : commandMap.keySet()) {
-//            result.append("- ").append(commandKey).append(" "); // Appending each available command.
-//        }
-//
-//        return wrapText(result.toString().trim());
+        StringBuilder result = new StringBuilder(txtMap.get("builderStart"));
+        for (String commandKey : commandMap.keySet()) {
+            result.append("- ").append(commandKey).append(" "); // Appending each available command.
+        }
+
+        return wrapText(result.toString().trim());
 
         //NEW Console manner of doing things with improved text
 //        clearScreen();
@@ -42,9 +42,9 @@ public class HelpCommand implements Command {
 //        clearScreen();
 
         //SWING - when this command it called, launch HelpFrame.
-        HelpFrame theHelpFrame = new HelpFrame();
-
-        return "";
+//        HelpFrame theHelpFrame = new HelpFrame();
+//
+//        return "";
     }
 
 }

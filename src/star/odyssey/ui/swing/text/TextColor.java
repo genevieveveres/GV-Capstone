@@ -8,6 +8,8 @@ public enum TextColor {
     PURPLE,
     CYAN,
     WHITE,
+    MAGENTA,
+    BROWN,
     RESET,
     NONE;
 }
