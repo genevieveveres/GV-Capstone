@@ -34,7 +34,7 @@ public class HealCommand implements Command {
         }
 
         NPC npc = gameState.getEntityManager().getNPC(entityName);
-        if (npc != null && player.getLocation().getNPCs().contains(npc)) {
+        if (npc != null && player.getLocation().getNPCs().contains(npc)) {//If the NPC is in player's locations
             npc.heal();
             return txtMap.get("heal_npc_beginning") + npc.getName() + txtMap.get("heal_npc_end");
         } else {

@@ -5,6 +5,7 @@ import star.odyssey.ui.ConsoleDisplayUtils;
 import star.odyssey.ui.DisplayGameInfo;
 import star.odyssey.ui.swing.HelpFrame;
 
+import javax.swing.*;
 import java.util.Map;
 
 import static star.odyssey.ui.ConsoleDisplayUtils.*;
@@ -27,12 +28,12 @@ public class HelpCommand implements Command {
     @Override
     public String execute(String noun) {
         //OLD manner of doing things
-        StringBuilder result = new StringBuilder(txtMap.get("builderStart"));
-        for (String commandKey : commandMap.keySet()) {
-            result.append("- ").append(commandKey).append(" "); // Appending each available command.
-        }
-
-        return wrapText(result.toString().trim());
+//        StringBuilder result = new StringBuilder(txtMap.get("builderStart"));
+//        for (String commandKey : commandMap.keySet()) {
+//            result.append("- ").append(commandKey).append(" "); // Appending each available command.
+//        }
+//
+//        return wrapText(result.toString().trim());
 
         //NEW Console manner of doing things with improved text
 //        clearScreen();
@@ -43,8 +44,14 @@ public class HelpCommand implements Command {
 
         //SWING - when this command it called, launch HelpFrame.
 //        HelpFrame theHelpFrame = new HelpFrame();
-//
-//        return "";
+
+        //TODO: find out how to pass the MainFrame in here so it's a true "child" pop up
+        //For now, the below code is also in the MainFrame class as a method
+        String helpText = GameUtil.jsonToString(gameTxtFilePath, "helpText2");
+        JOptionPane.showMessageDialog(new JFrame(),helpText);
+
+
+        return "";
     }
 
 }

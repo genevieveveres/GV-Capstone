@@ -32,8 +32,8 @@ public class GameManager {
 
     // METHODS
     private void initializeNewGame() {
-        validatePlayer();
-        associateEntities();
+        validatePlayer();//make sure player isn't null
+        associateEntities();//Deals with the has-a relationships
         gameState = new GameState(entityManager, itemManager, locationManager);
         game = new Game(gameState);
     }

@@ -23,6 +23,7 @@ public class MoveCommand implements Command {
     public String execute(String direction) {
         Entity player = gameState.getPlayer();
 
+        //Validate direction
         if (direction == null || direction.isEmpty()) {
             return moveTxtMap.get("direction_null");
         }
@@ -30,9 +31,9 @@ public class MoveCommand implements Command {
         Location currentLocation = player.getLocation();
         Location nextLocation = currentLocation.getConnections().get(direction);
 
-        if (nextLocation == null) {
+        if (nextLocation == null) {//if there is no connection in direction provided
             return moveTxtMap.get("direction_unknown");
-        } else {
+        } else { //set new player location and mark new location visited
             player.setLocation(nextLocation);
             player.getLocation().setVisited(true);
             return moveTxtMap.get("move_success") + nextLocation.getName();

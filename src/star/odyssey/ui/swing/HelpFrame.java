@@ -6,6 +6,7 @@ import star.odyssey.game.GameUtil;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import javax.swing.Popup;
 
 public class HelpFrame extends JFrame {
 
@@ -19,6 +20,8 @@ public class HelpFrame extends JFrame {
         this.setSize(460,550);
         this.setVisible(true);
         this.setResizable(false);
+
+        JPopupMenu popup = new JPopupMenu();
 
     }
 

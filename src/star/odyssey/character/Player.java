@@ -28,6 +28,7 @@ public class Player extends Entity {
 
     //METHODS
     public String getItem(Item item) {
+        //Check for qualities that would stop you
         if (!item.isMovable()) {
             return item.getName() + txtMap.get("item_unmovable");
         }
@@ -37,19 +38,20 @@ public class Player extends Entity {
         if (!item.isActive()) {
             return item.getName() + txtMap.get("item_inactive");
         }
-
+        //If none of those qualities apply, move item
         this.inventory.add(item);
         this.location.removeItem(item);
         return item.getName() + txtMap.get("item_get");
     }
 
     public String dropItem(String itemName) {
-        for (Item item : inventory) {
-            if (item.getName().equalsIgnoreCase(itemName)) {
+        for (Item item : inventory) {//go through players inventory
+            if (item.getName().equalsIgnoreCase(itemName)) { //if the name matches
+                //if the item they are dropping is the equipped item
                 if (equippedWeapon != null && equippedWeapon.equals(item)) {
-                    equippedWeapon = new Weapon();
+                    equippedWeapon = new Weapon(); //They get a new weapon?
                 }
-
+                //Move item from player to location inv
                 inventory.remove(item);
                 location.addInventory(item);
                 return itemName + txtMap.get("item_drop");
@@ -59,21 +61,22 @@ public class Player extends Entity {
     }
 
     public String useItem(Item item) {
-        if (!item.isUsable()) {
+        if (!item.isUsable()) {//Item not usable
             return item.getName() + txtMap.get("use_not_usable");
         }
-        if (item.isMovable() && !this.getInventory().contains(item)) {
+        if (item.isMovable() && !this.getInventory().contains(item)) {//Item needs to be picked up
             return item.getName() + txtMap.get("use_moveable_needs_pickedup");
         }
-        if (item.isHidden()) {
+        if (item.isHidden()) { //Item is hidden
             return item.getName() + txtMap.get("item_hidden");
         }
-        if (!item.isActive()) {
+        if (!item.isActive()) { //Item is not active
             return item.getName() + txtMap.get("item_inactive");
         }
+        //Item is not in player's location
         if (!Objects.equals(item.getUseLocation(), "") && !item.getUseLocation().equals(this.getLocation().getIndex())) {
             return item.getName() + txtMap.get("use_not_location");
-        }
+        }//Specific case for player using StarStone
         if (item.getIndex().equals("starstone")) {
             clearScreen();
             System.out.println(wrapText(GameUtil.jsonToString(gameTxtFilePath, "win_repair_engine")));
@@ -82,7 +85,7 @@ public class Player extends Entity {
             clearScreen();
             MainMenu.execute();
             return null;
-        }
+        }//Deals with cases where the item has a SFX when used
         if (item.hasSound()) {
             String capitalizedName = item.getIndex().toUpperCase();
             try {
@@ -92,7 +95,7 @@ public class Player extends Entity {
                 e.printStackTrace();
             }
 
-        }
+        }//returns use text
         return wrapText(item.getUseText());
     }
 }

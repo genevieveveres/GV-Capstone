@@ -21,6 +21,7 @@ public class TalkCommand implements Command {
     // METHODS
     @Override
     public String execute(String npcName) {
+        //Validate person to talk to
         if (npcName == null || npcName.trim().isEmpty()) {
             return txtMap.get("talk_null");
         }
@@ -28,7 +29,9 @@ public class TalkCommand implements Command {
         Player player = gameState.getPlayer();
         NPC npc = gameState.getEntityManager().getNPC(npcName);
 
+        //If the talkertoer is valid and in player's location
         if (npc != null && player.getLocation().getNPCs().contains(npc)) {
+            //Pass to NPC's talk method
             return npc.talk();
         } else {
             return npcName + txtMap.get("talk_unknown");

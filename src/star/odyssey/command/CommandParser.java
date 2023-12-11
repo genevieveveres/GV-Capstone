@@ -32,13 +32,13 @@ public class CommandParser {
     }
 
     public static ParsedCommand parseCommand(String input) {
-        String[] words = input.trim().toLowerCase().split("\\s+");
+        String[] words = input.trim().toLowerCase().split("\\s+");//split words by spaces
         StringBuilder nounBuilder = new StringBuilder();
         String verb = null;
 
         for (String word : words) {
-            if (!unnecessaryWords.contains(word)) {
-                if (verb == null) {
+            if (!unnecessaryWords.contains(word)) {//if this is not a word to ignore
+                if (verb == null) {//if the verb hasn't been "filled" yet
                     verb = word; // First significant word is the verb.
                 } else {
                     // Append subsequent significant words to nounBuilder.

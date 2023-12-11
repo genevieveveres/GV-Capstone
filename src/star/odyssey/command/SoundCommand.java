@@ -24,11 +24,13 @@ public class SoundCommand implements Command {
 
         String currentVolume = "current_volume";
         String previousVolume = "previous_volume";
+        //Get the available options
         String optionChoices = GameUtil.optionsValues(optionsMap);
         if (option == null || option.trim().isEmpty()) {
             return txtMap.get("sound_null") + optionChoices;
         }
 
+        //Get the option the user chose
         String optionKey = GameUtil.getValueKey(optionsMap, option).toString();
         String userSettings = "data/userSettings.json";
         switch (optionKey) {
@@ -43,13 +45,13 @@ public class SoundCommand implements Command {
                 int prevVol = jsonToInt(userSettings, previousVolume);
                 IntToJson(userSettings, currentVolume, prevVol);
                 return txtMap.get("sound_on");
-            case "[3]":
+            case "[3]"://Set vol to low
                 IntToJson(userSettings, currentVolume, Integer.parseInt(soundLevelMap.get("low_volume")));
                 return txtMap.get("sound_low");
-            case "[4]":
+            case "[4]"://Set vol to med
                 IntToJson(userSettings, currentVolume, Integer.parseInt(soundLevelMap.get("med_volume")));
                 return txtMap.get("sound_medium");
-            case "[5]":
+            case "[5]"://set vol to high
                 IntToJson(userSettings, currentVolume, Integer.parseInt(soundLevelMap.get("high_volume")));
                 return txtMap.get("sound_high");
             default:

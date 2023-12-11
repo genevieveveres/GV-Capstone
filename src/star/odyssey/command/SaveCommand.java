@@ -23,6 +23,7 @@ public class SaveCommand implements Command {
     @Override
     public String execute(String noun) {
         try {
+            //Pass to GameSave method
             GameSave.saveGame(gameState);
             return txtMap.get("save_successful");
         } catch (IOException e) {

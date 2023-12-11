@@ -25,6 +25,7 @@ public class AttackCommand implements Command {
     @Override
     public String execute(String targetName) {
 
+        //Validate target was provided
         if (targetName == null || targetName.trim().isEmpty()) {
             return "No target specified.";
         }
@@ -33,17 +34,21 @@ public class AttackCommand implements Command {
 
         List<NPC> npcsInLocation = player.getLocation().getNpcs();
 
+        //Target is the first NPC in the same Loc as player with matching name
         NPC target = npcsInLocation.stream()
                 .filter(npc -> npc.getName().equalsIgnoreCase(targetName))
                 .findFirst()
                 .orElse(null);
 
+        //Validates provided target is in the location
         if (target == null) {
             return "No such enemy found in your current location.";
         }
 
+        //Send to combatEngine
         CombatEngine combatEngine = new CombatEngine(player, target);
 
+        //Return string of all combat
         return combatEngine.startCombat();
     }
 }
