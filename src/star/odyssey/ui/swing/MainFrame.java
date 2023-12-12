@@ -1,5 +1,6 @@
 package star.odyssey.ui.swing;
 
+import star.odyssey.character.Player;
 import star.odyssey.game.GameUtil;
 import star.odyssey.ui.swing.callbacks.CallBackString;
 import star.odyssey.ui.swing.callbacks.CallBackVoid;
@@ -106,5 +107,9 @@ public class MainFrame extends JFrame {
     private void displayHelpPopup(ActionEvent e){
         String helpText = GameUtil.jsonToString("./data/gameText.json", "helpText2");
         JOptionPane.showMessageDialog(this,helpText);
+    }
+
+    private void playerStatusChanged(Player player){
+        
     }
 }
