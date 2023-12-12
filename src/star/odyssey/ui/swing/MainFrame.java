@@ -153,24 +153,30 @@ public class MainFrame extends JFrame {
         sfxMenu.add(sfxOnOff);
 
         //Create, prep, and then add the volSlider to the sfxMenu
-        JSlider volSlider = new JSlider(JSlider.VERTICAL, 75, 95, 85);
+        JSlider volSlider = new JSlider(JSlider.VERTICAL, 0, 100, 50);
         Hashtable<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
-        labelTable.put(75, new JLabel("Low") );
-        labelTable.put(85, new JLabel("Med") );
-        labelTable.put(95, new JLabel("High") );
+        labelTable.put(0, new JLabel("Low") );
+        labelTable.put(50, new JLabel("Med") );
+        labelTable.put(100, new JLabel("High") );
         volSlider.setLabelTable(labelTable);
         volSlider.setPaintLabels(true);
         volSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
                 int slidePointer = volSlider.getValue();
-                System.out.println(slidePointer);
+
+                if(slidePointer <= 33){
+                    sfxCom.execute("low");//send LOW aka
+                }else if(slidePointer <= 67){
+                    sfxCom.execute("medium");//send MED
+                }else {
+                    sfxCom.execute("high");//send HIGH
+                }
             }
         });
-
-
         sfxMenu.add(volSlider);
 
+        //Send back the newly prepared sfxMenu
         return sfxMenu;
     }
 }
