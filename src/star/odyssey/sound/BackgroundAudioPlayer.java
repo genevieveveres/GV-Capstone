@@ -8,6 +8,7 @@ public class BackgroundAudioPlayer {
 
     // INSTANCE VARIABLES
     private Clip clip;
+    private static boolean isPlaying = true;
 
     // CONSTRUCTORS
     public BackgroundAudioPlayer(String filePath) {
@@ -26,12 +27,14 @@ public class BackgroundAudioPlayer {
         if (clip != null) {
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
+        setPlaying(true);
     }
 
     public void stop() {
         if (clip != null && clip.isRunning()) {
             clip.stop();
         }
+        setPlaying(false);
     }
 
     public void setVolume(int volume) {
@@ -43,5 +46,13 @@ public class BackgroundAudioPlayer {
             float gain = (volFloat * (max - min)) + min;
             gainControl.setValue(gain);
         }
+    }
+
+    public static boolean isPlaying() {
+        return isPlaying;
+    }
+
+    public static void setPlaying(boolean playing) {
+        isPlaying = playing;
     }
 }
