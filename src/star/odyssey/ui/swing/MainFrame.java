@@ -1,17 +1,25 @@
 package star.odyssey.ui.swing;
 
 import star.odyssey.game.GameUtil;
+import star.odyssey.sound.SoundEffect;
 import star.odyssey.ui.swing.callbacks.CallBackString;
 import star.odyssey.ui.swing.callbacks.CallBackVoid;
 import star.odyssey.ui.swing.text.ColoredText;
 import star.odyssey.ui.swing.text.TextColor;
+import star.odyssey.command.SFXCommand;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class MainFrame extends JFrame {
     private JPanel mainPanel;
@@ -20,6 +28,7 @@ public class MainFrame extends JFrame {
     private JLabel label1;
     private JTextField textField1;
     private JTextPane textPane1;
+    private boolean sfxStatus = true;
 
     StyleContext sc = new StyleContext();
     final DefaultStyledDocument doc = new DefaultStyledDocument(sc);
@@ -28,6 +37,9 @@ public class MainFrame extends JFrame {
     private CallBackString consoleCallbackString;
 
     public MainFrame(){
+
+        menuBar();
+
         SwingDisplayUtils.setCallBack(this::displayTextInsidePane);
 
         this.setContentPane(mainPanel);
@@ -36,6 +48,7 @@ public class MainFrame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setResizable(false);
+
 
 
         clickMeButton.addActionListener(this::clickMeButton_Click);
@@ -106,5 +119,67 @@ public class MainFrame extends JFrame {
     private void displayHelpPopup(ActionEvent e){
         String helpText = GameUtil.jsonToString("./data/gameText.json", "helpText2");
         JOptionPane.showMessageDialog(this,helpText);
+    }
+
+    private void menuBar(){
+
+        //Create the menu Bar
+        JMenuBar menuBar = new JMenuBar();
+
+        //Create and add the sfxMenu
+        JMenu sfxMenu = sfxMenu();
+        menuBar.add(sfxMenu);
+
+        //TODO: Create and add the musicMenu
+
+        //Set the menuBar
+        setJMenuBar(menuBar);
+    }
+
+    private JMenu sfxMenu(){
+        SFXCommand sfxCom = new SFXCommand();
+
+        JMenu sfxMenu = new JMenu("SFX");
+
+        //Create, prep, and then add sfxOnOff to the sfxMenu
+        JMenuItem sfxOnOff = new JMenuItem("SFX Off");
+        sfxOnOff.addActionListener((event) -> {
+            if(SoundEffect.isSoundEnabled()){ //if sound is currently on
+                sfxCom.execute("off");//turn sound off
+                sfxOnOff.setText("SFX On"); //change button text to opposite
+            }
+            else { //if sound is currently off
+                sfxCom.execute("on"); //turn sound off
+                sfxOnOff.setText("SFX Off"); //change button text to opposite
+            }
+        });
+        sfxMenu.add(sfxOnOff);
+
+        //Create, prep, and then add the volSlider to the sfxMenu
+        JSlider volSlider = new JSlider(JSlider.VERTICAL, 0, 100, 50);
+        Hashtable<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
+        labelTable.put(0, new JLabel("Low") );
+        labelTable.put(50, new JLabel("Med") );
+        labelTable.put(100, new JLabel("High") );
+        volSlider.setLabelTable(labelTable);
+        volSlider.setPaintLabels(true);
+        volSlider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                int slidePointer = volSlider.getValue();
+
+                if(slidePointer <= 33){
+                    sfxCom.execute("low");//send LOW aka
+                }else if(slidePointer <= 67){
+                    sfxCom.execute("medium");//send MED
+                }else {
+                    sfxCom.execute("high");//send HIGH
+                }
+            }
+        });
+        sfxMenu.add(volSlider);
+
+        //Send back the newly prepared sfxMenu
+        return sfxMenu;
     }
 }

@@ -55,4 +55,8 @@ public enum SoundEffect {
             gainControl.setValue(gain);
         }
     }
+
+    public static boolean isSoundEnabled() {
+        return soundEnabled;
+    }
 }
