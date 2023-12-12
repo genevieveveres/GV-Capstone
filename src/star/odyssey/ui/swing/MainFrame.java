@@ -11,7 +11,11 @@ import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class MainFrame extends JFrame {
     private JPanel mainPanel;
@@ -28,6 +32,9 @@ public class MainFrame extends JFrame {
     private CallBackString consoleCallbackString;
 
     public MainFrame(){
+
+        menuBar();
+
         SwingDisplayUtils.setCallBack(this::displayTextInsidePane);
 
         this.setContentPane(mainPanel);
@@ -36,6 +43,7 @@ public class MainFrame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setResizable(false);
+
 
 
         clickMeButton.addActionListener(this::clickMeButton_Click);
@@ -103,5 +111,27 @@ public class MainFrame extends JFrame {
     private void displayHelpPopup(ActionEvent e){
         String helpText = GameUtil.jsonToString("./data/gameText.json", "helpText2");
         JOptionPane.showMessageDialog(this,helpText);
+    }
+
+    private void menuBar(){
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menu = new JMenu("SFX");
+        JMenuItem sfxOnOff = new JMenuItem("Toggle On/Off");
+
+        menu.add(sfxOnOff);
+
+        JSlider volSlider = new JSlider(JSlider.VERTICAL, 75, 95, 85);
+
+        Hashtable<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
+        labelTable.put(75, new JLabel("Low") );
+        labelTable.put(85, new JLabel("Med") );
+        labelTable.put(95, new JLabel("High") );
+        volSlider.setLabelTable(labelTable);
+        volSlider.setPaintLabels(true);
+
+        menu.add(volSlider);
+
+        menuBar.add(menu);
+        setJMenuBar(menuBar);
     }
 }

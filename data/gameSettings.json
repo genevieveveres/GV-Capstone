@@ -2,11 +2,11 @@
   "sound_levels": {
     "low_volume": "75",
     "med_volume": "85",
-    "high_volume": "100"
+    "high_volume": "95"
   },
   "sfx_levels": {
     "low_volume": "75",
     "med_volume": "85",
-    "high_volume": "100"
+    "high_volume": "95"
   }
 }
