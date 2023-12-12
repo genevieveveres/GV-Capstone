@@ -27,14 +27,12 @@ public class BackgroundAudioPlayer {
         if (clip != null) {
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
-        setPlaying(true);
     }
 
     public void stop() {
         if (clip != null && clip.isRunning()) {
             clip.stop();
         }
-        setPlaying(false);
     }
 
     public void setVolume(int volume) {
