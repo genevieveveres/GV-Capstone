@@ -1,10 +1,12 @@
 package star.odyssey.ui.swing;
 
 import star.odyssey.game.GameUtil;
+import star.odyssey.sound.SoundEffect;
 import star.odyssey.ui.swing.callbacks.CallBackString;
 import star.odyssey.ui.swing.callbacks.CallBackVoid;
 import star.odyssey.ui.swing.text.ColoredText;
 import star.odyssey.ui.swing.text.TextColor;
+import star.odyssey.command.SFXCommand;
 
 import javax.swing.*;
 import javax.swing.text.*;
@@ -114,24 +116,45 @@ public class MainFrame extends JFrame {
     }
 
     private void menuBar(){
+
+        //Create the menu Bar
         JMenuBar menuBar = new JMenuBar();
-        JMenu menu = new JMenu("SFX");
-        JMenuItem sfxOnOff = new JMenuItem("Toggle On/Off");
 
-        menu.add(sfxOnOff);
+        //Create and add the sfxMenu
+        JMenu sfxMenu = sfxMenu();
+        menuBar.add(sfxMenu);
 
+        //TODO: Create and add the musicMenu
+
+        //Set the menuBar
+        setJMenuBar(menuBar);
+    }
+
+    private JMenu sfxMenu(){
+        SFXCommand sfxCom = new SFXCommand();
+
+        JMenu sfxMenu = new JMenu("SFX");
+
+        //Create, prep, and then add sfxOn to the sfxMenu
+        JMenuItem sfxOn = new JMenuItem("SFX On");
+        sfxOn.addActionListener((event) -> sfxCom.execute("on"));//turn sfx off
+        sfxMenu.add(sfxOn);
+
+        //Create, prep, and then add sfxOff to the sfxMenu
+        JMenuItem sfxOff = new JMenuItem("SFX Off");
+        sfxOff.addActionListener((event) -> sfxCom.execute("off"));//turn sfx on
+        sfxMenu.add(sfxOff);
+
+        //Create, prep, and then add the volSlider to the sfxMenu
         JSlider volSlider = new JSlider(JSlider.VERTICAL, 75, 95, 85);
-
         Hashtable<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
         labelTable.put(75, new JLabel("Low") );
         labelTable.put(85, new JLabel("Med") );
         labelTable.put(95, new JLabel("High") );
         volSlider.setLabelTable(labelTable);
         volSlider.setPaintLabels(true);
+        sfxMenu.add(volSlider);
 
-        menu.add(volSlider);
-
-        menuBar.add(menu);
-        setJMenuBar(menuBar);
+        return sfxMenu;
     }
 }
