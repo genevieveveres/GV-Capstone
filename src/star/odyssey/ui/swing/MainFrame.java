@@ -9,6 +9,8 @@ import star.odyssey.ui.swing.text.TextColor;
 import star.odyssey.command.SFXCommand;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,6 +28,7 @@ public class MainFrame extends JFrame {
     private JLabel label1;
     private JTextField textField1;
     private JTextPane textPane1;
+    private boolean sfxStatus = true;
 
     StyleContext sc = new StyleContext();
     final DefaultStyledDocument doc = new DefaultStyledDocument(sc);
@@ -135,15 +138,19 @@ public class MainFrame extends JFrame {
 
         JMenu sfxMenu = new JMenu("SFX");
 
-        //Create, prep, and then add sfxOn to the sfxMenu
-        JMenuItem sfxOn = new JMenuItem("SFX On");
-        sfxOn.addActionListener((event) -> sfxCom.execute("on"));//turn sfx off
-        sfxMenu.add(sfxOn);
-
-        //Create, prep, and then add sfxOff to the sfxMenu
-        JMenuItem sfxOff = new JMenuItem("SFX Off");
-        sfxOff.addActionListener((event) -> sfxCom.execute("off"));//turn sfx on
-        sfxMenu.add(sfxOff);
+        //Create, prep, and then add sfxOnOff to the sfxMenu
+        JMenuItem sfxOnOff = new JMenuItem("SFX Off");
+        sfxOnOff.addActionListener((event) -> {
+            if(SoundEffect.isSoundEnabled()){ //if sound is currently on
+                sfxCom.execute("off");//turn sound off
+                sfxOnOff.setText("SFX On"); //change button text to opposite
+            }
+            else { //if sound is currently off
+                sfxCom.execute("on"); //turn sound off
+                sfxOnOff.setText("SFX Off"); //change button text to opposite
+            }
+        });
+        sfxMenu.add(sfxOnOff);
 
         //Create, prep, and then add the volSlider to the sfxMenu
         JSlider volSlider = new JSlider(JSlider.VERTICAL, 75, 95, 85);
@@ -153,6 +160,15 @@ public class MainFrame extends JFrame {
         labelTable.put(95, new JLabel("High") );
         volSlider.setLabelTable(labelTable);
         volSlider.setPaintLabels(true);
+        volSlider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                int slidePointer = volSlider.getValue();
+                System.out.println(slidePointer);
+            }
+        });
+
+
         sfxMenu.add(volSlider);
 
         return sfxMenu;
