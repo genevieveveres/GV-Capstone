@@ -3,10 +3,13 @@ package star.odyssey.ui.swing.text;
 import java.util.List;
 
 public class ColoredText {
+
+    // INSTANCE VARIABLES
     private String text;
     private TextColor textColor;
     private TextColor backgroundTextColor;
 
+    // CONSTRUCTORS
     public ColoredText(String text){
         this.text = text;
         this.textColor = TextColor.NONE;
@@ -18,6 +21,7 @@ public class ColoredText {
         this.textColor = consoleTextColor;
     }
 
+    // GETTERS AND SETTERS
     public String getText() {
         return text;
     }
