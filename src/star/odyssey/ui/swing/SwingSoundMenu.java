@@ -4,12 +4,14 @@ import star.odyssey.command.Command;
 import star.odyssey.command.ParsedCommand;
 import star.odyssey.command.SFXCommand;
 import star.odyssey.command.SoundCommand;
-import star.odyssey.sound.BackgroundAudioPlayer;
+import star.odyssey.sound.AudioPlayer;
 import star.odyssey.sound.SoundEffect;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Hashtable;
 
 public class SwingSoundMenu {
@@ -18,7 +20,7 @@ public class SwingSoundMenu {
     private Command command;
     private JMenu menu;
 
-    public SwingSoundMenu(SoundType type){
+    public SwingSoundMenu(SoundType type, JFrame frame){
         setType(type);
 
         menu = new JMenu(getType().toString());
@@ -46,7 +48,7 @@ public class SwingSoundMenu {
                 relevantSoundEnabled = SoundEffect.isSoundEnabled();
             }
             else{
-                relevantSoundEnabled = BackgroundAudioPlayer.isPlaying();
+                relevantSoundEnabled = AudioPlayer.isPlaying();
             }
             //Based on that flag if ON or if OFF
             if(relevantSoundEnabled){ //if sound is currently on

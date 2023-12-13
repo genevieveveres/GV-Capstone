@@ -1,7 +1,7 @@
 package star.odyssey.command;
 
 import star.odyssey.game.GameUtil;
-import star.odyssey.sound.BackgroundAudioPlayer;
+import star.odyssey.sound.AudioPlayer;
 
 import java.util.Map;
 import static star.odyssey.game.GameUtil.IntToJson;
@@ -41,22 +41,27 @@ public class SoundCommand implements Command {
                 int curVol = jsonToInt(userSettings, currentVolume);
                 IntToJson(userSettings, previousVolume, curVol);
                 IntToJson(userSettings, currentVolume, 0);
-                BackgroundAudioPlayer.setPlaying(false);
+                AudioPlayer.setVolume(GameUtil.jsonToInt(userSettings, "current_volume"));
+                AudioPlayer.setPlaying(false);
                 return txtMap.get("sound_off");
             case "[2]":
                 // Turn on the sound using the previous volume
                 int prevVol = jsonToInt(userSettings, previousVolume);
                 IntToJson(userSettings, currentVolume, prevVol);
-                BackgroundAudioPlayer.setPlaying(true);
+                AudioPlayer.setVolume(GameUtil.jsonToInt(userSettings, "current_volume"));
+                AudioPlayer.setPlaying(true);
                 return txtMap.get("sound_on");
             case "[3]"://Set vol to low
                 IntToJson(userSettings, currentVolume, Integer.parseInt(soundLevelMap.get("low_volume")));
+                AudioPlayer.setVolume(GameUtil.jsonToInt(userSettings, "current_volume"));
                 return txtMap.get("sound_low");
             case "[4]"://Set vol to med
                 IntToJson(userSettings, currentVolume, Integer.parseInt(soundLevelMap.get("med_volume")));
+                AudioPlayer.setVolume(GameUtil.jsonToInt(userSettings, "current_volume"));
                 return txtMap.get("sound_medium");
             case "[5]"://set vol to high
                 IntToJson(userSettings, currentVolume, Integer.parseInt(soundLevelMap.get("high_volume")));
+                AudioPlayer.setVolume(GameUtil.jsonToInt(userSettings, "current_volume"));
                 return txtMap.get("sound_high");
             default:
                 return option + txtMap.get("sound_unknown") + optionChoices;

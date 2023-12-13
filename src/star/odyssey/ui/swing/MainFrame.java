@@ -14,6 +14,8 @@ import javax.swing.event.ChangeListener;
 import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
@@ -54,6 +56,9 @@ public class MainFrame extends JFrame {
         helpButton.addActionListener(this::displayHelpPopup);
 
         initializeStyleMap();
+
+        revalidate();
+        repaint();
     }
 
     private void initializeStyleMap(){
@@ -124,11 +129,31 @@ public class MainFrame extends JFrame {
         JMenuBar menuBar = new JMenuBar();
 
         //Create and add the sfxMenu
-        JMenu sfxMenu = new SwingSoundMenu(SoundType.SFX).getMenu();
+        JMenu sfxMenu = new SwingSoundMenu(SoundType.SFX, this).getMenu();
+//        sfxMenu.addMouseListener(new MouseListener() {
+//            public void mouseClicked(MouseEvent e) {}
+//            public void mousePressed(MouseEvent e) {}
+//            public void mouseReleased(MouseEvent e) {
+//                repaint();
+//                revalidate();
+//            }
+//            public void mouseEntered(MouseEvent e) {}
+//            public void mouseExited(MouseEvent e) {}
+//        });
         menuBar.add(sfxMenu);
 
         //Create and add the musicMenu
-        JMenu soundMenu = new SwingSoundMenu(SoundType.BACKGROUND).getMenu();
+        JMenu soundMenu = new SwingSoundMenu(SoundType.BACKGROUND, this).getMenu();
+//        soundMenu.addMouseListener(new MouseListener() {
+//            public void mouseClicked(MouseEvent e) {}
+//            public void mousePressed(MouseEvent e) {}
+//            public void mouseReleased(MouseEvent e) {
+//                repaint();
+//                revalidate();
+//            }
+//            public void mouseEntered(MouseEvent e) {}
+//            public void mouseExited(MouseEvent e) {}
+//        });
         menuBar.add(soundMenu);
 
         //Set the menuBar

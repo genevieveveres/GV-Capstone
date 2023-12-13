@@ -13,6 +13,11 @@ public class AudioPlayer {
 
     // INSTANCE VARIABLES
     private static Clip clip;
+    private static boolean isPlaying = true;
+
+    private AudioPlayer(){
+
+    }
 
     // METHODS
     // plays the music
@@ -24,7 +29,7 @@ public class AudioPlayer {
 
             clip = AudioSystem.getClip();
             clip.open(audioStream);
-            clip.start();
+            //clip.start();
 
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
@@ -33,7 +38,7 @@ public class AudioPlayer {
 
     // changes the file to the new soundtrack that is passed in as a String
     public static void changeAudioFile(String filePath) {
-        if (clip != null && clip.isOpen()) {
+        if (clip != null && clip.isRunning()) {
             clip.stop();
             clip.close();
         }
@@ -42,7 +47,7 @@ public class AudioPlayer {
 
     // stops the music
     public static void stopAudio() {
-        if (clip != null && clip.isOpen()) {
+        if (clip != null && clip.isRunning()) {
             clip.stop();
         }
     }
@@ -72,5 +77,13 @@ public class AudioPlayer {
             float gain = (volFloat * (max - min)) + min;
             gainControl.setValue(gain);
         }
+    }
+
+    public static boolean isPlaying() {
+        return isPlaying;
+    }
+
+    public static void setPlaying(boolean playing) {
+        isPlaying = playing;
     }
 }
