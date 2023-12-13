@@ -2,9 +2,11 @@ package star.odyssey.ui.swing;
 
 import star.odyssey.game.GameUtil;
 import star.odyssey.sound.AudioPlayer;
-import star.odyssey.sound.BackgroundAudioPlayer;
+//import star.odyssey.sound.BackgroundAudioPlayer;
 import star.odyssey.ui.swing.text.ColoredText;
 import star.odyssey.ui.swing.text.TextColor;
+import static star.odyssey.game.GameUtil.jsonToInt;
+import static star.odyssey.game.GameUtil.IntToJson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +15,19 @@ import java.util.List;
 
 public class SwingDisplaySplash {
 
-    private static BackgroundAudioPlayer backgroundAudioPlayer;
+    //private static AudioPlayer backgroundAudioPlayer;
 
     // Display splash screen
     public static void displaySplash() {
 
         // activate the audio player with the intro soundtrack
+        String settingsFilePath = "./data/userSettings.json";
+        int initVol = jsonToInt(settingsFilePath, "initial_volume");
         AudioPlayer.changeAudioFile("data/audio/ambient_spaceship_entry.wav");
-        AudioPlayer.playAudio("data/audio/ambient_spaceship_entry.wav");
+        AudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "initial_volume"));
+        IntToJson(settingsFilePath, "current_volume", initVol);
+        IntToJson(settingsFilePath, "prev_volume", initVol);
+        AudioPlayer.loop();
 
         SwingDisplayUtils.clearScreen();
         String gameTxtFilePath = "./data/gameText.json";
@@ -47,7 +54,7 @@ public class SwingDisplaySplash {
     }
 
     // returns the intro audio player so that it can ge modified such as turned off, muted, or the volume changed.
-    public static BackgroundAudioPlayer getIntroAudioPlayer(){
-        return backgroundAudioPlayer;
-    }
+//    public static AudioPlayer getIntroAudioPlayer(){
+//        return backgroundAudioPlayer;
+//    }
 }
