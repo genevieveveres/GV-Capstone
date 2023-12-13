@@ -89,6 +89,8 @@ public class Game {
     }
     // This method replaces the mainGameLoop in the case the game is running on SWING
     public void swingGameHandler(){
+        SwingDisplayUtils.getInstance().updatePlayer(gameState.getPlayer());
+
         String soundFilePath = getGameState().getPlayer().getLocation().getSoundFilePath();
         if (backgroundAudioPlayer != null) {
             backgroundAudioPlayer.stop();
