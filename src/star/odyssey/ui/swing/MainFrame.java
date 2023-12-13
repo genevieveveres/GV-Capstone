@@ -7,8 +7,11 @@ import star.odyssey.ui.swing.callbacks.CallBackString;
 import star.odyssey.ui.swing.callbacks.CallBackVoid;
 import star.odyssey.ui.swing.text.ColoredText;
 import star.odyssey.ui.swing.text.TextColor;
+import star.odyssey.command.SFXCommand;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,7 +19,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class MainFrame extends JFrame {
     private static int ITEM_ICON_SIZE = 56;
@@ -47,6 +54,8 @@ public class MainFrame extends JFrame {
     //List of labels that display the rooms inventory
     private ArrayList<JLabel> roomInventoryLabelList = new ArrayList<>();
 
+    private boolean sfxStatus = true;
+
     StyleContext sc = new StyleContext();
     final DefaultStyledDocument doc = new DefaultStyledDocument(sc);
     private final Map<TextColor, Style> styleMap = new HashMap<>();
@@ -54,6 +63,7 @@ public class MainFrame extends JFrame {
     private CallBackString consoleCallbackString;
 
     public MainFrame(){
+        menuBar();
 
         SwingDisplayUtils.initializeSwingDisplay(
                 this::displayTextInsidePane,
@@ -76,6 +86,9 @@ public class MainFrame extends JFrame {
         helpButton.addActionListener(this::displayHelpPopup);
 
         initializeStyleMap();
+
+        revalidate();
+        repaint();
 
         astronautLabel.addMouseListener(new MouseAdapter() {
             @Override
@@ -260,6 +273,43 @@ public class MainFrame extends JFrame {
         String helpText = GameUtil.jsonToString("./data/gameText.json", "helpText2");
         JOptionPane.showMessageDialog(this,helpText);
     }
+
+    private void menuBar(){
+        //Create the menu Bar
+        JMenuBar menuBar = new JMenuBar();
+
+        //Create and add the sfxMenu
+        JMenu sfxMenu = new SwingSoundMenu(SoundType.SFX, this).getMenu();
+//        sfxMenu.addMouseListener(new MouseListener() {
+//            public void mouseClicked(MouseEvent e) {}
+//            public void mousePressed(MouseEvent e) {}
+//            public void mouseReleased(MouseEvent e) {
+//                repaint();
+//                revalidate();
+//            }
+//            public void mouseEntered(MouseEvent e) {}
+//            public void mouseExited(MouseEvent e) {}
+//        });
+        menuBar.add(sfxMenu);
+
+        //Create and add the musicMenu
+        JMenu soundMenu = new SwingSoundMenu(SoundType.BACKGROUND, this).getMenu();
+//        soundMenu.addMouseListener(new MouseListener() {
+//            public void mouseClicked(MouseEvent e) {}
+//            public void mousePressed(MouseEvent e) {}
+//            public void mouseReleased(MouseEvent e) {
+//                repaint();
+//                revalidate();
+//            }
+//            public void mouseEntered(MouseEvent e) {}
+//            public void mouseExited(MouseEvent e) {}
+//        });
+        menuBar.add(soundMenu);
+
+        //Set the menuBar
+        setJMenuBar(menuBar);
+    }
+
 
     // This method will get triggered by the back end, the player will get passed as parameter so the UI can update its values
     private void playerStatusChanged(Player player){

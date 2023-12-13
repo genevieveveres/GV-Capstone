@@ -2,7 +2,7 @@ package star.odyssey.game;
 
 import star.odyssey.command.CommandManager;
 import star.odyssey.env.GameEnvironment;
-import star.odyssey.sound.BackgroundAudioPlayer;
+import star.odyssey.sound.AudioPlayer;
 import star.odyssey.ui.DisplayUI;
 import star.odyssey.ui.MainMenu;
 import star.odyssey.ui.UniversalDisplay;
@@ -24,7 +24,6 @@ public class Game {
     private static boolean isRunning;
     private final CommandManager commandManager;
     private final DisplayUI displayUI;
-    private static BackgroundAudioPlayer backgroundAudioPlayer = null;
     String settingsFilePath = "./data/userSettings.json";
 
     // CONSTRUCTORS
@@ -49,12 +48,11 @@ public class Game {
         while (isRunning) {
             //Get path to location sound
             String soundFilePath = getGameState().getPlayer().getLocation().getSoundFilePath();
-            if (backgroundAudioPlayer != null) {
-                backgroundAudioPlayer.stop();//Stop any existing backgroundAudioPlayer
-            }
-            backgroundAudioPlayer = new BackgroundAudioPlayer(soundFilePath);//Create a new AudioPlayer
-            backgroundAudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "current_volume"));
-            backgroundAudioPlayer.loop();
+            AudioPlayer.stopAudio();//Stop any existing backgroundAudioPlayer
+
+            AudioPlayer.changeAudioFile(soundFilePath);//Create a new AudioPlayer
+            AudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "current_volume"));
+            AudioPlayer.loop();
             // Main loop for game execution; process commands and update game state
             displayUI.displayMainUI();
             String lastCommandResult = commandManager.getLastCommandResult();
@@ -92,12 +90,10 @@ public class Game {
         SwingDisplayUtils.getInstance().updatePlayer(gameState.getPlayer());
 
         String soundFilePath = getGameState().getPlayer().getLocation().getSoundFilePath();
-        if (backgroundAudioPlayer != null) {
-            backgroundAudioPlayer.stop();
-        }
-        backgroundAudioPlayer = new BackgroundAudioPlayer(soundFilePath);
-        backgroundAudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "current_volume"));
-        backgroundAudioPlayer.loop();
+        AudioPlayer.stopAudio();
+        AudioPlayer.changeAudioFile(soundFilePath);
+        AudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "current_volume"));
+        AudioPlayer.loop();
             // Main loop for game execution; process commands and update game state
         displayUI.displayMainUI();
         String lastCommandResult = commandManager.getLastCommandResult();
@@ -128,7 +124,7 @@ public class Game {
 
     // End the game
     public static void stop() {
-        backgroundAudioPlayer.stop();
+        AudioPlayer.stopAudio();
         isRunning = false;
     }
 
