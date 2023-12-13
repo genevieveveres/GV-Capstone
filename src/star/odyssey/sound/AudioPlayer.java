@@ -4,11 +4,20 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Audio player that can be reused throughout the game. This audio player has the functionality of changing the
+ * soundtrack, stopping the music, and resuming the music.
+ */
+
 public class AudioPlayer {
 
+    // INSTANCE VARIABLES
     private static Clip clip;
 
+    // METHODS
+    // plays the music
     public static void playAudio(String filePath) {
+        // tries to load the audio file
         try {
             File audioFile = new File(filePath);
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
@@ -22,6 +31,7 @@ public class AudioPlayer {
         }
     }
 
+    // changes the file to the new soundtrack that is passed in as a String
     public static void changeAudioFile(String filePath) {
         if (clip != null && clip.isOpen()) {
             clip.stop();
@@ -30,12 +40,14 @@ public class AudioPlayer {
         playAudio(filePath);
     }
 
+    // stops the music
     public static void stopAudio() {
         if (clip != null && clip.isOpen()) {
             clip.stop();
         }
     }
 
+    // resumes the music
     public static void resumeAudio() {
         if (clip != null && !clip.isActive()) {
             clip.start();
@@ -43,13 +55,14 @@ public class AudioPlayer {
         }
     }
 
-    // METHODS
+    // sets the soundtrack to loop continuously
     public static void loop() {
         if (clip != null) {
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
     }
 
+    // sets the volume for the soundtrack
     public static void setVolume(int volume) {
         float volFloat = (float) volume / 100;
         if (clip != null) {
