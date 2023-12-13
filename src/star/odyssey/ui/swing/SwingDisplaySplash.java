@@ -1,6 +1,7 @@
 package star.odyssey.ui.swing;
 
 import star.odyssey.game.GameUtil;
+import star.odyssey.sound.AudioPlayer;
 import star.odyssey.sound.BackgroundAudioPlayer;
 import star.odyssey.ui.swing.text.ColoredText;
 import star.odyssey.ui.swing.text.TextColor;
@@ -17,11 +18,9 @@ public class SwingDisplaySplash {
     // Display splash screen
     public static void displaySplash() {
 
-        // start the audio player for the introduction and menu part of the game
-        String settingsFilePath = "./data/userSettings.json";
-        backgroundAudioPlayer = new BackgroundAudioPlayer("data/audio/ambient_game_start.wav");
-        backgroundAudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "initial_volume"));
-        backgroundAudioPlayer.loop();
+        // activate the audio player with the intro soundtrack
+        AudioPlayer.changeAudioFile("data/audio/ambient_spaceship_entry.wav");
+        AudioPlayer.playAudio("data/audio/ambient_spaceship_entry.wav");
 
         SwingDisplayUtils.clearScreen();
         String gameTxtFilePath = "./data/gameText.json";

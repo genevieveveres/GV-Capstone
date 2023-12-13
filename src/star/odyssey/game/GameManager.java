@@ -7,6 +7,7 @@ import star.odyssey.inventory.ItemManager;
 import star.odyssey.inventory.Weapon;
 import star.odyssey.location.Location;
 import star.odyssey.location.LocationManager;
+import star.odyssey.sound.AudioPlayer;
 import star.odyssey.ui.swing.SwingDisplaySplash;
 
 import java.util.List;
@@ -48,9 +49,9 @@ public class GameManager {
     }
 
     public void startGame(String a){
-        // turn the intro audio off once the full intro is over and the game is getting ready to start
-        SwingDisplaySplash.getIntroAudioPlayer().stop();
 
+        // stop the intro audio soundtrack
+        AudioPlayer.stopAudio();
         // start the main game
         game.start();
     }
