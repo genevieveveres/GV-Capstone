@@ -47,7 +47,9 @@ public class GameMap {
         for (int level : levels) {
             int numRows = (int) sortedRooms.stream().filter(entry -> entry.getValue().toString().startsWith(Integer.toString(level))).count();
             printRows(numRows, Integer.toString(level), playerLocationIndex);
-            System.out.println();
+//            System.out.println();
+            UniversalDisplay.println("");
+
         }
 
         return mapStringBuilder.toString();
@@ -102,7 +104,8 @@ public class GameMap {
                 }
             }
         }
-        System.out.println();
+//        System.out.println();
+        UniversalDisplay.println("");
         for (Map.Entry<String, Integer> entry : sortedRooms) {
             String west;
             String east;
@@ -115,7 +118,8 @@ public class GameMap {
             }
             if (entry.getValue().toString().startsWith(level)) {
                 if (entry.getKey().startsWith("blank_room")) {
-                    System.out.print("                                   ");
+//                    System.out.print("                                   ");
+                    UniversalDisplay.print("                                   ");
                 } else {
                     if (locationProcessor.hasWest(entry.getKey())) {
                         west = "═╣";
@@ -132,7 +136,8 @@ public class GameMap {
                 }
             }
         }
-        System.out.println();
+//        System.out.println();
+        UniversalDisplay.println("");
 
         for (Map.Entry<String, Integer> entry : sortedRooms) {
             if (entry.getValue().toString().startsWith(level)) {
@@ -154,10 +159,10 @@ public class GameMap {
                     UniversalDisplay.print("                                   ");
                 } else {
                     if (locationProcessor.hasSouth(entry.getKey())) {
-                        UniversalDisplay.println(" ╚═══════════════╦════════════════╝");
+                        UniversalDisplay.print(" ╚═══════════════╦════════════════╝");
                         //System.out.print(makeBrown(" ╚═══════════════╦════════════════╝"));
                     } else {
-                        UniversalDisplay.println(" ╚════════════════════════════════╝");
+                        UniversalDisplay.print(" ╚════════════════════════════════╝");
                         //System.out.print(makeBrown(" ╚════════════════════════════════╝"));
                     }
 
