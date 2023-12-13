@@ -49,8 +49,6 @@ public class MainFrame extends JFrame {
         this.setVisible(true);
         this.setResizable(false);
 
-
-
         clickMeButton.addActionListener(this::clickMeButton_Click);
         textField1.addActionListener(this::clickMeButton_Click);
         helpButton.addActionListener(this::displayHelpPopup);
@@ -122,64 +120,19 @@ public class MainFrame extends JFrame {
     }
 
     private void menuBar(){
-
         //Create the menu Bar
         JMenuBar menuBar = new JMenuBar();
 
         //Create and add the sfxMenu
-        JMenu sfxMenu = sfxMenu();
+        JMenu sfxMenu = new SwingSoundMenu(SoundType.SFX).getMenu();
         menuBar.add(sfxMenu);
 
-        //TODO: Create and add the musicMenu
+        //Create and add the musicMenu
+        JMenu soundMenu = new SwingSoundMenu(SoundType.BACKGROUND).getMenu();
+        menuBar.add(soundMenu);
 
         //Set the menuBar
         setJMenuBar(menuBar);
     }
 
-    private JMenu sfxMenu(){
-        SFXCommand sfxCom = new SFXCommand();
-
-        JMenu sfxMenu = new JMenu("SFX");
-
-        //Create, prep, and then add sfxOnOff to the sfxMenu
-        JMenuItem sfxOnOff = new JMenuItem("SFX Off");
-        sfxOnOff.addActionListener((event) -> {
-            if(SoundEffect.isSoundEnabled()){ //if sound is currently on
-                sfxCom.execute("off");//turn sound off
-                sfxOnOff.setText("SFX On"); //change button text to opposite
-            }
-            else { //if sound is currently off
-                sfxCom.execute("on"); //turn sound off
-                sfxOnOff.setText("SFX Off"); //change button text to opposite
-            }
-        });
-        sfxMenu.add(sfxOnOff);
-
-        //Create, prep, and then add the volSlider to the sfxMenu
-        JSlider volSlider = new JSlider(JSlider.VERTICAL, 0, 100, 50);
-        Hashtable<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
-        labelTable.put(0, new JLabel("Low") );
-        labelTable.put(50, new JLabel("Med") );
-        labelTable.put(100, new JLabel("High") );
-        volSlider.setLabelTable(labelTable);
-        volSlider.setPaintLabels(true);
-        volSlider.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                int slidePointer = volSlider.getValue();
-
-                if(slidePointer <= 33){
-                    sfxCom.execute("low");//send LOW aka
-                }else if(slidePointer <= 67){
-                    sfxCom.execute("medium");//send MED
-                }else {
-                    sfxCom.execute("high");//send HIGH
-                }
-            }
-        });
-        sfxMenu.add(volSlider);
-
-        //Send back the newly prepared sfxMenu
-        return sfxMenu;
-    }
 }
