@@ -114,7 +114,7 @@ public class GameMap {
             if (entry.getKey().equalsIgnoreCase(playerLocationIndex)) {
                 //TODO: replace the * with a player pin symbol
 //                playerPin = "\uD83D\uDC64";
-                playerPin = "*";
+                playerPin = " *";
             } else {
                 playerPin = "";
             }
