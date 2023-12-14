@@ -39,10 +39,6 @@ public class MainFrame extends JFrame{
     private JLabel roomInventoryLabel;
     private JPanel roomInventoryPanel;
     private JPanel navPanel;
-    private JLabel northLabel;
-    private JLabel southLabel;
-    private JLabel eastLabel;
-    private JLabel westLabel;
 
     // Custom components:
     private JLabel playerWeaponLabel = new JLabel();
