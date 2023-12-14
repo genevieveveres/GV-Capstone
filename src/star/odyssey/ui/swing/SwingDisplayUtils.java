@@ -1,8 +1,10 @@
 package star.odyssey.ui.swing;
 
+import star.odyssey.character.Player;
 import star.odyssey.ui.ConsoleDisplayUtils;
 import star.odyssey.ui.swing.callbacks.CallBackString;
 import star.odyssey.ui.swing.callbacks.SwingCallBackColoredTextList;
+import star.odyssey.ui.swing.callbacks.SwingCallBackPlayerStatusChanged;
 import star.odyssey.ui.swing.text.ColoredText;
 import star.odyssey.ui.swing.text.TextColor;
 
@@ -10,16 +12,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SwingDisplayUtils {
-    private static SwingCallBackColoredTextList callBack;
+    private static SwingCallBackColoredTextList gameTextChangeCallback;
+    private static SwingCallBackPlayerStatusChanged playerStatusChangedCallBack;
     private static SwingDisplayUtils instance;
 
     private SwingDisplayUtils(){
 
     }
 
-    public static SwingDisplayUtils getInstance(){
+    public static void initializeSwingDisplay(SwingCallBackColoredTextList callBack, SwingCallBackPlayerStatusChanged playerStatusChangedCallBack){
+        setCallBack(callBack);
+        setPlayerStatusChangedCallBack(playerStatusChangedCallBack);
+
         if(instance == null)
             instance = new SwingDisplayUtils();
+    }
+
+    public static SwingDisplayUtils getInstance(){
+        if(instance == null)
+            throw new NullPointerException("instace is null in SwingDisplayUtils.java, you must first initialize it by calling the static method initializeSwingDisplay.");
         return instance;
     }
 
@@ -33,9 +44,9 @@ public class SwingDisplayUtils {
     }
 
     public void displayText(List<ColoredText> text, CallBackString consoleCallback){
-        if(callBack == null)
+        if(gameTextChangeCallback == null)
             throw new NullPointerException("SwingCallBackString must be initialized first in class SwingDisplayUtils.");
-        callBack.callback(text, consoleCallback);
+        gameTextChangeCallback.callback(text, consoleCallback);
     }
 
     public void displayTextNl(List<ColoredText> text, CallBackString consoleCallback){
@@ -48,6 +59,14 @@ public class SwingDisplayUtils {
     }
 
     public static void setCallBack(SwingCallBackColoredTextList callBack) {
-        SwingDisplayUtils.callBack = callBack;
+        SwingDisplayUtils.gameTextChangeCallback = callBack;
+    }
+
+    public static void setPlayerStatusChangedCallBack(SwingCallBackPlayerStatusChanged playerStatusChangedCallBack){
+        SwingDisplayUtils.playerStatusChangedCallBack = playerStatusChangedCallBack;
+    }
+
+    public void updatePlayer(Player player){
+        playerStatusChangedCallBack.callback(player);
     }
 }

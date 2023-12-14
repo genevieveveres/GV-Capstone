@@ -1,8 +1,10 @@
 package star.odyssey.ui;
 
 import star.odyssey.game.GameUtil;
-import star.odyssey.sound.BackgroundAudioPlayer;
+import star.odyssey.sound.AudioPlayer;
 
+import static star.odyssey.game.GameUtil.IntToJson;
+import static star.odyssey.game.GameUtil.jsonToInt;
 import static star.odyssey.ui.ConsoleDisplayUtils.*;
 
 public class DisplaySplash {
@@ -10,9 +12,13 @@ public class DisplaySplash {
     // Display splash screen
     public static void displaySplash() {
         String settingsFilePath = "./data/userSettings.json";
-        BackgroundAudioPlayer backgroundAudioPlayer = new BackgroundAudioPlayer("data/audio/ambient_game_start.wav");
-        backgroundAudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "initial_volume"));
-        backgroundAudioPlayer.loop();
+        int initVol = jsonToInt(settingsFilePath, "initial_volume");
+
+        AudioPlayer.changeAudioFile("data/audio/ambient_game_start.wav");
+        AudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "initial_volume"));
+        IntToJson(settingsFilePath, "current_volume", initVol);
+        IntToJson(settingsFilePath, "prev_volume", initVol);
+        AudioPlayer.loop();
 
         clearScreen();
         String gameTxtFilePath = "./data/gameText.json";
@@ -39,6 +45,6 @@ public class DisplaySplash {
 
         pauseDisplay();
         clearScreen();
-        backgroundAudioPlayer.stop();
+        AudioPlayer.stopAudio();
     }
 }

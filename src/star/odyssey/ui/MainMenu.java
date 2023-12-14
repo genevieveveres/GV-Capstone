@@ -3,7 +3,7 @@ package star.odyssey.ui;
 import com.apps.util.Prompter;
 import star.odyssey.game.GameManager;
 import star.odyssey.game.GameUtil;
-import star.odyssey.sound.BackgroundAudioPlayer;
+import star.odyssey.sound.AudioPlayer;
 
 import java.util.Map;
 import java.util.Scanner;
@@ -40,9 +40,9 @@ public class MainMenu {
 
     public static void execute() {
         String settingsFilePath = "./data/userSettings.json";
-        BackgroundAudioPlayer backgroundAudioPlayer = new BackgroundAudioPlayer("data/audio/ambient_game_start.wav");
-        backgroundAudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "initial_volume"));
-        backgroundAudioPlayer.loop();
+        AudioPlayer.changeAudioFile("data/audio/ambient_game_start.wav");
+        //AudioPlayer.setVolume(GameUtil.jsonToInt(settingsFilePath, "current_volume"));
+        AudioPlayer.loop();
         Map<String, String> optionsMap = readMainMenuFromJson();
 
         boolean validOption = false;
@@ -69,12 +69,12 @@ public class MainMenu {
                 case 1:
                     displayBackstory();
                     displayGameInfo();
-                    backgroundAudioPlayer.stop();
+                    AudioPlayer.stopAudio();
                     gameManager.startGame(); // Starting a new game.
                     validOption = true;
                     break;
                 case 2:
-                    backgroundAudioPlayer.stop();
+                    AudioPlayer.stopAudio();
                     gameManager.loadSavedGame(); // Loading a previously saved game.
                     validOption = true;
                     break;

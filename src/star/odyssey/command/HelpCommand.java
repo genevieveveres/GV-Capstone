@@ -3,7 +3,6 @@ package star.odyssey.command;
 import star.odyssey.game.GameUtil;
 import star.odyssey.ui.ConsoleDisplayUtils;
 import star.odyssey.ui.DisplayGameInfo;
-import star.odyssey.ui.swing.HelpFrame;
 
 import javax.swing.*;
 import java.util.Map;
@@ -45,10 +44,10 @@ public class HelpCommand implements Command {
         //SWING - when this command it called, launch HelpFrame.
 //        HelpFrame theHelpFrame = new HelpFrame();
 
-        //TODO: find out how to pass the MainFrame in here so it's a true "child" pop up
+        //NewEST version, swing
         //For now, the below code is also in the MainFrame class as a method
-        String helpText = GameUtil.jsonToString(gameTxtFilePath, "helpText2");
-        JOptionPane.showMessageDialog(new JFrame(),helpText);
+//        String helpText = GameUtil.jsonToString(gameTxtFilePath, "helpText2");
+//        JOptionPane.showMessageDialog(new JFrame(),helpText);
 
 
         return "";
