@@ -2,6 +2,7 @@ package star.odyssey.sound;
 
 import javax.sound.sampled.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -85,5 +86,13 @@ public class AudioPlayer {
 
     public static void setPlaying(boolean playing) {
         isPlaying = playing;
+    }
+
+    public static Clip getClip() {
+        return clip;
+    }
+
+    public static void setClip(Clip clip) {
+        AudioPlayer.clip = clip;
     }
 }
