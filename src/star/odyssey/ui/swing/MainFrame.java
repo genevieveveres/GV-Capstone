@@ -3,33 +3,27 @@ package star.odyssey.ui.swing;
 import star.odyssey.character.Player;
 import star.odyssey.game.GameUtil;
 import star.odyssey.inventory.Item;
+import star.odyssey.ui.ConsoleDisplayUtils;
 import star.odyssey.ui.swing.callbacks.CallBackString;
 import star.odyssey.ui.swing.callbacks.CallBackVoid;
 import star.odyssey.ui.swing.text.ColoredText;
 import star.odyssey.ui.swing.text.TextColor;
-import star.odyssey.command.SFXCommand;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.text.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame{
     private static int ITEM_ICON_SIZE = 56;
     private JPanel mainPanel;
     private JButton clickMeButton;
-    private JButton helpButton;
     private JTextField textField1;
     private JTextPane textPane1;
     private JProgressBar playerHealthProgressBar;
@@ -45,6 +39,10 @@ public class MainFrame extends JFrame {
     private JLabel astronautLabel;
     private JLabel roomInventoryLabel;
     private JPanel roomInventoryPanel;
+    private JLabel northLabel;
+    private JLabel southLabel;
+    private JLabel eastLabel;
+    private JLabel westLabel;
 
     // Custom components:
     private JLabel playerWeaponLabel = new JLabel();
@@ -53,8 +51,6 @@ public class MainFrame extends JFrame {
     private ArrayList<JLabel> inventoryLabelList = new ArrayList<>();
     //List of labels that display the rooms inventory
     private ArrayList<JLabel> roomInventoryLabelList = new ArrayList<>();
-
-    private boolean sfxStatus = true;
 
     StyleContext sc = new StyleContext();
     final DefaultStyledDocument doc = new DefaultStyledDocument(sc);
@@ -79,11 +75,14 @@ public class MainFrame extends JFrame {
 
         initializeAstronautPanel();
         initializeRoomItemsPanel();
+        initializeNavLabels();
+        addKeyListener(new KeyEventListener());
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(false);
         playerAttributesPanel.setLayout(new GridLayout(3,2));
 
         clickMeButton.addActionListener(this::clickMeButton_Click);
         textField1.addActionListener(this::clickMeButton_Click);
-        helpButton.addActionListener(this::displayHelpPopup);
 
         initializeStyleMap();
 
@@ -252,6 +251,64 @@ public class MainFrame extends JFrame {
         textField1.setText("");
     }
 
+    /*
+    Based on the text that is part of the JLabel,
+    send a command to "go" in the intended direction.
+     */
+    private void navLabelClickedEvent(JLabel label, MouseEvent e){
+        String direction = label.getText();
+        if(direction != null){
+            switch (direction) {
+                case "▲":
+                    consoleCallbackString.callback("go north");
+                    break;
+                case "▼":
+                    consoleCallbackString.callback("go south");
+                    break;
+                case "▶":
+                    consoleCallbackString.callback("go east");
+                    break;
+                case "◀":
+                    consoleCallbackString.callback("go west");
+                    break;
+            }
+        }
+    }
+
+    /*
+    Create navigation labels with text, and add
+    a listener to each of them.
+     */
+    private void initializeNavLabels(){
+        //Initialize
+        northLabel = new JLabel();
+        northLabel.setName("▲");
+        northLabel.setText("▲");
+        southLabel = new JLabel();
+        southLabel.setText("▼");
+        eastLabel = new JLabel();
+        eastLabel.setText("▶");
+        westLabel = new JLabel();
+        westLabel.setText("◀");
+
+        //add labels to an array
+        JLabel[] dir = new JLabel[]{northLabel, southLabel, eastLabel, westLabel};
+
+        //iterate through array instead of writing this 4 times
+        for (JLabel l : dir) {
+            panelBottom.add(l);
+
+            l.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
+                    navLabelClickedEvent(l, e);
+                }
+            });
+        }
+
+    }
+
     public void displayTextInsidePane(java.util.List<ColoredText> text, CallBackString callback){
         this.consoleCallbackString = callback;
         if(text == null){
@@ -278,38 +335,79 @@ public class MainFrame extends JFrame {
         //Create the menu Bar
         JMenuBar menuBar = new JMenuBar();
 
+        JMenu settingsMenu = new JMenu("Settings");
+        menuBar.add(settingsMenu);
+
         //Create and add the sfxMenu
         JMenu sfxMenu = new SwingSoundMenu(SoundType.SFX, this).getMenu();
-//        sfxMenu.addMouseListener(new MouseListener() {
-//            public void mouseClicked(MouseEvent e) {}
-//            public void mousePressed(MouseEvent e) {}
-//            public void mouseReleased(MouseEvent e) {
-//                repaint();
-//                revalidate();
-//            }
-//            public void mouseEntered(MouseEvent e) {}
-//            public void mouseExited(MouseEvent e) {}
-//        });
-        menuBar.add(sfxMenu);
+        settingsMenu.add(sfxMenu);
 
         //Create and add the musicMenu
         JMenu soundMenu = new SwingSoundMenu(SoundType.BACKGROUND, this).getMenu();
-//        soundMenu.addMouseListener(new MouseListener() {
-//            public void mouseClicked(MouseEvent e) {}
-//            public void mousePressed(MouseEvent e) {}
-//            public void mouseReleased(MouseEvent e) {
-//                repaint();
-//                revalidate();
-//            }
-//            public void mouseEntered(MouseEvent e) {}
-//            public void mouseExited(MouseEvent e) {}
-//        });
-        menuBar.add(soundMenu);
+        settingsMenu.add(soundMenu);
+
+        //Create and add Help Menu
+        JMenu helpMenu = new JMenu("Help");
+        JMenuItem helpMenuItem = new JMenuItem("List Game Controls");
+        helpMenu.add(helpMenuItem);
+        helpMenuItem.addActionListener(this::displayHelpPopup);
+        menuBar.add(helpMenu);
 
         //Set the menuBar
         setJMenuBar(menuBar);
     }
 
+//    private void initializeKeyListeners(){
+//        this.setFocusable(true);
+//        this.addKeyListener(new KeyListener() {
+//            @Override
+//            public void keyTyped(KeyEvent e) {
+//            }
+//
+//            @Override
+//            public void keyPressed(KeyEvent e) {
+//            }
+//
+//            @Override
+//            public void keyReleased(KeyEvent e) {
+//                switch (e.getKeyCode()) {
+//                    case KeyEvent.VK_UP:
+//                        consoleCallbackString.callback("go north");
+//                    case KeyEvent.VK_DOWN:
+//                        consoleCallbackString.callback("go south");
+//                    case KeyEvent.VK_LEFT:
+//                        consoleCallbackString.callback("go west");
+//                    case KeyEvent.VK_RIGHT:
+//                        consoleCallbackString.callback("go east");
+//                    case KeyEvent.VK_ENTER:
+//                        consoleCallbackString.callback("");
+//
+//                }
+//            }
+//        });
+//    }
+
+//    @Override
+//    public void keyPressed(KeyEvent e) {
+//    }
+//    @Override
+//    public void keyReleased(KeyEvent e) {
+//        switch (e.getKeyCode()) {
+//            case KeyEvent.VK_UP:
+//                consoleCallbackString.callback("go north");
+//            case KeyEvent.VK_DOWN:
+//                consoleCallbackString.callback("go south");
+//            case KeyEvent.VK_LEFT:
+//                consoleCallbackString.callback("go west");
+//            case KeyEvent.VK_RIGHT:
+//                consoleCallbackString.callback("go east");
+//            case KeyEvent.VK_ENTER:
+//                consoleCallbackString.callback("");
+//        }
+//    }
+//    @Override
+//    public void keyTyped(KeyEvent e) {
+//    }
 
     // This method will get triggered by the back end, the player will get passed as parameter so the UI can update its values
     private void playerStatusChanged(Player player){
