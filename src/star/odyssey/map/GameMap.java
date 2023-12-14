@@ -112,7 +112,9 @@ public class GameMap {
             String playerPin;
             String extraSpace;
             if (entry.getKey().equalsIgnoreCase(playerLocationIndex)) {
-                playerPin = " \uD83D\uDC64";
+                //TODO: replace the * with a player pin symbol
+//                playerPin = "\uD83D\uDC64";
+                playerPin = "*";
             } else {
                 playerPin = "";
             }
@@ -178,7 +180,7 @@ public class GameMap {
         if (text.length() % 2 != 0) {
             extraSpace = " ";
         }
-        //System.out.print(makeBrown(west) + " ".repeat(padding) + makeGreen(text) + " ".repeat(padding) + extraSpace + makeBrown(east));
+//        System.out.print(makeBrown(west) + " ".repeat(padding) + makeGreen(text) + " ".repeat(padding) + extraSpace + makeBrown(east));
         UniversalDisplay.print(
                 new ColoredText(west, TextColor.BROWN),
                 new ColoredText(" ".repeat(padding)),

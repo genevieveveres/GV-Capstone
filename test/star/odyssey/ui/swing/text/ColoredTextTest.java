@@ -23,9 +23,20 @@ public class ColoredTextTest {
     }
 
     @Test
+    public void testGetTextMethod_ShouldFail_WhenTheReturnedTextIsWrong() {
+        assertNotEquals("Star Odyssey 2.0", coloredText.getText());
+    }
+
+    @Test
     public void testSetTextMethod_ShouldPass_WhenThePassedTextIsAssignedToText(){
         coloredText.setText("Star Odyssey 2.0");
         assertEquals("Star Odyssey 2.0", coloredText.getText());
+    }
+
+    @Test
+    public void testSetTextMethod_ShouldPass_WhenPassedNull(){
+        coloredText.setText(null);
+        assertEquals(null, coloredText.getText());
     }
 
     @Test
