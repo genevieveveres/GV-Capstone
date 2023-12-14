@@ -3,7 +3,6 @@ package star.odyssey.ui.swing;
 import star.odyssey.character.Player;
 import star.odyssey.game.GameUtil;
 import star.odyssey.inventory.Item;
-import star.odyssey.ui.ConsoleDisplayUtils;
 import star.odyssey.ui.swing.callbacks.CallBackString;
 import star.odyssey.ui.swing.callbacks.CallBackVoid;
 import star.odyssey.ui.swing.text.ColoredText;
@@ -39,6 +38,7 @@ public class MainFrame extends JFrame{
     private JLabel astronautLabel;
     private JLabel roomInventoryLabel;
     private JPanel roomInventoryPanel;
+    private JPanel navPanel;
     private JLabel northLabel;
     private JLabel southLabel;
     private JLabel eastLabel;
@@ -75,7 +75,7 @@ public class MainFrame extends JFrame{
 
         initializeAstronautPanel();
         initializeRoomItemsPanel();
-        initializeNavLabels();
+        initializeNavPanel();
         playerAttributesPanel.setLayout(new GridLayout(3,2));
 
         clickMeButton.addActionListener(this::clickMeButton_Click);
@@ -252,7 +252,7 @@ public class MainFrame extends JFrame{
     Based on the text that is part of the JLabel,
     send a command to "go" in the intended direction.
      */
-    private void navLabelClickedEvent(JLabel label, MouseEvent e){
+    public void navLabelClickedEvent(JLabel label, MouseEvent e){
         String direction = label.getText();
         if(direction != null){
             switch (direction) {
@@ -273,36 +273,14 @@ public class MainFrame extends JFrame{
     }
 
     /*
-    Create navigation labels with text, and add
-    a listener to each of them.
+    Create navigation panel and place in context
      */
-    private void initializeNavLabels(){
-        //Initialize
-        northLabel = new JLabel();
-        northLabel.setText("▲");
-        southLabel = new JLabel();
-        southLabel.setText("▼");
-        eastLabel = new JLabel();
-        eastLabel.setText("▶");
-        westLabel = new JLabel();
-        westLabel.setText("◀");
-
-        //add labels to an array
-        JLabel[] dir = new JLabel[]{northLabel, southLabel, eastLabel, westLabel};
-
-        //iterate through array instead of writing this 4 times
-        for (JLabel l : dir) {
-            panelBottom.add(l);
-
-            l.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    super.mouseClicked(e);
-                    navLabelClickedEvent(l, e);
-                }
-            });
-        }
-
+    private void initializeNavPanel(){
+        //Create the Nav Panel using the class created for that purpose
+        navPanel = new SwingNavigationPanel(this).getNavPanel();
+        panelBottom.setLayout(null);
+        panelBottom.add(navPanel);
+        navPanel.setBounds(440,38,90,103);
     }
 
     public void displayTextInsidePane(java.util.List<ColoredText> text, CallBackString callback){
@@ -366,6 +344,7 @@ public class MainFrame extends JFrame{
     private void saveCommandListener(ActionEvent e){
         consoleCallbackString.callback("save");
     }
+
     private void saveExitCommandListener(ActionEvent e){
         consoleCallbackString.callback("save");
         System.exit(0);
