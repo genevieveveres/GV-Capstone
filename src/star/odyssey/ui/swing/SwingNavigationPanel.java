@@ -13,7 +13,6 @@ public class SwingNavigationPanel {
     private JLabel southLabel;
     private JLabel eastLabel;
     private JLabel westLabel;
-    private CallBackString consoleCallbackString;
 
     public SwingNavigationPanel(MainFrame frame){
         navPanel.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -49,27 +48,6 @@ public class SwingNavigationPanel {
                     frame.navLabelClickedEvent(l, e);
                 }
             });
-        }
-    }
-
-    public void navLabelClickedEvent(JLabel label, MouseEvent e){
-        navPanel.setLayout(new BorderLayout());
-        String direction = label.getText();
-        if(direction != null){
-            switch (direction) {
-                case "▲":
-                    consoleCallbackString.callback("go north");
-                    break;
-                case "▼":
-                    consoleCallbackString.callback("go south");
-                    break;
-                case "▶":
-                    consoleCallbackString.callback("go east");
-                    break;
-                case "◀":
-                    consoleCallbackString.callback("go west");
-                    break;
-            }
         }
     }
 
