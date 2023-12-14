@@ -16,6 +16,7 @@ public class SwingNavigationPanel {
 
     public SwingNavigationPanel(MainFrame frame){
         navPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        navPanel.setLayout(new BorderLayout());
         initNavLabels();
         addListeners(frame);
     }
