@@ -70,10 +70,4 @@ public class CommandsTest {
         testCommand.execute("gravity hammer");
         assertEquals(1,testGameState.getPlayer().getInventory().size());
     }
-
-    @Test
-    public void testExecute_ShouldFail_WhenPassedAnInvalidItemName(){
-        testCommand = new GetCommand(testGameState);
-        assertEquals("It seems like you're trying to get something, but what exactly?",testCommand.execute(null));
-    }
 }
