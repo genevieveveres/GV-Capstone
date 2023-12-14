@@ -18,6 +18,12 @@ public class ColoredTextTest {
 
     // TEST CASES
     @Test
+    public void testColoredTextConstructor_ShouldPass_WhenAStringIsPassed() {
+        ColoredText coloredText2 = new ColoredText("Star Odyssey", TextColor.RED);
+        assertNotNull(coloredText2);
+        assertEquals(TextColor.RED, coloredText2.getTextColor());
+    }
+    @Test
     public void testGetTextMethod_ShouldPass_WhenTheTextIsReturned() {
         assertEquals("Star Odyssey", coloredText.getText());
     }
@@ -67,5 +73,23 @@ public class ColoredTextTest {
         assertEquals(TextColor.NONE, coloredText.getBackgroundTextColor());
         coloredText.setBackgroundTextColor(TextColor.RED);
         assertEquals(TextColor.RED, coloredText.getBackgroundTextColor());
+    }
+
+    @Test
+    public void testGetText_shouldPass_WhenAStringIsReturned(){
+        assertEquals("Star Odyssey", coloredText.getText());
+    }
+
+    @Test
+    public void testSetText_ShouldPass_WhenPassedAString(){
+        coloredText.setText("Star Odyssey 2.0");
+        assertEquals("Star Odyssey 2.0", coloredText.getText());
+    }
+
+    @Test
+    public void testSetTextColor_ShouldPass_WhenAnEnumColorIsPassed(){
+        assertEquals(TextColor.NONE, coloredText.getTextColor());
+        coloredText.setTextColor(TextColor.RED);
+        assertEquals(TextColor.RED, coloredText.getTextColor());
     }
 }
