@@ -76,9 +76,6 @@ public class MainFrame extends JFrame{
         initializeAstronautPanel();
         initializeRoomItemsPanel();
         initializeNavLabels();
-        addKeyListener(new KeyEventListener());
-        setFocusable(true);
-        setFocusTraversalKeysEnabled(false);
         playerAttributesPanel.setLayout(new GridLayout(3,2));
 
         clickMeButton.addActionListener(this::clickMeButton_Click);
@@ -282,7 +279,6 @@ public class MainFrame extends JFrame{
     private void initializeNavLabels(){
         //Initialize
         northLabel = new JLabel();
-        northLabel.setName("▲");
         northLabel.setText("▲");
         southLabel = new JLabel();
         southLabel.setText("▼");
@@ -353,61 +349,27 @@ public class MainFrame extends JFrame{
         helpMenuItem.addActionListener(this::displayHelpPopup);
         menuBar.add(helpMenu);
 
+        //Create and add Save Menu
+        JMenu saveMenu = new JMenu("Save");
+        JMenuItem saveMenuItem = new JMenuItem("Save Game");
+        JMenuItem saveExitMenuItem = new JMenuItem("Save Game and Exit");
+        saveMenuItem.addActionListener(this::saveCommandListener);
+        saveExitMenuItem.addActionListener(this::saveExitCommandListener);
+        saveMenu.add(saveMenuItem);
+        saveMenu.add(saveExitMenuItem);
+        menuBar.add(saveMenu);
+
         //Set the menuBar
         setJMenuBar(menuBar);
     }
 
-//    private void initializeKeyListeners(){
-//        this.setFocusable(true);
-//        this.addKeyListener(new KeyListener() {
-//            @Override
-//            public void keyTyped(KeyEvent e) {
-//            }
-//
-//            @Override
-//            public void keyPressed(KeyEvent e) {
-//            }
-//
-//            @Override
-//            public void keyReleased(KeyEvent e) {
-//                switch (e.getKeyCode()) {
-//                    case KeyEvent.VK_UP:
-//                        consoleCallbackString.callback("go north");
-//                    case KeyEvent.VK_DOWN:
-//                        consoleCallbackString.callback("go south");
-//                    case KeyEvent.VK_LEFT:
-//                        consoleCallbackString.callback("go west");
-//                    case KeyEvent.VK_RIGHT:
-//                        consoleCallbackString.callback("go east");
-//                    case KeyEvent.VK_ENTER:
-//                        consoleCallbackString.callback("");
-//
-//                }
-//            }
-//        });
-//    }
-
-//    @Override
-//    public void keyPressed(KeyEvent e) {
-//    }
-//    @Override
-//    public void keyReleased(KeyEvent e) {
-//        switch (e.getKeyCode()) {
-//            case KeyEvent.VK_UP:
-//                consoleCallbackString.callback("go north");
-//            case KeyEvent.VK_DOWN:
-//                consoleCallbackString.callback("go south");
-//            case KeyEvent.VK_LEFT:
-//                consoleCallbackString.callback("go west");
-//            case KeyEvent.VK_RIGHT:
-//                consoleCallbackString.callback("go east");
-//            case KeyEvent.VK_ENTER:
-//                consoleCallbackString.callback("");
-//        }
-//    }
-//    @Override
-//    public void keyTyped(KeyEvent e) {
-//    }
+    private void saveCommandListener(ActionEvent e){
+        consoleCallbackString.callback("save");
+    }
+    private void saveExitCommandListener(ActionEvent e){
+        consoleCallbackString.callback("save");
+        System.exit(0);
+    }
 
     // This method will get triggered by the back end, the player will get passed as parameter so the UI can update its values
     private void playerStatusChanged(Player player){
